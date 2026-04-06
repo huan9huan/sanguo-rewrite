@@ -42,6 +42,7 @@ Each passage usually contains 2-4 scenes.
 - Planner: builds chapter / passage / scene specs only
 - Writer: writes Chinese draft from specs and memory
 - Critic: reviews clarity, story drive, character consistency, translation readiness
+- Editor: revises CN draft based on review while preserving valid structure and content
 - Translator: rewrites approved Chinese into English
 
 ## Review Gates
@@ -53,12 +54,14 @@ A CN draft should be reviewed for:
 - translation readiness
 
 ## File Ownership
-- `story/chapter_specs/`: Planner output
-- `story/passage_specs/`: Planner output
-- `story/scene_specs/`: Planner output
-- `story/drafts_cn/`: Writer output
-- `story/drafts_en/`: Translator output
-- `story/reviews/`: Critic output
+- `story/chNNN.json`: Planner output
+- `story/chNNN-pNN/spec.json`: Planner passage output
+- `story/chNNN-pNN/sNN-spec.json`: Planner scene output
+- `story/chNNN-pNN/draft_cn_vN.md`: Writer output
+- `story/chNNN-pNN/draft_cn_vN_review.json`: Critic output
+- `story/chNNN-pNN/chNNN_pNN_cn_vN.md`: approved CN readable output
+- `story/chNNN-pNN/draft_en_vN.md`: Translator output
+- `story/chNNN-pNN/passage.md`: human-facing passage summary / entry file
 - `memory/`: runtime memory and consistency files
 
 ## Safety for Context

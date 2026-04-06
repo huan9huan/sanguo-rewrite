@@ -5,8 +5,12 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 
+def passage_dir(chapter_id: str, passage_id: str) -> Path:
+    return ROOT / "story" / f"{chapter_id}-{passage_id}"
+
+
 def draft_path(chapter_id: str, passage_id: str, version: int = 1) -> Path:
-    return ROOT / "story" / "drafts_cn" / f"{chapter_id}_{passage_id}_cn_v{version}.md"
+    return passage_dir(chapter_id, passage_id) / f"draft_cn_v{version}.md"
 
 
 def save_markdown(path: Path, text: str) -> None:

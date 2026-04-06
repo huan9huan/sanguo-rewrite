@@ -1,0 +1,46 @@
+{
+  "current_position": {
+    "chapter_id": "cp001",
+    "passage_id": "p02",
+    "last_completed": {
+      "chapter_id": "cp001",
+      "passage_id": "p01",
+      "draft_version": 2
+    }
+  },
+  "active_viewpoint_characters": ["liu_bei"],
+  "currently_relevant_characters": {
+    "liu_bei": {
+      "role_cn": "主线核心人物",
+      "current_state_cn": "尚未正式出场。p01末尾幽州出榜招兵，p02将从涿县引出刘备。",
+      "narrative_function_cn": "下一幕的主角"
+    },
+    "zhang_jiao": {
+      "role_cn": "p01反派驱动者",
+      "current_state_cn": "已举兵称天公将军，四五十万人裹黄巾响应，正犯幽州。",
+      "narrative_function_cn": "已退入背景，后续以战事线索出现"
+    },
+    "liu_yan": {
+      "role_cn": "幽州太守",
+      "current_state_cn": "已出榜招兵，等待义士应募。",
+      "narrative_function_cn": "为英雄出场提供入口"
+    }
+  },
+  "current_relationships": [],
+  "active_threads": [
+    {
+      "thread_id": "yellow_turban_war",
+      "summary_cn": "黄巾起义爆发，天下大乱，三路官军进剿。"
+    },
+    {
+      "thread_id": "youzhou_recruitment",
+      "summary_cn": "幽州出榜招兵，即将引出刘备。"
+    }
+  ],
+  "reader_context_summary_cn": [
+    "读者知道天下大乱：桓灵腐败、十常侍专权、黄巾四五十万人造反。",
+    "读者感受到乱世氛围：天降异象、民不聊生。",
+    "读者知道幽州正在招兵——这是故事的入口，但主角尚未出场。"
+  ],
+  "next_focus_cn": "p02需要让刘备正式出场，并引入张飞，建立第一个人物碰撞。"
+}

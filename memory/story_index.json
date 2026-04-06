@@ -1,0 +1,68 @@
+{
+  "characters": {
+    "zhang_jiao": {
+      "first_appearance": "cp001-p01",
+      "status": "已举兵，自称天公将军",
+      "key_traits": ["落第秀才出身", "得天书《太平要术》", "善于聚众", "野心大于救世"]
+    },
+    "zhang_bao": {
+      "first_appearance": "cp001-p01",
+      "status": "地公将军，随张角起兵"
+    },
+    "zhang_liang": {
+      "first_appearance": "cp001-p01",
+      "status": "人公将军，随张角起兵"
+    },
+    "liu_yan": {
+      "first_appearance": "cp001-p01",
+      "status": "幽州太守，已出榜招兵"
+    },
+    "zou_jing": {
+      "first_appearance": "cp001-p01",
+      "status": "幽州校尉，建议刘焉招兵"
+    },
+    "cao_jie_eunuch": {
+      "first_appearance": "cp001-p01",
+      "status": "十常侍之一，偷看蔡邕奏折并陷害之"
+    },
+    "cai_yong": {
+      "first_appearance": "cp001-p01",
+      "status": "议郎，因上书直言被贬归田里"
+    }
+  },
+  "relationships": {},
+  "threads": {
+    "yellow_turban_war": {
+      "started_in": "cp001-p01",
+      "status": "active",
+      "summary_cn": "黄巾起义爆发，四五十万人响应，朝廷遣三路兵马进剿。"
+    },
+    "youzhou_recruitment": {
+      "started_in": "cp001-p01",
+      "status": "active",
+      "summary_cn": "张角犯幽州，太守刘焉出榜招兵，榜文传至涿县。"
+    }
+  },
+  "facts": {
+    "dynasty_decline": {
+      "established_in": "cp001-p01",
+      "detail": "桓帝禁锢善类崇信宦官，灵帝时窦武陈蕃被杀，十常侍专权，帝呼张让为阿父"
+    },
+    "omens": {
+      "established_in": "cp001-p01",
+      "detail": "大青蛇盘龙椅、地震、海水倒灌、黑气冲殿等异象"
+    },
+    "yellow_turban_slogan": {
+      "established_in": "cp001-p01",
+      "detail": "苍天已死，黄天当立。岁在甲子，天下大吉。"
+    },
+    "three_armies": {
+      "established_in": "cp001-p01",
+      "detail": "朝廷遣卢植、皇甫嵩、朱儁分三路讨黄巾"
+    },
+    "zhang_jiao_origin": {
+      "established_in": "cp001-p01",
+      "detail": "巨鹿郡不第秀才，入山采药遇南华老仙得天书《太平要术》"
+    }
+  }
+}

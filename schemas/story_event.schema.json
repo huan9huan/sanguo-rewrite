@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "required": ["event_id", "chapter_id", "passage_id", "type", "payload"],
+  "properties": {
+    "event_id": { "type": "string" },
+    "chapter_id": { "type": "string" },
+    "passage_id": { "type": "string" },
+    "type": { "type": "string" },
+    "payload": { "type": "object" }
+  }
+}

@@ -1,14 +1,22 @@
 {
-  "cn_simple_rules": [
-    "average sentence length should stay short",
-    "prefer action over explanation",
-    "use concrete nouns and verbs",
-    "leave room for emotional momentum"
+  "stable_rules": [
+    "使用简单中文",
+    "句子尽量短",
+    "以故事和趣味性为主",
+    "少解释，多动作和对话",
+    "不要写成文化讲解稿",
+    "结尾尽量留下轻钩子"
   ],
-  "en_rewrite_rules": [
-    "do not translate literally",
-    "preserve dramatic movement",
-    "optimize for readability",
-    "keep character voice contrast"
+  "learned_preferences": [
+    "刘备适合通过动作体现人格，不适合长篇自述",
+    "张飞更适合用动作和直接对话带节奏",
+    "关羽初登场要克制，不要一上来就过度英雄化",
+    "同一个强词（如'烂'）短距离内只用一次，多了反而稀释冲击力",
+    "数字密集段需要拆出画面细节（如'家家门口写甲子'）来平衡节奏",
+    "结尾hook独占一行比嵌在段落尾效果更好",
+    "全知叙述段用具体画面（大青蛇盘龙椅）代替信息罗列"
+  ],
+  "open_style_issues": [
+    "刘备出场时如何避免大段背景介绍"
   ]
 }
