@@ -1,0 +1,21 @@
+{
+  "current_task": "start chapter 1 planning",
+  "current_chapter": "ch001",
+  "current_passage": null,
+  "active_characters": {
+    "liu_bei": "poor but dignified; kind; persistent",
+    "guan_yu": "quiet; observant; slow to trust",
+    "zhang_fei": "direct; emotional; quick to act"
+  },
+  "style_rules": [
+    "simple Chinese",
+    "short sentences",
+    "show, don't lecture",
+    "story first"
+  ],
+  "recent_findings": [],
+  "open_issues": [
+    "need source text for chapter 1",
+    "need final passage split after source review"
+  ]
+}

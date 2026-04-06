@@ -1,0 +1,10 @@
+style_rules_en:
+  mode: rewrite_for_readability
+  do:
+    - make the prose flow naturally in English
+    - preserve emotional rhythm
+    - keep action clear and cinematic
+  avoid:
+    - literal sentence-by-sentence translation
+    - overloading historical explanation
+    - flattening character voices into the same tone

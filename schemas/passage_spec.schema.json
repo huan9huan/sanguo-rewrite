@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PassageSpec",
+  "type": "object",
+  "required": ["chapter_id", "passage_id", "goal", "dramatic_question", "scene_ids"],
+  "properties": {
+    "chapter_id": {"type": "string"},
+    "passage_id": {"type": "string"},
+    "title_cn": {"type": "string"},
+    "goal": {"type": "string"},
+    "dramatic_question": {"type": "string"},
+    "viewpoint_focus": {"type": "array", "items": {"type": "string"}},
+    "emotion_curve": {"type": "array", "items": {"type": "string"}},
+    "hook": {"type": "string"},
+    "conflict": {"type": "string"},
+    "turn": {"type": "string"},
+    "ending_hook": {"type": "string"},
+    "scene_ids": {"type": "array", "items": {"type": "string"}},
+    "status": {"type": "string"}
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "liu_bei": {
+    "speech_style": ["calm", "gentle", "not verbose"],
+    "core_traits": ["kind", "persistent", "ambitious in a humane way"],
+    "avoid": ["preachy monologue", "perfect saint"]
+  },
+  "guan_yu": {
+    "speech_style": ["brief", "measured"],
+    "core_traits": ["proud", "watchful", "loyal once convinced"],
+    "avoid": ["chatty", "instantly trusting"]
+  },
+  "zhang_fei": {
+    "speech_style": ["direct", "blunt"],
+    "core_traits": ["bold", "hot-blooded", "straightforward"],
+    "avoid": ["too polished", "too strategic in tone"]
+  }
+}

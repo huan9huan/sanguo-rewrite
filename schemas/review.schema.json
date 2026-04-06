@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ReviewReport",
+  "type": "object",
+  "required": ["review_id", "target_draft_id", "scores", "issues", "suggested_actions"],
+  "properties": {
+    "review_id": {"type": "string"},
+    "target_draft_id": {"type": "string"},
+    "scores": {
+      "type": "object",
+      "properties": {
+        "clarity": {"type": "number"},
+        "story_drive": {"type": "number"},
+        "character_consistency": {"type": "number"},
+        "show_not_tell": {"type": "number"},
+        "translation_readiness": {"type": "number"}
+      }
+    },
+    "issues": {"type": "array", "items": {"type": "string"}},
+    "suggested_actions": {"type": "array", "items": {"type": "string"}}
+  }
+}

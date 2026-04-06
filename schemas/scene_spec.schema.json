@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SceneSpec",
+  "type": "object",
+  "required": ["scene_id", "scene_type", "purpose", "characters"],
+  "properties": {
+    "scene_id": {"type": "string"},
+    "chapter_id": {"type": "string"},
+    "passage_id": {"type": "string"},
+    "scene_type": {"type": "string"},
+    "purpose": {"type": "string"},
+    "setting": {"type": "string"},
+    "characters": {"type": "array", "items": {"type": "string"}},
+    "beat_goal": {"type": "string"},
+    "tension_level": {"type": "number"},
+    "must_include": {"type": "array", "items": {"type": "string"}},
+    "must_avoid": {"type": "array", "items": {"type": "string"}},
+    "status": {"type": "string"}
+  }
+}

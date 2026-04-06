@@ -1,0 +1,14 @@
+{
+  "cn_simple_rules": [
+    "average sentence length should stay short",
+    "prefer action over explanation",
+    "use concrete nouns and verbs",
+    "leave room for emotional momentum"
+  ],
+  "en_rewrite_rules": [
+    "do not translate literally",
+    "preserve dramatic movement",
+    "optimize for readability",
+    "keep character voice contrast"
+  ]
+}

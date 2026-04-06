@@ -1,0 +1,48 @@
+project:
+  name: romance-rewrite
+  source_work: Romance of the Three Kingdoms
+  adaptation_mode: story_first_foreign_reader
+  source_language: zh-CN-simple
+  target_language: en
+  chapter_default_passage_count: 5
+  passage_default_scene_range: [2, 4]
+
+audience:
+  primary: foreign_general_reader
+  assumptions:
+    - no Chinese cultural background required
+    - low tolerance for long exposition
+    - prefers strong character-driven storytelling
+
+viewpoint:
+  anchors:
+    - liu_bei
+    - guan_yu
+    - zhang_fei
+  rule: keep the trio emotionally central even when the narrative scope expands
+
+writing:
+  cn_rules:
+    - use simple Chinese
+    - keep sentences short when possible
+    - prefer concrete action over abstract explanation
+    - do not overuse idioms
+    - avoid textbook-like cultural explanation
+  en_rules:
+    - rewrite for readability, not literal translation
+    - preserve dramatic movement
+    - keep character voice differences
+    - retain emotional hooks
+
+review:
+  required_scores:
+    clarity: 7.0
+    story_drive: 7.0
+    character_consistency: 7.0
+    show_not_tell: 6.5
+    translation_readiness: 7.0
+
+memory:
+  use_working_memory: true
+  keep_recent_passage_summaries: 3
+  keep_full_transcript: true

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Draft",
+  "type": "object",
+  "required": ["draft_id", "chapter_id", "passage_id", "language", "text"],
+  "properties": {
+    "draft_id": {"type": "string"},
+    "chapter_id": {"type": "string"},
+    "passage_id": {"type": "string"},
+    "language": {"type": "string"},
+    "status": {"type": "string"},
+    "source_scene_ids": {"type": "array", "items": {"type": "string"}},
+    "based_on": {"type": "string"},
+    "translation_mode": {"type": "string"},
+    "text": {"type": "string"}
+  }
+}
