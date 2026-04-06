@@ -1,5 +1,17 @@
 {
   "characters": {
+    "liu_bei": {
+      "first_appearance": "cp001-p02",
+      "status": "已正式出场，与张飞结盟，正在村店饮酒",
+      "key_traits": ["中山靖王之后", "家贫贩屦织席", "有志向能忍", "喜怒不形于色", "事母至孝"],
+      "appearance": "七尺五寸，耳垂肩，手过膝，面皮白净"
+    },
+    "zhang_fei": {
+      "first_appearance": "cp001-p02",
+      "status": "已登场，与刘备结盟，正在村店饮酒",
+      "key_traits": ["直接急躁", "有热气不藏情绪", "有庄田酒坊", "好结交豪杰", "行动推动者"],
+      "appearance": "豹头环眼、燕颔虎须、声若巨雷"
+    },
     "zhang_jiao": {
       "first_appearance": "cp001-p01",
       "status": "已举兵，自称天公将军",
@@ -28,9 +40,20 @@
     "cai_yong": {
       "first_appearance": "cp001-p01",
       "status": "议郎，因上书直言被贬归田里"
+    },
+    "liu_yuanqi": {
+      "first_appearance": "cp001-p02",
+      "status": "刘备叔父，因听其童言'我为天子'而常资助刘备家"
     }
   },
-  "relationships": {},
+  "relationships": {
+    "liu_bei_zhang_fei": {
+      "established_in": "cp001-p02",
+      "type": "初识伙伴",
+      "detail_cn": "榜前初遇，张飞出资、刘备有志，互补结盟，同入村店饮酒",
+      "strength": 0.4
+    }
+  },
   "threads": {
     "yellow_turban_war": {
       "started_in": "cp001-p01",
@@ -40,7 +63,12 @@
     "youzhou_recruitment": {
       "started_in": "cp001-p01",
       "status": "active",
-      "summary_cn": "张角犯幽州，太守刘焉出榜招兵，榜文传至涿县。"
+      "summary_cn": "幽州出榜招兵，刘备、张飞已应募。"
+    },
+    "brotherhood_formation": {
+      "started_in": "cp001-p02",
+      "status": "active",
+      "summary_cn": "刘备与张飞在村店饮酒，第三个人即将出现，桃园结义在即。"
     }
   },
   "facts": {
@@ -63,6 +91,18 @@
     "zhang_jiao_origin": {
       "established_in": "cp001-p01",
       "detail": "巨鹿郡不第秀才，入山采药遇南华老仙得天书《太平要术》"
+    },
+    "liu_bei_lineage": {
+      "established_in": "cp001-p02",
+      "detail": "中山靖王刘胜之后，汉景帝玄孙。祖刘雄，父刘弘早丧，家贫贩屦织席。"
+    },
+    "liu_bei_omens": {
+      "established_in": "cp001-p02",
+      "detail": "楼桑村刘家东南有大桑树高五丈余，形如车盖。相者云此家必出贵人。刘备幼时在树下言'我为天子当乘此车盖'。"
+    },
+    "liu_bei_education": {
+      "established_in": "cp001-p02",
+      "detail": "十五岁游学，师事郑玄、卢植，与公孙瓒为友"
     }
   }
 }

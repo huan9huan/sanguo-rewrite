@@ -6,3 +6,10 @@
 {"seq":6,"passage":"cp001-p01","event":"story","type":"plot_turn","detail":"弟子唐周告密，马元义被斩，张角当夜举兵，自称天公将军，四五十万人裹黄巾响应","characters":["zhang_jiao","zhang_bao","zhang_liang"],"ts":"2026-04-06"}
 {"seq":7,"passage":"cp001-p01","event":"story","type":"plot_turn","detail":"朝廷遣卢植、皇甫嵩、朱儁分三路讨伐黄巾","ts":"2026-04-06"}
 {"seq":8,"passage":"cp001-p01","event":"story","type":"hook","detail":"张角犯幽州，太守刘焉出榜招兵——榜文即将传到涿县","characters":["liu_yan","zou_jing"],"ts":"2026-04-06"}
+{"seq":9,"passage":"cp001-p02","event":"story","type":"character_intro","detail":"刘备正式出场：中山靖王之后，家贫贩屦织席，楼桑大树下童言'我为天子当乘此车盖'","characters":["liu_bei"],"ts":"2026-04-06"}
+{"seq":10,"passage":"cp001-p02","event":"story","type":"character_detail","detail":"刘备外貌定妆：七尺五寸，耳垂肩，手过膝，面皮白净。事母至孝，每天收摊先给母亲带热汤","characters":["liu_bei"],"ts":"2026-04-06"}
+{"seq":11,"passage":"cp001-p02","event":"story","type":"character_detail","detail":"刘备十五岁游学，师从郑玄、卢植，与公孙瓒同窗，不太坐得住，但善交朋友","characters":["liu_bei"],"ts":"2026-04-06"}
+{"seq":12,"passage":"cp001-p02","event":"story","type":"plot_turn","detail":"二十八岁的刘备面对招兵榜文慨然长叹——有志破贼，恨力不能","characters":["liu_bei"],"ts":"2026-04-06"}
+{"seq":13,"passage":"cp001-p02","event":"story","type":"character_intro","detail":"张飞登场：豹头环眼、燕颔虎须、声若巨雷。涿郡本地人，有庄田酒坊，卖酒屠猪，好结交豪杰","characters":["zhang_fei"],"ts":"2026-04-06"}
+{"seq":14,"passage":"cp001-p02","event":"story","type":"relationship_formed","detail":"刘备与张飞榜前初遇：刘备有志无财，张飞有财缺方向。张飞提出出资招募乡勇，两人一拍即合，同入村店饮酒","characters":["liu_bei","zhang_fei"],"ts":"2026-04-06"}
+{"seq":15,"passage":"cp001-p02","event":"story","type":"hook","detail":"村店饮酒，酒还没上来，门口的影子先动了——第三个人即将出现","characters":["liu_bei","zhang_fei"],"ts":"2026-04-06"}

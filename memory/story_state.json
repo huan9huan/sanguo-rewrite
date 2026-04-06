@@ -1,46 +1,69 @@
 {
   "current_position": {
     "chapter_id": "cp001",
-    "passage_id": "p02",
+    "passage_id": "p03",
     "last_completed": {
       "chapter_id": "cp001",
-      "passage_id": "p01",
+      "passage_id": "p02",
       "draft_version": 2
     }
   },
-  "active_viewpoint_characters": ["liu_bei"],
+  "active_viewpoint_characters": ["liu_bei", "zhang_fei"],
   "currently_relevant_characters": {
     "liu_bei": {
       "role_cn": "主线核心人物",
-      "current_state_cn": "尚未正式出场。p01末尾幽州出榜招兵，p02将从涿县引出刘备。",
-      "narrative_function_cn": "下一幕的主角"
+      "current_state_cn": "已正式出场。读者已知：皇族后裔、贩屦织席、楼桑大树童年、榜前长叹、与张飞一拍即合。正在村店饮酒。",
+      "narrative_function_cn": "p03需要继续推动他主动邀请关羽、参与结义"
+    },
+    "zhang_fei": {
+      "role_cn": "刘备第一个伙伴",
+      "current_state_cn": "已登场。出资招募乡勇的提议者，正在村店与刘备饮酒。性格直接、有热气、有资财。",
+      "narrative_function_cn": "p03将提出桃园结义、提供庄院场地"
+    },
+    "guan_yu": {
+      "role_cn": "即将登场",
+      "current_state_cn": "未出场。p02结尾hook暗示第三个人即将进店。",
+      "narrative_function_cn": "p03关羽进店投军，三人结义"
     },
     "zhang_jiao": {
-      "role_cn": "p01反派驱动者",
-      "current_state_cn": "已举兵称天公将军，四五十万人裹黄巾响应，正犯幽州。",
-      "narrative_function_cn": "已退入背景，后续以战事线索出现"
+      "role_cn": "背景反派",
+      "current_state_cn": "黄巾军在攻幽州，为故事提供战争背景。",
+      "narrative_function_cn": "战事压力推动招兵和结义"
     },
     "liu_yan": {
       "role_cn": "幽州太守",
-      "current_state_cn": "已出榜招兵，等待义士应募。",
-      "narrative_function_cn": "为英雄出场提供入口"
+      "current_state_cn": "已出榜招兵。",
+      "narrative_function_cn": "p03末尾三人将去见他，他认刘备为侄"
     }
   },
-  "current_relationships": [],
+  "current_relationships": [
+    {
+      "from": "liu_bei",
+      "to": "zhang_fei",
+      "type": "初识伙伴",
+      "strength": 0.4,
+      "detail_cn": "榜前初遇，张飞出资、刘备有志，互补结盟。同入村店饮酒。信任刚开始建立。"
+    }
+  ],
   "active_threads": [
     {
       "thread_id": "yellow_turban_war",
-      "summary_cn": "黄巾起义爆发，天下大乱，三路官军进剿。"
+      "summary_cn": "黄巾起义爆发，天下大乱，三路官军进剿。幽州正在招兵。"
     },
     {
       "thread_id": "youzhou_recruitment",
-      "summary_cn": "幽州出榜招兵，即将引出刘备。"
+      "summary_cn": "幽州出榜招兵——刘备、张飞已应募，即将结义起兵。"
+    },
+    {
+      "thread_id": "brotherhood_formation",
+      "summary_cn": "刘备与张飞已在村店饮酒，等待第三个同路人。桃园结义即将发生。"
     }
   ],
   "reader_context_summary_cn": [
     "读者知道天下大乱：桓灵腐败、十常侍专权、黄巾四五十万人造反。",
-    "读者感受到乱世氛围：天降异象、民不聊生。",
-    "读者知道幽州正在招兵——这是故事的入口，但主角尚未出场。"
+    "读者已经认识刘备：皇族后裔却卖草鞋，楼桑树下有天子梦，榜前长叹引出张飞。",
+    "读者已经认识张飞：豹头环眼、声若巨雷、有庄田酒坊、直接出资要与刘备干大事。",
+    "两人正在村店饮酒，读者期待第三个人出现。"
   ],
-  "next_focus_cn": "p02需要让刘备正式出场，并引入张飞，建立第一个人物碰撞。"
+  "next_focus_cn": "p03关羽进店投军，三人志趣相投，张飞提议桃园结义。结义誓言、招兵置械、引见刘焉。"
 }
