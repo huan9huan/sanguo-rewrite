@@ -5,14 +5,14 @@
     "last_completed": {
       "chapter_id": "cp001",
       "passage_id": "p03",
-      "draft_version": 1
+      "draft_version": 2
     }
   },
   "active_viewpoint_characters": ["liu_bei", "guan_yu", "zhang_fei"],
   "currently_relevant_characters": {
     "liu_bei": {
       "role_cn": "大哥、主线核心人物",
-      "current_state_cn": "已桃园结义为大哥，有双股剑，被刘焉认侄，率五百乡勇进入幽州体制。",
+      "current_state_cn": "已桃园结义为大哥，有双股剑，被刘焉认侄，率五百乡勇进入幽州体制。白身。",
       "narrative_function_cn": "p04将首次上战场，面对实战考验"
     },
     "guan_yu": {
@@ -22,13 +22,18 @@
     },
     "zhang_fei": {
       "role_cn": "三弟、行动推动者",
-      "current_state_cn": "已桃园结义为三弟，有丈八点钢矛，庄院仍是基地。",
+      "current_state_cn": "已桃园结义为三弟，有丈八点钢矛，庄院仍是基地。结义时最外露。",
       "narrative_function_cn": "p04战场上脾气和武力同时爆发"
     },
     "liu_yan": {
       "role_cn": "幽州太守",
       "current_state_cn": "已认刘备为侄，提供了进入体制的门路。",
-      "narrative_function_cn": "p04可能派三人出战黄巾"
+      "narrative_function_cn": "可能派三人出战黄巾"
+    },
+    "zou_jing": {
+      "role_cn": "刘焉麾下",
+      "current_state_cn": "已引见三人，对白身身份有察觉。",
+      "narrative_function_cn": "后续可能继续作为中间人"
     },
     "zhang_jiao": {
       "role_cn": "背景反派",
@@ -49,7 +54,7 @@
       "to": "guan_yu",
       "type": "结义兄弟（大哥-二哥）",
       "strength": 0.5,
-      "detail_cn": "桃园结义，但关羽的信任建立较慢，更多是基于志向认同而非情感。"
+      "detail_cn": "桃园结义，但关羽的信任建立较慢，更多基于志向认同。"
     },
     {
       "from": "guan_yu",
@@ -77,15 +82,15 @@
     },
     {
       "thread_id": "outsider_status",
-      "summary_cn": "三人以白身（无官职）进入体制，刘焉认侄只是门路，真正的地位还需战场证明。"
+      "summary_cn": "三人以白身进入体制。刘焉认侄只是门路，邹靖已察觉'布衣白身没有官凭'。真正的地位还需战场证明，且白身被轻视的冲突正在酝酿。"
     }
   ],
   "reader_context_summary_cn": [
     "读者知道天下大乱：桓灵腐败、十常侍专权、黄巾四五十万人造反。",
-    "读者已经认识三兄弟：刘备皇族后裔卖草鞋、张飞有财有热气、关羽红脸长须杀豪逃亡。",
+    "读者已经认识三兄弟：刘备皇族后裔卖草鞋、张飞有财有热气、关羽红脸长须卧蚕眉杀豪逃亡。",
     "三人已在桃园结义：不求同生但求同死，刘备为兄、关羽次之、张飞为弟。",
-    "三件标志性兵器：双股剑、青龙偃月刀、丈八点钢矛。",
-    "五百乡勇已就位，刘焉已认刘备为侄——读者期待第一场战斗。"
+    "三件标志性兵器：双股剑、青龙偃月刀（冷艳锯）、丈八点钢矛。",
+    "五百乡勇就位，刘焉已认侄——但三人是白身，没有官凭。读者期待第一场战斗。"
   ],
   "next_focus_cn": "p04三兄弟首战黄巾，战场初露锋芒。"
 }
