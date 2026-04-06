@@ -6,38 +6,66 @@
     "established_details": {
       "appearance_cn": "七尺五寸，耳垂肩，手过膝，面皮白净",
       "background_cn": "中山靖王之后，家贫贩屦织席，楼桑大树童年，师从卢植郑玄",
-      "filial_piety_shown_cn": "每天收摊先给母亲带一碗热汤"
+      "filial_piety_shown_cn": "每天收摊先给母亲带一碗热汤",
+      "weapons_cn": "双股剑，长短合手，攻守兼备"
     },
     "dynamic_state": {
-      "current_role": "主线核心人物",
-      "trust_in_guan_yu": 0.1,
-      "trust_in_zhang_fei": 0.4,
-      "current_status_cn": "已与张飞结盟，正在村店饮酒，等待下一个同路人。"
+      "current_role": "大哥、主线核心人物",
+      "trust_in_guan_yu": 0.5,
+      "trust_in_zhang_fei": 0.6,
+      "current_status_cn": "已与关张桃园结义为大哥，聚五百乡勇，被刘焉认侄。正式踏入体制。"
     }
   },
   "guan_yu": {
     "core_traits": ["寡言", "审慎", "有傲气", "重承诺"],
-    "speech_style": ["少说", "先观察再表态"],
+    "speech_style": ["少说", "先观察再表态", "两字定乾坤"],
     "avoid": ["不要写得很健谈", "不要太早相信刘备"],
+    "established_details": {
+      "appearance_cn": "九尺身高，二尺长须，面如重枣，丹凤眼卧蚕眉，整张脸不怒自威",
+      "background_cn": "河东解良人，杀势豪逃亡五六年，来投军",
+      "weapons_cn": "青龙偃月刀（冷艳锯），重八十二斤"
+    },
     "dynamic_state": {
-      "current_role": "即将登场",
-      "trust_in_liu_bei": 0.0,
-      "current_status_cn": "未出场。p03将推车进店投军。"
+      "current_role": "二哥、武力担当",
+      "trust_in_liu_bei": 0.5,
+      "current_status_cn": "已结义为二哥。对刘备的志向认同（'正好'），但信任仍在建立中。"
     }
   },
   "zhang_fei": {
     "core_traits": ["直接", "急", "有热气", "不藏情绪"],
-    "speech_style": ["说话冲一点", "反应快"],
+    "speech_style": ["说话冲一点", "反应快", "拍桌子拍大腿"],
     "avoid": ["不要写成纯莽夫", "不要没有判断力"],
     "established_details": {
       "appearance_cn": "豹头环眼、燕颔虎须、声若巨雷、膀子撑得衣服快裂了",
       "background_cn": "涿郡本地人，有庄田酒坊，卖酒屠猪",
-      "action_shown_cn": "主动出资招募乡勇，推动刘备从叹息走向行动"
+      "action_shown_cn": "主动出资招募乡勇，推动刘备从叹息走向行动",
+      "weapons_cn": "丈八点钢矛，矛头两尺长，矛杆嗡嗡作响"
     },
     "dynamic_state": {
-      "current_role": "刘备第一个伙伴、行动推动者",
-      "trust_in_liu_bei": 0.4,
-      "current_status_cn": "已与刘备结盟，正在村店饮酒。"
+      "current_role": "三弟、行动推动者、气氛担当",
+      "trust_in_liu_bei": 0.6,
+      "current_status_cn": "已结义为三弟。提议桃园结义，提供庄院场地。信任进一步加深。"
+    }
+  },
+  "liu_yan": {
+    "core_traits": ["世故", "识人"],
+    "dynamic_state": {
+      "current_role": "幽州太守",
+      "current_status_cn": "已认刘备为侄。给三人提供了进入体制的门路。"
+    }
+  },
+  "zhang_shiping": {
+    "core_traits": ["豪爽", "识时务"],
+    "dynamic_state": {
+      "current_role": "中山大商",
+      "current_status_cn": "赠马五十匹、金银五百两、镔铁一千斤。已离场。"
+    }
+  },
+  "su_shuang": {
+    "core_traits": ["豪爽", "识时务"],
+    "dynamic_state": {
+      "current_role": "中山大商",
+      "current_status_cn": "与张世平一同赠礼。已离场。"
     }
   }
 }

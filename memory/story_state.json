@@ -4,66 +4,88 @@
     "passage_id": "p03",
     "last_completed": {
       "chapter_id": "cp001",
-      "passage_id": "p02",
-      "draft_version": 2
+      "passage_id": "p03",
+      "draft_version": 1
     }
   },
-  "active_viewpoint_characters": ["liu_bei", "zhang_fei"],
+  "active_viewpoint_characters": ["liu_bei", "guan_yu", "zhang_fei"],
   "currently_relevant_characters": {
     "liu_bei": {
-      "role_cn": "主线核心人物",
-      "current_state_cn": "已正式出场。读者已知：皇族后裔、贩屦织席、楼桑大树童年、榜前长叹、与张飞一拍即合。正在村店饮酒。",
-      "narrative_function_cn": "p03需要继续推动他主动邀请关羽、参与结义"
-    },
-    "zhang_fei": {
-      "role_cn": "刘备第一个伙伴",
-      "current_state_cn": "已登场。出资招募乡勇的提议者，正在村店与刘备饮酒。性格直接、有热气、有资财。",
-      "narrative_function_cn": "p03将提出桃园结义、提供庄院场地"
+      "role_cn": "大哥、主线核心人物",
+      "current_state_cn": "已桃园结义为大哥，有双股剑，被刘焉认侄，率五百乡勇进入幽州体制。",
+      "narrative_function_cn": "p04将首次上战场，面对实战考验"
     },
     "guan_yu": {
-      "role_cn": "即将登场",
-      "current_state_cn": "未出场。p02结尾hook暗示第三个人即将进店。",
-      "narrative_function_cn": "p03关羽进店投军，三人结义"
+      "role_cn": "二哥、武力担当",
+      "current_state_cn": "已桃园结义为二哥，有青龙偃月刀（冷艳锯八十二斤），寡言但认可刘备志向。",
+      "narrative_function_cn": "p04将在战场展示武力，冷艳锯初饮血"
+    },
+    "zhang_fei": {
+      "role_cn": "三弟、行动推动者",
+      "current_state_cn": "已桃园结义为三弟，有丈八点钢矛，庄院仍是基地。",
+      "narrative_function_cn": "p04战场上脾气和武力同时爆发"
+    },
+    "liu_yan": {
+      "role_cn": "幽州太守",
+      "current_state_cn": "已认刘备为侄，提供了进入体制的门路。",
+      "narrative_function_cn": "p04可能派三人出战黄巾"
     },
     "zhang_jiao": {
       "role_cn": "背景反派",
       "current_state_cn": "黄巾军在攻幽州，为故事提供战争背景。",
-      "narrative_function_cn": "战事压力推动招兵和结义"
-    },
-    "liu_yan": {
-      "role_cn": "幽州太守",
-      "current_state_cn": "已出榜招兵。",
-      "narrative_function_cn": "p03末尾三人将去见他，他认刘备为侄"
+      "narrative_function_cn": "战事即将正面展开"
     }
   },
   "current_relationships": [
     {
       "from": "liu_bei",
       "to": "zhang_fei",
-      "type": "初识伙伴",
-      "strength": 0.4,
-      "detail_cn": "榜前初遇，张飞出资、刘备有志，互补结盟。同入村店饮酒。信任刚开始建立。"
+      "type": "结义兄弟（大哥-三弟）",
+      "strength": 0.7,
+      "detail_cn": "桃园结义，生死与共。信任已从初识加深为兄弟义气。"
+    },
+    {
+      "from": "liu_bei",
+      "to": "guan_yu",
+      "type": "结义兄弟（大哥-二哥）",
+      "strength": 0.5,
+      "detail_cn": "桃园结义，但关羽的信任建立较慢，更多是基于志向认同而非情感。"
+    },
+    {
+      "from": "guan_yu",
+      "to": "zhang_fei",
+      "type": "结义兄弟（二哥-三弟）",
+      "strength": 0.5,
+      "detail_cn": "结义兄弟，性格互补。关羽审慎、张飞急躁，但都认可对方是同类人。"
+    },
+    {
+      "from": "liu_bei",
+      "to": "liu_yan",
+      "type": "叔侄（新认）",
+      "strength": 0.3,
+      "detail_cn": "刘焉因宗亲身份认刘备为侄。功利性较强，真正的信任尚未建立。"
     }
   ],
   "active_threads": [
     {
       "thread_id": "yellow_turban_war",
-      "summary_cn": "黄巾起义爆发，天下大乱，三路官军进剿。幽州正在招兵。"
+      "summary_cn": "黄巾起义持续，三路官军进剿。幽州方向战事吃紧。"
     },
     {
-      "thread_id": "youzhou_recruitment",
-      "summary_cn": "幽州出榜招兵——刘备、张飞已应募，即将结义起兵。"
+      "thread_id": "brothers_first_battle",
+      "summary_cn": "三兄弟已聚五百乡勇进入幽州，即将迎来首战。"
     },
     {
-      "thread_id": "brotherhood_formation",
-      "summary_cn": "刘备与张飞已在村店饮酒，等待第三个同路人。桃园结义即将发生。"
+      "thread_id": "outsider_status",
+      "summary_cn": "三人以白身（无官职）进入体制，刘焉认侄只是门路，真正的地位还需战场证明。"
     }
   ],
   "reader_context_summary_cn": [
     "读者知道天下大乱：桓灵腐败、十常侍专权、黄巾四五十万人造反。",
-    "读者已经认识刘备：皇族后裔却卖草鞋，楼桑树下有天子梦，榜前长叹引出张飞。",
-    "读者已经认识张飞：豹头环眼、声若巨雷、有庄田酒坊、直接出资要与刘备干大事。",
-    "两人正在村店饮酒，读者期待第三个人出现。"
+    "读者已经认识三兄弟：刘备皇族后裔卖草鞋、张飞有财有热气、关羽红脸长须杀豪逃亡。",
+    "三人已在桃园结义：不求同生但求同死，刘备为兄、关羽次之、张飞为弟。",
+    "三件标志性兵器：双股剑、青龙偃月刀、丈八点钢矛。",
+    "五百乡勇已就位，刘焉已认刘备为侄——读者期待第一场战斗。"
   ],
-  "next_focus_cn": "p03关羽进店投军，三人志趣相投，张飞提议桃园结义。结义誓言、招兵置械、引见刘焉。"
+  "next_focus_cn": "p04三兄弟首战黄巾，战场初露锋芒。"
 }
