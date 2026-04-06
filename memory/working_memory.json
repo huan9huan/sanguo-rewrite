@@ -1,21 +1,10 @@
 {
-  "current_task": "start chapter 1 planning",
-  "current_chapter": "ch001",
-  "current_passage": null,
-  "active_characters": {
-    "liu_bei": "poor but dignified; kind; persistent",
-    "guan_yu": "quiet; observant; slow to trust",
-    "zhang_fei": "direct; emotional; quick to act"
-  },
-  "style_rules": [
-    "simple Chinese",
-    "short sentences",
-    "show, don't lecture",
-    "story first"
-  ],
+  "current_task": "生成 ch001 p01",
+  "current_focus_cn": "建立刘备的初始处境，让读者先对他产生兴趣。",
+  "carry_forward": [],
   "recent_findings": [],
   "open_issues": [
-    "need source text for chapter 1",
-    "need final passage split after source review"
+    "第一段开头是否足够抓人",
+    "是否已经把刘备写得具体，而不是抽象"
   ]
 }

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StoryIndex",
+  "description": "故事全局索引：记录所有已出场人物、关系、线索和事实的全局查找表。",
+  "type": "object",
+  "required": ["characters", "relationships", "threads", "facts"],
+  "properties": {
+    "characters": {
+      "type": "object",
+      "description": "已出场人物索引，key 为人物 ID（如 liu_bei）",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["name_cn"],
+        "properties": {
+          "name_cn": { "type": "string", "description": "人物中文名" },
+          "first_appear": { "type": "string", "description": "首次出场位置，格式 chapter_id:passage_id" },
+          "aliases_cn": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "人物别称列表"
+          },
+          "faction": { "type": "string", "description": "所属阵营" },
+          "traits_cn": {
+            "type": "array",
+            "items": { "type": "string" },
+            "description": "性格特征关键词"
+          }
+        }
+      }
+    },
+    "relationships": {
+      "type": "object",
+      "description": "人物关系索引，key 为关系 ID",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["from", "to", "type_cn"],
+        "properties": {
+          "from": { "type": "string", "description": "关系发起方人物 ID" },
+          "to": { "type": "string", "description": "关系承受方人物 ID" },
+          "type_cn": { "type": "string", "description": "关系类型（中文）" },
+          "since": { "type": "string", "description": "关系建立时间/位置" },
+          "strength": { "type": "number", "description": "关系强度，0-1" }
+        }
+      }
+    },
+    "threads": {
+      "type": "object",
+      "description": "叙事线索索引，key 为线索 ID（如 liu_bei_companions）",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["summary_cn"],
+        "properties": {
+          "summary_cn": { "type": "string", "description": "线索概要（中文）" },
+          "status": { "type": "string", "enum": ["active", "resolved", "dormant"], "description": "线索状态" },
+          "introduced_at": { "type": "string", "description": "首次引入位置" }
+        }
+      }
+    },
+    "facts": {
+      "type": "object",
+      "description": "已确立的事实索引，key 为事实 ID",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["content_cn"],
+        "properties": {
+          "content_cn": { "type": "string", "description": "事实内容（中文）" },
+          "established_at": { "type": "string", "description": "事实确立位置" }
+        }
+      }
+    }
+  }
+}

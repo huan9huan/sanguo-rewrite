@@ -1,17 +1,33 @@
 {
   "liu_bei": {
-    "speech_style": ["calm", "gentle", "not verbose"],
-    "core_traits": ["kind", "persistent", "ambitious in a humane way"],
-    "avoid": ["preachy monologue", "perfect saint"]
+    "core_traits": ["温和", "有志向", "能忍", "会观察别人"],
+    "speech_style": ["说话平和", "不夸张", "不长篇大论"],
+    "avoid": ["不要写成圣人说教", "不要写成软弱无能"],
+    "dynamic_state": {
+      "current_role": "主线核心人物",
+      "trust_in_guan_yu": 0.1,
+      "trust_in_zhang_fei": 0.2,
+      "current_status_cn": "有理想，但还没有真正的伙伴。"
+    }
   },
   "guan_yu": {
-    "speech_style": ["brief", "measured"],
-    "core_traits": ["proud", "watchful", "loyal once convinced"],
-    "avoid": ["chatty", "instantly trusting"]
+    "core_traits": ["寡言", "审慎", "有傲气", "重承诺"],
+    "speech_style": ["少说", "先观察再表态"],
+    "avoid": ["不要写得很健谈", "不要太早相信刘备"],
+    "dynamic_state": {
+      "current_role": "未正式进入团队",
+      "trust_in_liu_bei": 0.0,
+      "current_status_cn": "站在故事边缘，正在看刘备值不值得跟随。"
+    }
   },
   "zhang_fei": {
-    "speech_style": ["direct", "blunt"],
-    "core_traits": ["bold", "hot-blooded", "straightforward"],
-    "avoid": ["too polished", "too strategic in tone"]
+    "core_traits": ["直接", "急", "有热气", "不藏情绪"],
+    "speech_style": ["说话冲一点", "反应快"],
+    "avoid": ["不要写成纯莽夫", "不要没有判断力"],
+    "dynamic_state": {
+      "current_role": "先进入主线的推动者",
+      "trust_in_liu_bei": 0.3,
+      "current_status_cn": "已经对刘备产生兴趣，愿意继续接触。"
+    }
   }
 }

@@ -9,9 +9,9 @@
     "adapted_title_cn": {"type": "string"},
     "viewpoint": {"type": "array", "items": {"type": "string"}},
     "audience": {"type": "string"},
-    "goal": {"type": "string"},
+    "goal_cn": {"type": "string"},
     "passage_count": {"type": "integer", "minimum": 1},
-    "global_arc": {"type": "string"},
+    "global_arc_cn": {"type": "string"},
     "source_refs": {"type": "array", "items": {"type": "string"}},
     "status": {"type": "string"}
   }

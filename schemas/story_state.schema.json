@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StoryState",
+  "description": "故事当前状态快照：记录写作进度、活跃人物、关系、线索及下一步聚焦方向。",
+  "type": "object",
+  "required": [
+    "current_position",
+    "active_viewpoint_characters",
+    "currently_relevant_characters",
+    "current_relationships",
+    "active_threads",
+    "reader_context_summary_cn",
+    "next_focus_cn"
+  ],
+  "properties": {
+    "current_position": {
+      "type": "object",
+      "description": "当前写作进度位置",
+      "required": ["chapter_id", "passage_id"],
+      "properties": {
+        "chapter_id": { "type": "string", "description": "当前章节 ID" },
+        "passage_id": { "type": "string", "description": "当前段落 ID" }
+      }
+    },
+    "active_viewpoint_characters": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "当前视角人物 ID 列表"
+    },
+    "currently_relevant_characters": {
+      "type": "object",
+      "description": "当前场景相关人物，key 为人物 ID",
+      "additionalProperties": {
+        "type": "object",
+        "required": ["role_cn", "current_state_cn", "narrative_function_cn"],
+        "properties": {
+          "role_cn": { "type": "string", "description": "人物在当前叙事中的角色定位" },
+          "current_state_cn": { "type": "string", "description": "人物当前状态描述" },
+          "narrative_function_cn": { "type": "string", "description": "人物在叙事中的功能" }
+        }
+      }
+    },
+    "current_relationships": {
+      "type": "array",
+      "description": "当前活跃的人物关系",
+      "items": {
+        "type": "object",
+        "required": ["from", "to", "type_cn"],
+        "properties": {
+          "from": { "type": "string" },
+          "to": { "type": "string" },
+          "type_cn": { "type": "string" }
+        }
+      }
+    },
+    "active_threads": {
+      "type": "array",
+      "description": "当前活跃的叙事线索",
+      "items": {
+        "type": "object",
+        "required": ["thread_id", "summary_cn"],
+        "properties": {
+          "thread_id": { "type": "string", "description": "线索 ID" },
+          "summary_cn": { "type": "string", "description": "线索概要（中文）" }
+        }
+      }
+    },
+    "reader_context_summary_cn": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "读者此时应知的上下文要点列表"
+    },
+    "next_focus_cn": {
+      "type": "string",
+      "description": "下一步写作聚焦方向（中文）"
+    }
+  }
+}

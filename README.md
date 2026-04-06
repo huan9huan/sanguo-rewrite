@@ -34,8 +34,11 @@ source chapter
 -> generate CN draft
 -> review
 -> revise
--> publish
 -> rewrite to EN
+→ append events
+→ refresh story_state
+→ refresh working_memory
+→ optional: refresh story_index
 ```
 
 ## Suggested Start

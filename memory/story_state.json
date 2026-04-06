@@ -1,0 +1,27 @@
+{
+  "current_position": {
+    "chapter_id": "ch001",
+    "passage_id": "p01"
+  },
+  "active_viewpoint_characters": ["liu_bei"],
+  "currently_relevant_characters": {
+    "liu_bei": {
+      "role_cn": "主线核心人物",
+      "current_state_cn": "生活困顿，但仍然保持志向。",
+      "narrative_function_cn": "让读者先建立对他的兴趣和同情"
+    }
+  },
+  "current_relationships": [],
+  "active_threads": [
+    {
+      "thread_id": "liu_bei_companions",
+      "summary_cn": "刘备会遇到谁，谁会成为他真正的同伴。"
+    }
+  ],
+  "reader_context_summary_cn": [
+    "故事处在乱世背景下。",
+    "刘备已经出场，但还没有形成团队。",
+    "读者知道刘备不只是普通求生者。"
+  ],
+  "next_focus_cn": "下一段需要引入新的关键人物，并建立第一层人物张力。"
+}
