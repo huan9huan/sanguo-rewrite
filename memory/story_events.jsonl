@@ -1,0 +1,8 @@
+{"seq":1,"passage":"cp001-p01","event":"story","type":"world_setup","detail":"桓灵二帝朝政腐败，十常侍专权，帝呼张让为阿父","ts":"2026-04-06"}
+{"seq":2,"passage":"cp001-p01","event":"story","type":"omen","detail":"大青蛇盘龙椅、地震、海水倒灌、黑气冲殿等异象频发","ts":"2026-04-06"}
+{"seq":3,"passage":"cp001-p01","event":"story","type":"character_action","detail":"议郎蔡邕上书言灾异根由，被太监曹节陷害贬归田里","ts":"2026-04-06"}
+{"seq":4,"passage":"cp001-p01","event":"story","type":"character_intro","detail":"张角，巨鹿郡不第秀才，入山采药遇南华老仙得天书《太平要术》","characters":["zhang_jiao"],"ts":"2026-04-06"}
+{"seq":5,"passage":"cp001-p01","event":"story","type":"milestone","detail":"张角设三十六方，信徒遍布八州，口号'苍天已死黄天当立'","characters":["zhang_jiao"],"ts":"2026-04-06"}
+{"seq":6,"passage":"cp001-p01","event":"story","type":"plot_turn","detail":"弟子唐周告密，马元义被斩，张角当夜举兵，自称天公将军，四五十万人裹黄巾响应","characters":["zhang_jiao","zhang_bao","zhang_liang"],"ts":"2026-04-06"}
+{"seq":7,"passage":"cp001-p01","event":"story","type":"plot_turn","detail":"朝廷遣卢植、皇甫嵩、朱儁分三路讨伐黄巾","ts":"2026-04-06"}
+{"seq":8,"passage":"cp001-p01","event":"story","type":"hook","detail":"张角犯幽州，太守刘焉出榜招兵——榜文即将传到涿县","characters":["liu_yan","zou_jing"],"ts":"2026-04-06"}

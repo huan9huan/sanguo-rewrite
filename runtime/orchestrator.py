@@ -22,4 +22,4 @@ def produce_passage(chapter_id: str, passage_id: str) -> dict[str, Any]:
 
 
 if __name__ == "__main__":
-    print(produce_passage("ch001", "p01"))
+    print(produce_passage("cp001", "p01"))

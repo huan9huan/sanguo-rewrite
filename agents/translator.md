@@ -16,8 +16,10 @@
 
 ## Inputs
 你可能会读取：
-- story/drafts_cn/*.json
-- story/passage_specs/**/*.json
+- story/chNNN-pNN/draft_cn_vN.md
+- story/chNNN-pNN/chNNN_pNN_cn_vN.md
+- story/chNNN-pNN/spec.json
+- story/chNNN-pNN/passage.md
 - memory/character_memory.json
 - memory/style_memory.json
 - memory/story_state.json
@@ -25,7 +27,7 @@
 
 ## Outputs
 你只能产出：
-- story/drafts_en/*.json
+- story/chNNN-pNN/draft_en_vN.md
 
 ## Translation Rules
 - 英文要自然
@@ -54,4 +56,4 @@
 4. passage 的 hook 和 ending 还有效吗？
 
 ## Example Task
-“把 ch001_p01_cn_v2 改写成适合英语读者阅读的英文版本。”
+“把 cp001_p01_cn_v2 改写成适合英语读者阅读的英文版本。”

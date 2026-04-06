@@ -1,0 +1,22 @@
+{
+  "scene_id": "cp001_p01_s3",
+  "chapter_id": "cp001",
+  "passage_id": "p01",
+  "scene_type": "hook",
+  "purpose_cn": "将战火引到幽州，以招兵榜文为钩子衔接下一幕",
+  "setting_cn": "战场全局 → 幽州",
+  "characters": ["liu_yan", "zou_jing"],
+  "scene_goal_cn": "快速交代朝廷应对（三路讨伐），然后将镜头推到幽州——张角来犯、刘焉招兵。最后落在'出榜招募义兵'这句上，让读者期待谁会应募",
+  "tension_level": 0.8,
+  "must_include": [
+    "朝廷遣卢植、皇甫嵩、朱儁分三路讨伐",
+    "张角犯幽州",
+    "刘焉与邹靖议事后出榜招兵"
+  ],
+  "must_avoid": [
+    "展开三路将领的背景",
+    "提前暗示刘备",
+    "拖慢节奏"
+  ],
+  "status": "draft"
+}

@@ -1,5 +1,5 @@
 ## 每当一个 passage 写完，你手动问 Claude Code：
-Update memory/working_memory.json after finishing ch001 p01.
+Update memory/working_memory.json after finishing cp001 p01.
 
 Requirements:
 - move current_task to the next passage
