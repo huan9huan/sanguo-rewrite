@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ComicReaderLayout",
+  "type": "object",
+  "required": ["page_id", "version", "viewport_mode", "frames"],
+  "properties": {
+    "page_id": { "type": "string" },
+    "version": { "type": "integer" },
+    "viewport_mode": { "type": "string", "enum": ["mobile_vertical"] },
+    "frame_aspect_ratio": { "type": "string" },
+    "frames": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["frame_id", "scene_id", "image_slot", "text_block"],
+        "properties": {
+          "frame_id": { "type": "string" },
+          "scene_id": { "type": "string" },
+          "image_slot": {
+            "type": "object",
+            "required": ["asset_key", "aspect_ratio"],
+            "properties": {
+              "asset_key": { "type": "string" },
+              "aspect_ratio": { "type": "string" },
+              "crop_mode": { "type": "string" }
+            }
+          },
+          "text_block": {
+            "type": "object",
+            "required": ["items"],
+            "properties": {
+              "title": { "type": "string" },
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": ["id", "kind", "text"],
+                  "properties": {
+                    "id": { "type": "string" },
+                    "kind": { "type": "string", "enum": ["caption", "speech", "narration", "note"] },
+                    "speaker": { "type": "string" },
+                    "text": { "type": "string" },
+                    "lang": { "type": "string" }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

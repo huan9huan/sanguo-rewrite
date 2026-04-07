@@ -1,0 +1,74 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PassageComicSpec",
+  "type": "object",
+  "required": [
+    "chapter_id",
+    "passage_id",
+    "page_id",
+    "title_cn",
+    "comic_goal_cn",
+    "page_format",
+    "style",
+    "panels"
+  ],
+  "properties": {
+    "chapter_id": { "type": "string" },
+    "passage_id": { "type": "string" },
+    "page_id": { "type": "string" },
+    "title_cn": { "type": "string" },
+    "source_passage_spec_file": { "type": "string" },
+    "source_scene_spec_files": { "type": "array", "items": { "type": "string" } },
+    "comic_goal_cn": { "type": "string" },
+    "adaptation_rules": { "type": "array", "items": { "type": "string" } },
+    "page_format": {
+      "type": "object",
+      "required": ["panel_count", "reading_direction"],
+      "properties": {
+        "panel_count": { "type": "integer" },
+        "reading_direction": { "type": "string" },
+        "layout_pattern": { "type": "string" }
+      }
+    },
+    "style": {
+      "type": "object",
+      "required": ["style_key", "prompt_cn", "negative_prompt"],
+      "properties": {
+        "style_key": { "type": "string" },
+        "prompt_cn": { "type": "string" },
+        "negative_prompt": { "type": "string" },
+        "text_policy": { "type": "string" }
+      }
+    },
+    "panels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["panel_id", "scene_id", "story_function", "moment_cn", "image_prompt_cn"],
+        "properties": {
+          "panel_id": { "type": "string" },
+          "scene_id": { "type": "string" },
+          "story_function": { "type": "string" },
+          "moment_cn": { "type": "string" },
+          "camera_cn": { "type": "string" },
+          "must_show": { "type": "array", "items": { "type": "string" } },
+          "must_avoid": { "type": "array", "items": { "type": "string" } },
+          "image_prompt_cn": { "type": "string" },
+          "text_slots": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["id", "speaker", "text_cn", "kind"],
+              "properties": {
+                "id": { "type": "string" },
+                "speaker": { "type": "string" },
+                "text_cn": { "type": "string" },
+                "kind": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CharacterVisualBible",
+  "type": "object",
+  "additionalProperties": {
+    "type": "object",
+    "required": [
+      "display_name_cn",
+      "visual_keywords",
+      "silhouette",
+      "face",
+      "costume",
+      "color_palette",
+      "forbidden_visuals"
+    ],
+    "properties": {
+      "display_name_cn": { "type": "string" },
+      "role_cn": { "type": "string" },
+      "visual_keywords": { "type": "array", "items": { "type": "string" } },
+      "silhouette": {
+        "type": "object",
+        "properties": {
+          "height": { "type": "string" },
+          "build": { "type": "string" },
+          "posture": { "type": "string" }
+        }
+      },
+      "face": {
+        "type": "object",
+        "properties": {
+          "shape": { "type": "string" },
+          "skin_tone": { "type": "string" },
+          "features": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "hair_and_headwear": {
+        "type": "object",
+        "properties": {
+          "hair": { "type": "string" },
+          "headwear": { "type": "string" }
+        }
+      },
+      "facial_hair": {
+        "type": "object",
+        "properties": {
+          "style": { "type": "string" },
+          "notes": { "type": "string" }
+        }
+      },
+      "costume": {
+        "type": "object",
+        "properties": {
+          "base": { "type": "string" },
+          "outerwear": { "type": "string" },
+          "colors": { "type": "array", "items": { "type": "string" } }
+        }
+      },
+      "color_palette": { "type": "array", "items": { "type": "string" } },
+      "signature_items": { "type": "array", "items": { "type": "string" } },
+      "expression_default": { "type": "string" },
+      "forbidden_visuals": { "type": "array", "items": { "type": "string" } }
+    }
+  }
+}
