@@ -1,44 +1,45 @@
 {
   "current_position": {
     "chapter_id": "cp001",
-    "passage_id": "p03",
+    "passage_id": "p05",
     "last_completed": {
       "chapter_id": "cp001",
-      "passage_id": "p03",
+      "passage_id": "p05",
       "draft_version": 2
-    }
+    },
+    "chapter_status": "complete"
   },
   "active_viewpoint_characters": ["liu_bei", "guan_yu", "zhang_fei"],
   "currently_relevant_characters": {
     "liu_bei": {
-      "role_cn": "大哥、主线核心人物",
-      "current_state_cn": "已桃园结义为大哥，有双股剑，被刘焉认侄，率五百乡勇进入幽州体制。白身。",
-      "narrative_function_cn": "p04将首次上战场，面对实战考验"
+      "role_cn": "大哥、主将兼智将",
+      "current_state_cn": "历经大兴山、青州、颍川方向三战。卢植蒙冤被捕失去靠山。救了董卓却被白身二字否定。能忍——指节发白但脸平静。与关张引军北行，去向未定。",
+      "narrative_function_cn": "ch02将面对白身身份的更大挑战，可能投奔他人或独立发展"
     },
     "guan_yu": {
       "role_cn": "二哥、武力担当",
-      "current_state_cn": "已桃园结义为二哥，有青龙偃月刀（冷艳锯八十二斤），寡言但认可刘备志向。",
-      "narrative_function_cn": "p04将在战场展示武力，冷艳锯初饮血"
+      "current_state_cn": "冷艳锯已饮血多次。审慎——董卓轻视时'嘴抿成一条线'，拉张飞但不是加入暴怒。建议回涿郡。",
+      "narrative_function_cn": "ch02继续作为武力支柱和审慎的声音"
     },
     "zhang_fei": {
-      "role_cn": "三弟、行动推动者",
-      "current_state_cn": "已桃园结义为三弟，有丈八点钢矛，庄院仍是基地。结义时最外露。",
-      "narrative_function_cn": "p04战场上脾气和武力同时爆发"
+      "role_cn": "三弟、行动推动者、情绪出口",
+      "current_state_cn": "怒火已到顶点——卢植被捕时想砍押车人，董卓轻视后提刀要杀董卓。被关羽伸手拉但没停。刀已举到帐帘前面。",
+      "narrative_function_cn": "ch02开头需要解决张飞杀不杀董卓的悬念"
     },
-    "liu_yan": {
-      "role_cn": "幽州太守",
-      "current_state_cn": "已认刘备为侄，提供了进入体制的门路。",
-      "narrative_function_cn": "可能派三人出战黄巾"
+    "dong_zhuo": {
+      "role_cn": "中郎将、被救者、势利者",
+      "current_state_cn": "被张角打败、被三兄弟救了。问官职得知白身后轻视不为礼。胖、眼皮耷拉、看人像看蚂蚁。帐外张飞正提刀冲来。",
+      "narrative_function_cn": "ch02可能继续作为反派出现"
     },
-    "zou_jing": {
-      "role_cn": "刘焉麾下",
-      "current_state_cn": "已引见三人，对白身身份有察觉。",
-      "narrative_function_cn": "后续可能继续作为中间人"
+    "cao_cao": {
+      "role_cn": "骑都尉、新登场角色",
+      "current_state_cn": "颍川截杀张梁张宝败军，斩首万余。擦血看烟嘴角动了一下——权谋者的从容。与三兄弟擦肩而过。",
+      "narrative_function_cn": "ch02+将与三兄弟有更多交集"
     },
-    "zhang_jiao": {
-      "role_cn": "背景反派",
-      "current_state_cn": "黄巾军在攻幽州，为故事提供战争背景。",
-      "narrative_function_cn": "战事即将正面展开"
+    "lu_zhi": {
+      "role_cn": "前中郎将、刘备恩师（已离场）",
+      "current_state_cn": "被左丰诬陷、董卓接替、押回京问罪。槛车里背挺直头不回。已离场。",
+      "narrative_function_cn": "后续可能在朝廷审判中出现"
     }
   },
   "current_relationships": [
@@ -46,51 +47,57 @@
       "from": "liu_bei",
       "to": "zhang_fei",
       "type": "结义兄弟（大哥-三弟）",
-      "strength": 0.7,
-      "detail_cn": "桃园结义，生死与共。信任已从初识加深为兄弟义气。"
+      "strength": 0.9,
+      "detail_cn": "历经多场血战。张飞替刘备发怒（卢植、董卓），刘备制止张飞（不造次）。信任和服从已通过实战固化。但张飞的怒火正在考验刘备的约束力。"
     },
     {
       "from": "liu_bei",
       "to": "guan_yu",
       "type": "结义兄弟（大哥-二哥）",
-      "strength": 0.5,
-      "detail_cn": "桃园结义，但关羽的信任建立较慢，更多基于志向认同。"
-    },
-    {
-      "from": "guan_yu",
-      "to": "zhang_fei",
-      "type": "结义兄弟（二哥-三弟）",
-      "strength": 0.5,
-      "detail_cn": "结义兄弟，性格互补。关羽审慎、张飞急躁，但都认可对方是同类人。"
+      "strength": 0.7,
+      "detail_cn": "关羽建议回涿郡（务实判断），刘备从之。战场上默契已深。关羽的信任基于行动而非言语。"
     },
     {
       "from": "liu_bei",
-      "to": "liu_yan",
-      "type": "叔侄（新认）",
-      "strength": 0.3,
-      "detail_cn": "刘焉因宗亲身份认刘备为侄。功利性较强，真正的信任尚未建立。"
+      "to": "dong_zhuo",
+      "type": "被轻视（单方面）",
+      "strength": -0.3,
+      "detail_cn": "救了董卓换来冷脸。'白身'两字让一切归零。董卓不为礼。张飞要杀他。"
+    },
+    {
+      "from": "liu_bei",
+      "to": "cao_cao",
+      "type": "擦肩而过（未正式互动）",
+      "strength": 0,
+      "detail_cn": "颍川战场擦肩而过，两人尚未正式见面。"
     }
   ],
   "active_threads": [
     {
       "thread_id": "yellow_turban_war",
-      "summary_cn": "黄巾起义持续，三路官军进剿。幽州方向战事吃紧。"
-    },
-    {
-      "thread_id": "brothers_first_battle",
-      "summary_cn": "三兄弟已聚五百乡勇进入幽州，即将迎来首战。"
+      "summary_cn": "黄巾起义仍在持续。张角在广宗方向与官军对峙，张梁张宝败逃。三兄弟参与的局部战役已告一段落。"
     },
     {
       "thread_id": "outsider_status",
-      "summary_cn": "三人以白身进入体制。刘焉认侄只是门路，邹靖已察觉'布衣白身没有官凭'。真正的地位还需战场证明，且白身被轻视的冲突正在酝酿。"
+      "summary_cn": "白身暗线已完全引爆——董卓的轻视是全章积蓄的爆发点。三兄弟证明了自己但身份制度不认。张飞怒欲杀人。这个冲突将在ch02继续。"
+    },
+    {
+      "thread_id": "zhang_fei_vs_dongzhuo",
+      "summary_cn": "张飞提刀要杀董卓——刀已举到帐帘前面。这是ch02开头的直接悬念。"
+    },
+    {
+      "thread_id": "caocao_shadow",
+      "summary_cn": "曹操在颍川登场——与三兄弟擦肩而过。他的从容和权谋暗示为后续埋线。"
     }
   ],
   "reader_context_summary_cn": [
-    "读者知道天下大乱：桓灵腐败、十常侍专权、黄巾四五十万人造反。",
-    "读者已经认识三兄弟：刘备皇族后裔卖草鞋、张飞有财有热气、关羽红脸长须卧蚕眉杀豪逃亡。",
-    "三人已在桃园结义：不求同生但求同死，刘备为兄、关羽次之、张飞为弟。",
-    "三件标志性兵器：双股剑、青龙偃月刀（冷艳锯）、丈八点钢矛。",
-    "五百乡勇就位，刘焉已认侄——但三人是白身，没有官凭。读者期待第一场战斗。"
+    "读者经历了ch001全程：乱世背景→三兄弟相遇结义→首战告捷→白身被辱。",
+    "三兄弟已证明能力：大兴山五百破五万、青州分兵解围、冲杀张角军救董卓。",
+    "白身身份是核心矛盾：有功劳但没身份，在权力世界里一文不值。",
+    "卢植蒙冤被捕——好人被制度碾碎。三兄弟失去了体制内唯一的靠山。",
+    "董卓定妆：胖、眼皮耷拉、看人像看蚂蚁——势利但不脸谱化，是制度的恶。",
+    "曹操已登场：细眼长髯、从容不迫、擦血看烟嘴角动——另一种英雄。",
+    "张飞正提刀站在董卓帐前——ch001在最高张力处收束。"
   ],
-  "next_focus_cn": "p04三兄弟首战黄巾，战场初露锋芒。"
+  "next_focus_cn": "ch02开头：解决张飞杀不杀董卓的悬念，三兄弟接下来的去向。"
 }

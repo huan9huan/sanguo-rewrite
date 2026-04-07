@@ -1,19 +1,20 @@
 {
   "liu_bei": {
-    "core_traits": ["温和", "有志向", "能忍", "会观察别人"],
-    "speech_style": ["说话平和", "不夸张", "不长篇大论"],
-    "avoid": ["不要写成圣人说教", "不要写成软弱无能"],
+    "core_traits": ["温和", "有志向", "能忍", "会观察别人", "冷静沉着"],
+    "speech_style": ["说话平和", "不夸张", "不长篇大论", "四个字就能表态"],
+    "avoid": ["不要写成圣人说教", "不要写成软弱无能", "不要在阵前叫骂"],
     "established_details": {
       "appearance_cn": "七尺五寸，耳垂肩，手过膝，面皮白净",
       "background_cn": "中山靖王之后，家贫贩屦织席，楼桑大树童年，师从卢植郑玄",
       "filial_piety_shown_cn": "每天收摊先给母亲带一碗热汤",
-      "weapons_cn": "双股剑，长短合手，攻守兼备"
+      "weapons_cn": "双股剑，长短合手，攻守兼备",
+      "combat_style_cn": "战场上冷静，用微点头发令或两字下令（'速战'）。不是最猛的那个，但是指挥者。"
     },
     "dynamic_state": {
-      "current_role": "大哥、主线核心人物",
-      "trust_in_guan_yu": 0.5,
-      "trust_in_zhang_fei": 0.6,
-      "current_status_cn": "已与关张桃园结义为大哥，聚五百乡勇，被刘焉认侄。白身踏入体制。"
+      "current_role": "大哥、主将兼智将",
+      "trust_in_guan_yu": 0.7,
+      "trust_in_zhang_fei": 0.9,
+      "current_status_cn": "历经大兴山、青州、颍川方向多战。卢植蒙冤被捕失去靠山。救董卓却被白身否定。能忍——指节发白但脸平静。白身。"
     }
   },
   "guan_yu": {
@@ -23,12 +24,13 @@
     "established_details": {
       "appearance_cn": "九尺身高，二尺长须，面如暗红，眼睛细长尾梢上挑，眉毛浓粗如卧蚕，整张脸不怒自威",
       "background_cn": "河东解良人，杀势豪逃亡五六年，来投军",
-      "weapons_cn": "青龙偃月刀（冷艳锯），重八十二斤"
+      "weapons_cn": "青龙偃月刀（冷艳锯），重八十二斤",
+      "combat_style_cn": "出刀极快，从侧翼切入。斩人后收刀不看尸体，刀往肩上一搁。寡言风格延续到战场。"
     },
     "dynamic_state": {
       "current_role": "二哥、武力担当",
-      "trust_in_liu_bei": 0.5,
-      "current_status_cn": "已结义为二哥。对刘备的志向认同（'正好'），信任仍在建立中。"
+      "trust_in_liu_bei": 0.7,
+      "current_status_cn": "多场血战已证明武力。审慎——董卓轻视时'嘴抿成一条线'，拉张飞但非加入暴怒。建议回涿郡（务实判断）。"
     }
   },
   "zhang_fei": {
@@ -39,40 +41,63 @@
       "appearance_cn": "豹头环眼、燕颔虎须、声若巨雷、膀子撑得衣服快裂了",
       "background_cn": "涿郡本地人，有庄田酒坊，卖酒屠猪",
       "action_shown_cn": "主动出资招募乡勇，推动刘备从叹息走向行动，提议桃园结义",
-      "weapons_cn": "丈八点钢矛，矛头两尺长，矛杆嗡嗡作响"
+      "weapons_cn": "丈八点钢矛，矛头两尺长，矛杆嗡嗡作响",
+      "combat_style_cn": "冲得最快，矛如蛇弹。等大哥点头才冲锋——急但不乱。杀人后甩矛溅血。"
     },
     "dynamic_state": {
-      "current_role": "三弟、行动推动者、气氛担当",
-      "trust_in_liu_bei": 0.6,
-      "current_status_cn": "已结义为三弟。提议结义，提供庄院场地。结义时第一个咧嘴笑。"
+      "current_role": "三弟、先锋突击手、情绪出口",
+      "trust_in_liu_bei": 0.9,
+      "current_status_cn": "怒火已到顶点——卢植被捕时想砍押车人（被刘备制止），董卓轻视后提刀要杀董卓。关羽伸手拉但没停。刀已举到帐帘前面。"
+    }
+  },
+  "cao_cao": {
+    "core_traits": ["从容", "有权谋", "收场者心态"],
+    "speech_style": ["不多说", "直接行动"],
+    "established_details": {
+      "appearance_cn": "身长七尺，细长眼睛，胡子修剪整齐。不急不躁，像来收场的。",
+      "background_cn": "沛国谯郡人，骑都尉",
+      "combat_style_cn": "拦路口直接杀，斩首万余。擦血看烟嘴角动了一下——权谋者的从容。"
+    },
+    "dynamic_state": {
+      "current_role": "骑都尉（新登场）",
+      "current_status_cn": "颍川截杀张梁张宝败军。与三兄弟擦肩而过，未正式互动。"
+    }
+  },
+  "dong_zhuo": {
+    "core_traits": ["势利", "傲慢", "以身份看人"],
+    "established_details": {
+      "appearance_cn": "胖。肚子把铠甲撑得鼓起来。看人时眼皮往下耷拉，像看地上的蚂蚁。",
+      "background_cn": "中郎将，接替卢植。被张角打败。"
+    },
+    "dynamic_state": {
+      "current_role": "中郎将、被救者",
+      "current_status_cn": "被三兄弟救了。问官职得知白身后不为礼。帐外张飞正提刀冲来。"
+    }
+  },
+  "lu_zhi": {
+    "core_traits": ["儒将", "话少有力", "识人", "有风骨"],
+    "speech_style": ["简短", "不废话"],
+    "established_details": {
+      "appearance_cn": "须发半白，身形挺拔，眼神跟刀一样利",
+      "background_cn": "中郎将，刘备恩师。被左丰诬陷，押回京问罪。"
+    },
+    "dynamic_state": {
+      "current_role": "前中郎将、囚徒（已离场）",
+      "current_status_cn": "被诬陷高垒不战惰慢军心，押回京问罪。槛车里背挺直头不回。已离场。"
     }
   },
   "liu_yan": {
     "core_traits": ["世故", "识人"],
     "dynamic_state": {
       "current_role": "幽州太守",
-      "current_status_cn": "已认刘备为侄。给三人提供了进入体制的门路。"
+      "current_status_cn": "已认刘备为侄。大兴山大胜后亲自迎接赏劳。"
     }
   },
-  "zou_jing": {
-    "core_traits": ["识时务", "不多话"],
+  "zhang_jiao": {
+    "core_traits": ["背景大反派"],
     "dynamic_state": {
-      "current_role": "刘焉麾下",
-      "current_status_cn": "引见三人见刘焉。对'布衣白身没有官凭'有察觉但没多说话。"
-    }
-  },
-  "zhang_shiping": {
-    "core_traits": ["豪爽", "识时务"],
-    "dynamic_state": {
-      "current_role": "中山大商（已离场）",
-      "current_status_cn": "赠马五十匹。已离场。"
-    }
-  },
-  "su_shuang": {
-    "core_traits": ["豪爽", "识时务"],
-    "dynamic_state": {
-      "current_role": "中山大商（已离场）",
-      "current_status_cn": "赠金银五百两、镔铁一千斤。已离场。"
+      "current_role": "天公将军、黄巾军首领",
+      "current_status_cn": "广宗击败董卓，被三兄弟冲杀后败退五十余里。仍在活跃。"
     }
   }
 }
