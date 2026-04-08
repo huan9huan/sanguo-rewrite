@@ -1,0 +1,35 @@
+{
+  "page_id": "cp001-p01-page-01",
+  "title_cn": "乱世序幕",
+  "panel_count": 4,
+  "frames": [
+    {
+      "frame_id": "p1",
+      "scene_id": "cp001_p01_s1",
+      "moment_cn": "温德殿异象——大青蛇盘踞龙椅，天降警告，帝座空悬。",
+      "camera_cn": "宽景纵深，殿内龙椅上的蛇与惊散的百官同框。",
+      "text_count": 1
+    },
+    {
+      "frame_id": "p2",
+      "scene_id": "cp001_p01_s2",
+      "moment_cn": "张角得天书，信众如滚雪球般聚拢，家家门口写上"甲子"。",
+      "camera_cn": "中景，张角居中手持书卷，身后信众成势。",
+      "text_count": 1
+    },
+    {
+      "frame_id": "p3",
+      "scene_id": "cp001_p01_s2",
+      "moment_cn": "星夜举兵，数十万人裹黄巾，"苍天已死，黄天当立"。",
+      "camera_cn": "远景转中景，黄巾洪流如潮。",
+      "text_count": 1
+    },
+    {
+      "frame_id": "p4",
+      "scene_id": "cp001_p01_s3",
+      "moment_cn": "幽州城门出榜招兵——榜文贴出，无人知谁会来。",
+      "camera_cn": "收束中景，城门口榜文与来往百姓。",
+      "text_count": 2
+    }
+  ]
+}

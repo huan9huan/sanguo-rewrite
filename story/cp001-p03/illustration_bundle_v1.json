@@ -1,0 +1,105 @@
+{
+  "chapter_id": "cp001",
+  "passage_id": "p03",
+  "passage_title_cn": "桃园结义",
+  "bundle_version": 1,
+  "status": "draft",
+  "style_strategy": {
+    "series_goal": "用三张连续插画建立 p03 的人物初识、兄弟结义、成军起势",
+    "shared_style_tags": [
+      "black and white lianhuanhua",
+      "expressive ink sketch",
+      "fine line storytelling",
+      "story-first comic illustration",
+      "dynamic gesture drawing",
+      "lively composition",
+      "story first"
+    ],
+    "shared_negative_prompt": "full color, rich color palette, glossy game splash art, cinematic poster, photorealistic rendering, 3d render, stiff posed figures, rigid composition, over-rendered detail, heavy posterized shadows, opera makeup, fantasy armor, xianxia glow, caricature faces, palace luxury, modern costume, neon lighting, infographic collage",
+    "consistency_rules": [
+      "刘备始终温和克制，不做夸张英雄姿态",
+      "关羽必须高大、长须、沉静威严，但不能戏曲脸谱化",
+      "张飞必须魁梧有热气，但不能画成纯莽夫",
+      "统一使用小人书/连环画式黑白速写插图，线条可以细，但必须有动势和呼吸感",
+      "材质要朴素真实，不走仙侠或游戏海报路线",
+      "同一组图中三兄弟服饰与脸部锚点要保持连续"
+    ]
+  },
+  "generation_defaults": {
+    "engine": "seedream",
+    "size": "1024x1024",
+    "num_candidates": 3,
+    "aspect_ratio_note": "先用方图测试一致性，稳定后再扩展横版封面"
+  },
+  "scenes": [
+    {
+      "scene_id": "cp001_p03_s1",
+      "title_cn": "关羽登场",
+      "priority": "supporting",
+      "brief_file": "illustration_s01_v1.md",
+      "source_spec_file": "s01-spec.json",
+      "recommended_candidate": "C",
+      "purpose": "测试关羽首次亮相和三兄弟第一次同框的人物关系",
+      "production_prompt_cn": "涿县村店里，一个高大的汉子推车到门外，转身大步进门，要快喝一碗酒就去投军。刘备在桌边起身看他，张飞坐在一旁也被吸引。重点是三个人第一次见面就认出彼此是一路人的那个瞬间。黑白小人书速写风，细线或中细线勾人物，线条活，像一气呵成画出来的叙事插图。人物比环境更重要，动作和神情要有代入感，不要复杂背景，不要彩绘海报感，不要僵硬站桩。",
+      "production_prompt_en": "In a humble rural tavern in Zhuo County, with rough wooden tables, stools, dust, and the smell of wine in the air, a towering man has just stopped his handcart outside and strides through the doorway. He is extremely tall, with a long beard falling to his chest, a dark reddish face, narrow phoenix-like eyes, heavy silkworm brows, and the restrained gravity of a fugitive who has been wandering for years. He carries urgency, as if he intends to drink quickly and go enlist at once. Inside the tavern, Liu Bei rises from his seat beside a wooden table, slim and pale-faced, calm and observant, clearly recognizing at a glance that this newcomer is no ordinary man. Zhang Fei sits nearby, broad-shouldered, dark-faced, powerful, leaning forward with instant interest. The image should capture the exact moment these three men recognize each other as the same kind of people. Black and white historical comic illustration, bold ink contour lines, high contrast, strong use of black shapes and negative space, like a key page from a manga volume. No painterly color rendering, no glossy poster look, no fantasy armor, no overcrowded background.",
+      "negative_prompt": "full color, painterly rendering, watercolor, oil painting, glossy game splash art, cinematic poster, soft pastel, photorealistic shading, 3d render, anime cel color, exaggerated red face paint, fantasy armor, xianxia style, luxurious palace tavern, comedy expression, cartoon proportions, neon lighting, overcrowded extras, chibi style, smiling hero pose",
+      "candidate_angles": {
+        "A": "门口斜切进来的构图，关羽占最大视觉面积，适合角色首次亮相图",
+        "B": "从刘备肩后看向门口，更强调刘备识人的主观感受",
+        "C": "三人同框更完整，关羽站立，刘备起身，张飞前倾，最适合作为 passage 配图"
+      },
+      "review_focus": [
+        "关羽是否一眼可辨，并且不是戏曲脸谱化",
+        "刘备是否显得温和、能识人",
+        "张飞是否有热气但没有喧宾夺主",
+        "场景是否像村店而不是豪华酒楼"
+      ]
+    },
+    {
+      "scene_id": "cp001_p03_s02",
+      "title_cn": "桃园结义",
+      "priority": "hero",
+      "brief_file": "illustration_s02_v1.md",
+      "source_spec_file": "s02-spec.json",
+      "recommended_candidate": "A",
+      "purpose": "作为 p03 主海报，测试兄弟关系、庄重感与视觉记忆点",
+      "production_prompt_cn": "桃园里，刘备、关羽、张飞三人面对天地焚香跪拜，正式结为兄弟。重点是他们把命运绑在一起的那一刻。人物关系要清楚，刘备居中承担，关羽沉稳压场，张飞最有热气。黑白小人书速写主视觉，线条可以细，但要灵活有力，像老连环画里抓住关键动作和神情的一页。人物大于景物，桃花和祭礼只做必要点缀，内容少而精，突出故事性，不要唯美花海，不要华丽祭典，不要摆拍感。",
+      "production_prompt_en": "In the peach garden behind Zhang Fei's estate, at the height of spring bloom, peach trees fill the space with soft blossoms while petals drift lightly in the morning air. At the center stands a simple but solemn altar, with ritual offerings prepared and incense smoke rising slowly. Three men who have only recently met are kneeling before heaven and earth, swearing brotherhood. Liu Bei is at the center, slightly slim and pale-faced, warm in expression yet deeply resolute, as if he is accepting a lifelong responsibility. Guan Yu is tall and long-bearded, with a dark reddish face and a calm, imposing dignity that steadies the whole scene. Zhang Fei is broad, dark-faced, fierce-featured, and more outwardly emotional, full of raw sincerity and heat, yet equally solemn. The image should capture the instant they entrust life and fate to one another. Black and white historical manga key art, bold ink lines, high contrast, limited gray values, strong black shapes and negative space, like a full-page pivotal illustration from a graphic novel. No color rendering, no romantic blossom poster mood, no fantasy glow, no sentimental melodrama.",
+      "negative_prompt": "full color, romantic blossom poster, wedding-like mood, painterly rendering, fantasy glow, xianxia robes, opera makeup, excessive petals obscuring faces, palace ritual, luxurious altar, smiling celebration pose, glossy game splash art, caricature expressions, anime sparkles, overdecorated weapons, modern cinematic fashion",
+      "candidate_angles": {
+        "A": "三人跪拜正面中远景，最稳，最适合做主海报",
+        "B": "略侧面构图，更能看出刘备、关羽、张飞的关系差异",
+        "C": "从香案后方轻微反打，更强调向天地立誓的仪式感"
+      },
+      "review_focus": [
+        "是否一眼看出这是结义，而不是普通祭礼",
+        "桃花是否服务情绪，而不是抢走主角",
+        "三兄弟是否同时重要但气质分明",
+        "气氛是否庄重克制，而不是甜美抒情"
+      ]
+    },
+    {
+      "scene_id": "cp001_p03_s03",
+      "title_cn": "起兵成军",
+      "priority": "supporting",
+      "brief_file": "illustration_s03_v1.md",
+      "source_spec_file": "s03-spec.json",
+      "recommended_candidate": "A",
+      "purpose": "测试从结义到成军的加速度，以及三兄弟在一张图里的分工",
+      "production_prompt_cn": "张飞庄院外，好马进庄，三兄弟一下子有了成军的样子。刘备在前接住这股势头，关羽试刀，张飞执矛，马群和乡勇让画面动起来。重点是从草莽三人变成一支队伍的起势瞬间。黑白小人书速写插图，线条有快感和动势，人物动作要带气，画面像故事正在发生，不是排队站好给人看。人物和故事性优先，背景从简，不做流程说明图，不做复杂拼贴。",
+      "production_prompt_en": "Outside Zhang Fei's estate, everything has suddenly come alive. Dozens of strong horses are being driven into the courtyard, their manes lifting in the air as dust mixes with early morning light. Two northern merchants stand nearby, weathered from travel, bringing the resources that will change everything. In the foreground are the three newly sworn brothers: Liu Bei stands slightly forward at the center, composed and steady, bowing in thanks to the merchants like the man who is ready to gather this momentum into a cause; Guan Yu, towering and long-bearded, tests the weight of a newly forged Green Dragon Crescent Blade with restrained control; Zhang Fei, broad and powerful, turns with a long spear in hand, radiating the heat of someone who can finally act. Around them, local recruits gather, simple armor and weapons appear, and the estate feels as if a private oath is becoming a real fighting force. Black and white historical comic illustration, bold ink lines, high contrast, clear action silhouettes, using black shapes and negative space to create momentum. No painterly color, no glossy game key art, no collage layout, no palace grandeur.",
+      "negative_prompt": "full color, painterly rendering, fantasy armor, palace courtyard, imperial gold luxury, character lineup poster, weapon catalog, static posing, xianxia magic glow, opera face paint, exaggerated heroic grin, modern cinematic leather costume, game splash art, collage panels, infographic composition, neon lighting, overcrowded chaos without focal point",
+      "candidate_angles": {
+        "A": "马队入庄为主，三兄弟在前景接住势头，最适合成军瞬间主图",
+        "B": "关羽试刀、张飞执矛更突出，更偏武装力量成形",
+        "C": "刘备向商人致意为中心，更强调局面被接起来"
+      },
+      "review_focus": [
+        "画面是否有明显从零到有的加速感",
+        "马群和资源是否真的推动了画面",
+        "三兄弟是否各自承担了不同的视觉任务",
+        "是否避免了拼贴说明书式的散乱"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,92 @@
+{
+  "seedream": {
+    "doubao-seedream-5-0-260128": {
+      "provider": "volcengine-ark",
+      "pricing": {
+        "unit": "image",
+        "price": 0.22,
+        "currency": "CNY"
+      },
+      "capabilities": [
+        "text_to_image"
+      ],
+      "notes": "Price placeholder. Fill with official billing before cost comparison."
+    },
+    "doubao-seedream-4-5-251128": {
+      "provider": "volcengine-ark",
+      "pricing": {
+        "unit": "image",
+        "price": 0.22,
+        "currency": "CNY"
+      },
+      "capabilities": [
+        "text_to_image"
+      ],
+      "notes": "Price placeholder. Fill with official billing before cost comparison."
+    }
+  },
+  "nanobanana": {
+    "gemini-2.5-flash-image": {
+      "provider": "google-ai-studio",
+      "pricing": {
+        "unit": "mixed",
+        "price": null,
+        "currency": "USD"
+      },
+      "capabilities": [
+        "text_to_image"
+      ],
+      "notes": "Google AI Studio Gemini native image generation. Pricing is token/image based; configure separately if you want exact cost."
+    }
+  },
+  "qwen": {
+    "qwen-image-2.0-pro": {
+      "provider": "qwen",
+      "pricing": {
+        "unit": "image",
+        "price": 0.2,
+        "currency": "CNY"
+      },
+      "capabilities": [
+        "text_to_image"
+      ],
+      "notes": "Sync multimodal-generation API."
+    },
+    "qwen-image-2.0": {
+      "provider": "qwen",
+      "pricing": {
+        "unit": "image",
+        "price": 0.2,
+        "currency": "CNY"
+      },
+      "capabilities": [
+        "text_to_image"
+      ],
+      "notes": "Sync multimodal-generation API."
+    },
+    "qwen-image": {
+      "provider": "qwen",
+      "pricing": {
+        "unit": "image",
+        "price": 0.2,
+        "currency": "CNY"
+      },
+      "capabilities": [
+        "text_to_image"
+      ],
+      "notes": "Async text2image API."
+    },
+    "qwen-image-plus": {
+      "provider": "qwen",
+      "pricing": {
+        "unit": "image",
+        "price": 0.2,
+        "currency": "CNY"
+      },
+      "capabilities": [
+        "text_to_image"
+      ],
+      "notes": "Async text2image API."
+    }
+  }
+}

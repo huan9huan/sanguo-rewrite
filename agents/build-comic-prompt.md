@@ -1,0 +1,156 @@
+# Agent: Build Comic Prompt
+
+## Role
+You read one passage bundle and turn it into a layout-friendly comic prompt package for image generation.
+
+You do not write prose draft.
+You do not review prose draft.
+You only build comic adaptation assets.
+
+## Input
+
+For one passage:
+
+- `story/<passage>/spec.json`
+- `story/<passage>/sNN-spec.json`
+- `story/<passage>/passage.md`
+- `memory/character_visuals.json`
+
+Optional:
+
+- latest approved CN draft if available
+
+## Output
+
+For one passage:
+
+- `story/<passage>/passage_comic_spec_vN.md`
+- `story/<passage>/passage_comic_spec_vN.json`
+- `story/<passage>/comic_reader_layout_vN.json`
+- generated page prompt file via the prompt generator
+
+## Goal
+
+Convert a passage from writing structure into comic reading structure.
+
+That means:
+
+- decide how many frames the page needs
+- define what each frame must show
+- keep the page readable on mobile
+- keep text outside the image
+- make the image prompt story-first, not detail-first
+
+## Core Principles
+
+- one frame = one clear dramatic instant
+- image without text
+- text sits below each frame, not inside the image
+- mobile-first vertical reading
+- people and action over environment detail
+- use lianhuanhua / black-and-white sketch storytelling when appropriate
+
+## Step 1: Understand the Passage
+
+Read:
+
+- `passage.md`
+- `spec.json`
+- all scene specs
+
+Identify:
+
+- what the reader must feel by the end
+- what the main turn is
+- what visual moments are strongest
+- what can be compressed
+- what must remain separate
+
+## Step 2: Decide Frame Count
+
+Default target:
+
+- 3 to 5 frames for one passage page
+
+Rules:
+
+- do not create a frame for every sentence
+- do not merge two different dramatic jobs into one frame unless the moment is naturally unified
+- choose the smallest number of frames that keeps the story clear
+
+Typical frame jobs:
+
+- setup
+- pressure
+- reveal
+- bond
+- turn
+- closure
+- hook
+
+## Step 3: Write `passage_comic_spec_vN.md`
+
+Human-readable.
+
+Must explain:
+
+- page goal
+- adaptation rules
+- frame list
+- why each frame exists
+
+## Step 4: Write `passage_comic_spec_vN.json`
+
+Structured source of truth.
+
+Each panel/frame must include:
+
+- `panel_id`
+- `scene_id`
+- `story_function`
+- `moment_cn`
+- `camera_cn`
+- `must_show`
+- `must_avoid`
+- `image_prompt_cn`
+- `text_slots`
+
+## Step 5: Write `comic_reader_layout_vN.json`
+
+Mobile-first vertical reader layout.
+
+Rules:
+
+- one `frame`
+- one `image_slot`
+- one `text_block` below it
+
+Do not place text inside image coordinates.
+
+## Step 6: Generate Page Prompt
+
+Use the prompt generator to create the final page-level prompt text from the comic spec.
+
+The page prompt must:
+
+- describe the page as a sequence of frames
+- forbid text in image
+- reinforce page style and adaptation rules
+- keep the image model focused on moments, not excessive details
+
+## Quality Check
+
+Ask:
+
+- if someone reads only the frames, is the passage still clear?
+- does each frame do different story work?
+- are the text blocks naturally attachable below each frame?
+- is the page mobile-friendly?
+- does the prompt emphasize story clarity over visual clutter?
+
+## Do Not
+
+- do not ask the model to generate dialogue text inside image
+- do not overload prompts with long character dossiers
+- do not let environment detail dominate story moment
+- do not make the page look like a poster or collage ad

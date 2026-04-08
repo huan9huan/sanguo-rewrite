@@ -1,0 +1,344 @@
+{
+  "liu_bei": {
+    "display_name_cn": "刘备",
+    "role_cn": "三兄弟核心，大哥",
+    "visual_keywords": [
+      "中年",
+      "略瘦",
+      "面皮白净",
+      "耳垂较长",
+      "手臂修长",
+      "温和克制",
+      "朴素中有贵气"
+    ],
+    "silhouette": {
+      "height": "高但不过分魁梧",
+      "build": "修长偏瘦",
+      "posture": "站姿稳，肩不夸张外张"
+    },
+    "face": {
+      "shape": "长脸偏柔和",
+      "skin_tone": "白净偏暖",
+      "features": [
+        "耳垂较长",
+        "目光温和",
+        "神情常带判断和忍耐"
+      ]
+    },
+    "hair_and_headwear": {
+      "hair": "黑发束起，整洁，不张扬",
+      "headwear": "早期可用简朴巾帻或布冠"
+    },
+    "facial_hair": {
+      "style": "短须或修整过的细须",
+      "notes": "不要画成长髯，也不要完全无须显得过于年轻"
+    },
+    "costume": {
+      "base": "朴素汉末布袍",
+      "outerwear": "可有简素外袍或轻甲",
+      "colors": [
+        "米白",
+        "麻色",
+        "淡青",
+        "低饱和棕"
+      ]
+    },
+    "color_palette": [
+      "ivory",
+      "linen",
+      "muted teal",
+      "soft brown"
+    ],
+    "signature_items": [
+      "双股剑"
+    ],
+    "expression_default": "温和、克制、能识人",
+    "forbidden_visuals": [
+      "帝王金龙袍",
+      "夸张英雄姿态",
+      "过于年轻俊美偶像化",
+      "戏曲化脸谱"
+    ]
+  },
+  "guan_yu": {
+    "display_name_cn": "关羽",
+    "role_cn": "三兄弟核心，二哥",
+    "visual_keywords": [
+      "极高大",
+      "长髯垂胸",
+      "面色暗红",
+      "丹凤眼",
+      "卧蚕眉",
+      "沉静威严",
+      "不怒自威"
+    ],
+    "silhouette": {
+      "height": "非常高",
+      "build": "高大厚实但不臃肿",
+      "posture": "稳如立柱，压得住场"
+    },
+    "face": {
+      "shape": "长脸，轮廓分明",
+      "skin_tone": "暗红偏棕，不是鲜红",
+      "features": [
+        "丹凤眼细长上挑",
+        "卧蚕眉浓而整",
+        "神情冷静克制"
+      ]
+    },
+    "hair_and_headwear": {
+      "hair": "黑发束起",
+      "headwear": "早期可简朴束发，后期再升级冠巾"
+    },
+    "facial_hair": {
+      "style": "长髯",
+      "notes": "胡须必须是第一视觉锚点之一，但要真实，不要戏曲道具感"
+    },
+    "costume": {
+      "base": "厚重朴素战袍或深色长袍",
+      "outerwear": "适度护甲，不夸张",
+      "colors": [
+        "深绿",
+        "墨青",
+        "暗棕"
+      ]
+    },
+    "color_palette": [
+      "deep green",
+      "ink black",
+      "dark bronze"
+    ],
+    "signature_items": [
+      "青龙偃月刀"
+    ],
+    "expression_default": "沉静、审慎、有压迫感",
+    "forbidden_visuals": [
+      "鲜红戏曲脸",
+      "过度夸张的神像感",
+      "过多装饰金甲",
+      "健谈轻浮的表情"
+    ]
+  },
+  "zhang_fei": {
+    "display_name_cn": "张飞",
+    "role_cn": "三兄弟核心，三弟",
+    "visual_keywords": [
+      "魁梧",
+      "黑脸",
+      "浓须",
+      "豹眼",
+      "爆发力强",
+      "热气重",
+      "急而不乱"
+    ],
+    "silhouette": {
+      "height": "高壮",
+      "build": "肩背宽阔，躯干厚实",
+      "posture": "重心靠前，动作感强"
+    },
+    "face": {
+      "shape": "方阔粗犷",
+      "skin_tone": "深色偏黑",
+      "features": [
+        "豹眼圆而有力",
+        "眉重",
+        "神情直接外露"
+      ]
+    },
+    "hair_and_headwear": {
+      "hair": "黑发粗硬，束起但不精致",
+      "headwear": "可用简朴头巾或裸头束发"
+    },
+    "facial_hair": {
+      "style": "浓密虎须",
+      "notes": "胡须要厚重粗犷，不修饰过头"
+    },
+    "costume": {
+      "base": "粗布短打或便于行动的战袍",
+      "outerwear": "实用轻甲",
+      "colors": [
+        "黑",
+        "深褐",
+        "暗红"
+      ]
+    },
+    "color_palette": [
+      "charcoal",
+      "dark umber",
+      "muted oxblood"
+    ],
+    "signature_items": [
+      "丈八点钢矛"
+    ],
+    "expression_default": "热、直、急，但不是蠢",
+    "forbidden_visuals": [
+      "纯莽夫式傻笑",
+      "滑稽喜剧脸",
+      "过于精致文弱",
+      "奇幻重甲"
+    ]
+  },
+  "cao_cao": {
+    "display_name_cn": "曹操",
+    "role_cn": "另一种英雄样貌的早期亮相",
+    "visual_keywords": [
+      "精悍",
+      "细长眼睛",
+      "胡子修整整齐",
+      "从容",
+      "锐利",
+      "像来收场的人"
+    ],
+    "silhouette": {
+      "height": "中高",
+      "build": "精干结实",
+      "posture": "松而稳，不急不躁"
+    },
+    "face": {
+      "shape": "偏窄长",
+      "skin_tone": "正常偏暖",
+      "features": [
+        "细长眼睛",
+        "眼神锐利",
+        "嘴角偶有若有若无的变化"
+      ]
+    },
+    "hair_and_headwear": {
+      "hair": "整洁束发",
+      "headwear": "骑都尉风格的简练冠巾"
+    },
+    "facial_hair": {
+      "style": "短须或修整齐整的胡须",
+      "notes": "不要画成长髯，不要和关羽混"
+    },
+    "costume": {
+      "base": "利落军袍",
+      "outerwear": "简练甲胄",
+      "colors": [
+        "黑",
+        "深灰",
+        "暗金属色"
+      ]
+    },
+    "color_palette": [
+      "black",
+      "gunmetal",
+      "dark olive"
+    ],
+    "signature_items": [],
+    "expression_default": "从容、锋利、像在判断局面",
+    "forbidden_visuals": [
+      "老谋深算老年化",
+      "阴狠夸张反派脸",
+      "华丽帝王装"
+    ]
+  },
+  "dong_zhuo": {
+    "display_name_cn": "董卓",
+    "role_cn": "制度性傲慢的化身",
+    "visual_keywords": [
+      "肥胖",
+      "铠甲被肚腹撑起",
+      "眼皮下耷",
+      "轻慢",
+      "不愿多看别人"
+    ],
+    "silhouette": {
+      "height": "中等",
+      "build": "肥壮臃肿",
+      "posture": "坐卧都有压迫和懒慢感"
+    },
+    "face": {
+      "shape": "圆厚",
+      "skin_tone": "偏浊",
+      "features": [
+        "眼皮下垂",
+        "看人像看地上蚂蚁",
+        "不是暴怒，是轻蔑"
+      ]
+    },
+    "hair_and_headwear": {
+      "hair": "整束",
+      "headwear": "武将冠或盔，但不要太华丽"
+    },
+    "facial_hair": {
+      "style": "可有短须",
+      "notes": "重点不在胡须，在体态和眼神"
+    },
+    "costume": {
+      "base": "厚重军袍",
+      "outerwear": "被撑紧的武将甲",
+      "colors": [
+        "暗褐",
+        "铁灰",
+        "旧金"
+      ]
+    },
+    "color_palette": [
+      "dirty bronze",
+      "iron gray",
+      "dark brown"
+    ],
+    "signature_items": [],
+    "expression_default": "轻慢、势利、懒于掩饰",
+    "forbidden_visuals": [
+      "卡通胖反派",
+      "狰狞咆哮",
+      "妖魔化怪物外形"
+    ]
+  },
+  "lu_zhi": {
+    "display_name_cn": "卢植",
+    "role_cn": "刘备恩师，儒将风骨",
+    "visual_keywords": [
+      "半白须发",
+      "身形挺拔",
+      "儒将",
+      "克制",
+      "有风骨"
+    ],
+    "silhouette": {
+      "height": "中高",
+      "build": "清瘦挺直",
+      "posture": "背直，不屈"
+    },
+    "face": {
+      "shape": "瘦长",
+      "skin_tone": "偏淡",
+      "features": [
+        "须发半白",
+        "眼神锋利",
+        "沉稳克制"
+      ]
+    },
+    "hair_and_headwear": {
+      "hair": "束起但略显年长",
+      "headwear": "儒将式冠巾"
+    },
+    "facial_hair": {
+      "style": "半白须髯",
+      "notes": "有年龄感但不能老弱"
+    },
+    "costume": {
+      "base": "儒将长袍",
+      "outerwear": "简练军装或披风",
+      "colors": [
+        "灰白",
+        "青灰",
+        "暗蓝"
+      ]
+    },
+    "color_palette": [
+      "ash gray",
+      "slate blue",
+      "faded white"
+    ],
+    "signature_items": [],
+    "expression_default": "克制、识人、有骨气",
+    "forbidden_visuals": [
+      "哭诉式软弱",
+      "老朽无力",
+      "书生气过重毫无武将感"
+    ]
+  }
+}
