@@ -1,0 +1,58 @@
+{
+  "page_id": "cp001-p04-page-01",
+  "source_image": "image.png",
+  "frame_count": 5,
+  "detected_count": 5,
+  "frames": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp001_p04_s1",
+      "panel_box": {
+        "x": 0.5852,
+        "y": 0.0,
+        "w": 0.2547,
+        "h": 0.1768
+      }
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp001_p04_s1",
+      "panel_box": {
+        "x": 0.6128,
+        "y": 0.1611,
+        "w": 0.3654,
+        "h": 0.1855
+      }
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p04_s2",
+      "panel_box": {
+        "x": 0.7176,
+        "y": 0.6494,
+        "w": 0.2606,
+        "h": 0.1865
+      }
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp001_p04_s2",
+      "panel_box": {
+        "x": 0.7424,
+        "y": 0.8203,
+        "w": 0.2358,
+        "h": 0.1016
+      }
+    },
+    {
+      "frame_id": "f5",
+      "scene_id": "cp001_p04_s3",
+      "panel_box": {
+        "x": 0.3115,
+        "y": 0.9062,
+        "w": 0.1208,
+        "h": 0.0938
+      }
+    }
+  ]
+}

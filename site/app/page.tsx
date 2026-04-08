@@ -82,8 +82,8 @@ export default async function HomePage() {
             <p className="eyebrow">Creator Mode</p>
             <h3 className="card-title">For people who want the reasoning, review, and memory.</h3>
             <p className="body-copy">
-              Inspect why each passage exists, what review requested, and what continuity notes are
-              being carried forward.
+              Inspect why each passage exists, what review requested, and what continuity notes are being carried
+              forward.
             </p>
             <Link className="button-link button-link-accent" href="/creator">
               Open Creator Mode

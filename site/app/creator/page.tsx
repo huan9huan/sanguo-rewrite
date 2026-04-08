@@ -17,8 +17,8 @@ export default async function CreatorPage() {
             <p className="eyebrow">Creator Mode</p>
             <h1 className="section-title">See the planning and judgment behind each passage.</h1>
             <p className="section-copy">
-              This mode exposes the layered workflow: story intent, scene planning, review issues, and
-              continuity memory.
+              This mode exposes the layered workflow: story intent, scene planning, review issues, and continuity
+              memory.
             </p>
           </div>
         </div>

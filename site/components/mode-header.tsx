@@ -1,6 +1,10 @@
 import Link from "next/link";
 
-export function ModeHeader({ mode }) {
+type ModeHeaderProps = {
+  mode: "reader" | "creator";
+};
+
+export function ModeHeader({ mode }: ModeHeaderProps) {
   return (
     <header className="site-header">
       <div className="container header-row">

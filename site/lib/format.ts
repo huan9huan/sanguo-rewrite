@@ -1,4 +1,4 @@
-export function escapeHtml(text) {
+export function escapeHtml(text: string | null | undefined): string {
   return String(text ?? "")
     .replaceAll("&", "&amp;")
     .replaceAll("<", "&lt;")
@@ -7,7 +7,7 @@ export function escapeHtml(text) {
     .replaceAll("'", "&#39;");
 }
 
-export function proseToHtml(text) {
+export function proseToHtml(text: string | null | undefined): string {
   if (!text) {
     return "<p>暂无内容。</p>";
   }
@@ -18,7 +18,7 @@ export function proseToHtml(text) {
     .join("");
 }
 
-export function markdownListToItems(text) {
+export function markdownListToItems(text: string | null | undefined): string[] {
   if (!text) {
     return [];
   }

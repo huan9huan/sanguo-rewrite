@@ -6,7 +6,7 @@ export default async function ReaderPage() {
   const data = await getSiteData();
 
   return (
-    <main className="page-shell">
+    <main className="page-shell reader-page">
       <ModeHeader mode="reader" />
 
       <section className="section">

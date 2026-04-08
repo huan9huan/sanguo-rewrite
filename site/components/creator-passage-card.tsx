@@ -1,6 +1,12 @@
+import { ComicImageBlock } from "@/components/comic-image-block";
 import { markdownListToItems, proseToHtml } from "@/lib/format";
+import type { Passage } from "@/lib/types";
 
-export function CreatorPassageCard({ passage }) {
+type CreatorPassageCardProps = {
+  passage: Passage;
+};
+
+export function CreatorPassageCard({ passage }: CreatorPassageCardProps) {
   const review = passage.review;
 
   return (
@@ -11,6 +17,8 @@ export function CreatorPassageCard({ passage }) {
       </div>
       <h3 className="passage-title">{passage.title}</h3>
       <p className="body-copy">{passage.spec.goal_cn}</p>
+
+      <ComicImageBlock passage={passage} />
 
       <div className="detail-grid">
         <div>
@@ -87,10 +95,7 @@ export function CreatorPassageCard({ passage }) {
 
       <div className="subsection">
         <h4 className="subsection-title">Current Draft</h4>
-        <div
-          className="source-body"
-          dangerouslySetInnerHTML={{ __html: proseToHtml(passage.draft.text) }}
-        />
+        <div className="source-body" dangerouslySetInnerHTML={{ __html: proseToHtml(passage.draft.text) }} />
       </div>
     </article>
   );

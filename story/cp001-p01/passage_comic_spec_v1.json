@@ -1,0 +1,146 @@
+{
+  "chapter_id": "cp001",
+  "passage_id": "p01",
+  "page_id": "cp001-p01-page-01",
+  "title_cn": "乱世序幕",
+  "source_passage_spec_file": "spec.json",
+  "source_scene_spec_files": [
+    "s01-spec.json",
+    "s02-spec.json",
+    "s03-spec.json"
+  ],
+  "comic_goal_cn": "把 p01 做成一页四格连环画，让读者在一页内读清汉朝气数将尽、张角聚众造反、天下大乱的磅礴过程，最后落在幽州出榜招兵的钩子上。",
+  "adaptation_rules": [
+    "一格只讲一个清楚的历史瞬间",
+    "第一格龙椅惊蛇是全页氛围起点",
+    "第三格黄巾洪流是全页视觉高潮",
+    "所有文字放在 frame 下方的文字区，不放在图里",
+    "采用黑白小人书/连环画式速写插图",
+    "大场面用远景，关键瞬间用中景，保持节奏",
+    "人物群像大于个体细节，这是时代画卷"
+  ],
+  "page_format": {
+    "panel_count": 4,
+    "reading_direction": "ltr",
+    "layout_pattern": "top-wide / middle-two / bottom-wide"
+  },
+  "style": {
+    "style_key": "bw_lianhuanhua_sketch",
+    "prompt_cn": "黑白小人书/连环画式速写插图。这一页是全景式的乱世画卷，线条要有历史厚重感。大场面需有纵深和气势，小瞬间要有细节和张力。人物群像为主，不做个体肖像。背景从简但要有时代感。不要彩绘，不要海报感，不要摆拍。",
+    "negative_prompt": "full color, glossy poster, photorealistic rendering, stiff posed figures, rigid composition, over-rendered detail, game splash art, palace luxury, infographic collage, fantasy magic effects, horror movie gore",
+    "text_policy": "image_without_text + mobile_frame_text_blocks"
+  },
+  "panels": [
+    {
+      "panel_id": "p1",
+      "scene_id": "cp001_p01_s1",
+      "story_function": "setup",
+      "moment_cn": "温德殿异象——大青蛇盘踞龙椅，天降警告，帝座空悬。",
+      "camera_cn": "宽景纵深，殿内龙椅上的蛇与惊散的百官同框。",
+      "must_show": [
+        "龙椅上的大青蛇",
+        "空悬的帝座",
+        "惊惶散去的朝臣"
+      ],
+      "must_avoid": [
+        "做成恐怖片",
+        "过度血腥或奇幻感",
+        "细讲每一个异象"
+      ],
+      "image_prompt_cn": "温德殿内，一条大青蛇从房梁垂落，盘踞在龙椅之上。百官四散奔避，帝座空悬。重点不是蛇有多吓人，而是天降警告、王朝将倾的压抑感——这个朝廷烂透了。黑白小人书速写插图，殿内纵深构图，龙椅和蛇是视觉中心，人物动作体现惊惶但不过度夸张，背景从简但要看出朝堂的庄严感正在崩塌。",
+      "text_slots": [
+        {
+          "id": "p1_d1",
+          "speaker": "narrator",
+          "text_cn": "话说天下大势，分久必合，合久必分。汉朝传了四百年，到了桓帝灵帝手上，气数尽了。",
+          "kind": "caption"
+        }
+      ]
+    },
+    {
+      "panel_id": "p2",
+      "scene_id": "cp001_p01_s2",
+      "story_function": "pressure",
+      "moment_cn": "张角得天书，信众如滚雪球般聚拢，家家门口写上"甲子"。",
+      "camera_cn": "中景，张角居中手持书卷，身后信众成势。",
+      "must_show": [
+        "张角",
+        "三卷天书",
+        "聚拢的信众",
+        "门口的"甲子"标记"
+      ],
+      "must_avoid": [
+        "南华老仙的奇幻场面",
+        "让张角成为正面英雄",
+        "过度展开宫廷阴谋细节"
+      ],
+      "image_prompt_cn": "巨鹿郡，一个落第秀才模样的人手持三卷书，站在村口。身后是从四面聚来的百姓，表情虔诚。几户人家的门框上写着"甲子"二字。重点是从一个不起眼的人变成一场大风暴的酝酿过程。黑白小人书速写插图，张角的眼神要有野心但不是漫画式邪恶，信众是真实的穷苦百姓，不是狂热信徒。氛围是暗流涌动，不是魔幻奇观。",
+      "text_slots": [
+        {
+          "id": "p2_d1",
+          "speaker": "narrator",
+          "text_cn": "巨鹿张角，本是个落第秀才。入山采药，得了天书《太平要术》，学会符水治病，信徒越滚越多，遍布八州。",
+          "kind": "caption"
+        }
+      ]
+    },
+    {
+      "panel_id": "p3",
+      "scene_id": "cp001_p01_s2",
+      "story_function": "turn",
+      "moment_cn": "星夜举兵，数十万人裹黄巾，"苍天已死，黄天当立"。",
+      "camera_cn": "远景转中景，黄巾洪流如潮。",
+      "must_show": [
+        "黄巾信众人潮",
+        "火把与夜色",
+        "天公将军大旗"
+      ],
+      "must_avoid": [
+        "把起义画成正义运动",
+        "详细战斗场面",
+        "美化张角"
+      ],
+      "image_prompt_cn": "夜色中，数十万人裹着黄头巾，举着火把和农具，从四面八方涌出。张角立于高处，身后大旗写"天公将军"。重点是民心崩塌、天下大乱的磅礴场面，不是战斗细节。黑白小人书速写，全景式构图，人潮如洪流向前涌，火光映照面庞，气势重于细节。画面要有压迫感和不可阻挡的力量感。",
+      "text_slots": [
+        {
+          "id": "p3_d1",
+          "speaker": "narrator",
+          "text_cn": "苍天已死，黄天当立。岁在甲子，天下大吉。四方裹黄巾从反者四五十万，官军望风而逃。",
+          "kind": "caption"
+        }
+      ]
+    },
+    {
+      "panel_id": "p4",
+      "scene_id": "cp001_p01_s3",
+      "story_function": "hook",
+      "moment_cn": "幽州城门出榜招兵——榜文贴出，无人知谁会来。",
+      "camera_cn": "收束中景，城门口榜文与来往百姓。",
+      "must_show": [
+        "城门口的招兵榜文",
+        "来往百姓",
+        "平静中的张力"
+      ],
+      "must_avoid": [
+        "提前暗示刘备",
+        "榜文上写太多字",
+        "拖慢收束节奏"
+      ],
+      "image_prompt_cn": "幽州城门口，一张招兵榜文刚贴上墙。几个百姓驻足看榜，更多人挑着担子匆匆走过。重点是这张榜文即将改变某些人的命运，但此刻谁也不知道会引来什么人。画面安静但有张力，榜文是视觉锚点。黑白小人书收束镜头，日常场景里藏着即将到来的波澜。",
+      "text_slots": [
+        {
+          "id": "p4_d1",
+          "speaker": "narrator",
+          "text_cn": "幽州太守刘焉出榜招兵。几天之内，各县城门口都贴上了同一张纸。",
+          "kind": "caption"
+        },
+        {
+          "id": "p4_d2",
+          "speaker": "narrator",
+          "text_cn": "没有人知道它会引来什么样的人。",
+          "kind": "caption"
+        }
+      ]
+    }
+  ]
+}

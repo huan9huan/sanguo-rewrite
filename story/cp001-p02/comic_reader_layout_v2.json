@@ -1,0 +1,128 @@
+{
+  "page_id": "cp001-p02-page-01",
+  "version": 1,
+  "viewport_mode": "mobile_vertical",
+  "frame_aspect_ratio": "4:3",
+  "frames": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp001_p02_s1",
+      "image_slot": {
+        "asset_key": "cp001-p02-page-01-f1",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "楼桑树下",
+        "items": [
+          {
+            "id": "f1_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "刘备虽是中山靖王之后，却家贫贩屦织席。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.8261,
+        "y": 0.2002,
+        "w": 0.149,
+        "h": 0.04
+      }
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp001_p02_s2",
+      "image_slot": {
+        "asset_key": "cp001-p02-page-01-f2",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "榜前长叹",
+        "items": [
+          {
+            "id": "f2_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "他叹的不是怕死，是恨自己有志无力。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.8118,
+        "y": 0.2246,
+        "w": 0.0954,
+        "h": 0.041
+      }
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p02_s3",
+      "image_slot": {
+        "asset_key": "cp001-p02-page-01-f3",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "厉声一喝",
+        "items": [
+          {
+            "id": "f3_t1",
+            "kind": "speech",
+            "speaker": "zhang_fei",
+            "text": "大丈夫不与国家出力，何故长叹？",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.868,
+        "y": 0.25,
+        "w": 0.132,
+        "h": 0.04
+      }
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp001_p02_s3",
+      "image_slot": {
+        "asset_key": "cp001-p02-page-01-f4",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "行动开始",
+        "items": [
+          {
+            "id": "f4_t1",
+            "kind": "speech",
+            "speaker": "zhang_fei",
+            "text": "我颇有资财，当招募乡勇，与公同举大事。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f4_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "酒还没上来，门口的影子先动了。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.9307,
+        "y": 0.2744,
+        "w": 0.0693,
+        "h": 0.041
+      }
+    }
+  ],
+  "panel_detection": {
+    "source": "image.png",
+    "frame_count": 4,
+    "detected_count": 4
+  }
+}

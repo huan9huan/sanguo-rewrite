@@ -1,6 +1,12 @@
+import { ComicImageBlock } from "@/components/comic-image-block";
 import { markdownListToItems, proseToHtml } from "@/lib/format";
+import type { Passage } from "@/lib/types";
 
-export function ReaderPassageCard({ passage }) {
+type ReaderPassageCardProps = {
+  passage: Passage;
+};
+
+export function ReaderPassageCard({ passage }: ReaderPassageCardProps) {
   const readingText = passage.approved_cn.text || passage.draft.text;
   const summaryItems = markdownListToItems(passage.summary_markdown);
 
@@ -13,6 +19,8 @@ export function ReaderPassageCard({ passage }) {
       <h3 className="passage-title">{passage.title}</h3>
       <p className="body-copy">{passage.spec.dramatic_question_cn}</p>
 
+      <ComicImageBlock passage={passage} />
+
       <div className="summary-block">
         <ul className="bullet-list">
           {summaryItems.map((item) => (
@@ -21,10 +29,7 @@ export function ReaderPassageCard({ passage }) {
         </ul>
       </div>
 
-      <div
-        className="reading-body"
-        dangerouslySetInnerHTML={{ __html: proseToHtml(readingText) }}
-      />
+      <div className="reading-body" dangerouslySetInnerHTML={{ __html: proseToHtml(readingText) }} />
     </article>
   );
 }
