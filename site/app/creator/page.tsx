@@ -9,7 +9,7 @@ export default async function CreatorPage() {
 
   return (
     <main className="page-shell">
-      <ModeHeader mode="creator" />
+      <ModeHeader />
 
       <section className="section">
         <div className="container section-head">

@@ -1,0 +1,53 @@
+{
+  "passage_id": "cp001-p01",
+  "based_on_text": "current/draft_cn.md",
+  "based_on_comic_layout": "current/comic_reader_layout.json",
+  "version_note": "alignment v1",
+  "policy": {
+    "goal": "story_first_inline_alignment",
+    "unit": "paragraph_after",
+    "rule": "place each frame after the earliest safe and meaningful paragraph"
+  },
+  "placements": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp001_p01_s1",
+      "after_paragraph_index": 7,
+      "anchor_quote": "一条大青蛇从房梁上掉下来，盘在龙椅上。",
+      "confidence": 0.91,
+      "reason": "这一格虽然带有汉室将衰的总述，但画面冲击点是龙椅惊蛇。放在怪风之后、蛇落下来这一刻最有戏，也不会把异象的视觉高潮拖到后面。",
+      "notes": "不放在更早的天下大势总述之后，避免图像先于具体事件出现。"
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp001_p01_s2",
+      "after_paragraph_index": 16,
+      "anchor_quote": "张角照着练，学会了符水治病。中平元年瘟疫蔓延，他走村串乡给人治病，不收钱。信徒越滚越多。",
+      "confidence": 0.94,
+      "reason": "这格的重点是张角得书、行医、聚众的上升过程。等到他的能力与号召力都已经落地之后再插，最能承接‘暗流涌动’这层意味。",
+      "notes": "不放在初见老人之后，避免把张角还没成势时就视觉定格。"
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p01_s2",
+      "after_paragraph_index": 23,
+      "anchor_quote": "四方百姓裹上黄头巾跟他造反的，有四五十万人。官军望风就跑。",
+      "confidence": 0.97,
+      "reason": "这格承担的是黄巾起势后的规模感，必须等口号、起兵、人数和官军溃退都成立后再插，才配得上‘黄巾洪流’这个阅读重量。",
+      "notes": "如果提前放在口号后面，会削弱后面四五十万人的浪潮感。"
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp001_p01_s3",
+      "after_paragraph_index": 30,
+      "anchor_quote": "没有人知道它会引来什么样的人。",
+      "confidence": 0.96,
+      "reason": "这一格本身就是 passage 的尾钩。要等榜文贴出去、同一张纸传遍各县、最后这句未知落下来之后再插，才能把读者稳稳推向刘备出场。",
+      "notes": "不只锚在‘刘焉当天出了榜’，因为这格需要承担章节入口的悬念收束。"
+    }
+  ],
+  "notes": [
+    "f2 与 f3 同属张角起势段，但 f2 负责‘张角如何成势’，f3 负责‘黄巾已经成潮’，不应合并成一个插入点。",
+    "f4 需要保留足够尾钩力度，因此刻意放在 passage 最后一段之后。"
+  ]
+}

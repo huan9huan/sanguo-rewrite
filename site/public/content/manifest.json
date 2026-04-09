@@ -1,0 +1,214 @@
+{
+  "version": "v0.2.3",
+  "generated_at": "2026-04-09T10:05:59.764Z",
+  "project": {
+    "title": "Sanguo Rewrite",
+    "subtitle": "A story-first rewrite of Romance of the Three Kingdoms",
+    "description": "A reading room for the current draft, designed for readers who want to enter the story passage by passage.",
+    "principles": [
+      "Story first, culture implicit",
+      "Character attachment over explanation",
+      "Simple Chinese draft before English rewrite",
+      "Passage-by-passage production with review gates"
+    ],
+    "pipeline": [
+      "Source chapter",
+      "ChapterSpec",
+      "PassageSpec",
+      "Scene specs",
+      "Chinese draft",
+      "Review",
+      "Revision",
+      "English rewrite"
+    ],
+    "stats": {
+      "chapters": 1,
+      "passages": 5,
+      "reviews": 5,
+      "approved_cn": 0
+    }
+  },
+  "chapters": [
+    {
+      "id": "cp001",
+      "source_title": "宴桃园豪杰三结义 斩黄巾英雄首立功",
+      "adapted_title_cn": "桃园结义",
+      "viewpoint": [
+        "liu_bei",
+        "guan_yu",
+        "zhang_fei"
+      ],
+      "goal_cn": "在乱世背景下，让刘备、关羽、张飞三位英雄相遇、结义、初上战场，建立核心人物关系，同时暗示曹操、董卓等后续重要人物的登场",
+      "passage_count": 5,
+      "global_arc": {
+        "起点": "天下大乱，黄巾起义，幽州出榜招兵",
+        "终点": "三兄弟浴血救下董卓，却因白身被轻视，张飞怒欲杀人",
+        "核心变化": "三个无名之辈结为生死兄弟，在战场上证明了自己，却随即遭遇功臣被替、恩将仇报的现实打击",
+        "章节驱动力": "乱世造英雄——制度崩坏给了普通人机会，但也让他们直面权力世界的冷酷"
+      },
+      "passage_ids": [
+        "cp001-p01",
+        "cp001-p02",
+        "cp001-p03",
+        "cp001-p04",
+        "cp001-p05"
+      ]
+    }
+  ],
+  "memory": {
+    "story_index": {
+      "characters": {
+        "liu_bei": {
+          "first_appearance": "cp001-p02",
+          "status": "已正式出场，与张飞结盟，正在村店饮酒",
+          "key_traits": [
+            "中山靖王之后",
+            "家贫贩屦织席",
+            "有志向能忍",
+            "喜怒不形于色",
+            "事母至孝"
+          ],
+          "appearance": "七尺五寸，耳垂肩，手过膝，面皮白净"
+        },
+        "zhang_fei": {
+          "first_appearance": "cp001-p02",
+          "status": "已登场，与刘备结盟，正在村店饮酒",
+          "key_traits": [
+            "直接急躁",
+            "有热气不藏情绪",
+            "有庄田酒坊",
+            "好结交豪杰",
+            "行动推动者"
+          ],
+          "appearance": "豹头环眼、燕颔虎须、声若巨雷"
+        },
+        "zhang_jiao": {
+          "first_appearance": "cp001-p01",
+          "status": "已举兵，自称天公将军",
+          "key_traits": [
+            "落第秀才出身",
+            "得天书《太平要术》",
+            "善于聚众",
+            "野心大于救世"
+          ]
+        },
+        "zhang_bao": {
+          "first_appearance": "cp001-p01",
+          "status": "地公将军，随张角起兵"
+        },
+        "zhang_liang": {
+          "first_appearance": "cp001-p01",
+          "status": "人公将军，随张角起兵"
+        },
+        "liu_yan": {
+          "first_appearance": "cp001-p01",
+          "status": "幽州太守，已出榜招兵"
+        },
+        "zou_jing": {
+          "first_appearance": "cp001-p01",
+          "status": "幽州校尉，建议刘焉招兵"
+        },
+        "cao_jie_eunuch": {
+          "first_appearance": "cp001-p01",
+          "status": "十常侍之一，偷看蔡邕奏折并陷害之"
+        },
+        "cai_yong": {
+          "first_appearance": "cp001-p01",
+          "status": "议郎，因上书直言被贬归田里"
+        },
+        "liu_yuanqi": {
+          "first_appearance": "cp001-p02",
+          "status": "刘备叔父，因听其童言'我为天子'而常资助刘备家"
+        }
+      },
+      "relationships": {
+        "liu_bei_zhang_fei": {
+          "established_in": "cp001-p02",
+          "type": "初识伙伴",
+          "detail_cn": "榜前初遇，张飞出资、刘备有志，互补结盟，同入村店饮酒",
+          "strength": 0.4
+        }
+      },
+      "threads": {
+        "yellow_turban_war": {
+          "started_in": "cp001-p01",
+          "status": "active",
+          "summary_cn": "黄巾起义爆发，四五十万人响应，朝廷遣三路兵马进剿。"
+        },
+        "youzhou_recruitment": {
+          "started_in": "cp001-p01",
+          "status": "active",
+          "summary_cn": "幽州出榜招兵，刘备、张飞已应募。"
+        },
+        "brotherhood_formation": {
+          "started_in": "cp001-p02",
+          "status": "active",
+          "summary_cn": "刘备与张飞在村店饮酒，第三个人即将出现，桃园结义在即。"
+        }
+      },
+      "facts": {
+        "dynasty_decline": {
+          "established_in": "cp001-p01",
+          "detail": "桓帝禁锢善类崇信宦官，灵帝时窦武陈蕃被杀，十常侍专权，帝呼张让为阿父"
+        },
+        "omens": {
+          "established_in": "cp001-p01",
+          "detail": "大青蛇盘龙椅、地震、海水倒灌、黑气冲殿等异象"
+        },
+        "yellow_turban_slogan": {
+          "established_in": "cp001-p01",
+          "detail": "苍天已死，黄天当立。岁在甲子，天下大吉。"
+        },
+        "three_armies": {
+          "established_in": "cp001-p01",
+          "detail": "朝廷遣卢植、皇甫嵩、朱儁分三路讨黄巾"
+        },
+        "zhang_jiao_origin": {
+          "established_in": "cp001-p01",
+          "detail": "巨鹿郡不第秀才，入山采药遇南华老仙得天书《太平要术》"
+        },
+        "liu_bei_lineage": {
+          "established_in": "cp001-p02",
+          "detail": "中山靖王刘胜之后，汉景帝玄孙。祖刘雄，父刘弘早丧，家贫贩屦织席。"
+        },
+        "liu_bei_omens": {
+          "established_in": "cp001-p02",
+          "detail": "楼桑村刘家东南有大桑树高五丈余，形如车盖。相者云此家必出贵人。刘备幼时在树下言'我为天子当乘此车盖'。"
+        },
+        "liu_bei_education": {
+          "established_in": "cp001-p02",
+          "detail": "十五岁游学，师事郑玄、卢植，与公孙瓒为友"
+        }
+      }
+    },
+    "working_memory": {
+      "current_task": "cp001 p05 draft_cn_v2 已完成，ch001全部5个passage完结",
+      "current_focus_cn": "英雄与小人——颍川曹操登场、卢植蒙冤、白身之辱、张飞怒欲杀董卓",
+      "carry_forward": [
+        "p05 v2修复：曹操加擦血看烟嘴角动（权谋暗示）、s01→s02加'马蹄声在夜路上响了半宿'赶路画面、'不需要令'改为'不需要多说'（令是有的大哥说了速战）、刘备沉默加'指节慢慢发白'（删s03重复处）、董卓删面色蜡黄只保留胖+眼皮耷拉、张飞'甩开了'改为'没有停'",
+        "曹操定妆：细眼长髯、胡子修剪整齐（与关羽自然长须对比）、不急不躁像来收场的、擦血看烟嘴角动——权谋者的从容。几句话不展开背景",
+        "董卓定妆：胖、肚子撑铠甲、眼皮耷拉看人像看蚂蚁——不是脸谱反派，是制度恶。轻蔑不是愤怒是'不想再看的表情'",
+        "卢植离场方式：槛车里背挺直头不回。没有哭诉没有求救。儒将风骨",
+        "刘备的忍通过'指节发白但脸平静'传达——从卢植被捕到董卓轻视，这个细节贯穿s02→s03",
+        "张飞的怒是全章积蓄的出口：卢植时想砍押车人→董卓时提刀杀人。关羽伸手拉但'没有停'——不可阻",
+        "ch001 global_arc兑现：乱世造英雄——制度崩坏给普通人机会，但也让他们直面权力世界的冷酷",
+        "三兄弟性格在结尾清晰分野：张飞爆发、刘备忍耐（指节发白）、关羽审慎（嘴抿成线、伸手拉）",
+        "结尾定格在'刀已经举到了帐帘前面'——不解决，留给ch02"
+      ],
+      "recent_findings": [
+        "曹操登场只需几个画面就够了：外貌一句、气度一句、战斗结果一句、微表情半句——比展开少年事迹更有力",
+        "全章高潮的写法：不要在战斗上花笔墨（三兄弟救董卓很快），把篇幅留给'救了之后'的反应——董卓的冷脸比任何战斗场面更有冲击力",
+        "'白身'两个字要让读者感到刺痛：前面所有战功铺垫让这个字有了重量。没有前面的铺垫，'白身'就是两个字",
+        "刘备的'指节发白'从卢植被捕贯穿到董卓轻视——一个物理细节比任何内心独白都更能传达忍耐",
+        "结尾定格在动作的最高点（刀举起来）比定格在情绪（张飞很怒）更有力——读者想知道接下来发生什么"
+      ],
+      "open_issues": [
+        "ch02开头需要解决张飞杀不杀董卓的悬念——这是最直接的叙事压力",
+        "三兄弟失去卢植这个靠山后去向何方——可能回涿郡，也可能投奔他人",
+        "曹操与三兄弟的正式互动尚未发生——后续需要安排",
+        "白身身份的冲突在ch02可能进一步升级——三人可能获得第一个正式官职，也可能继续漂泊",
+        "黄巾起义仍在持续——张角、张梁张宝仍在活跃"
+      ]
+    }
+  }
+}

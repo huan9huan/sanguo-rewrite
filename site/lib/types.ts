@@ -79,6 +79,42 @@ export type ComicLayout = {
   frames: ComicFrame[];
 };
 
+export type ReadingSegment = {
+  id: string;
+  scene_id: string;
+  scene_title: string;
+  scene_type: string;
+  text: string;
+  paragraph_offset: number;
+  paragraphs: string[];
+  comic_placements: Array<{
+    after_paragraph: number;
+    frames: ComicFrame[];
+  }>;
+  comic_frames: ComicFrame[];
+};
+
+export type ComicPassageAlignment = {
+  passage_id: string;
+  based_on_text: string;
+  based_on_comic_layout: string;
+  version_note: string;
+  policy: {
+    goal: string;
+    unit: string;
+    rule: string;
+  };
+  placements: Array<{
+    frame_id: string;
+    scene_id: string;
+    after_paragraph_index: number;
+    anchor_quote: string;
+    confidence: number;
+    reason: string;
+  }>;
+  notes: string[];
+};
+
 export type Passage = {
   id: string;
   chapter_id: string;
@@ -99,6 +135,9 @@ export type Passage = {
   };
   image: PassageImage | null;
   comic_layout: ComicLayout | null;
+  comic_alignment: ComicPassageAlignment | null;
+  reading_text: string;
+  reading_segments: ReadingSegment[];
   review: Review | null;
   scenes: Scene[];
   source: {

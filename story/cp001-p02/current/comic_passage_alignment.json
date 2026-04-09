@@ -1,0 +1,50 @@
+{
+  "passage_id": "cp001-p02",
+  "based_on_text": "current/draft_cn.md",
+  "based_on_comic_layout": "current/comic_reader_layout.json",
+  "version_note": "alignment v1",
+  "policy": {
+    "goal": "story_first_inline_alignment",
+    "unit": "paragraph_after",
+    "rule": "place each frame after the earliest safe and meaningful paragraph"
+  },
+  "placements": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp001_p02_s1",
+      "after_paragraph_index": 8,
+      "anchor_quote": "刘备小时候跟村里的孩子在那棵树下玩。",
+      "confidence": 0.82,
+      "reason": "这一格虽然 caption 强调刘备的贵胄与贫苦，但画面核心是楼桑树下的少年刘备。放在树与少年都已经出现、童言即将出口的位置，最能同时承接身世信息和视觉瞬间。"
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp001_p02_s2",
+      "after_paragraph_index": 16,
+      "anchor_quote": "不是害怕，不是犹豫。是胸口里有团火，但手上没有柴。",
+      "confidence": 0.93,
+      "reason": "这格不是单纯表现刘备站在榜前，而是解释这声叹息的真正含义。必须等内在判断落地后再插，才不会把‘有志无力’提前说破。"
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p02_s3",
+      "after_paragraph_index": 18,
+      "anchor_quote": "大丈夫不给国家出力，站在这里叹什么气！",
+      "confidence": 0.96,
+      "reason": "这一格对应张飞第一次真正打断刘备的瞬间。放在喝声出现之后、刘备转头之前最自然，既不剧透张飞，也能把冲击力留在这一下。"
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp001_p02_s3",
+      "after_paragraph_index": 35,
+      "anchor_quote": "酒还没上来，门口的影子先动了。",
+      "confidence": 0.9,
+      "reason": "这一格不是单独表现张飞出资，而是‘行动已经开始 + 村店入座 + 第三人将至’的收束钩子。必须等入店和门口影子都成立后再插，才能保住 passage 的结尾力度。"
+    }
+  ],
+  "notes": [
+    "f3 与 f4 同属 s3，但它们承担的阅读工作不同：f3 是打断叹息的动作爆点，f4 是 passage 收束与下一幕钩子，不应放在同一位置。",
+    "f1 不宜过早放在榜前长叹之后，否则会把刘备的童年与楼桑树回忆推迟到角色底色已形成之后，削弱人物立体感。",
+    "f4 不能只跟在‘我颇有资财’后面，因为那样会提前消耗掉村店与影子一动的尾钩。"
+  ]
+}

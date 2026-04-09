@@ -3,8 +3,10 @@
   "version": "1.0.0",
   "description": "Next.js site for the Sanguo Rewrite project",
   "scripts": {
+    "content:export": "node ./scripts/export-content.mjs",
     "dev": "next dev",
     "build": "next build",
+    "build:content": "npm run content:export && npm run build",
     "start": "next start",
     "lint": "next lint"
   },
