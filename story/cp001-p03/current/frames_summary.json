@@ -1,0 +1,35 @@
+{
+  "page_id": "cp001-p03-page-01",
+  "title_cn": "桃园结义",
+  "panel_count": 4,
+  "frames": [
+    {
+      "frame_id": "p1",
+      "scene_id": "cp001_p03_s1",
+      "moment_cn": "关羽推车入店，刘备起身相看，张飞也被吸引。",
+      "camera_cn": "中景，门口斜切入画。",
+      "text_count": 2
+    },
+    {
+      "frame_id": "p2",
+      "scene_id": "cp001_p03_s2",
+      "moment_cn": "三人面对天地焚香跪拜，正式结为兄弟。",
+      "camera_cn": "中远景，稳定正面构图。",
+      "text_count": 2
+    },
+    {
+      "frame_id": "p3",
+      "scene_id": "cp001_p03_s3",
+      "moment_cn": "好马进庄，三兄弟一下子有了成军气象。",
+      "camera_cn": "横向宽格，中景偏广。",
+      "text_count": 1
+    },
+    {
+      "frame_id": "p4",
+      "scene_id": "cp001_p03_s3",
+      "moment_cn": "三兄弟带着乡勇正式上路。",
+      "camera_cn": "横向收束镜头。",
+      "text_count": 1
+    }
+  ]
+}
