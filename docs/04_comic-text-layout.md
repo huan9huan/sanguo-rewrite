@@ -29,6 +29,7 @@
 推荐使用：
 
 - `comic_reader_layout_vN.json`
+- `comic_panel_boxes_vN.json`
 - `schemas/comic_reader_layout.schema.json`
 
 核心字段：
@@ -44,10 +45,18 @@
 
 ## 推荐工作流
 
-1. 先生成每个 frame 的无字图
-2. 生成 `comic_reader_layout_vN.json`
-3. WebView 竖向渲染 `image -> text -> image -> text`
-4. 多语言时只切换 `text_block.items[].text`
+1. 先从 comic spec 生成 base `comic_reader_layout_vN.json`
+2. 再生成整页无字 `image.png`
+3. 对 `image.png` 做 panel detection / annotation，产出 `comic_panel_boxes_vN.json`
+4. 把 boxes merge 回新的 `comic_reader_layout_vN.json`
+5. WebView 竖向渲染 `image -> text -> image -> text`
+6. 多语言时只切换 `text_block.items[].text`
+
+说明：
+
+- `comic_reader_layout` 是前端最终阅读合同
+- `comic_panel_boxes` 是中间检测结果
+- 当前站点读取最新的 `comic_reader_layout_vN.json`
 
 ## 当前示例
 

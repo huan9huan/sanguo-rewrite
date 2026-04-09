@@ -22,15 +22,32 @@ export async function GET(_request: Request, { params }: RouteContext): Promise<
   const passageDir = path.join(STORY_DIR, safePassageId);
 
   try {
-    const files = await fs.readdir(passageDir);
-    const imageFile = files.find((file) => /^image\.(png|jpg|jpeg|webp)$/i.test(file));
+    const currentDir = path.join(passageDir, "current");
+    const candidatePaths = [
+      path.join(currentDir, "image.png"),
+      path.join(currentDir, "image.jpg"),
+      path.join(currentDir, "image.jpeg"),
+      path.join(currentDir, "image.webp"),
+      path.join(passageDir, "image.png"),
+      path.join(passageDir, "image.jpg"),
+      path.join(passageDir, "image.jpeg"),
+      path.join(passageDir, "image.webp"),
+    ];
 
-    if (!imageFile) {
+    let imagePath: string | null = null;
+    for (const candidate of candidatePaths) {
+      try {
+        await fs.access(candidate);
+        imagePath = candidate;
+        break;
+      } catch {}
+    }
+
+    if (!imagePath) {
       return new Response("Image not found", { status: 404 });
     }
 
-    const imagePath = path.join(passageDir, imageFile);
-    const extension = path.extname(imageFile).toLowerCase();
+    const extension = path.extname(imagePath).toLowerCase();
     const contentType = CONTENT_TYPES[extension] || "application/octet-stream";
     const imageBuffer = await fs.readFile(imagePath);
 

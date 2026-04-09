@@ -85,12 +85,17 @@ The site should be built from the existing repo structure rather than a separate
 
 - `story/cpNNN-pNN/passage.md`
 - `story/cpNNN-pNN/spec.json`
-- `story/cpNNN-pNN/draft_cn_vN.md`
-- `story/cpNNN-pNN/draft_cn_vN_review.json`
+- `story/cpNNN-pNN/current/draft_cn.md`
+- `story/cpNNN-pNN/current/draft_cn_review.json`
+- `story/cpNNN-pNN/current/approved_cn.md`
+- `story/cpNNN-pNN/current/image.png`
+- `story/cpNNN-pNN/current/comic_reader_layout.json`
 - `story/cpNNN.json`
 - `memory/story_index.json`
 - `memory/working_memory.json`
 - `source/cpNNN-pNN.md`
+
+During migration, the site may still fall back to legacy top-level versioned files when `current/` is not present.
 
 ### Display outputs
 

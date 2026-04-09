@@ -99,6 +99,50 @@ async function readImageMetadata(filePath: string): Promise<{ width: number | nu
       height: buffer.readUInt32BE(20),
     };
   }
+  if (buffer.length >= 4 && buffer[0] === 0xff && buffer[1] === 0xd8) {
+    let offset = 2;
+    while (offset + 9 < buffer.length) {
+      if (buffer[offset] !== 0xff) {
+        offset += 1;
+        continue;
+      }
+
+      const marker = buffer[offset + 1];
+      offset += 2;
+
+      // Standalone markers do not carry a payload length.
+      if (marker === 0xd8 || marker === 0xd9 || (marker >= 0xd0 && marker <= 0xd7)) {
+        continue;
+      }
+
+      if (offset + 2 > buffer.length) {
+        break;
+      }
+
+      const segmentLength = buffer.readUInt16BE(offset);
+      if (segmentLength < 2 || offset + segmentLength > buffer.length) {
+        break;
+      }
+
+      // SOF markers contain image dimensions.
+      if (
+        (marker >= 0xc0 && marker <= 0xc3) ||
+        (marker >= 0xc5 && marker <= 0xc7) ||
+        (marker >= 0xc9 && marker <= 0xcb) ||
+        (marker >= 0xcd && marker <= 0xcf)
+      ) {
+        if (segmentLength >= 7) {
+          return {
+            height: buffer.readUInt16BE(offset + 3),
+            width: buffer.readUInt16BE(offset + 5),
+          };
+        }
+        break;
+      }
+
+      offset += segmentLength;
+    }
+  }
   return { width: null, height: null };
 }
 
@@ -181,6 +225,24 @@ async function latestVersionFile(directory: string, matcher: RegExp): Promise<st
   return path.join(directory, matched[matched.length - 1]);
 }
 
+async function fileExists(filePath: string): Promise<boolean> {
+  try {
+    await fs.access(filePath);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function firstExistingPath(paths: string[]): Promise<string | null> {
+  for (const candidate of paths) {
+    if (await fileExists(candidate)) {
+      return candidate;
+    }
+  }
+  return null;
+}
+
 async function loadSceneSpecs(passageDir: string): Promise<Scene[]> {
   const files = (await fs.readdir(passageDir))
     .filter((file) => /^s\d+-spec\.json$/.test(file))
@@ -259,11 +321,30 @@ async function loadPassage(passageDir: string): Promise<Passage> {
   const passageMd = parseFrontmatterMarkdown(passageText);
   const frontmatter = passageMd.frontmatter;
   const spec = await readJson<StorySpec>(path.join(passageDir, "spec.json"));
-  const latestDraftPath = await latestVersionFile(passageDir, /^draft_cn_v\d+\.md$/);
-  const latestReviewPath = await latestVersionFile(passageDir, /^draft_cn_v\d+_review\.json$/);
-  const latestApprovedPath = await latestVersionFile(passageDir, /^cp.*_cn_v\d+\.md$/);
-  const imagePath = await latestVersionFile(passageDir, /^image\.(png|jpg|jpeg|webp)$/i);
-  const comicLayoutPath = await latestVersionFile(passageDir, /^comic_reader_layout_v\d+\.json$/);
+  const currentDir = path.join(passageDir, "current");
+  const latestDraftPath = await firstExistingPath([
+    path.join(currentDir, "draft_cn.md"),
+    (await latestVersionFile(passageDir, /^draft_cn_v\d+\.md$/)) ?? "",
+  ]);
+  const latestReviewPath = await firstExistingPath([
+    path.join(currentDir, "draft_cn_review.json"),
+    (await latestVersionFile(passageDir, /^draft_cn_v\d+_review\.json$/)) ?? "",
+  ]);
+  const latestApprovedPath = await firstExistingPath([
+    path.join(currentDir, "approved_cn.md"),
+    (await latestVersionFile(passageDir, /^cp.*_cn_v\d+\.md$/)) ?? "",
+  ]);
+  const imagePath = await firstExistingPath([
+    path.join(currentDir, "image.png"),
+    path.join(currentDir, "image.jpg"),
+    path.join(currentDir, "image.jpeg"),
+    path.join(currentDir, "image.webp"),
+    (await latestVersionFile(passageDir, /^image\.(png|jpg|jpeg|webp)$/i)) ?? "",
+  ]);
+  const comicLayoutPath = await firstExistingPath([
+    path.join(currentDir, "comic_reader_layout.json"),
+    (await latestVersionFile(passageDir, /^comic_reader_layout_v\d+\.json$/)) ?? "",
+  ]);
   const sourceRef = frontmatterString(frontmatter, "source_file");
   const sourcePath = sourceRef ? path.resolve(passageDir, sourceRef) : null;
 
@@ -301,16 +382,16 @@ async function loadPassage(passageDir: string): Promise<Passage> {
       viewpoint_focus: spec.viewpoint_focus ?? [],
     },
     draft: {
-      path: latestDraftPath ? path.basename(latestDraftPath) : null,
+      path: latestDraftPath ? path.relative(passageDir, latestDraftPath) : null,
       text: latestDraftPath ? await readText(latestDraftPath) : "",
     },
     approved_cn: {
-      path: latestApprovedPath ? path.basename(latestApprovedPath) : null,
+      path: latestApprovedPath ? path.relative(passageDir, latestApprovedPath) : null,
       text: latestApprovedPath ? await readText(latestApprovedPath) : "",
     },
     image: imagePath
       ? {
-          path: path.basename(imagePath),
+          path: path.relative(passageDir, imagePath),
           url: `/api/story-image/${passageId}`,
           alt: `${title} image`,
           width: imageMetadata.width,
