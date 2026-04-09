@@ -6,3 +6,11 @@ __pycache__/
 .env
 output/
 site/.next/
+
+# Passage workspace scratch areas
+story/*/comic/run*/
+story/*/draft/v*/
+
+# Generated panel debug artifacts
+story/*/comic_panel_boxes_v*_debug.png
+story/*/current/comic_panel_boxes_debug.png

@@ -57,12 +57,21 @@ A CN draft should be reviewed for:
 - `story/chNNN.json`: Planner output
 - `story/chNNN-pNN/spec.json`: Planner passage output
 - `story/chNNN-pNN/sNN-spec.json`: Planner scene output
-- `story/chNNN-pNN/draft_cn_vN.md`: Writer output
-- `story/chNNN-pNN/draft_cn_vN_review.json`: Critic output
-- `story/chNNN-pNN/chNNN_pNN_cn_vN.md`: approved CN readable output
-- `story/chNNN-pNN/draft_en_vN.md`: Translator output
 - `story/chNNN-pNN/passage.md`: human-facing passage summary / entry file
+- `story/chNNN-pNN/draft/vNNN/draft_cn.md`: Writer output
+- `story/chNNN-pNN/draft/vNNN/draft_cn_review.json`: Critic output
+- `story/chNNN-pNN/draft/vNNN/approved_cn.md`: approved CN readable output
+- `story/chNNN-pNN/comic/runNNN/`: comic prompt, image, boxes, layout, eval for one comic attempt
+- `story/chNNN-pNN/current/`: current promoted assets consumed by the site
+- `story/chNNN-pNN/published/`: frozen published outputs
 - `memory/`: runtime memory and consistency files
+
+## Workspace Structure
+- Keep passage-level source-of-truth files at top level: `passage.md`, `spec.json`, `sNN-spec.json`
+- Let `draft/` and `comic/` evolve independently
+- Keep intermediate files inside `draft/vNNN/` or `comic/runNNN/`
+- Promote selected assets into `current/` when they become the active version
+- Do not edit `published/` assets in place
 
 ## Safety for Context
 Do not feed the whole book into one prompt.

@@ -1,0 +1,42 @@
+{
+  "page_id": "cp001-p05-page-01",
+  "title_cn": "英雄与小人",
+  "panel_count": 5,
+  "frames": [
+    {
+      "frame_id": "p1",
+      "scene_id": "cp001_p05_s1",
+      "moment_cn": "颍川方向火光冲天，三兄弟赶到时仗已打完；远处一彪军马截杀败军，为首正是曹操。",
+      "camera_cn": "远景宽格，前景是三兄弟勒马远望，远处火光与曹操截杀败军同框。",
+      "text_count": 1
+    },
+    {
+      "frame_id": "p2",
+      "scene_id": "cp001_p05_s2",
+      "moment_cn": "半路槛车迎面而来，车里坐着卢植。",
+      "camera_cn": "中景，槛车占画面中心，刘备下马趋前。",
+      "text_count": 1
+    },
+    {
+      "frame_id": "p3",
+      "scene_id": "cp001_p05_s2",
+      "moment_cn": "张飞怒拔刀要劫囚，刘备伸手拦住。",
+      "camera_cn": "动态中景，刀刚出鞘，刘备伸臂拦住，关羽在后沉着看着。",
+      "text_count": 2
+    },
+    {
+      "frame_id": "p4",
+      "scene_id": "cp001_p05_s3",
+      "moment_cn": "三兄弟浴血救回董卓，董卓只问：现居何职？刘备答：白身。董卓当场轻慢。",
+      "camera_cn": "中景，帐中站位清楚，董卓高坐或立于前，刘备在下答话，关张在后。",
+      "text_count": 2
+    },
+    {
+      "frame_id": "p5",
+      "scene_id": "cp001_p05_s3",
+      "moment_cn": "三人出帐，张飞提刀转身就要回去杀董卓，刘备关羽同时去拦。",
+      "camera_cn": "横向收束格，张飞在前猛回身，刀已提起，刘备和关羽在后追拦。",
+      "text_count": 1
+    }
+  ]
+}

@@ -28,6 +28,14 @@ class PanelBox:
             "h": round(self.h, 4),
         }
 
+    @property
+    def right(self) -> float:
+        return self.x + self.w
+
+    @property
+    def bottom(self) -> float:
+        return self.y + self.h
+
 
 @dataclass(frozen=True)
 class PixelBox:
@@ -233,6 +241,68 @@ def group_boxes_by_row(boxes: list[PixelBox]) -> list[list[PixelBox]]:
     return rows
 
 
+def group_panel_boxes_by_row(boxes: list[PanelBox]) -> list[list[PanelBox]]:
+    rows: list[list[PanelBox]] = []
+    for box in sorted(boxes, key=lambda item: (item.y, item.x)):
+        placed = False
+        for row in rows:
+            row_center = sum(item.y + item.h / 2 for item in row) / len(row)
+            row_height = sum(item.h for item in row) / len(row)
+            box_center = box.y + box.h / 2
+            if abs(box_center - row_center) <= max(0.035, row_height * 0.45):
+                row.append(box)
+                row.sort(key=lambda item: item.x)
+                placed = True
+                break
+        if not placed:
+            rows.append([box])
+    return rows
+
+
+def normalize_panel_boxes(boxes: list[PanelBox]) -> list[PanelBox]:
+    if not boxes:
+        return boxes
+
+    rows = group_panel_boxes_by_row(boxes)
+    row_bounds = [
+        {
+            "top": min(box.y for box in row),
+            "bottom": max(box.bottom for box in row),
+        }
+        for row in rows
+    ]
+
+    for index in range(len(row_bounds) - 1):
+        midpoint = (row_bounds[index]["bottom"] + row_bounds[index + 1]["top"]) / 2
+        row_bounds[index]["bottom"] = midpoint
+        row_bounds[index + 1]["top"] = midpoint
+
+    normalized_rows: list[list[PanelBox]] = []
+    for row_index, row in enumerate(rows):
+        top = max(0.0, row_bounds[row_index]["top"])
+        bottom = min(1.0, row_bounds[row_index]["bottom"])
+        ordered = sorted(row, key=lambda item: item.x)
+
+        segments = [[box.x, box.right] for box in ordered]
+        for index in range(len(segments) - 1):
+            midpoint = (segments[index][1] + segments[index + 1][0]) / 2
+            segments[index][1] = midpoint
+            segments[index + 1][0] = midpoint
+
+        normalized_row = [
+            PanelBox(
+                x=max(0.0, left),
+                y=top,
+                w=max(0.0, min(1.0, right) - max(0.0, left)),
+                h=max(0.0, bottom - top),
+            )
+            for left, right in segments
+        ]
+        normalized_rows.append(normalized_row)
+
+    return [box for row in normalized_rows for box in row]
+
+
 def adjust_box_count(boxes: list[PixelBox], expected_count: int, gray: np.ndarray) -> list[PixelBox]:
     adjusted = list(boxes)
     while len(adjusted) > expected_count:
@@ -298,7 +368,7 @@ def detect_panel_boxes(image_path: Path, expected_count: int) -> tuple[list[Pane
             )
         )
 
-    return boxes, image
+    return normalize_panel_boxes(boxes), image
 
 
 def write_debug_image(image: np.ndarray, boxes: list[PanelBox], output_path: Path) -> None:
@@ -345,6 +415,10 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Detect stacked comic panel boxes from a passage page image.")
     parser.add_argument("passage", help="Path to a passage directory like story/cp001-p01")
     parser.add_argument(
+        "--layout",
+        help="Optional path to comic_reader_layout_vN.json. Defaults to latest in passage.",
+    )
+    parser.add_argument(
         "--output",
         help="Optional output path for comic_panel_boxes_vN.json. Defaults to the next version in the passage directory.",
     )
@@ -370,7 +444,7 @@ def next_detection_output_path(passage_dir: Path) -> Path:
 def main() -> None:
     args = parse_args()
     passage_dir = resolve_path(args.passage)
-    layout_path = latest_layout_path(passage_dir)
+    layout_path = resolve_path(args.layout) if args.layout else latest_layout_path(passage_dir)
     layout = load_json(layout_path)
     image_path = passage_dir / "image.png"
     if not image_path.exists():
