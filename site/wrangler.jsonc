@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "read-chinese-classics",
+  "main": ".open-next/worker.js",
+  "compatibility_date": "2026-04-09",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "vars": {
+    "CONTENT_BASE_URL": "https://storage.googleapis.com/zh-books/sanguo"
+  },
+  "assets": {
+    "binding": "ASSETS",
+    "directory": ".open-next/assets"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

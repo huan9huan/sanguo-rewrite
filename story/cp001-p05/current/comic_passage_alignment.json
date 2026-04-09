@@ -1,0 +1,62 @@
+{
+  "passage_id": "cp001-p05",
+  "based_on_text": "current/draft_cn.md",
+  "based_on_comic_layout": "current/comic_reader_layout.json",
+  "version_note": "alignment v1",
+  "policy": {
+    "goal": "story_first_inline_alignment",
+    "unit": "paragraph_after",
+    "rule": "place each frame after the earliest safe and meaningful paragraph"
+  },
+  "placements": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp001_p05_s1",
+      "after_paragraph_index": 6,
+      "anchor_quote": "曹操带五千人拦在路口，也不多说，直接杀。斩首万余级，旗幡金鼓马匹缴了无数。",
+      "confidence": 0.95,
+      "reason": "这一格既要有长社火光，也要有曹操截杀败兵的利落气质。放在曹操战果说完整之后最合适，既不空，也不抢前面战场余烬的铺垫。",
+      "notes": "不放在只见火光时，因为 frame 里的关键人物是曹操。"
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp001_p05_s1",
+      "after_paragraph_index": 9,
+      "anchor_quote": "皇甫嵩说：\"张梁、张宝势穷力竭，必然投广宗去依张角。你星夜回去，助你老师。\"",
+      "confidence": 0.88,
+      "reason": "这格的阅读作用不是塑造新剧情，而是把三兄弟与曹操擦肩而过、又被立刻派回广宗的匆促感压实。放在军令落下之后，节奏最顺。",
+      "notes": "layout caption 里有‘曹操只从他们身边扫过一眼’，但正文没有这句明写，因此以皇甫嵩下令作为更稳的锚点。"
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p05_s2",
+      "after_paragraph_index": 16,
+      "anchor_quote": "\"老师——\"",
+      "confidence": 0.94,
+      "reason": "这一格的冲击点是‘槛车里的人竟然是卢植’。等刘备认出来并喊出这声老师之后再插，身份揭示才完整，情绪也最准。",
+      "notes": "不提前放在只见槛车的时候，避免过早泄露车中人。"
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp001_p05_s2",
+      "after_paragraph_index": 26,
+      "anchor_quote": "朝廷自有公论。你不能造次。",
+      "confidence": 0.97,
+      "reason": "这格就是张飞怒拔刀、刘备硬压下去的对撞。必须等两个人的话都说完，再插才有完整的张力。",
+      "notes": "不放在张飞开口之后，因为 frame 需要同时表现怒与克制。"
+    },
+    {
+      "frame_id": "f5",
+      "scene_id": "cp001_p05_s2",
+      "after_paragraph_index": 32,
+      "anchor_quote": "\"走。回涿郡。\"",
+      "confidence": 0.93,
+      "reason": "这格承担的是这一段的冷收束。等卢植的槛车远去、关羽判断说完、刘备最终作出回涿郡的决定之后再插，阅读上最干净。",
+      "notes": "虽然 passage 后面还有董卓一段，但现有 comic layout 只覆盖到此，因此把 f5 锚在第二 scene 的结尾最合理。"
+    }
+  ],
+  "notes": [
+    "当前 comic layout 只覆盖 scene 1 和 scene 2，因此本 alignment 不为董卓段额外补 frame。",
+    "f2 采用‘军令落下’而不是‘与曹操对视’作为锚点，是因为正文里后者并非显式事件。"
+  ]
+}

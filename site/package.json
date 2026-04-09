@@ -1,12 +1,17 @@
 {
-  "name": "sanguo-rewrite-site",
+  "name": "read-chinese-classics",
   "version": "1.0.0",
-  "description": "Next.js site for the Sanguo Rewrite project",
+  "description": "Next.js site for 三国演义 reading",
   "scripts": {
+    "content:export": "node ./scripts/export-content.mjs",
     "dev": "next dev",
     "build": "next build",
+    "build:content": "npm run content:export && npm run build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "preview": "sh -ac 'set -a; [ -f ./.env.prod ] && . ./.env.prod; set +a; opennextjs-cloudflare build && opennextjs-cloudflare preview'",
+    "deploy": "sh -ac 'set -a; [ -f ./.env.prod ] && . ./.env.prod; set +a; opennextjs-cloudflare build && opennextjs-cloudflare deploy'",
+    "cf-typegen": "wrangler types"
   },
   "keywords": [],
   "author": "",
@@ -17,9 +22,11 @@
     "react-dom": "^19.2.4"
   },
   "devDependencies": {
+    "@opennextjs/cloudflare": "^1.17.3",
     "@types/node": "^25.5.2",
     "@types/react": "^19.2.14",
     "@types/react-dom": "^19.2.3",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.2",
+    "wrangler": "^4.77.0"
   }
 }

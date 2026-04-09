@@ -1,0 +1,53 @@
+{
+  "passage_id": "cp001-p03",
+  "based_on_text": "current/draft_cn.md",
+  "based_on_comic_layout": "current/comic_reader_layout.json",
+  "version_note": "alignment v1",
+  "policy": {
+    "goal": "story_first_inline_alignment",
+    "unit": "paragraph_after",
+    "rule": "place each frame after the earliest safe and meaningful paragraph"
+  },
+  "placements": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp001_p03_s1",
+      "after_paragraph_index": 6,
+      "anchor_quote": "这位壮士，不介意的话，坐下来一起喝一杯？",
+      "confidence": 0.93,
+      "reason": "这格是关羽登场的完整瞬间，不只是他喊酒，还包括刘备开口相邀。放在邀请落地之后最完整，也能保住前面‘影子变成人’的出场悬念。",
+      "notes": "不放在更早的喊酒之后，避免画面过早消耗关羽露脸节奏。"
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp001_p03_s2",
+      "after_paragraph_index": 36,
+      "anchor_quote": "同心协力，救困扶危。上报国家，下安百姓。不求同年同月同日生，只愿同年同月同日死。",
+      "confidence": 0.98,
+      "reason": "这一格的情感核心就是誓词本身。必须等三人声音真正合在一起之后再插，才能让‘桃园结义’在阅读里站住，而不是只剩仪式布景。",
+      "notes": "不放在跪下之前，因为结义的意义要靠誓言落地。"
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p03_s3",
+      "after_paragraph_index": 51,
+      "anchor_quote": "金银五百两，上好的镔铁一千斤，也一并奉上。你们要干大事，这些东西不能缺。",
+      "confidence": 0.95,
+      "reason": "这格要落在资源真正送出来的那一刻。放在商人开口相赠之后最准，既保住前面的困局，也让‘起兵成军’有明确转折点。",
+      "notes": "不后拖到兵器锻成之后，因为 frame 本身更强调赠马赠金的启动作用。"
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp001_p03_s3",
+      "after_paragraph_index": 65,
+      "anchor_quote": "五百个无名之辈，就这样走进了幽州城的门。",
+      "confidence": 0.94,
+      "reason": "这格承担的是 passage 的收束，不只是出发，而是三兄弟正式带着队伍走进更大的局势里。放在最后一句之后，尾劲最足。",
+      "notes": "虽然 caption 写的是上路，但本 passage 的真正落点是被刘焉接纳、队伍进入幽州。"
+    }
+  ],
+  "notes": [
+    "scene 3 有两个 frame：f3 负责从‘没马’到‘得资财’的转折，f4 负责 passage 级收束，不应贴在同一段后。",
+    "f1 采用刘备开口相邀作为锚点，是为了让关羽登场既有气势，也有关系建立。"
+  ]
+}
