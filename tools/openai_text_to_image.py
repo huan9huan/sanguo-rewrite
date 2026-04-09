@@ -19,6 +19,11 @@ DEFAULT_SIZE = "1024x1024"
 DEFAULT_QUALITY = "medium"
 DEFAULT_TIMEOUT = 300
 API_URL = "https://api.openai.com/v1/images/generations"
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+DEFAULT_ENV_FILES = [
+    PROJECT_ROOT / ".env",
+    PROJECT_ROOT / "site" / ".env",
+]
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -101,6 +106,18 @@ def build_parser() -> argparse.ArgumentParser:
         help="Editing fidelity for reference images. Useful when preserving layout or identity.",
     )
     return parser
+
+
+def load_project_env() -> None:
+    for env_path in DEFAULT_ENV_FILES:
+        if not env_path.exists():
+            continue
+        for raw_line in env_path.read_text(encoding="utf-8").splitlines():
+            line = raw_line.strip()
+            if not line or line.startswith("#") or "=" not in line:
+                continue
+            key, value = line.split("=", 1)
+            os.environ.setdefault(key.strip(), value.strip())
 
 
 def resolve_prompt(args: argparse.Namespace) -> str:
@@ -267,6 +284,7 @@ def save_metadata(payload: Dict[str, Any], image_path: Path) -> Path:
 def main() -> int:
     parser = build_parser()
     args = parser.parse_args()
+    load_project_env()
     prompt = resolve_prompt(args)
     api_key = resolve_api_key(args)
     endpoint = resolve_endpoint(args)
