@@ -669,7 +669,7 @@ async function main() {
     version: "v0.2.3",
     generated_at: new Date().toISOString(),
     project: {
-      title: "Sanguo Rewrite",
+      title: "三国演义",
       subtitle: "A story-first rewrite of Romance of the Three Kingdoms",
       description:
         "A reading room for the current draft, designed for readers who want to enter the story passage by passage.",

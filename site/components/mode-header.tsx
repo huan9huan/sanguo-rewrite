@@ -32,7 +32,7 @@ export function ModeHeader({
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const title = compactTitle || "Sanguo Rewrite";
+  const title = compactTitle || "三国演义";
 
   return (
     <header className={`site-header ${isCompressed ? "site-header-compressed" : ""}`}>
@@ -41,9 +41,8 @@ export function ModeHeader({
           {!isCompressed ? (
             <>
               <div>
-                <p className="eyebrow">Story Reading Room</p>
                 <Link href="/" className="site-title">
-                  Sanguo Rewrite
+                  三国演义
                 </Link>
               </div>
               {chapterLabel || passageLabel ? (
@@ -68,12 +67,12 @@ export function ModeHeader({
                 Home
               </Link>
               <Link className="mode-link" href="/read">
-                All Passages
+                全部章节
               </Link>
             </>
           ) : (
             <Link className="mode-link" href="/read">
-              All Passages
+              全部章节
             </Link>
           )}
         </nav>

@@ -3,8 +3,8 @@ import type { ReactNode } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sanguo Rewrite",
-  description: "A story-first rewrite studio for Romance of the Three Kingdoms.",
+  title: "Read Chinese Classics - 让中国经典更加生动.",
+  description: "Read Chinese classics in a more vivid, story-first way.",
 };
 
 type RootLayoutProps = {

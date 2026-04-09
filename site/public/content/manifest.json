@@ -1,8 +1,8 @@
 {
   "version": "v0.2.3",
-  "generated_at": "2026-04-09T10:05:59.764Z",
+  "generated_at": "2026-04-09T10:30:38.548Z",
   "project": {
-    "title": "Sanguo Rewrite",
+    "title": "三国演义",
     "subtitle": "A story-first rewrite of Romance of the Three Kingdoms",
     "description": "A reading room for the current draft, designed for readers who want to enter the story passage by passage.",
     "principles": [

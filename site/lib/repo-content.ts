@@ -736,7 +736,7 @@ export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<S
 
   return {
     project: {
-      title: "Sanguo Rewrite",
+      title: "三国演义",
       subtitle: "A story-first rewrite of Romance of the Three Kingdoms",
       description:
         "A reading room for the current draft, and a studio window into the planning, review, and continuity logic behind each passage.",
