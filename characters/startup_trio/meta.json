@@ -1,0 +1,29 @@
+{
+  "asset_id": "startup_trio_reference_board",
+  "display_name_cn": "刘关张创业期并排头像参考图",
+  "purpose": "multi_character_reference_for_scene_generation",
+  "status": "selected",
+  "output_file": "startup_trio_reference_board.png",
+  "characters": [
+    {
+      "character_id": "liu_bei",
+      "period": "startup_period",
+      "source_asset": "/Users/huanghuan/sanguo-rewrite/characters/liu_bei/portrait_qwen_cp001_p02_run006_hair_reference.png"
+    },
+    {
+      "character_id": "guan_yu",
+      "period": "startup_period",
+      "source_asset": "/Users/huanghuan/sanguo-rewrite/characters/guan_yu/portrait_qwen_cp001_p03_run009.png"
+    },
+    {
+      "character_id": "zhang_fei",
+      "period": "startup_period",
+      "source_asset": "/Users/huanghuan/sanguo-rewrite/characters/zhang_fei/portrait_qwen_cp001_p03_run011_wideface.png"
+    }
+  ],
+  "notes": [
+    "This board is intended as a startup-period identity reference for scene-based comic image generation.",
+    "Layout is left-to-right: Liu Bei, Guan Yu, Zhang Fei.",
+    "Use this as a face-and-identity reference, then add scene, costume, pose, and action in the generation prompt."
+  ]
+}

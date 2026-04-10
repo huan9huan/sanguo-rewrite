@@ -1,0 +1,4 @@
+interface:
+  display_name: "Qwen Image Retouch"
+  short_description: "Edit existing images with Qwen in this project"
+  default_prompt: "Use $qwen-image-retouch to revise an image with a text instruction, keeping the layout stable when needed."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Character Cutout"
+  short_description: "Extract a reusable face-focused character portrait asset"
+  default_prompt: "Use $character-cutout to extract one character from an image into a face-focused portrait asset using Qwen or Seedream."

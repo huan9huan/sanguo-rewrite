@@ -1,0 +1,4 @@
+interface:
+  display_name: "Comic Frame Extractor"
+  short_description: "Extract ordered frame crops from a comic page"
+  default_prompt: "Use $comic-frame-extractor to crop ordered frame images from a comic page using the comic spec."

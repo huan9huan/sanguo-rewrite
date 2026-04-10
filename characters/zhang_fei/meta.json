@@ -1,0 +1,39 @@
+{
+  "character_id": "zhang_fei",
+  "display_name_cn": "张飞",
+  "asset_type": "profile_portrait",
+  "purpose": "character_archive_reference",
+  "status": "candidate",
+  "style": "bw_lianhuanhua_sketch",
+  "asset_files": [
+    {
+      "path": "portrait_qwen_run007.png",
+      "label": "Qwen portrait candidate from cp001-p05"
+    },
+    {
+      "path": "portrait_qwen_cp001_p03_run011_wideface.png",
+      "label": "Qwen wide-face neutral portrait candidate from cp001-p03"
+    }
+  ],
+  "preferred_asset": "portrait_qwen_cp001_p03_run011_wideface.png",
+  "source": {
+    "page_id": "cp001-p05-page-01",
+    "passage_id": "cp001-p05",
+    "source_page_image": "/Users/huanghuan/sanguo-rewrite/story/cp001-p05/current/image.jpg",
+    "source_spec": "/Users/huanghuan/sanguo-rewrite/story/cp001-p05/current/passage_comic_spec.json",
+    "source_panel_id": "p4",
+    "story_role_cn": "听完卢植蒙冤后怒拔刀欲劫囚的张飞"
+  },
+  "generation": {
+    "engine": "qwen",
+    "mode": "portrait_cutout",
+    "prompt_file": "/Users/huanghuan/sanguo-rewrite/story/cp001-p05/comic/run007/cutout_zhangfei_portrait_prompt.txt",
+    "source_run_dir": "/Users/huanghuan/sanguo-rewrite/story/cp001-p05/comic/run007"
+  },
+  "notes": [
+    "This asset is intended for face-first character dossier usage.",
+    "Clothing and accessories are intentionally minimized for later separate design.",
+    "The cp001-p03 neutral portrait is preferred over the angry p05 version for archive usage.",
+    "The cp001-p03 wide-face portrait is currently preferred because it gives Zhang Fei a broader, more forceful face shape."
+  ]
+}

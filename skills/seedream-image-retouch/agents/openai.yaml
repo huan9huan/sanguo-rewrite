@@ -1,0 +1,4 @@
+interface:
+  display_name: "Seedream Image Retouch"
+  short_description: "Edit existing images with Doubao Seedream in this project"
+  default_prompt: "Use $seedream-image-retouch to revise an existing image with a text instruction using this project's Doubao Seedream setup."

@@ -1,0 +1,36 @@
+{
+  "character_id": "guan_yu",
+  "display_name_cn": "关羽",
+  "asset_type": "profile_portrait",
+  "purpose": "character_archive_reference",
+  "status": "candidate",
+  "style": "bw_lianhuanhua_sketch",
+  "asset_files": [
+    {
+      "path": "portrait_qwen_cp001_p03_run009.png",
+      "label": "Qwen portrait candidate from cp001-p03"
+    }
+  ],
+  "source": {
+    "page_id": "cp001-p03-page-01",
+    "passage_id": "cp001-p03",
+    "source_page_image": "/Users/huanghuan/sanguo-rewrite/story/cp001-p03/current/image.jpeg",
+    "source_spec": "/Users/huanghuan/sanguo-rewrite/story/cp001-p03/current/passage_comic_spec.json",
+    "primary_source_panels": [
+      "p1",
+      "p2",
+      "p4"
+    ],
+    "story_role_cn": "桃园结义页中高大沉稳、与刘备张飞结义并正式上路的关羽"
+  },
+  "generation": {
+    "engine": "qwen",
+    "mode": "portrait_cutout",
+    "prompt_file": "/Users/huanghuan/sanguo-rewrite/story/cp001-p03/comic/run009/cutout_guanyu_portrait_prompt.txt",
+    "source_run_dir": "/Users/huanghuan/sanguo-rewrite/story/cp001-p03/comic/run009"
+  },
+  "notes": [
+    "This asset is intended for face-first character dossier usage.",
+    "Portrait prompt favors Guan Yu's grave, disciplined, and composed presence over weapon or action detail."
+  ]
+}

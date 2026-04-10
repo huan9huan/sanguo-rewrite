@@ -1,0 +1,38 @@
+{
+  "character_id": "liu_bei",
+  "display_name_cn": "刘备",
+  "asset_type": "profile_portrait",
+  "purpose": "character_archive_reference",
+  "status": "selected",
+  "style": "bw_lianhuanhua_sketch",
+  "selected_assets": {
+    "startup_period": {
+      "path": "portrait_qwen_cp001_p02_run006_hair_reference.png",
+      "label": "创业期间主形象",
+      "description_cn": "早期刘备，朴素束发，小髻，气质温厚可靠，还未进入主公阶段。"
+    },
+    "lord_period": {
+      "path": "portrait_qwen_cp001_p02_run007_face_shape_edit.png",
+      "label": "主公阶段主形象",
+      "description_cn": "中年后的刘备，脸型更方，更有城府与主公气质，但仍保持简朴底色。"
+    }
+  },
+  "source": {
+    "startup_period": {
+      "page_id": "cp001-p02-page-01",
+      "passage_id": "cp001-p02",
+      "source_page_image": "/Users/huanghuan/sanguo-rewrite/story/cp001-p02/current/image.jpg",
+      "source_spec": "/Users/huanghuan/sanguo-rewrite/story/cp001-p02/current/passage_comic_spec.json",
+      "source_run_dir": "/Users/huanghuan/sanguo-rewrite/story/cp001-p02/comic/run006"
+    },
+    "lord_period": {
+      "base_asset": "/Users/huanghuan/sanguo-rewrite/characters/liu_bei/portrait_qwen_cp001_p02_run006_hair_reference.png",
+      "source_run_dir": "/Users/huanghuan/sanguo-rewrite/story/cp001-p02/comic/run007",
+      "edit_note_cn": "基于创业期主形象做脸型与气质增强，作为主公阶段参考像。"
+    }
+  },
+  "notes": [
+    "刘备档案只保留两张选定主形象：创业期与主公期。",
+    "其余刘备候选图已按当前决策移除，避免后续混用。"
+  ]
+}
