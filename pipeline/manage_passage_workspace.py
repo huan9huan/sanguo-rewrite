@@ -7,7 +7,24 @@ import shutil
 from pathlib import Path
 from typing import Iterable
 
+from pipeline.image_magick import normalize_comic_png
+
 ROOT = Path(__file__).resolve().parents[1]
+
+CURRENT_FILES = {
+    "draft": "draft_cn.md",
+    "review": "draft_cn_review.json",
+    "approved": "approved_cn.md",
+    "comic_spec_json": "comic_spec.json",
+    "comic_spec_md": "comic_spec.md",
+    "comic_prompt": "comic_prompt.txt",
+    "comic_frames": "comic_frames.json",
+    "comic_image": "comic.png",
+    "comic_boxes": "comic_panel_boxes.json",
+    "comic_boxes_debug": "comic_panel_boxes_debug.png",
+    "comic_layout": "comic.json",
+    "comic_eval": "comic_eval.md",
+}
 
 
 def resolve_path(path_str: str | Path) -> Path:
@@ -89,31 +106,26 @@ def bootstrap_legacy(passage_dir: Path) -> dict[str, object]:
     latest_summary = latest_prompt_dir[-1] / "frames_summary.json" if latest_prompt_dir else None
 
     copied_draft = {
-        "draft_cn.md": copy_if_present(latest_draft, draft_dir / "draft_cn.md"),
-        "draft_cn_review.json": copy_if_present(latest_review, draft_dir / "draft_cn_review.json"),
-        "approved_cn.md": copy_if_present(latest_approved, draft_dir / "approved_cn.md"),
+        CURRENT_FILES["draft"]: copy_if_present(latest_draft, draft_dir / CURRENT_FILES["draft"]),
+        CURRENT_FILES["review"]: copy_if_present(latest_review, draft_dir / CURRENT_FILES["review"]),
+        CURRENT_FILES["approved"]: copy_if_present(latest_approved, draft_dir / CURRENT_FILES["approved"]),
     }
     copied_comic = {
-        "passage_comic_spec.json": copy_if_present(latest_spec, comic_dir / "passage_comic_spec.json"),
-        "passage_comic_spec.md": copy_if_present(latest_spec_md, comic_dir / "passage_comic_spec.md"),
-        "page_prompt.txt": copy_if_present(latest_prompt, comic_dir / "page_prompt.txt"),
-        "frames_summary.json": copy_if_present(latest_summary, comic_dir / "frames_summary.json"),
-        "image.png": copy_if_present(latest_image, comic_dir / "image.png"),
-        "comic_panel_boxes.json": copy_if_present(latest_boxes, comic_dir / "comic_panel_boxes.json"),
-        "comic_panel_boxes_debug.png": copy_if_present(latest_boxes_debug, comic_dir / "comic_panel_boxes_debug.png"),
-        "comic_reader_layout.json": copy_if_present(latest_layout, comic_dir / "comic_reader_layout.json"),
+        CURRENT_FILES["comic_spec_json"]: copy_if_present(latest_spec, comic_dir / CURRENT_FILES["comic_spec_json"]),
+        CURRENT_FILES["comic_spec_md"]: copy_if_present(latest_spec_md, comic_dir / CURRENT_FILES["comic_spec_md"]),
+        CURRENT_FILES["comic_prompt"]: copy_if_present(latest_prompt, comic_dir / CURRENT_FILES["comic_prompt"]),
+        CURRENT_FILES["comic_frames"]: copy_if_present(latest_summary, comic_dir / CURRENT_FILES["comic_frames"]),
+        CURRENT_FILES["comic_image"]: copy_if_present(latest_image, comic_dir / CURRENT_FILES["comic_image"]),
+        CURRENT_FILES["comic_boxes"]: copy_if_present(latest_boxes, comic_dir / CURRENT_FILES["comic_boxes"]),
+        CURRENT_FILES["comic_boxes_debug"]: copy_if_present(latest_boxes_debug, comic_dir / CURRENT_FILES["comic_boxes_debug"]),
+        CURRENT_FILES["comic_layout"]: copy_if_present(latest_layout, comic_dir / CURRENT_FILES["comic_layout"]),
     }
 
-    copy_if_present(draft_dir / "draft_cn.md", dirs["current"] / "draft_cn.md")
-    copy_if_present(draft_dir / "draft_cn_review.json", dirs["current"] / "draft_cn_review.json")
-    copy_if_present(draft_dir / "approved_cn.md", dirs["current"] / "approved_cn.md")
-    copy_if_present(comic_dir / "passage_comic_spec.json", dirs["current"] / "passage_comic_spec.json")
-    copy_if_present(comic_dir / "passage_comic_spec.md", dirs["current"] / "passage_comic_spec.md")
-    copy_if_present(comic_dir / "page_prompt.txt", dirs["current"] / "page_prompt.txt")
-    copy_if_present(comic_dir / "frames_summary.json", dirs["current"] / "frames_summary.json")
-    copy_if_present(comic_dir / "image.png", dirs["current"] / "image.png")
-    copy_if_present(comic_dir / "comic_panel_boxes.json", dirs["current"] / "comic_panel_boxes.json")
-    copy_if_present(comic_dir / "comic_reader_layout.json", dirs["current"] / "comic_reader_layout.json")
+    copy_if_present(draft_dir / CURRENT_FILES["draft"], dirs["current"] / CURRENT_FILES["draft"])
+    copy_if_present(draft_dir / CURRENT_FILES["review"], dirs["current"] / CURRENT_FILES["review"])
+    copy_if_present(draft_dir / CURRENT_FILES["approved"], dirs["current"] / CURRENT_FILES["approved"])
+    copy_if_present(comic_dir / CURRENT_FILES["comic_image"], dirs["current"] / CURRENT_FILES["comic_image"])
+    copy_if_present(comic_dir / CURRENT_FILES["comic_layout"], dirs["current"] / CURRENT_FILES["comic_layout"])
 
     write_meta(
         draft_dir / "meta.json",
@@ -149,19 +161,20 @@ def bootstrap_legacy(passage_dir: Path) -> dict[str, object]:
 def promote_comic(passage_dir: Path, run_dir: Path) -> dict[str, object]:
     dirs = ensure_dirs(passage_dir)
     mapping = {
-        "passage_comic_spec.json": "passage_comic_spec.json",
-        "passage_comic_spec.md": "passage_comic_spec.md",
-        "page_prompt.txt": "page_prompt.txt",
-        "frames_summary.json": "frames_summary.json",
-        "image.png": "image.png",
-        "comic_panel_boxes.json": "comic_panel_boxes.json",
-        "comic_panel_boxes_debug.png": "comic_panel_boxes_debug.png",
-        "comic_reader_layout.json": "comic_reader_layout.json",
-        "eval.md": "comic_image_eval.md",
+        "comic.png": CURRENT_FILES["comic_image"],
+        "image.png": CURRENT_FILES["comic_image"],
+        "comic.json": CURRENT_FILES["comic_layout"],
+        "comic_reader_layout.json": CURRENT_FILES["comic_layout"],
     }
     copied: list[str] = []
     for source_name, dest_name in mapping.items():
-        if copy_if_present(run_dir / source_name, dirs["current"] / dest_name):
+        source_path = run_dir / source_name
+        dest_path = dirs["current"] / dest_name
+        if dest_name == CURRENT_FILES["comic_image"] and source_path.exists():
+            normalize_comic_png(source_path, dest_path)
+            copied.append(dest_name)
+            continue
+        if copy_if_present(source_path, dest_path):
             copied.append(dest_name)
     return {
         "passage": str(passage_dir),
@@ -174,9 +187,9 @@ def promote_comic(passage_dir: Path, run_dir: Path) -> dict[str, object]:
 def promote_draft(passage_dir: Path, version_dir: Path) -> dict[str, object]:
     dirs = ensure_dirs(passage_dir)
     mapping = {
-        "draft_cn.md": "draft_cn.md",
-        "draft_cn_review.json": "draft_cn_review.json",
-        "approved_cn.md": "approved_cn.md",
+        CURRENT_FILES["draft"]: CURRENT_FILES["draft"],
+        CURRENT_FILES["review"]: CURRENT_FILES["review"],
+        CURRENT_FILES["approved"]: CURRENT_FILES["approved"],
     }
     copied: list[str] = []
     for source_name, dest_name in mapping.items():

@@ -24,10 +24,7 @@ export async function GET(_request: Request, { params }: RouteContext): Promise<
   try {
     const currentDir = path.join(passageDir, "current");
     const candidatePaths = [
-      path.join(currentDir, "image.png"),
-      path.join(currentDir, "image.jpg"),
-      path.join(currentDir, "image.jpeg"),
-      path.join(currentDir, "image.webp"),
+      path.join(currentDir, "comic.png"),
       path.join(passageDir, "image.png"),
       path.join(passageDir, "image.jpg"),
       path.join(passageDir, "image.jpeg"),

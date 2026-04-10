@@ -13,7 +13,9 @@ export default async function ReadIndexPage() {
       <section className="section">
         <div className="container section-head">
           <div>
+            <p className="eyebrow">Reader</p>
             <h1 className="section-title">书库</h1>
+            <p className="section-copy">网站现在只保留阅读体验。流程说明以 workflow spec 和仓库资产为准，不再单独维护 Creator 模式。</p>
           </div>
         </div>
       </section>

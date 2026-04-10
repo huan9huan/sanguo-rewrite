@@ -88,8 +88,8 @@ The site should be built from the existing repo structure rather than a separate
 - `story/cpNNN-pNN/current/draft_cn.md`
 - `story/cpNNN-pNN/current/draft_cn_review.json`
 - `story/cpNNN-pNN/current/approved_cn.md`
-- `story/cpNNN-pNN/current/image.png`
-- `story/cpNNN-pNN/current/comic_reader_layout.json`
+- `story/cpNNN-pNN/current/comic.png`
+- `story/cpNNN-pNN/current/comic.json`
 - `story/cpNNN.json`
 - `memory/story_index.json`
 - `memory/working_memory.json`

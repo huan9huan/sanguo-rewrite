@@ -10,8 +10,8 @@ export default async function HomePage() {
             <Link className="button-link button-link-accent home-hero-cta" href="/read">
               Start Reading 《三国演义》
             </Link>
-            <Link className="button-link button-link-secondary home-hero-cta-secondary" href="/creator">
-              How We Make It
+            <Link className="button-link button-link-secondary home-hero-cta-secondary" href="/read">
+              浏览章节与段落
             </Link>
           </div>
         </div>

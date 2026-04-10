@@ -22,6 +22,15 @@ const STORY_DIR = path.join(REPO_ROOT, "story");
 const MEMORY_DIR = path.join(REPO_ROOT, "memory");
 const BOOKS_FILE = path.join(STORY_DIR, "books.json");
 
+const CURRENT_FILES = {
+  draft: "draft_cn.md",
+  review: "draft_cn_review.json",
+  approved: "approved_cn.md",
+  comicLayout: "comic.json",
+  comicAlignment: "comic_alignment.json",
+  comicImage: "comic.png",
+} as const;
+
 type FrontmatterValue = string | string[];
 type Frontmatter = Record<string, FrontmatterValue>;
 type ParsedFrontmatterMarkdown = {
@@ -647,30 +656,27 @@ async function loadPassage(passageDir: string, bookId: string): Promise<Passage>
   const spec = await readJson<StorySpec>(path.join(passageDir, "spec.json"));
   const currentDir = path.join(passageDir, "current");
   const latestDraftPath = await firstExistingPath([
-    path.join(currentDir, "draft_cn.md"),
+    path.join(currentDir, CURRENT_FILES.draft),
     (await latestVersionFile(passageDir, /^draft_cn_v\d+\.md$/)) ?? "",
   ]);
   const latestReviewPath = await firstExistingPath([
-    path.join(currentDir, "draft_cn_review.json"),
+    path.join(currentDir, CURRENT_FILES.review),
     (await latestVersionFile(passageDir, /^draft_cn_v\d+_review\.json$/)) ?? "",
   ]);
   const latestApprovedPath = await firstExistingPath([
-    path.join(currentDir, "approved_cn.md"),
+    path.join(currentDir, CURRENT_FILES.approved),
     (await latestVersionFile(passageDir, /^cp.*_cn_v\d+\.md$/)) ?? "",
   ]);
   const imagePath = await firstExistingPath([
-    path.join(currentDir, "image.png"),
-    path.join(currentDir, "image.jpg"),
-    path.join(currentDir, "image.jpeg"),
-    path.join(currentDir, "image.webp"),
+    path.join(currentDir, CURRENT_FILES.comicImage),
     (await latestVersionFile(passageDir, /^image\.(png|jpg|jpeg|webp)$/i)) ?? "",
   ]);
   const comicLayoutPath = await firstExistingPath([
-    path.join(currentDir, "comic_reader_layout.json"),
+    path.join(currentDir, CURRENT_FILES.comicLayout),
     (await latestVersionFile(passageDir, /^comic_reader_layout_v\d+\.json$/)) ?? "",
   ]);
   const comicAlignmentPath = await firstExistingPath([
-    path.join(currentDir, "comic_passage_alignment.json"),
+    path.join(currentDir, CURRENT_FILES.comicAlignment),
   ]);
   const sourceRef = frontmatterString(frontmatter, "source_file");
   const sourcePath = sourceRef ? path.resolve(passageDir, sourceRef) : null;

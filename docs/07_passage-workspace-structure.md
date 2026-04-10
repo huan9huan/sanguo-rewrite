@@ -66,14 +66,8 @@ story/cp001-p01/
     draft_cn.md
     draft_cn_review.json
     approved_cn.md
-    passage_comic_spec.json
-    passage_comic_spec.md
-    page_prompt.txt
-    frames_summary.json
-    image.png
-    comic_panel_boxes.json
-    comic_reader_layout.json
-    comic_image_eval.md
+    comic.png
+    comic.json
 
   published/
     cn/

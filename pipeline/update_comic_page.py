@@ -12,14 +12,20 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from pipeline.detect_comic_panels import (
+from pipeline.detect_comic_panels import (  # noqa: E402
     build_detection_payload,
     detect_panel_boxes,
     load_json as load_json_file,
     write_debug_image,
 )
-from pipeline.generate_comic_prompt import build_frames_summary, build_page_prompt, load_spec, resolve_path as resolve_spec_path
-from pipeline.merge_comic_panel_boxes import merge_layout
+from pipeline.generate_comic_prompt import build_frames_summary, build_page_prompt, load_spec, resolve_path as resolve_spec_path  # noqa: E402
+from pipeline.image_magick import normalize_comic_png  # noqa: E402
+from pipeline.merge_comic_panel_boxes import merge_layout  # noqa: E402
+
+CURRENT_FILES = {
+    "comic_image": "comic.png",
+    "comic_layout": "comic.json",
+}
 
 
 def resolve_path(path_str: str | Path) -> Path:
@@ -39,8 +45,8 @@ def ensure_workspace_dirs(passage_dir: Path) -> dict[str, Path]:
         "comic": passage_dir / "comic",
         "current": passage_dir / "current",
     }
-    for path in dirs.values():
-        path.mkdir(parents=True, exist_ok=True)
+    for target in dirs.values():
+        target.mkdir(parents=True, exist_ok=True)
     return dirs
 
 
@@ -85,12 +91,21 @@ def current_file(passage_dir: Path, name: str) -> Path:
     return passage_dir / "current" / name
 
 
+def first_existing(paths: list[Path | None]) -> Path | None:
+    for candidate in paths:
+        if candidate and candidate.exists():
+            return candidate
+    return None
+
+
 def find_spec_source(passage_dir: Path, explicit: Path | None = None) -> Path:
     if explicit:
         return explicit
-    current_spec = current_file(passage_dir, "passage_comic_spec.json")
-    if current_spec.exists():
-        return current_spec
+    latest_run = latest_run_dir(passage_dir / "comic")
+    if latest_run:
+        current_spec = latest_run / "passage_comic_spec.json"
+        if current_spec.exists():
+            return current_spec
     legacy = latest_legacy_path(passage_dir, "passage_comic_spec_v*.json")
     if legacy:
         return legacy
@@ -98,49 +113,44 @@ def find_spec_source(passage_dir: Path, explicit: Path | None = None) -> Path:
 
 
 def find_layout_source(passage_dir: Path, explicit: Path | None = None, run_dir: Path | None = None) -> Path:
-    candidates = []
+    candidates: list[Path | None] = []
     if explicit:
         candidates.append(explicit)
     if run_dir:
         candidates.append(run_dir / "base_comic_reader_layout.json")
-        candidates.append(run_dir / "comic_reader_layout.json")
-    candidates.append(current_file(passage_dir, "comic_reader_layout.json"))
+        candidates.append(run_dir / CURRENT_FILES["comic_layout"])
+    candidates.append(current_file(passage_dir, CURRENT_FILES["comic_layout"]))
     legacy = latest_legacy_path(passage_dir, "comic_reader_layout_v*.json")
     if legacy:
         candidates.append(legacy)
 
-    for candidate in candidates:
-        if candidate.exists():
-            return candidate
+    resolved = first_existing(candidates)
+    if resolved:
+        return resolved
     raise FileNotFoundError(f"No comic reader layout found in {passage_dir}")
 
 
 def find_image_source(passage_dir: Path, run_dir: Path | None = None) -> Path:
-    candidates = []
+    candidates: list[Path | None] = []
     if run_dir:
         candidates.extend(
             [
+                run_dir / CURRENT_FILES["comic_image"],
                 run_dir / "image.png",
-                run_dir / "image.jpg",
-                run_dir / "image.jpeg",
-                run_dir / "image.webp",
             ]
         )
     candidates.extend(
         [
-            current_file(passage_dir, "image.png"),
-            current_file(passage_dir, "image.jpg"),
-            current_file(passage_dir, "image.jpeg"),
-            current_file(passage_dir, "image.webp"),
+            current_file(passage_dir, CURRENT_FILES["comic_image"]),
             passage_dir / "image.png",
             passage_dir / "image.jpg",
             passage_dir / "image.jpeg",
             passage_dir / "image.webp",
         ]
     )
-    for candidate in candidates:
-        if candidate.exists():
-            return candidate
+    resolved = first_existing(candidates)
+    if resolved:
+        return resolved
     raise FileNotFoundError(f"No image found for {passage_dir}")
 
 
@@ -150,32 +160,31 @@ def copy_supporting_assets(passage_dir: Path, run_dir: Path, spec_source: Path, 
         "layout_base": copy_if_present(layout_source, run_dir / "base_comic_reader_layout.json"),
     }
 
-    spec_md_current = current_file(passage_dir, "passage_comic_spec.md")
+    latest_run = latest_run_dir(passage_dir / "comic")
+    spec_md_current = latest_run / "passage_comic_spec.md" if latest_run and (latest_run / "passage_comic_spec.md").exists() else None
     spec_md_legacy = latest_legacy_path(passage_dir, "passage_comic_spec_v*.md")
-    copied["spec_md"] = copy_if_present(
-        spec_md_current if spec_md_current.exists() else spec_md_legacy,
-        run_dir / "passage_comic_spec.md",
-    )
+    copied["spec_md"] = copy_if_present(spec_md_current or spec_md_legacy, run_dir / "passage_comic_spec.md")
 
-    prompt_current = current_file(passage_dir, "page_prompt.txt")
-    if prompt_current.exists():
+    prompt_current = latest_run / "page_prompt.txt" if latest_run and (latest_run / "page_prompt.txt").exists() else None
+    if prompt_current:
         copied["prompt"] = copy_if_present(prompt_current, run_dir / "page_prompt.txt")
     else:
         latest_generated = sorted(
             [path for path in passage_dir.glob("passage_comic_v*_generated/page_prompt.txt") if path.exists()],
-            key=lambda path: extract_number(str(path.parent.name)),
+            key=lambda path: extract_number(path.parent.name),
         )
         copied["prompt"] = copy_if_present(latest_generated[-1] if latest_generated else None, run_dir / "page_prompt.txt")
 
-    summary_current = current_file(passage_dir, "frames_summary.json")
-    if summary_current.exists():
+    summary_current = latest_run / "frames_summary.json" if latest_run and (latest_run / "frames_summary.json").exists() else None
+    if summary_current:
         copied["summary"] = copy_if_present(summary_current, run_dir / "frames_summary.json")
     else:
         latest_summary = sorted(
             [path for path in passage_dir.glob("passage_comic_v*_generated/frames_summary.json") if path.exists()],
-            key=lambda path: extract_number(str(path.parent.name)),
+            key=lambda path: extract_number(path.parent.name),
         )
         copied["summary"] = copy_if_present(latest_summary[-1] if latest_summary else None, run_dir / "frames_summary.json")
+
     return copied
 
 
@@ -227,7 +236,7 @@ def detect_and_merge(run_dir: Path, layout_path: Path, image_path: Path) -> dict
     debug_path = run_dir / "comic_panel_boxes_debug.png"
     write_debug_image(image, boxes, debug_path)
 
-    merged_output = run_dir / "comic_reader_layout.json"
+    merged_output = run_dir / CURRENT_FILES["comic_layout"]
     merged = merge_layout(layout, detection_payload)
     merged["version"] = extract_number(run_dir.name)
     write_json(merged_output, merged)
@@ -255,21 +264,20 @@ def apply_image(
     spec_source = find_spec_source(passage_dir)
     copied = copy_supporting_assets(passage_dir, run_dir, spec_source, resolved_layout)
 
-    target_image = run_dir / "image.png"
+    target_image = run_dir / CURRENT_FILES["comic_image"]
     if source_image is not None:
-        suffix = source_image.suffix.lower()
-        target_image = run_dir / f"image{suffix if suffix in {'.jpg', '.jpeg', '.webp'} else '.png'}"
-        shutil.copy2(source_image, target_image)
+        normalize_comic_png(source_image, target_image)
     else:
         try:
-            target_image = find_image_source(passage_dir, run_dir=run_dir)
+            existing_image = find_image_source(passage_dir, run_dir=run_dir)
+            if existing_image.resolve() != target_image.resolve():
+                normalize_comic_png(existing_image, target_image)
         except FileNotFoundError:
             existing_image = find_image_source(passage_dir)
-            target_image = run_dir / existing_image.name
-            shutil.copy2(existing_image, target_image)
+            normalize_comic_png(existing_image, target_image)
 
     if not target_image.exists():
-        target_image = find_image_source(passage_dir, run_dir=run_dir)
+        raise FileNotFoundError(f"No image found for {passage_dir}")
 
     result = detect_and_merge(run_dir=run_dir, layout_path=resolved_layout, image_path=target_image)
     write_json(
@@ -307,7 +315,7 @@ def parse_args() -> argparse.Namespace:
 
     refresh = subparsers.add_parser(
         "refresh-boxes",
-        help="Re-run detection and merge inside a comic run using its current image or current/image.png fallback.",
+        help="Re-run detection and merge inside a comic run using its current image or current/comic.png fallback.",
     )
     refresh.add_argument("passage", help="Path to a passage directory like story/cp001-p01")
     refresh.add_argument("--layout", help="Optional base layout JSON. Defaults to run base, current/, then legacy fallback.")
@@ -349,7 +357,6 @@ def main() -> None:
             run_path=run_path,
         )
         print(json.dumps(result, ensure_ascii=False, indent=2))
-        return
 
 
 if __name__ == "__main__":
