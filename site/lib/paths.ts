@@ -15,3 +15,12 @@ export function buildPassageHref({ bookId, chapterId, passageId }: PassageRouteP
 export function buildComicHref(params: PassageRouteParams): string {
   return `${buildPassageHref(params)}/comic`;
 }
+
+export function buildSceneHref(params: PassageRouteParams, sceneId: string, frameId?: string): string {
+  const searchParams = new URLSearchParams({ scene: sceneId });
+  if (frameId) {
+    searchParams.set("frame", frameId);
+  }
+
+  return `${buildPassageHref(params)}?${searchParams.toString()}`;
+}

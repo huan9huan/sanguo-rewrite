@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
-import { buildChapterHref, buildPassageHref } from "@/lib/paths";
+import { buildBookHref, buildChapterHref, buildPassageHref } from "@/lib/paths";
 
 type ComicPageProps = {
   params: Promise<{
@@ -51,9 +51,13 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
   return (
     <main className="page-shell passage-page">
       <ModeHeader
+        bookLabel={book.title}
         chapterLabel={chapter.adapted_title_cn || chapter.source_title}
         passageLabel={passage.title}
         compactTitle={passage.title}
+        primaryLink={{ label: book.title, href: buildBookHref(book.id) }}
+        actionLink={{ label: "正文", href: buildPassageHref({ bookId, chapterId, passageId }) }}
+        secondaryLink={{ label: chapter.adapted_title_cn || chapter.source_title, href: buildChapterHref(book.id, chapter.id) }}
       />
 
       <section className="section">
@@ -75,7 +79,11 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
           </article>
 
           <section className="panel comic-focus-panel">
-            <ComicImageBlock passage={passage} />
+            <ComicImageBlock
+              passage={passage}
+              passageHref={buildPassageHref({ bookId, chapterId, passageId })}
+              routeParams={{ bookId, chapterId, passageId }}
+            />
           </section>
         </div>
       </section>

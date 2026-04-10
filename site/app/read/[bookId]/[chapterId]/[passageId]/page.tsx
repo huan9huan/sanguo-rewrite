@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Suspense } from "react";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
+import { PassageSceneFocus } from "@/components/passage-scene-focus";
 import { ReadingBookmarkSync } from "@/components/reading-bookmark-sync";
 import { proseToHtml } from "@/lib/format";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
@@ -58,33 +60,28 @@ export default async function PassagePage({ params }: PassagePageProps) {
   return (
     <main className="page-shell passage-page">
       <ReadingBookmarkSync bookId={bookId} chapterId={chapterId} passageId={passageId} />
+      <Suspense fallback={null}>
+        <PassageSceneFocus />
+      </Suspense>
       <ModeHeader
+        bookLabel={book.title}
         chapterLabel={chapter.adapted_title_cn || chapter.source_title}
         passageLabel={passage.title}
         compactTitle={passage.title}
+        primaryLink={{ label: book.title, href: buildBookHref(book.id) }}
+        actionLink={{ label: "漫画", href: buildComicHref({ bookId, chapterId, passageId }) }}
+        secondaryLink={{ label: chapter.adapted_title_cn || chapter.source_title, href: buildChapterHref(book.id, chapter.id) }}
       />
 
       <section className="section">
         <div className="container passage-single-column">
           <article className="passage-main reader-card">
-            <p className="reader-context-line">
-              <Link href={buildBookHref(book.id)}>{book.title}</Link>
-              {" / "}
-              <Link href={buildChapterHref(book.id, chapter.id)}>{chapter.adapted_title_cn || chapter.source_title}</Link>
-            </p>
-
             <h1 className="section-title passage-page-title">{passage.title}</h1>
-
-            <div className="reader-card-actions">
-              <Link className="button-link button-link-accent" href={buildComicHref({ bookId, chapterId, passageId })}>
-                打开漫画
-              </Link>
-            </div>
 
             <div className="scene-reading-flow">
               {passage.reading_segments.length ? (
                 passage.reading_segments.map((segment) => (
-                  <section className="scene-reading-block" key={segment.id}>
+                  <section className="scene-reading-block" key={segment.id} id={`scene-${segment.scene_id}`} data-scene-id={segment.scene_id}>
                     {segment.paragraphs.length ? (
                       <div className="scene-reading-inline">
                         {segment.paragraphs.map((paragraph, paragraphIndex) => {
@@ -99,11 +96,16 @@ export default async function PassagePage({ params }: PassagePageProps) {
                                 dangerouslySetInnerHTML={{ __html: proseToHtml(paragraph) }}
                               />
                               {placement ? (
-                                <div className="scene-comic-block">
+                                <div
+                                  className="scene-comic-block"
+                                  data-frame-ids={placement.frames.map((frame) => frame.frame_id).join(" ")}
+                                >
                                   <ComicImageBlock
                                     passage={passage}
                                     frames={placement.frames}
                                     comicHref={buildComicHref({ bookId, chapterId, passageId })}
+                                    passageHref={buildPassageHref({ bookId, chapterId, passageId })}
+                                    routeParams={{ bookId, chapterId, passageId }}
                                   />
                                 </div>
                               ) : null}

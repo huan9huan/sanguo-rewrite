@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import type { ChapterManifest } from "@/lib/types";
-import { buildChapterHref, buildPassageHref } from "@/lib/paths";
+import { buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
 
 type ReadingBookmark = {
   bookId: string;
@@ -21,6 +21,48 @@ const BOOKMARK_KEY_PREFIX = "reading-bookmark:";
 
 function getBookmarkKey(bookId: string) {
   return `${BOOKMARK_KEY_PREFIX}${bookId}`;
+}
+
+function toChineseNumber(value: number): string {
+  const digits = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
+
+  if (value <= 10) {
+    if (value === 10) return "十";
+    return digits[value] ?? String(value);
+  }
+
+  if (value < 20) {
+    return `十${digits[value % 10]}`;
+  }
+
+  if (value < 100) {
+    const tens = Math.floor(value / 10);
+    const ones = value % 10;
+    return `${digits[tens]}十${ones ? digits[ones] : ""}`;
+  }
+
+  if (value < 1000) {
+    const hundreds = Math.floor(value / 100);
+    const remainder = value % 100;
+    if (!remainder) {
+      return `${digits[hundreds]}百`;
+    }
+    if (remainder < 10) {
+      return `${digits[hundreds]}百零${digits[remainder]}`;
+    }
+    return `${digits[hundreds]}百${toChineseNumber(remainder)}`;
+  }
+
+  return String(value);
+}
+
+function formatChapterTitle(chapter: ChapterManifest): string {
+  const numeric = Number(chapter.id.replace(/\D/g, ""));
+  if (!numeric) {
+    return chapter.source_title;
+  }
+
+  return `第${toChineseNumber(numeric)}回 ${chapter.source_title}`;
 }
 
 export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps) {
@@ -74,7 +116,6 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
                 <div>
                   <h2 className="panel-title">继续上次阅读</h2>
                   <p className="body-copy">
-                    {bookmarkLabel.chapter.adapted_title_cn || bookmarkLabel.chapter.source_title} ·{" "}
                     {bookmarkLabel.passage.title}
                   </p>
                 </div>
@@ -96,10 +137,6 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
 
       {chapters.map((chapter) => {
         const isExpanded = expandedChapterId === chapter.id;
-        const chapterBookmark =
-          bookmark?.chapterId === chapter.id
-            ? chapter.passages.find((item) => item.passage_id === bookmark.passageId) ?? null
-            : null;
 
         return (
           <section className="section" key={chapter.id}>
@@ -113,13 +150,13 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
                 >
                   <div className="chapter-banner-copy">
                     <p className="eyebrow">章节</p>
-                    <h2 className="chapter-title">{chapter.adapted_title_cn || chapter.source_title}</h2>
+                    <h2 className="chapter-title">{formatChapterTitle(chapter)}</h2>
                     <p className="section-copy">{chapter.goal_cn}</p>
                   </div>
                   <div className="reader-card-actions">
                     <span className="meta-chip">{chapter.passage_count} 节</span>
-                    {chapterBookmark ? <span className="status-chip">上次读到 {chapterBookmark.title}</span> : null}
-                    <span className="button-link button-link-accent">{isExpanded ? "收起" : "展开"}</span>
+                    <span className={`chapter-toggle-icon ${isExpanded ? "chapter-toggle-icon-open" : ""}`} aria-hidden="true" />
+                    <span className="visually-hidden">{isExpanded ? "收起章节" : "展开章节"}</span>
                   </div>
                 </button>
 
@@ -132,22 +169,22 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
                     </div>
                     <div className="chapter-passage-grid">
                       {chapter.passages.map((passage) => {
-                        const isBookmarked = chapterBookmark?.passage_id === passage.passage_id;
                         return (
-                          <article className={`reader-card chapter-passage-card ${isBookmarked ? "chapter-passage-card-active" : ""}`} key={passage.id}>
-                            {isBookmarked ? (
-                              <div className="meta-row">
-                                <span className="status-chip">阅读到这里</span>
-                              </div>
-                            ) : null}
+                          <article className="reader-card chapter-passage-card" key={passage.id}>
                             <h3 className="passage-title">{passage.title}</h3>
                             {passage.teaser ? <p className="body-copy">{passage.teaser}</p> : null}
                             <div className="reader-card-actions">
                               <Link
-                                className="button-link button-link-accent"
+                                className="button-link button-link-secondary"
                                 href={buildPassageHref({ bookId, chapterId: chapter.id, passageId: passage.passage_id })}
                               >
-                                进入正文
+                                正文
+                              </Link>
+                              <Link
+                                className="button-link button-link-secondary"
+                                href={buildComicHref({ bookId, chapterId: chapter.id, passageId: passage.passage_id })}
+                              >
+                                漫画
                               </Link>
                             </div>
                           </article>

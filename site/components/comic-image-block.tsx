@@ -3,11 +3,18 @@
 import { useRouter } from "next/navigation";
 import type { KeyboardEvent } from "react";
 import type { ComicFrame, Passage } from "@/lib/types";
+import { buildSceneHref } from "@/lib/paths";
 
 type ComicImageBlockProps = {
   passage: Passage;
   frames?: ComicFrame[];
   comicHref?: string;
+  passageHref?: string;
+  routeParams?: {
+    bookId: string;
+    chapterId: string;
+    passageId: string;
+  };
 };
 
 function hasPanelBoxes(frames: ComicFrame[]): boolean {
@@ -65,7 +72,34 @@ function formatComicText(frame: ComicFrame): string {
     .trim();
 }
 
-export function ComicImageBlock({ passage, frames: framesOverride, comicHref }: ComicImageBlockProps) {
+function getFrameHref(
+  routeParams: ComicImageBlockProps["routeParams"],
+  frame: ComicFrame,
+  passageHref?: string
+) {
+  if (routeParams && frame.scene_id) {
+    return buildSceneHref(routeParams, frame.scene_id, frame.frame_id);
+  }
+
+  if (!passageHref || !frame.scene_id) {
+    return null;
+  }
+
+  const searchParams = new URLSearchParams({ scene: frame.scene_id });
+  if (frame.frame_id) {
+    searchParams.set("frame", frame.frame_id);
+  }
+
+  return `${passageHref}?${searchParams.toString()}`;
+}
+
+export function ComicImageBlock({
+  passage,
+  frames: framesOverride,
+  comicHref,
+  passageHref,
+  routeParams,
+}: ComicImageBlockProps) {
   const router = useRouter();
   if (!passage.image) {
     return null;
@@ -99,28 +133,56 @@ export function ComicImageBlock({ passage, frames: framesOverride, comicHref }: 
           <div className="visually-hidden">{image.alt}</div>
           {orderedFrames.map((frame, index) => {
             const crop = getPixelCrop(frame, imageWidth, imageHeight);
+            const frameHref = getFrameHref(routeParams, frame, passageHref);
             return (
               <section className="comic-panel-card comic-panel-card-stacked" key={frame.frame_id || `${passage.id}-frame-${index}`}>
-                {crop ? (
-                  <svg
-                    className="comic-panel-image"
-                    viewBox={`${crop.x} ${crop.y} ${crop.width} ${crop.height}`}
-                    preserveAspectRatio="xMidYMid meet"
-                  >
-                    <image href={image.url} x="0" y="0" width={imageWidth} height={imageHeight} />
-                  </svg>
+                {frameHref ? (
+                  <button type="button" className="comic-panel-link" onClick={() => router.push(frameHref)}>
+                    {crop ? (
+                      <svg
+                        className="comic-panel-image"
+                        viewBox={`${crop.x} ${crop.y} ${crop.width} ${crop.height}`}
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <image href={image.url} x="0" y="0" width={imageWidth} height={imageHeight} />
+                      </svg>
+                    ) : (
+                      <div
+                        className="comic-panel-image comic-panel-image-fallback"
+                        style={{
+                          aspectRatio: frame.panel_box ? `${frame.panel_box.w} / ${frame.panel_box.h}` : undefined,
+                          ...getFallbackPanelStyle(frame, image.url),
+                        }}
+                      />
+                    )}
+                    <div className="comic-panel-caption">
+                      <p className="comic-panel-text">{formatComicText(frame)}</p>
+                    </div>
+                  </button>
                 ) : (
-                  <div
-                    className="comic-panel-image comic-panel-image-fallback"
-                    style={{
-                      aspectRatio: frame.panel_box ? `${frame.panel_box.w} / ${frame.panel_box.h}` : undefined,
-                      ...getFallbackPanelStyle(frame, image.url),
-                    }}
-                  />
+                  <>
+                    {crop ? (
+                      <svg
+                        className="comic-panel-image"
+                        viewBox={`${crop.x} ${crop.y} ${crop.width} ${crop.height}`}
+                        preserveAspectRatio="xMidYMid meet"
+                      >
+                        <image href={image.url} x="0" y="0" width={imageWidth} height={imageHeight} />
+                      </svg>
+                    ) : (
+                      <div
+                        className="comic-panel-image comic-panel-image-fallback"
+                        style={{
+                          aspectRatio: frame.panel_box ? `${frame.panel_box.w} / ${frame.panel_box.h}` : undefined,
+                          ...getFallbackPanelStyle(frame, image.url),
+                        }}
+                      />
+                    )}
+                    <div className="comic-panel-caption">
+                      <p className="comic-panel-text">{formatComicText(frame)}</p>
+                    </div>
+                  </>
                 )}
-                <div className="comic-panel-caption">
-                  <p className="comic-panel-text">{formatComicText(frame)}</p>
-                </div>
               </section>
             );
           })}
@@ -133,13 +195,24 @@ export function ComicImageBlock({ passage, frames: framesOverride, comicHref }: 
             <img className="passage-image" src={image.url} alt={image.alt} />
           </div>
           <div className="comic-reader-layout">
-            {frames.map((frame, index) => (
-              <section className="comic-frame-card" key={frame.frame_id || `${passage.id}-frame-${index}`}>
-                <div className="comic-frame-text-list">
-                  <p className="comic-frame-text">{formatComicText(frame)}</p>
-                </div>
-              </section>
-            ))}
+            {frames.map((frame, index) => {
+              const frameHref = getFrameHref(routeParams, frame, passageHref);
+              return (
+                <section className="comic-frame-card" key={frame.frame_id || `${passage.id}-frame-${index}`}>
+                  {frameHref ? (
+                    <button type="button" className="comic-frame-link" onClick={() => router.push(frameHref)}>
+                      <div className="comic-frame-text-list">
+                        <p className="comic-frame-text">{formatComicText(frame)}</p>
+                      </div>
+                    </button>
+                  ) : (
+                    <div className="comic-frame-text-list">
+                      <p className="comic-frame-text">{formatComicText(frame)}</p>
+                    </div>
+                  )}
+                </section>
+              );
+            })}
           </div>
         </>
       ) : null}
