@@ -1,7 +1,7 @@
 {
   "passage_id": "cp001-p03",
   "based_on_text": "current/draft_cn.md",
-  "based_on_comic_layout": "current/comic_reader_layout.json",
+  "based_on_comic": "current/comic.json",
   "version_note": "alignment v1",
   "policy": {
     "goal": "story_first_inline_alignment",

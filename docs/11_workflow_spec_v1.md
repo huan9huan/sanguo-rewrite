@@ -355,7 +355,7 @@
 
 输出：
 
-- `current/comic_passage_alignment.json`
+- `current/comic_alignment.json`
 
 责任：
 
@@ -425,7 +425,7 @@ type PassageCurrentState = {
   has_review: boolean;
   has_approved_cn: boolean;
   has_comic_image: boolean;
-  has_comic_layout: boolean;
+  has_comic_json: boolean;
   has_alignment: boolean;
   reader_text_source: "approved_cn" | "draft_cn" | "none";
 };

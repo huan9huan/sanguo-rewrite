@@ -79,8 +79,8 @@ export default async function PassagePage({ params }: PassagePageProps) {
             <h1 className="section-title passage-page-title">{passage.title}</h1>
 
             <div className="scene-reading-flow">
-              {passage.reading_segments.length ? (
-                passage.reading_segments.map((segment) => (
+              {passage.reading.segments.length ? (
+                passage.reading.segments.map((segment) => (
                   <section className="scene-reading-block" key={segment.id} id={`scene-${segment.scene_id}`} data-scene-id={segment.scene_id}>
                     {segment.paragraphs.length ? (
                       <div className="scene-reading-inline">
@@ -119,7 +119,7 @@ export default async function PassagePage({ params }: PassagePageProps) {
                   </section>
                 ))
               ) : (
-                <div className="reading-body" dangerouslySetInnerHTML={{ __html: proseToHtml(passage.reading_text) }} />
+                <div className="reading-body" dangerouslySetInnerHTML={{ __html: proseToHtml(passage.reading.text) }} />
               )}
             </div>
 

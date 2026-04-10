@@ -101,12 +101,12 @@ export function ComicImageBlock({
   routeParams,
 }: ComicImageBlockProps) {
   const router = useRouter();
-  if (!passage.image) {
+  const image = passage.reading.comic.image;
+  if (!image) {
     return null;
   }
 
-  const image = passage.image;
-  const framesSource = framesOverride ?? passage.comic_layout?.frames ?? [];
+  const framesSource = framesOverride ?? passage.reading.comic.layout?.frames ?? [];
   const frames = Array.isArray(framesSource) ? framesSource : [];
   const usePinnedCaptions = hasPanelBoxes(frames);
   const orderedFrames = usePinnedCaptions ? sortFramesByLayout(frames) : [];
@@ -129,7 +129,7 @@ export function ComicImageBlock({
   return (
     <div className={`passage-image-shell ${comicHref ? "passage-image-shell-actionable" : ""}`} {...interactiveProps}>
       {usePinnedCaptions ? (
-        <div className="comic-panel-stack" role="img" aria-label={passage.image.alt}>
+        <div className="comic-panel-stack" role="img" aria-label={image.alt}>
           <div className="visually-hidden">{image.alt}</div>
           {orderedFrames.map((frame, index) => {
             const crop = getPixelCrop(frame, imageWidth, imageHeight);

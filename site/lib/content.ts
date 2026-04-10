@@ -73,15 +73,23 @@ function resolveContentAssetUrl(relativePath: string): string {
 }
 
 function hydratePassageAssets(passage: Passage): Passage {
-  if (!passage.image?.path) {
+  if (!passage.reading?.comic?.image?.path) {
     return passage;
   }
 
   return {
     ...passage,
-    image: {
-      ...passage.image,
-      url: resolveContentAssetUrl(passage.image.path),
+    reading: {
+      ...passage.reading,
+      comic: {
+        ...passage.reading.comic,
+        image: passage.reading.comic.image?.path
+          ? {
+              ...passage.reading.comic.image,
+              url: resolveContentAssetUrl(passage.reading.comic.image.path),
+            }
+          : passage.reading.comic.image,
+      },
     },
   };
 }

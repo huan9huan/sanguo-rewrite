@@ -1,17 +1,17 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { cache } from "react";
+import { buildPassageReadingModel } from "@/lib/reading-model";
 import type {
   BookManifest,
   BookMeta,
   Chapter,
   ChapterManifest,
   ComicLayout,
-  ComicFrame,
   ComicPassageAlignment,
   Passage,
+  PassageImage,
   PassagePreview,
-  ReadingSegment,
   Review,
   Scene,
   SiteData,
@@ -377,263 +377,6 @@ async function loadComicAlignment(alignmentPath: string | null): Promise<ComicPa
   return readJson<ComicPassageAlignmentFile>(alignmentPath);
 }
 
-function cleanReadingText(text: string): string {
-  return text
-    .replace(/^# .+\n+/m, "")
-    .replace(/\n?---\n?/g, "\n\n---\n\n")
-    .trim();
-}
-
-function splitReadingParagraphs(text: string): string[] {
-  return cleanReadingText(text)
-    .split(/\n{2,}/)
-    .map((block) => block.trim())
-    .filter((block) => Boolean(block) && block !== "---");
-}
-
-function extractKeywords(text: string): string[] {
-  const matches = text.match(/[\u4e00-\u9fff]{2,}|[A-Za-z0-9]{2,}/g) ?? [];
-  const stopwords = new Set([
-    "这个",
-    "一个",
-    "什么",
-    "他们",
-    "你们",
-    "我们",
-    "自己",
-    "没有",
-    "不是",
-    "可以",
-    "然后",
-    "因为",
-    "于是",
-    "有人",
-    "出来",
-    "进去",
-    "事情",
-    "时候",
-    "一天",
-    "两个",
-    "三个",
-    "起来",
-    "就是",
-  ]);
-
-  return Array.from(new Set(matches.map((item) => item.trim()).filter((item) => item.length >= 2 && !stopwords.has(item))));
-}
-
-function sceneProfileText(scene: Scene | undefined, frames: ComicFrame[]): string {
-  const frameText = frames
-    .flatMap((frame) => [frame.title, ...frame.items.map((item) => item.text)])
-    .join(" ");
-
-  return [
-    scene?.goal ?? "",
-    scene?.purpose ?? "",
-    scene?.setting ?? "",
-    ...(scene?.characters ?? []),
-    ...(scene?.must_include ?? []),
-    frameText,
-  ].join(" ");
-}
-
-function countKeywordHits(text: string, keywords: string[]): number {
-  return keywords.reduce((sum, keyword) => sum + (text.includes(keyword) ? Math.min(keyword.length, 6) : 0), 0);
-}
-
-function toHanBigrams(text: string): string[] {
-  const normalized = text.replace(/[^\u4e00-\u9fff]/g, "");
-  const result: string[] = [];
-  for (let index = 0; index < normalized.length - 1; index += 1) {
-    result.push(normalized.slice(index, index + 2));
-  }
-  return result;
-}
-
-function bigramOverlapScore(a: string, b: string): number {
-  const aBigrams = new Set(toHanBigrams(a));
-  const bBigrams = new Set(toHanBigrams(b));
-  let overlap = 0;
-  aBigrams.forEach((item) => {
-    if (bBigrams.has(item)) overlap += 1;
-  });
-  return overlap;
-}
-
-function buildSceneIntervals(paragraphs: string[], scenes: Scene[], comicLayout: ComicLayout | null) {
-  const sceneCount = scenes.length || 1;
-  const framesByScene = Array.from({ length: sceneCount }, (_, index) => {
-    const sceneId = scenes[index]?.id ?? "";
-    return (comicLayout?.frames ?? []).filter((frame) => frame.scene_id === sceneId);
-  });
-  const profileTexts = Array.from({ length: sceneCount }, (_, index) => sceneProfileText(scenes[index], framesByScene[index]));
-  const profiles = profileTexts.map((text) => extractKeywords(text));
-
-  const paragraphScores = paragraphs.map((paragraph, paragraphIndex) =>
-    profiles.map((keywords, sceneIndex) => {
-      const coverage = countKeywordHits(paragraph, keywords);
-      const similarity = bigramOverlapScore(paragraph, profileTexts[sceneIndex]) * 0.6;
-      const positionTarget = sceneCount === 1 ? 0.5 : sceneIndex / (sceneCount - 1);
-      const positionHere = paragraphs.length === 1 ? 0.5 : paragraphIndex / (paragraphs.length - 1);
-      const positionBias = 3 - Math.abs(positionHere - positionTarget) * 4;
-      return coverage + similarity + positionBias;
-    })
-  );
-
-  const prefix = Array.from({ length: sceneCount }, () => new Array(paragraphs.length + 1).fill(0));
-  for (let sceneIndex = 0; sceneIndex < sceneCount; sceneIndex += 1) {
-    for (let paragraphIndex = 0; paragraphIndex < paragraphs.length; paragraphIndex += 1) {
-      prefix[sceneIndex][paragraphIndex + 1] = prefix[sceneIndex][paragraphIndex] + paragraphScores[paragraphIndex][sceneIndex];
-    }
-  }
-
-  const dp = Array.from({ length: sceneCount + 1 }, () => new Array(paragraphs.length + 1).fill(Number.NEGATIVE_INFINITY));
-  const backtrack = Array.from({ length: sceneCount + 1 }, () => new Array(paragraphs.length + 1).fill(0));
-  dp[0][0] = 0;
-
-  for (let sceneIndex = 1; sceneIndex <= sceneCount; sceneIndex += 1) {
-    for (let end = sceneIndex; end <= paragraphs.length; end += 1) {
-      for (let start = sceneIndex - 1; start < end; start += 1) {
-        const previous = dp[sceneIndex - 1][start];
-        if (!Number.isFinite(previous)) continue;
-        const intervalScore = prefix[sceneIndex - 1][end] - prefix[sceneIndex - 1][start];
-        const score = previous + intervalScore;
-        if (score > dp[sceneIndex][end]) {
-          dp[sceneIndex][end] = score;
-          backtrack[sceneIndex][end] = start;
-        }
-      }
-    }
-  }
-
-  const intervals = new Array<{ start: number; end: number }>(sceneCount);
-  let cursor = paragraphs.length;
-  for (let sceneIndex = sceneCount; sceneIndex >= 1; sceneIndex -= 1) {
-    const start = backtrack[sceneIndex][cursor];
-    intervals[sceneIndex - 1] = { start, end: cursor };
-    cursor = start;
-  }
-
-  return { intervals, framesByScene };
-}
-
-function buildComicPlacements(paragraphs: string[], frames: ComicFrame[]) {
-  if (!paragraphs.length || !frames.length) {
-    return [];
-  }
-
-  const paragraphKeywords = paragraphs.map((paragraph) => extractKeywords(paragraph));
-  const placements = new Map<number, ComicFrame[]>();
-  let minIndex = 0;
-
-  frames.forEach((frame, frameIndex) => {
-    const frameText = [frame.title, ...frame.items.map((item) => item.text)].join(" ");
-    const frameKeywords = extractKeywords(frameText);
-    let bestIndex = minIndex;
-    let bestScore = Number.NEGATIVE_INFINITY;
-
-    for (let index = minIndex; index < paragraphs.length; index += 1) {
-      const overlap = paragraphKeywords[index].reduce(
-        (sum, keyword) => sum + (frameKeywords.includes(keyword) ? Math.min(keyword.length, 6) : 0),
-        0
-      );
-      const similarity = bigramOverlapScore(paragraphs[index], frameText) * 0.8;
-      const orderBias = -(index - frameIndex * (paragraphs.length / Math.max(frames.length, 1))) * 0.15;
-      const score = overlap + similarity + orderBias;
-      if (score > bestScore) {
-        bestScore = score;
-        bestIndex = index;
-      }
-    }
-
-    const group = placements.get(bestIndex) ?? [];
-    group.push(frame);
-    placements.set(bestIndex, group);
-    minIndex = bestIndex;
-  });
-
-  return Array.from(placements.entries())
-    .sort((a, b) => a[0] - b[0])
-    .map(([after_paragraph, groupedFrames]) => ({ after_paragraph, frames: groupedFrames }));
-}
-
-function buildReadingSegments(
-  passageId: string,
-  scenes: Scene[],
-  readingText: string,
-  comicLayout: ComicLayout | null
-): ReadingSegment[] {
-  const paragraphs = splitReadingParagraphs(readingText);
-  const sceneCount = scenes.length || 1;
-  const safeParagraphs = paragraphs.length ? paragraphs : [cleanReadingText(readingText)];
-  const { intervals, framesByScene } = buildSceneIntervals(safeParagraphs, scenes, comicLayout);
-
-  return Array.from({ length: sceneCount }, (_, index) => {
-    const scene = scenes[index];
-    const sceneId = scene?.id ?? `${passageId}-scene-${index + 1}`;
-    const interval = intervals[index] ?? { start: index, end: index + 1 };
-    const sceneParagraphs = safeParagraphs.slice(interval.start, interval.end).filter(Boolean);
-    const comicFrames = framesByScene[index] ?? [];
-
-    return {
-      id: `${passageId}-segment-${index + 1}`,
-      scene_id: sceneId,
-      scene_title: scene?.goal || scene?.purpose || `Scene ${index + 1}`,
-      scene_type: scene?.type || "",
-      text: sceneParagraphs.join("\n\n"),
-      paragraph_offset: interval.start,
-      paragraphs: sceneParagraphs,
-      comic_placements: buildComicPlacements(sceneParagraphs, comicFrames),
-      comic_frames: comicFrames,
-    };
-  }).filter((segment) => segment.text || segment.comic_frames.length);
-}
-
-function applyComicAlignment(
-  segments: ReadingSegment[],
-  alignment: ComicPassageAlignment | null,
-  comicLayout: ComicLayout | null
-): ReadingSegment[] {
-  if (!alignment || !comicLayout) {
-    return segments;
-  }
-
-  const frameById = new Map(comicLayout.frames.map((frame) => [frame.frame_id, frame]));
-
-  return segments.map((segment) => {
-    const placements = alignment.placements
-      .filter((placement) => placement.scene_id === segment.scene_id)
-      .map((placement) => ({
-        after_paragraph: Math.max(
-          0,
-          Math.min(
-            placement.after_paragraph_index - segment.paragraph_offset,
-            Math.max(segment.paragraphs.length - 1, 0)
-          )
-        ),
-        frames: [frameById.get(placement.frame_id)].filter((frame): frame is ComicFrame => Boolean(frame)),
-      }))
-      .filter((placement) => placement.frames.length);
-
-    if (!placements.length) {
-      return segment;
-    }
-
-    const grouped = new Map<number, ComicFrame[]>();
-    placements.forEach((placement) => {
-      const current = grouped.get(placement.after_paragraph) ?? [];
-      grouped.set(placement.after_paragraph, [...current, ...placement.frames]);
-    });
-
-    return {
-      ...segment,
-      comic_placements: Array.from(grouped.entries())
-        .sort((a, b) => a[0] - b[0])
-        .map(([after_paragraph, frames]) => ({ after_paragraph, frames })),
-    };
-  });
-}
-
 function buildPassagePreview(passage: Passage): PassagePreview {
   return {
     id: passage.id,
@@ -643,9 +386,9 @@ function buildPassagePreview(passage: Passage): PassagePreview {
     title: passage.title,
     status: passage.status,
     summary_markdown: passage.summary_markdown,
-    teaser: getPassageTeaser(passage.reading_text || passage.approved_cn.text || passage.draft.text),
-    has_comic: Boolean(passage.image || passage.comic_layout?.frames?.length),
-    image: passage.image,
+    teaser: getPassageTeaser(passage.reading.text),
+    has_comic: Boolean(passage.reading.comic.image || passage.reading.comic.layout?.frames?.length),
+    image: passage.reading.comic.image,
   };
 }
 
@@ -692,15 +435,27 @@ async function loadPassage(passageDir: string, bookId: string): Promise<Passage>
   const imageMetadata = imagePath ? await readImageMetadata(imagePath) : { width: null, height: null };
   const draftText = latestDraftPath ? await readText(latestDraftPath) : "";
   const approvedText = latestApprovedPath ? await readText(latestApprovedPath) : "";
-  const readingText = approvedText || draftText;
   const scenes = await loadSceneSpecs(passageDir);
   const comicLayout = await loadComicLayout(comicLayoutPath);
   const comicAlignment = await loadComicAlignment(comicAlignmentPath);
-  const readingSegments = applyComicAlignment(
-    buildReadingSegments(passageId, scenes, readingText, comicLayout),
+  const image: PassageImage | null = imagePath
+    ? {
+        path: path.relative(passageDir, imagePath),
+        url: `/api/story-image/${passageId}`,
+        alt: `${title} image`,
+        width: imageMetadata.width,
+        height: imageMetadata.height,
+      }
+    : null;
+  const reading = buildPassageReadingModel({
+    draftText,
+    approvedText,
+    image,
+    comicLayout,
     comicAlignment,
-    comicLayout
-  );
+    passageId,
+    scenes,
+  });
 
   return {
     id: passageId,
@@ -734,19 +489,7 @@ async function loadPassage(passageDir: string, bookId: string): Promise<Passage>
       path: latestApprovedPath ? path.relative(passageDir, latestApprovedPath) : null,
       text: approvedText,
     },
-    image: imagePath
-      ? {
-          path: path.relative(passageDir, imagePath),
-          url: `/api/story-image/${passageId}`,
-          alt: `${title} image`,
-          width: imageMetadata.width,
-          height: imageMetadata.height,
-        }
-      : null,
-    comic_layout: comicLayout,
-    comic_alignment: comicAlignment,
-    reading_text: readingText,
-    reading_segments: readingSegments,
+    reading,
     review: await loadReview(latestReviewPath),
     scenes,
     source: {

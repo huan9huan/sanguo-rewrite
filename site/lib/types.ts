@@ -94,10 +94,21 @@ export type ReadingSegment = {
   comic_frames: ComicFrame[];
 };
 
+export type PassageReadingModel = {
+  source: "approved_cn" | "draft_cn" | "none";
+  text: string;
+  comic: {
+    image: PassageImage | null;
+    layout: ComicLayout | null;
+    alignment: ComicPassageAlignment | null;
+  };
+  segments: ReadingSegment[];
+};
+
 export type ComicPassageAlignment = {
   passage_id: string;
   based_on_text: string;
-  based_on_comic_layout: string;
+  based_on_comic: string;
   version_note: string;
   policy: {
     goal: string;
@@ -140,11 +151,7 @@ export type Passage = {
     path: string | null;
     text: string;
   };
-  image: PassageImage | null;
-  comic_layout: ComicLayout | null;
-  comic_alignment: ComicPassageAlignment | null;
-  reading_text: string;
-  reading_segments: ReadingSegment[];
+  reading: PassageReadingModel;
   review: Review | null;
   scenes: Scene[];
   source: {
