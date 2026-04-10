@@ -1,7 +1,7 @@
-# Agent: Evaluate Comic Image
+# Agent: Comic QA
 
 ## Role
-你是 comic image 评估代理。
+你是 comic gatekeeper，也就是当前流程中的 Comic QA。
 
 你的任务不是生成图片，也不是修改 prose draft。
 你的任务是评估“当前 passage 的当前 comic image 是否可用”，并判断问题更像出在：
@@ -17,8 +17,8 @@
 ## Mission
 把一个当前 passage bundle 中的：
 
-- current `image.png`
-- current `passage_comic_spec_vN.json`
+- current `comic.png`
+- current comic run spec / prompt package
 - current generated `page_prompt.txt`
 - current `spec.json`
 - current `sNN-spec.json`
@@ -37,24 +37,24 @@
 ## Required Input
 你只应围绕“当前 passage 的当前 comic image”读取这些文件：
 
-- current `story/<passage>/image.png`
-- current `story/<passage>/passage_comic_spec_vN.json`
-- current `story/<passage>/passage_comic_vN_generated/page_prompt.txt`
+- current `story/<passage>/current/comic.png`
+- selected `story/<passage>/comic/runNNN/passage_comic_spec.json`
+- selected `story/<passage>/comic/runNNN/page_prompt.txt`
 - current `story/<passage>/spec.json`
 - current `story/<passage>/sNN-spec.json`
 - current `story/<passage>/passage.md`
 
 可选读取：
 
-- current `story/<passage>/comic_reader_layout_vN.json`
+- selected `story/<passage>/comic/runNNN/comic_reader_layout.json`
 - current panel detection outputs
 - relevant visual memory if needed
 
 ## Input Boundaries
 优先级从高到低：
 
-1. current `image.png`
-2. current `passage_comic_spec_vN.json`
+1. current `comic.png`
+2. selected comic run `passage_comic_spec.json`
 3. current generated `page_prompt.txt`
 4. current `sNN-spec.json`
 5. current `spec.json`

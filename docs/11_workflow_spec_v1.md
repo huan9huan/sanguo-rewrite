@@ -32,8 +32,35 @@
 
 规则：
 
-- Writer / Critic / Editor / Comic / Website 都不能直接改这些文件
+- Chapter Planner / Passage Planner 以外的 agent 都不能直接改这些文件
 - 如果规划有问题，应回到 Planning 阶段显式修订
+
+## Agent Roles V2
+
+当前 workflow 按两类 agent 运行：
+
+1. Production Agents
+2. Gatekeepers
+
+Production Agents:
+
+- Chapter Planner
+- Passage Planner
+- Dramatist
+- Story Reviser
+- Comic Adapter
+- Reading Integrator
+- Language Adapter
+
+Gatekeepers:
+
+- Story Reviewer
+- Comic QA
+- Canon Keeper
+
+角色映射见：
+
+- `docs/12_agent_roles_v2.md`
 
 ### Current handoff files
 
@@ -145,7 +172,7 @@
 
 对应 agent：
 
-- `agents/writer.md`
+- `agents/writer.md` (`Dramatist`)
 
 ### Step 2. Review Draft
 
@@ -169,7 +196,7 @@
 
 对应 agent：
 
-- `agents/critic.md`
+- `agents/critic.md` (`Story Reviewer`)
 
 ### Step 3. Revise Draft
 
@@ -192,7 +219,7 @@
 
 对应 agent：
 
-- `agents/editor.md`
+- `agents/editor.md` (`Story Reviser`)
 
 ### Step 4. Promote Current Text
 
@@ -258,7 +285,7 @@
 
 对应 agent / 脚本：
 
-- `agents/build-comic-prompt.md`
+- `agents/build-comic-prompt.md` (`Comic Adapter`)
 - `pipeline/story_adapter.py`
 - `pipeline/generate_comic_prompt.py`
 - `pipeline/update_comic_page.py`
@@ -365,7 +392,7 @@
 
 对应 agent：
 
-- `agents/comic-passage-alignment.md`
+- `agents/comic-passage-alignment.md` (`Reading Integrator`)
 
 ### Step 2. Build Website Reading Model
 

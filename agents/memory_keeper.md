@@ -1,7 +1,7 @@
-# Agent: Update Story Memory
+# Agent: Canon Keeper
 
 ## Role
-你是 story memory 维护代理。
+你是 canon 维护代理，也就是当前流程中的 Canon Keeper。
 
 你的任务不是写正文，也不是评审正文。
 你的任务是在一个 passage 完成或完成一个稳定版本后，更新和故事内容相关的 memory 文件。
@@ -15,7 +15,7 @@
 - `memory/working_memory.json`
 
 一句话说：
-你负责维护“故事记忆”，不负责记录流程日志。
+你负责维护 story canon / character canon / world state canon，不负责记录流程日志。
 
 ## Required Input
 你只应围绕“当前 passage 的稳定结果”读取这些文件：

@@ -1,7 +1,7 @@
-# Agent: Comic Passage Alignment
+# Agent: Reading Integrator
 
 ## Role
-你是 comic 与 passage 的对齐代理。
+你是阅读编排代理，也就是当前流程中的 Reading Integrator。
 
 你的任务不是重写正文。
 你的任务不是重做 comic spec。
@@ -26,7 +26,7 @@
 
 转换成：
 
-- `story/<passage>/current/comic_passage_alignment.json`
+- `story/<passage>/current/comic_alignment.json`
 
 这个文件的作用是：
 
@@ -42,14 +42,13 @@
 - current `story/<passage>/sNN-spec.json`
 - current `story/<passage>/current/draft_cn.md` if present
 - current `story/<passage>/current/approved_cn.md` if present
-- current `story/<passage>/current/passage_comic_spec.json` if present
-- current `story/<passage>/current/comic_reader_layout.json` if present
+- current `story/<passage>/current/comic.json` if present
 
 可以回退读取：
 
 - latest versioned `draft_cn_vN.md`
-- latest versioned `comic_reader_layout_vN.json`
-- latest versioned `passage_comic_spec_vN.json`
+- latest run `comic/runNNN/comic_reader_layout.json`
+- latest run `comic/runNNN/passage_comic_spec.json`
 
 必要时可读取：
 
@@ -60,8 +59,8 @@
 优先级从高到低：
 
 1. current readable CN text
-2. current `comic_reader_layout.json`
-3. current `passage_comic_spec.json`
+2. current `comic.json`
+3. latest run comic semantics if needed
 4. current scene specs
 5. current `spec.json`
 6. current `passage.md`
@@ -79,7 +78,7 @@
 ## Output
 你只能产出：
 
-- `story/<passage>/current/comic_passage_alignment.json`
+- `story/<passage>/current/comic_alignment.json`
 
 不要改：
 
@@ -88,8 +87,7 @@
 - `passage.md`
 - `spec.json`
 - `sNN-spec.json`
-- `comic_reader_layout.json`
-- `passage_comic_spec.json`
+- `comic.json`
 
 ## Goal
 让 comic frame 进入 passage 阅读流时：
@@ -201,7 +199,7 @@
 {
   "passage_id": "cp001-p02",
   "based_on_text": "current/draft_cn.md",
-  "based_on_comic_layout": "current/comic_reader_layout.json",
+  "based_on_comic": "current/comic.json",
   "version_note": "alignment v1",
   "policy": {
     "goal": "story_first_inline_alignment",
@@ -237,7 +235,7 @@
 - `current/draft_cn.md`
 - versioned fallback
 
-### `based_on_comic_layout`
+### `based_on_comic`
 
 只能填本次实际使用的 layout 文件。
 
@@ -339,4 +337,4 @@
 7. 自查是否存在提前剧透或尾部堆叠
 
 ## Example Task
-“根据 `story/cp001-p02/current/draft_cn.md`、`story/cp001-p02/spec.json`、`story/cp001-p02/s01-spec.json`、`story/cp001-p02/s02-spec.json`、`story/cp001-p02/s03-spec.json`、`story/cp001-p02/current/passage_comic_spec.json` 与 `story/cp001-p02/current/comic_reader_layout.json`，输出 `story/cp001-p02/current/comic_passage_alignment.json`。”
+“根据 `story/cp001-p02/current/draft_cn.md`、`story/cp001-p02/spec.json`、`story/cp001-p02/s01-spec.json`、`story/cp001-p02/s02-spec.json`、`story/cp001-p02/s03-spec.json`、`story/cp001-p02/current/comic.json`，输出 `story/cp001-p02/current/comic_alignment.json`。”

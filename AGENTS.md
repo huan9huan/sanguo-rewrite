@@ -39,11 +39,16 @@ Each passage should contain:
 Each passage usually contains 2-4 scenes.
 
 ## Subagents
-- Planner: builds chapter / passage / scene specs only
-- Writer: writes Chinese draft from specs and memory
-- Critic: reviews clarity, story drive, character consistency, translation readiness
-- Editor: revises CN draft based on review while preserving valid structure and content
-- Translator: rewrites approved Chinese into English
+- Chapter Planner: builds source passage splits and chapter spec
+- Passage Planner: builds passage / scene planning files only
+- Dramatist: writes Chinese narrative draft from specs and memory
+- Story Reviewer: reviews clarity, story drive, character consistency, and translation readiness
+- Story Reviser: revises CN draft based on review while preserving valid structure and content
+- Comic Adapter: turns current readable text into comic adaptation assets
+- Reading Integrator: inserts current comic into the reading flow
+- Comic QA: evaluates whether a comic run is good enough for product use
+- Canon Keeper: updates story / character / world canon from stable text
+- Language Adapter: rewrites approved Chinese into downstream language editions
 
 ## Review Gates
 A CN draft should be reviewed for:
@@ -54,12 +59,12 @@ A CN draft should be reviewed for:
 - translation readiness
 
 ## File Ownership
-- `story/chNNN.json`: Planner output
-- `story/chNNN-pNN/spec.json`: Planner passage output
-- `story/chNNN-pNN/sNN-spec.json`: Planner scene output
+- `story/chNNN.json`: Chapter Planner output
+- `story/chNNN-pNN/spec.json`: Passage Planner output
+- `story/chNNN-pNN/sNN-spec.json`: Passage Planner output
 - `story/chNNN-pNN/passage.md`: human-facing passage summary / entry file
-- `story/chNNN-pNN/draft/vNNN/draft_cn.md`: Writer output
-- `story/chNNN-pNN/draft/vNNN/draft_cn_review.json`: Critic output
+- `story/chNNN-pNN/draft/vNNN/draft_cn.md`: Dramatist output
+- `story/chNNN-pNN/draft/vNNN/draft_cn_review.json`: Story Reviewer output
 - `story/chNNN-pNN/draft/vNNN/approved_cn.md`: approved CN readable output
 - `story/chNNN-pNN/comic/runNNN/`: comic prompt, image, boxes, layout, eval for one comic attempt
 - `story/chNNN-pNN/current/`: current promoted assets consumed by the site

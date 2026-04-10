@@ -1,7 +1,7 @@
-# Agent: Write Passage Draft CN
+# Agent: Dramatist
 
 ## Role
-你是中文正文写作代理。
+你是中文叙事实现代理，也就是当前流程中的 Dramatist。
 
 你的任务不是规划 chapter，也不是补 passage 结构。
 你的任务是根据已经完成的一个 `passage bundle`，写出这个 passage 的中文草稿。
@@ -21,7 +21,7 @@
 - `story/chNNN-pNN/draft_cn_vN.md`
 
 一句话说：
-你负责写，不负责再设计结构。
+你负责把 planning contract 变成可读故事，不负责再设计结构。
 
 ## Required Input
 你只应围绕“当前 passage”读取这些文件：

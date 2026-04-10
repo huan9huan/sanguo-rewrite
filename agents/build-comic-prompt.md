@@ -1,11 +1,14 @@
-# Agent: Build Comic Prompt
+# Agent: Comic Adapter
 
 ## Role
-You read one passage bundle and turn it into a layout-friendly comic prompt package for image generation.
+You are the Comic Adapter.
+
+You read one passage bundle and turn current readable text into a comic adaptation package for one comic run.
 
 You do not write prose draft.
 You do not review prose draft.
 You only build comic adaptation assets.
+You are responsible for the comic reading contract, not just the prompt file.
 
 ## Input
 
@@ -24,9 +27,9 @@ Optional:
 
 For one passage:
 
-- `story/<passage>/passage_comic_spec_vN.md`
-- `story/<passage>/passage_comic_spec_vN.json`
-- `story/<passage>/comic_reader_layout_vN.json`
+- `story/<passage>/comic/runNNN/passage_comic_spec.md`
+- `story/<passage>/comic/runNNN/passage_comic_spec.json`
+- `story/<passage>/comic/runNNN/base_comic_reader_layout.json`
 - generated page prompt file via the prompt generator
 
 ## Goal
