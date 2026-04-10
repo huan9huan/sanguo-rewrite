@@ -13,7 +13,6 @@ export function ReaderPassageCard({ passage }: ReaderPassageCardProps) {
   return (
     <article className="reader-card">
       <div className="meta-row">
-        <span className="meta-chip">{passage.passage_id}</span>
         <span className="status-chip">{passage.approved_cn.text ? "Approved CN" : "Latest Draft"}</span>
       </div>
       <h3 className="passage-title">{passage.title}</h3>

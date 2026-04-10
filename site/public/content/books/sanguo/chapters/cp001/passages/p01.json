@@ -1,5 +1,6 @@
 {
   "id": "cp001-p01",
+  "book_id": "sanguo",
   "chapter_id": "cp001",
   "passage_id": "p01",
   "title": "乱世序幕",
@@ -44,8 +45,8 @@
     "text": ""
   },
   "image": {
-    "path": "assets/passages/cp001-p01.jpg",
-    "url": "/assets/passages/cp001-p01.jpg",
+    "path": "books/sanguo/chapters/cp001/assets/p01.jpg",
+    "url": "/books/sanguo/chapters/cp001/assets/p01.jpg",
     "alt": "乱世序幕 image",
     "width": 765,
     "height": 1024

@@ -115,8 +115,15 @@ export type ComicPassageAlignment = {
   notes: string[];
 };
 
+export type PassageRouteParams = {
+  bookId: string;
+  chapterId: string;
+  passageId: string;
+};
+
 export type Passage = {
   id: string;
+  book_id: string;
   chapter_id: string;
   passage_id: string;
   title: string;
@@ -146,15 +153,56 @@ export type Passage = {
   };
 };
 
-export type Chapter = {
+export type PassagePreview = {
   id: string;
+  book_id: string;
+  chapter_id: string;
+  passage_id: string;
+  title: string;
+  status: string;
+  summary_markdown: string;
+  teaser: string;
+  has_comic: boolean;
+  image: PassageImage | null;
+};
+
+export type ChapterSummary = {
+  id: string;
+  book_id: string;
   source_title: string;
   adapted_title_cn: string;
   viewpoint: string[];
   goal_cn: string;
   passage_count: number;
   global_arc: Record<string, unknown>;
+  passage_ids: string[];
+};
+
+export type Chapter = ChapterSummary & {
   passages: Passage[];
+};
+
+export type ChapterManifest = ChapterSummary & {
+  passages: PassagePreview[];
+};
+
+export type BookMeta = {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  total_chapter_count: number | null;
+  available_chapter_count: number;
+  chapter_ids: string[];
+  chapter_count: number;
+};
+
+export type BookManifest = BookMeta & {
+  chapters: ChapterSummary[];
+};
+
+export type Book = Omit<BookManifest, "chapters"> & {
+  chapters: Chapter[];
 };
 
 export type WorkingMemory = {
@@ -185,7 +233,7 @@ export type SiteData = {
       approved_cn: number;
     };
   };
-  chapters: Chapter[];
+  books: Book[];
   memory: {
     story_index: StoryIndex;
     working_memory: WorkingMemory;

@@ -1,0 +1,118 @@
+{
+  "id": "cp001",
+  "book_id": "sanguo",
+  "source_title": "宴桃园豪杰三结义 斩黄巾英雄首立功",
+  "adapted_title_cn": "桃园结义",
+  "viewpoint": [
+    "liu_bei",
+    "guan_yu",
+    "zhang_fei"
+  ],
+  "goal_cn": "在乱世背景下，让刘备、关羽、张飞三位英雄相遇、结义、初上战场，建立核心人物关系，同时暗示曹操、董卓等后续重要人物的登场",
+  "passage_count": 5,
+  "global_arc": {
+    "起点": "天下大乱，黄巾起义，幽州出榜招兵",
+    "终点": "三兄弟浴血救下董卓，却因白身被轻视，张飞怒欲杀人",
+    "核心变化": "三个无名之辈结为生死兄弟，在战场上证明了自己，却随即遭遇功臣被替、恩将仇报的现实打击",
+    "章节驱动力": "乱世造英雄——制度崩坏给了普通人机会，但也让他们直面权力世界的冷酷"
+  },
+  "passage_ids": [
+    "cp001-p01",
+    "cp001-p02",
+    "cp001-p03",
+    "cp001-p04",
+    "cp001-p05"
+  ],
+  "passages": [
+    {
+      "id": "cp001-p01",
+      "book_id": "sanguo",
+      "chapter_id": "cp001",
+      "passage_id": "p01",
+      "title": "乱世序幕",
+      "status": "spec_draft",
+      "summary_markdown": "- 目标：建立天下将乱的宏大背景，从朝堂腐败到民间暴动，为英雄出场铺设舞台。\n- 冲突：朝廷腐败无能 vs 民间力量聚集成势。\n- 转折：黄巾起义爆发，朝廷被迫在全国招兵。\n- 收束：幽州出榜招兵——这张榜文即将引出本卷的主角。",
+      "teaser": "滚滚长江东逝水，浪花淘尽英雄。",
+      "has_comic": true,
+      "image": {
+        "path": "books/sanguo/chapters/cp001/assets/p01.jpg",
+        "url": "/books/sanguo/chapters/cp001/assets/p01.jpg",
+        "alt": "乱世序幕 image",
+        "width": 765,
+        "height": 1024
+      }
+    },
+    {
+      "id": "cp001-p02",
+      "book_id": "sanguo",
+      "chapter_id": "cp001",
+      "passage_id": "p02",
+      "title": "英雄叹息",
+      "status": "spec_draft",
+      "summary_markdown": "- 目标：引出刘备——皇室后裔、胸怀大志、却贩屦织席的落魄英雄，以及他与张飞的初次相遇。\n- 冲突：汉室宗亲的身份 vs 贫困潦倒的现实；想破贼安民 vs 力不能及。\n- 转折：张飞厉声一喝，将刘备的叹息扭转为行动契机——\"吾颇有资财，当招募乡勇\"。\n- 收束：二人同入村店饮酒——下一幕关羽即将登场。",
+      "teaser": "榜文贴到涿县的那天，街上多了一个看榜的人。",
+      "has_comic": true,
+      "image": {
+        "path": "books/sanguo/chapters/cp001/assets/p02.jpg",
+        "url": "/books/sanguo/chapters/cp001/assets/p02.jpg",
+        "alt": "英雄叹息 image",
+        "width": 572,
+        "height": 1024
+      }
+    },
+    {
+      "id": "cp001-p03",
+      "book_id": "sanguo",
+      "chapter_id": "cp001",
+      "passage_id": "p03",
+      "title": "桃园结义",
+      "status": "spec_draft",
+      "summary_markdown": "- 目标：关羽登场、三人志趣相投、桃园结义、起兵投军——本章的情感高潮和行动起点。\n- 冲突：三个无名之人想救天下，但一无兵二无马三无门路——光有热血够吗？\n- 转折：商人的意外赠礼让\"空有壮志\"变成\"兵甲俱全\"，天意相助的信号。\n- 收束：刘焉认刘备为侄——三兄弟从村野草莽踏入体制，但白身身份的隐患已埋下。",
+      "teaser": "门口的影子变成了一个人。",
+      "has_comic": true,
+      "image": {
+        "path": "books/sanguo/chapters/cp001/assets/p03.jpeg",
+        "url": "/books/sanguo/chapters/cp001/assets/p03.jpeg",
+        "alt": "桃园结义 image",
+        "width": 572,
+        "height": 1024
+      }
+    },
+    {
+      "id": "cp001-p04",
+      "book_id": "sanguo",
+      "chapter_id": "cp001",
+      "passage_id": "p04",
+      "title": "初试锋芒",
+      "status": "draft_v2",
+      "summary_markdown": "- 目标：三兄弟第一次上战场，从桃园里的热血变成战场上的刀枪。大兴山正面击破展示武力，青州之战展示刘备的战术头脑。\n- 冲突：五百对五万——兵力悬殊，但他们没退路。\n- 转折：刘备的分兵计策——读者第一次看到他的脑子，不只是有志向，还会打仗。\n- 收束：投奔恩师卢植，从地方小仗走向天下大局，但更大的战事在颍川等他们。",
+      "teaser": "没过几天，消息来了。",
+      "has_comic": true,
+      "image": {
+        "path": "books/sanguo/chapters/cp001/assets/p04.jpeg",
+        "url": "/books/sanguo/chapters/cp001/assets/p04.jpeg",
+        "alt": "初试锋芒 image",
+        "width": 687,
+        "height": 1024
+      }
+    },
+    {
+      "id": "cp001-p05",
+      "book_id": "sanguo",
+      "chapter_id": "cp001",
+      "passage_id": "p05",
+      "title": "英雄与小人",
+      "status": "draft_v2",
+      "summary_markdown": "- 目标：全章收束。白身暗线引爆——三兄弟浴血救董卓却因白身被轻视。张飞的怒火是全章积蓄的所有委屈的出口。曹操首次登场，暗示另一种'英雄'的模样。\n- 冲突：有能力 vs 没身份——功劳在'白身'两个字面前一文不值。\n- 转折：救了董卓以为会改变什么，但一句'现居何职'打回原形。\n- 收束：张飞提刀要杀董卓——全章最炸的结尾。杀不杀？",
+      "teaser": "赶到颍川时，仗已经打完了。",
+      "has_comic": true,
+      "image": {
+        "path": "books/sanguo/chapters/cp001/assets/p05.jpg",
+        "url": "/books/sanguo/chapters/cp001/assets/p05.jpg",
+        "alt": "英雄与小人 image",
+        "width": 572,
+        "height": 1024
+      }
+    }
+  ]
+}

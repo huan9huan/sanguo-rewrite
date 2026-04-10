@@ -52,7 +52,8 @@ function getPixelCrop(frame: ComicFrame, imageWidth: number, imageHeight: number
 }
 
 function formatComicText(frame: ComicFrame): string {
-  return frame.items
+  const items = Array.isArray(frame.items) ? frame.items : [];
+  return items
     .map((item) => (item.kind === "speech" ? `“${item.text}”` : item.text))
     .map((text) =>
       text
@@ -71,7 +72,8 @@ export function ComicImageBlock({ passage, frames: framesOverride, comicHref }: 
   }
 
   const image = passage.image;
-  const frames = framesOverride ?? passage.comic_layout?.frames ?? [];
+  const framesSource = framesOverride ?? passage.comic_layout?.frames ?? [];
+  const frames = Array.isArray(framesSource) ? framesSource : [];
   const usePinnedCaptions = hasPanelBoxes(frames);
   const orderedFrames = usePinnedCaptions ? sortFramesByLayout(frames) : [];
   const imageWidth = image.width ?? 0;

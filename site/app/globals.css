@@ -649,6 +649,73 @@ div {
   padding: 26px;
 }
 
+.chapter-card {
+  display: grid;
+  gap: 0;
+}
+
+.chapter-card-expanded {
+  gap: 18px;
+}
+
+.chapter-banner-button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 0;
+  cursor: pointer;
+}
+
+.chapter-banner-copy {
+  display: grid;
+  gap: 4px;
+}
+
+.chapter-banner-button .button-link {
+  pointer-events: none;
+}
+
+.chapter-expand-body {
+  display: grid;
+  gap: 16px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border);
+}
+
+.chapter-expand-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.chapter-passage-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.chapter-passage-card {
+  padding: 20px;
+  border-radius: var(--radius-md);
+}
+
+.chapter-passage-card-active {
+  border-color: rgba(201, 100, 66, 0.28);
+  background: linear-gradient(180deg, rgba(255, 247, 241, 0.95), rgba(250, 249, 245, 0.96));
+}
+
+.bookmark-panel {
+  padding: 24px;
+}
+
+.bookmark-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
 .reader-stack,
 .creator-stack {
   display: grid;
@@ -876,7 +943,8 @@ div {
   .thread-grid,
   .detail-grid,
   .spec-grid,
-  .review-grid {
+  .review-grid,
+  .chapter-passage-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -920,6 +988,15 @@ div {
   .reader-page .chapter-banner {
     padding: 0 6px;
     gap: 12px;
+  }
+
+  .reader-page .chapter-expand-body {
+    padding: 14px 6px 0;
+  }
+
+  .bookmark-row {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .reader-page .reader-stack {

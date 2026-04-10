@@ -74,26 +74,30 @@ export default async function CreatorPage() {
         </div>
       </section>
 
-      {data.chapters.map((chapter) => (
-        <section className="section" key={chapter.id}>
-          <div className="container chapter-shell">
-            <div className="chapter-banner">
-              <div>
-                <p className="eyebrow">Chapter {chapter.id.toUpperCase()}</p>
-                <h2 className="chapter-title">{chapter.adapted_title_cn || chapter.source_title}</h2>
-                <p className="section-copy">{chapter.goal_cn}</p>
+      {data.books.map((book) =>
+        book.chapters.map((chapter) => (
+          <section className="section" key={`${book.id}-${chapter.id}`}>
+            <div className="container chapter-shell">
+              <div className="chapter-banner">
+                <div>
+                  <p className="eyebrow">
+                    {book.title} · 章节
+                  </p>
+                  <h2 className="chapter-title">{chapter.adapted_title_cn || chapter.source_title}</h2>
+                  <p className="section-copy">{chapter.goal_cn}</p>
+                </div>
+                <div className="meta-chip">{chapter.passages.length} passages</div>
               </div>
-              <div className="meta-chip">{chapter.passages.length} passages</div>
-            </div>
 
-            <div className="creator-stack">
-              {chapter.passages.map((passage) => (
-                <CreatorPassageCard key={passage.id} passage={passage} />
-              ))}
+              <div className="creator-stack">
+                {chapter.passages.map((passage) => (
+                  <CreatorPassageCard key={passage.id} passage={passage} />
+                ))}
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        ))
+      )}
     </main>
   );
 }

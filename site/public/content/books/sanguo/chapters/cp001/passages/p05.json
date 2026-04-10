@@ -1,5 +1,6 @@
 {
   "id": "cp001-p05",
+  "book_id": "sanguo",
   "chapter_id": "cp001",
   "passage_id": "p05",
   "title": "英雄与小人",
@@ -59,8 +60,8 @@
     "text": ""
   },
   "image": {
-    "path": "assets/passages/cp001-p05.jpg",
-    "url": "/assets/passages/cp001-p05.jpg",
+    "path": "books/sanguo/chapters/cp001/assets/p05.jpg",
+    "url": "/books/sanguo/chapters/cp001/assets/p05.jpg",
     "alt": "英雄与小人 image",
     "width": 572,
     "height": 1024

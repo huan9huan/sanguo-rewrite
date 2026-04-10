@@ -1,18 +1,22 @@
 import { promises as fs } from "fs";
 import path from "path";
 import { cache } from "react";
-import type { Chapter, Passage, SiteData } from "@/lib/types";
-import { getRepoAllPassages, getRepoPassageById, getRepoSiteData } from "@/lib/repo-content";
-
-type ContentManifestChapter = Omit<Chapter, "passages"> & {
-  passage_ids: string[];
-};
+import type { BookManifest, BookMeta, ChapterManifest, Passage, SiteData } from "@/lib/types";
+import {
+  getRepoAllBooks,
+  getRepoAllPassages,
+  getRepoBookById,
+  getRepoChapterById,
+  getRepoPassageById,
+  getRepoPassageBySlugs,
+  getRepoSiteData,
+} from "@/lib/repo-content";
 
 type ContentManifest = {
   version: string;
   generated_at: string;
   project: SiteData["project"];
-  chapters: ContentManifestChapter[];
+  books: BookMeta[];
   memory: SiteData["memory"];
 };
 
@@ -49,16 +53,16 @@ async function readRemoteJson<T>(relativePath: string): Promise<T> {
 }
 
 async function readExportJson<T>(relativePath: string): Promise<T | null> {
+  const filePath = path.join(LOCAL_CONTENT_DIR, ...relativePath.split("/"));
+  if (await fileExists(filePath)) {
+    return readLocalJson<T>(filePath);
+  }
+
   if (CONTENT_BASE_URL) {
     return readRemoteJson<T>(relativePath);
   }
 
-  const filePath = path.join(LOCAL_CONTENT_DIR, ...relativePath.split("/"));
-  if (!(await fileExists(filePath))) {
-    return null;
-  }
-
-  return readLocalJson<T>(filePath);
+  return null;
 }
 
 function resolveContentAssetUrl(relativePath: string): string {
@@ -86,8 +90,16 @@ async function getExportManifest(): Promise<ContentManifest | null> {
   return readExportJson<ContentManifest>("manifest.json");
 }
 
-async function getExportedPassage(passageId: string): Promise<Passage | null> {
-  const payload = await readExportJson<Passage>(`passages/${passageId}.json`);
+async function getExportedBook(bookId: string): Promise<BookManifest | null> {
+  return readExportJson<BookManifest>(`books/${bookId}/manifest.json`);
+}
+
+async function getExportedChapter(bookId: string, chapterId: string): Promise<ChapterManifest | null> {
+  return readExportJson<ChapterManifest>(`books/${bookId}/chapters/${chapterId}/manifest.json`);
+}
+
+async function getExportedPassage(bookId: string, chapterId: string, passageId: string): Promise<Passage | null> {
+  const payload = await readExportJson<Passage>(`books/${bookId}/chapters/${chapterId}/passages/${passageId}.json`);
   return payload ? hydratePassageAssets(payload) : null;
 }
 
@@ -97,44 +109,91 @@ export const getSiteData = cache(async function getSiteData(): Promise<SiteData>
     return getRepoSiteData();
   }
 
-  const chapters = await Promise.all(
-    manifest.chapters.map(async (chapter) => {
-      const passages = (
-        await Promise.all(chapter.passage_ids.map((passageId) => getExportedPassage(passageId)))
-      ).filter((passage): passage is Passage => Boolean(passage));
+  const books = await Promise.all(
+    manifest.books.map(async (book) => {
+      const bookManifest = await getExportedBook(book.id);
+      if (!bookManifest) {
+        return null;
+      }
+
+      const chapters = await Promise.all(
+        bookManifest.chapters.map(async (chapter) => {
+          const passages = (
+            await Promise.all(
+              chapter.passage_ids.map((passageId) => getExportedPassage(book.id, chapter.id, passageId.split("-").pop() ?? passageId))
+            )
+          ).filter((passage): passage is Passage => Boolean(passage));
+
+          return {
+            ...chapter,
+            passages,
+          };
+        })
+      );
 
       return {
-        ...chapter,
-        passages,
+        ...bookManifest,
+        chapters,
       };
     })
   );
 
   return {
     project: manifest.project,
-    chapters,
+    books: books.filter((book): book is SiteData["books"][number] => Boolean(book)),
     memory: manifest.memory,
   };
 });
 
-export const getAllPassages = cache(async function getAllPassages(): Promise<Passage[]> {
+export const getAllBooks = cache(async function getAllBooks(): Promise<BookMeta[]> {
   const manifest = await getExportManifest();
   if (!manifest) {
-    return getRepoAllPassages();
+    return getRepoAllBooks();
   }
 
-  const passages = await Promise.all(
-    manifest.chapters.flatMap((chapter) => chapter.passage_ids).map((passageId) => getExportedPassage(passageId))
-  );
-
-  return passages.filter((passage): passage is Passage => Boolean(passage));
+  return manifest.books;
 });
 
-export const getPassageById = cache(async function getPassageById(passageId: string): Promise<Passage | null> {
-  const exported = await getExportedPassage(passageId);
+export const getBookById = cache(async function getBookById(bookId: string): Promise<BookManifest | null> {
+  const exported = await getExportedBook(bookId);
   if (exported) {
     return exported;
   }
 
+  return getRepoBookById(bookId);
+});
+
+export const getChapterById = cache(async function getChapterById(bookId: string, chapterId: string): Promise<ChapterManifest | null> {
+  const exported = await getExportedChapter(bookId, chapterId);
+  if (exported) {
+    return exported;
+  }
+
+  return getRepoChapterById(bookId, chapterId);
+});
+
+export const getAllPassages = cache(async function getAllPassages(): Promise<Passage[]> {
+  const data = await getSiteData();
+  return data.books.flatMap((book) => book.chapters.flatMap((chapter) => chapter.passages));
+});
+
+export const getPassageById = cache(async function getPassageById(passageId: string): Promise<Passage | null> {
+  const passages = await getAllPassages();
+  const passage = passages.find((item) => item.id === passageId);
+  if (passage) {
+    return passage;
+  }
+
   return getRepoPassageById(passageId);
 });
+
+export const getPassageBySlugs = cache(
+  async function getPassageBySlugs(bookId: string, chapterId: string, passageId: string): Promise<Passage | null> {
+    const exported = await getExportedPassage(bookId, chapterId, passageId);
+    if (exported) {
+      return exported;
+    }
+
+    return getRepoPassageBySlugs(bookId, chapterId, passageId);
+  }
+);

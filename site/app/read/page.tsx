@@ -1,24 +1,10 @@
 import Link from "next/link";
 import { ModeHeader } from "@/components/mode-header";
-import { getSiteData } from "@/lib/content";
-
-function getPassageTeaser(text: string) {
-  const cleaned = text
-    .split(/\n+/)
-    .map((line) => line.trim())
-    .filter(Boolean)
-    .find((line) => !line.startsWith("#"));
-
-  if (!cleaned) {
-    return "";
-  }
-
-  const sentence = cleaned.match(/^.+?[。！？!?]/)?.[0] ?? cleaned;
-  return sentence.length > 56 ? `${sentence.slice(0, 56).trim()}...` : sentence;
-}
+import { getAllBooks } from "@/lib/content";
+import { buildBookHref } from "@/lib/paths";
 
 export default async function ReadIndexPage() {
-  const data = await getSiteData();
+  const books = await getAllBooks();
 
   return (
     <main className="page-shell reader-page">
@@ -27,40 +13,30 @@ export default async function ReadIndexPage() {
       <section className="section">
         <div className="container section-head">
           <div>
-            <h1 className="section-title">《三国演义》</h1>
+            <h1 className="section-title">书库</h1>
           </div>
         </div>
       </section>
 
-      {data.chapters.map((chapter) => (
-        <section className="section" key={chapter.id}>
-          <div className="container chapter-shell">
-            <div className="chapter-banner">
-              <div>
-                <h2 className="chapter-title">{chapter.adapted_title_cn || chapter.source_title}</h2>
+      <section className="section">
+        <div className="container reader-stack">
+          {books.map((book) => (
+            <article className="reader-card" key={book.id}>
+              <h2 className="passage-title">{book.title}</h2>
+              {book.subtitle ? <p className="body-copy">{book.subtitle}</p> : null}
+              <p className="body-copy">{book.description}</p>
+              <div className="reader-card-actions">
+                <span className="meta-chip">
+                  已支持 {book.available_chapter_count} / {book.total_chapter_count ?? book.chapter_count} 章
+                </span>
+                <Link className="button-link button-link-accent" href={buildBookHref(book.id)}>
+                  打开这本书
+                </Link>
               </div>
-              <div className="meta-chip">{chapter.passages.length} 节</div>
-            </div>
-
-            <div className="reader-stack">
-              {chapter.passages.map((passage) => {
-                const teaser = getPassageTeaser(passage.reading_text || passage.approved_cn.text || passage.draft.text);
-                return (
-                  <article className="reader-card" key={passage.id}>
-                    <h3 className="passage-title">{passage.title}</h3>
-                    {teaser ? <p className="body-copy">{teaser}</p> : null}
-                    <div className="reader-card-actions">
-                      <Link className="button-link button-link-accent" href={`/read/${passage.id}`}>
-                        开始阅读
-                      </Link>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-      ))}
+            </article>
+          ))}
+        </div>
+      </section>
     </main>
   );
 }

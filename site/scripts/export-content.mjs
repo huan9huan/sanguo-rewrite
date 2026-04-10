@@ -5,9 +5,24 @@ const SITE_ROOT = process.cwd();
 const REPO_ROOT = path.resolve(SITE_ROOT, "..");
 const STORY_DIR = path.join(REPO_ROOT, "story");
 const MEMORY_DIR = path.join(REPO_ROOT, "memory");
+const BOOKS_FILE = path.join(STORY_DIR, "books.json");
 const CONTENT_DIR = path.join(SITE_ROOT, "public", "content");
-const PASSAGES_DIR = path.join(CONTENT_DIR, "passages");
-const ASSETS_DIR = path.join(CONTENT_DIR, "assets", "passages");
+const BOOKS_DIR = path.join(CONTENT_DIR, "books");
+
+function getPassageTeaser(text) {
+  const cleaned = String(text ?? "")
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .find((line) => !line.startsWith("#"));
+
+  if (!cleaned) {
+    return "";
+  }
+
+  const sentence = cleaned.match(/^.+?[。！？!?]/)?.[0] ?? cleaned;
+  return sentence.length > 56 ? `${sentence.slice(0, 56).trim()}...` : sentence;
+}
 
 function normalizeText(text) {
   return String(text ?? "").trim();
@@ -259,6 +274,25 @@ async function loadComicAlignment(alignmentPath) {
   return readJson(alignmentPath);
 }
 
+async function loadBooksConfig() {
+  return readJson(BOOKS_FILE);
+}
+
+function buildPassagePreview(payload) {
+  return {
+    id: payload.id,
+    book_id: payload.book_id,
+    chapter_id: payload.chapter_id,
+    passage_id: payload.passage_id,
+    title: payload.title,
+    status: payload.status,
+    summary_markdown: payload.summary_markdown,
+    teaser: getPassageTeaser(payload.reading_text || payload.approved_cn.text || payload.draft.text),
+    has_comic: Boolean(payload.image || payload.comic_layout?.frames?.length),
+    image: payload.image,
+  };
+}
+
 function cleanReadingText(text) {
   return String(text ?? "")
     .replace(/^# .+\n+/m, "")
@@ -504,7 +538,7 @@ function applyComicAlignment(segments, alignment, comicLayout) {
   });
 }
 
-async function exportPassage(passageDir) {
+async function exportPassage(passageDir, book) {
   const passageText = await fs.readFile(path.join(passageDir, "passage.md"), "utf8");
   const passageMd = parseFrontmatterMarkdown(passageText);
   const frontmatter = passageMd.frontmatter;
@@ -558,7 +592,7 @@ async function exportPassage(passageDir) {
   let exportedImage = null;
   if (imagePath) {
     const extension = path.extname(imagePath).toLowerCase();
-    const targetRelativePath = `assets/passages/${passageId}${extension}`;
+    const targetRelativePath = `books/${book.id}/chapters/${frontmatterString(frontmatter, "chapter_id")}/assets/${frontmatterString(frontmatter, "passage_id")}${extension}`;
     const targetAbsolutePath = path.join(CONTENT_DIR, targetRelativePath);
     await ensureDir(path.dirname(targetAbsolutePath));
     await fs.copyFile(imagePath, targetAbsolutePath);
@@ -574,6 +608,7 @@ async function exportPassage(passageDir) {
 
   const payload = {
     id: passageId,
+    book_id: book.id,
     chapter_id: frontmatterString(frontmatter, "chapter_id"),
     passage_id: frontmatterString(frontmatter, "passage_id"),
     title,
@@ -620,12 +655,20 @@ async function exportPassage(passageDir) {
     },
   };
 
-  const targetPath = path.join(PASSAGES_DIR, `${passageId}.json`);
+  const targetPath = path.join(
+    BOOKS_DIR,
+    book.id,
+    "chapters",
+    payload.chapter_id,
+    "passages",
+    `${payload.passage_id}.json`
+  );
+  await ensureDir(path.dirname(targetPath));
   await fs.writeFile(targetPath, `${JSON.stringify(payload, null, 2)}\n`);
   return payload;
 }
 
-async function exportChapter(chapterPath) {
+async function exportChapter(chapterPath, book) {
   const chapter = await readJson(chapterPath);
   const chapterSlug = path.basename(chapterPath, ".json");
   const storyEntries = await fs.readdir(STORY_DIR, { withFileTypes: true });
@@ -634,45 +677,96 @@ async function exportChapter(chapterPath) {
     .map((entry) => path.join(STORY_DIR, entry.name))
     .sort();
 
-  const passages = await Promise.all(passageDirs.map((dir) => exportPassage(dir)));
+  const passages = await Promise.all(passageDirs.map((dir) => exportPassage(dir, book)));
+  const chapterManifest = {
+    id: chapterSlug,
+    book_id: book.id,
+    source_title: chapter.source_title,
+    adapted_title_cn: chapter.adapted_title_cn,
+    viewpoint: chapter.viewpoint ?? [],
+    goal_cn: chapter.goal_cn,
+    passage_count: chapter.passage_count ?? passages.length,
+    global_arc: chapter.global_arc ?? {},
+    passage_ids: passages.map((passage) => passage.id),
+    passages: passages.map((passage) => buildPassagePreview(passage)),
+  };
+
+  const targetPath = path.join(BOOKS_DIR, book.id, "chapters", chapterSlug, "manifest.json");
+  await ensureDir(path.dirname(targetPath));
+  await fs.writeFile(targetPath, `${JSON.stringify(chapterManifest, null, 2)}\n`);
 
   return {
     chapter: {
-      id: chapterSlug,
-      source_title: chapter.source_title,
-      adapted_title_cn: chapter.adapted_title_cn,
-      viewpoint: chapter.viewpoint ?? [],
-      goal_cn: chapter.goal_cn,
-      passage_count: chapter.passage_count ?? passages.length,
-      global_arc: chapter.global_arc ?? {},
-      passage_ids: passages.map((passage) => passage.id),
+      id: chapterManifest.id,
+      book_id: chapterManifest.book_id,
+      source_title: chapterManifest.source_title,
+      adapted_title_cn: chapterManifest.adapted_title_cn,
+      viewpoint: chapterManifest.viewpoint,
+      goal_cn: chapterManifest.goal_cn,
+      passage_count: chapterManifest.passage_count,
+      global_arc: chapterManifest.global_arc,
+      passage_ids: chapterManifest.passage_ids,
     },
     passages,
   };
 }
 
 async function main() {
-  await ensureDir(PASSAGES_DIR);
-  await ensureDir(ASSETS_DIR);
+  await ensureDir(BOOKS_DIR);
 
-  const storyEntries = await fs.readdir(STORY_DIR);
-  const chapterFiles = storyEntries
-    .filter((file) => /^cp\d+\.json$/.test(file))
-    .sort()
-    .map((file) => path.join(STORY_DIR, file));
+  const books = await loadBooksConfig();
+  const bookExports = await Promise.all(
+    books.map(async (book) => {
+      const chapterExports = await Promise.all(
+        (book.chapter_ids ?? []).map((chapterId) => exportChapter(path.join(STORY_DIR, `${chapterId}.json`), book))
+      );
 
-  const chapterExports = await Promise.all(chapterFiles.map((file) => exportChapter(file)));
-  const chapters = chapterExports.map((item) => item.chapter);
-  const allPassages = chapterExports.flatMap((item) => item.passages);
+      const chapters = chapterExports.map((item) => item.chapter);
+      const passages = chapterExports.flatMap((item) => item.passages);
+      const bookManifest = {
+        id: book.id,
+        title: book.title,
+        subtitle: book.subtitle,
+        description: book.description,
+        total_chapter_count: book.total_chapter_count ?? null,
+        available_chapter_count: chapters.length,
+        chapter_ids: chapters.map((chapter) => chapter.id),
+        chapter_count: chapters.length,
+        chapters,
+      };
+
+      const targetPath = path.join(BOOKS_DIR, book.id, "manifest.json");
+      await ensureDir(path.dirname(targetPath));
+      await fs.writeFile(targetPath, `${JSON.stringify(bookManifest, null, 2)}\n`);
+
+      return {
+        book: {
+          id: bookManifest.id,
+          title: bookManifest.title,
+          subtitle: bookManifest.subtitle,
+          description: bookManifest.description,
+          total_chapter_count: bookManifest.total_chapter_count,
+          available_chapter_count: bookManifest.available_chapter_count,
+          chapter_ids: bookManifest.chapter_ids,
+          chapter_count: bookManifest.chapter_count,
+        },
+        chapters,
+        passages,
+      };
+    })
+  );
+
+  const allChapters = bookExports.flatMap((item) => item.chapters);
+  const allPassages = bookExports.flatMap((item) => item.passages);
 
   const manifest = {
-    version: "v0.2.3",
+    version: "v0.3.2",
     generated_at: new Date().toISOString(),
     project: {
       title: "三国演义",
-      subtitle: "A story-first rewrite of Romance of the Three Kingdoms",
+      subtitle: "面向现代读者的故事化重写",
       description:
-        "A reading room for the current draft, designed for readers who want to enter the story passage by passage.",
+        "当前中文重写稿的阅读空间，按作品、章节、段落逐步进入故事。",
       principles: [
         "Story first, culture implicit",
         "Character attachment over explanation",
@@ -690,13 +784,13 @@ async function main() {
         "English rewrite",
       ],
       stats: {
-        chapters: chapters.length,
+        chapters: allChapters.length,
         passages: allPassages.length,
         reviews: allPassages.filter((passage) => passage.review).length,
         approved_cn: allPassages.filter((passage) => passage.approved_cn.text).length,
       },
     },
-    chapters,
+    books: bookExports.map((item) => item.book),
     memory: {
       story_index: await readJson(path.join(MEMORY_DIR, "story_index.json")),
       working_memory: await readJson(path.join(MEMORY_DIR, "working_memory.json")),

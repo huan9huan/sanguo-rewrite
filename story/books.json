@@ -1,0 +1,10 @@
+[
+  {
+    "id": "sanguo",
+    "title": "三国演义",
+    "subtitle": "面向现代读者的故事化重写",
+    "description": "从章节到段落，逐步重写《三国演义》，先打磨中文故事稿，再进入后续版本。",
+    "total_chapter_count": 120,
+    "chapter_ids": ["cp001"]
+  }
+]

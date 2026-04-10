@@ -2,11 +2,15 @@ import { promises as fs } from "fs";
 import path from "path";
 import { cache } from "react";
 import type {
+  BookManifest,
+  BookMeta,
   Chapter,
+  ChapterManifest,
   ComicLayout,
   ComicFrame,
   ComicPassageAlignment,
   Passage,
+  PassagePreview,
   ReadingSegment,
   Review,
   Scene,
@@ -16,6 +20,7 @@ import type {
 const REPO_ROOT = path.resolve(process.cwd(), "..");
 const STORY_DIR = path.join(REPO_ROOT, "story");
 const MEMORY_DIR = path.join(REPO_ROOT, "memory");
+const BOOKS_FILE = path.join(STORY_DIR, "books.json");
 
 type FrontmatterValue = string | string[];
 type Frontmatter = Record<string, FrontmatterValue>;
@@ -94,12 +99,40 @@ type ChapterFile = {
   global_arc?: Record<string, unknown>;
 };
 
+type BookConfig = {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  total_chapter_count?: number | null;
+  chapter_ids: string[];
+};
+
 async function readText(filePath: string): Promise<string> {
   return (await fs.readFile(filePath, "utf8")).trim();
 }
 
 async function readJson<T>(filePath: string): Promise<T> {
   return JSON.parse(await readText(filePath)) as T;
+}
+
+function getPassageTeaser(text: string): string {
+  const cleaned = text
+    .split(/\n+/)
+    .map((line) => line.trim())
+    .filter(Boolean)
+    .find((line) => !line.startsWith("#"));
+
+  if (!cleaned) {
+    return "";
+  }
+
+  const sentence = cleaned.match(/^.+?[。！？!?]/)?.[0] ?? cleaned;
+  return sentence.length > 56 ? `${sentence.slice(0, 56).trim()}...` : sentence;
+}
+
+async function loadBooksConfig(): Promise<BookConfig[]> {
+  return readJson<BookConfig[]>(BOOKS_FILE);
 }
 
 async function readImageMetadata(filePath: string): Promise<{ width: number | null; height: number | null }> {
@@ -592,7 +625,22 @@ function applyComicAlignment(
   });
 }
 
-async function loadPassage(passageDir: string): Promise<Passage> {
+function buildPassagePreview(passage: Passage): PassagePreview {
+  return {
+    id: passage.id,
+    book_id: passage.book_id,
+    chapter_id: passage.chapter_id,
+    passage_id: passage.passage_id,
+    title: passage.title,
+    status: passage.status,
+    summary_markdown: passage.summary_markdown,
+    teaser: getPassageTeaser(passage.reading_text || passage.approved_cn.text || passage.draft.text),
+    has_comic: Boolean(passage.image || passage.comic_layout?.frames?.length),
+    image: passage.image,
+  };
+}
+
+async function loadPassage(passageDir: string, bookId: string): Promise<Passage> {
   const passageText = await fs.readFile(path.join(passageDir, "passage.md"), "utf8");
   const passageMd = parseFrontmatterMarkdown(passageText);
   const frontmatter = passageMd.frontmatter;
@@ -650,6 +698,7 @@ async function loadPassage(passageDir: string): Promise<Passage> {
 
   return {
     id: passageId,
+    book_id: bookId,
     chapter_id: frontmatterString(frontmatter, "chapter_id"),
     passage_id: frontmatterString(frontmatter, "passage_id"),
     title,
@@ -701,7 +750,7 @@ async function loadPassage(passageDir: string): Promise<Passage> {
   };
 }
 
-async function loadChapter(chapterPath: string): Promise<Chapter> {
+async function loadChapter(chapterPath: string, bookId: string): Promise<Chapter> {
   const chapter = await readJson<ChapterFile>(chapterPath);
   const chapterSlug = path.basename(chapterPath, ".json");
   const storyEntries = await fs.readdir(STORY_DIR, { withFileTypes: true });
@@ -710,36 +759,52 @@ async function loadChapter(chapterPath: string): Promise<Chapter> {
     .map((entry) => path.join(STORY_DIR, entry.name))
     .sort();
 
-  const passages = await Promise.all(passageDirs.map((dir) => loadPassage(dir)));
+  const passages = await Promise.all(passageDirs.map((dir) => loadPassage(dir, bookId)));
 
   return {
     id: chapterSlug,
+    book_id: bookId,
     source_title: chapter.source_title,
     adapted_title_cn: chapter.adapted_title_cn,
     viewpoint: chapter.viewpoint ?? [],
     goal_cn: chapter.goal_cn,
     passage_count: chapter.passage_count ?? passages.length,
     global_arc: chapter.global_arc ?? {},
+    passage_ids: passages.map((passage) => passage.id),
     passages,
   };
 }
 
 export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<SiteData> {
-  const storyEntries = await fs.readdir(STORY_DIR);
-  const chapterFiles = storyEntries
-    .filter((file) => /^cp\d+\.json$/.test(file))
-    .sort()
-    .map((file) => path.join(STORY_DIR, file));
+  const booksConfig = await loadBooksConfig();
+  const books = await Promise.all(
+    booksConfig.map(async (book) => {
+      const chapters = await Promise.all(
+        book.chapter_ids.map((chapterId) => loadChapter(path.join(STORY_DIR, `${chapterId}.json`), book.id))
+      );
 
-  const chapters = await Promise.all(chapterFiles.map((file) => loadChapter(file)));
-  const allPassages = chapters.flatMap((chapter) => chapter.passages);
+      return {
+        id: book.id,
+        title: book.title,
+        subtitle: book.subtitle,
+        description: book.description,
+        total_chapter_count: book.total_chapter_count ?? null,
+        available_chapter_count: chapters.length,
+        chapter_ids: chapters.map((chapter) => chapter.id),
+        chapter_count: chapters.length,
+        chapters,
+      };
+    })
+  );
+  const allPassages = books.flatMap((book) => book.chapters.flatMap((chapter) => chapter.passages));
+  const allChapters = books.flatMap((book) => book.chapters);
 
   return {
     project: {
       title: "三国演义",
-      subtitle: "A story-first rewrite of Romance of the Three Kingdoms",
+      subtitle: "面向现代读者的故事化重写",
       description:
-        "A reading room for the current draft, and a studio window into the planning, review, and continuity logic behind each passage.",
+        "当前中文重写稿的阅读空间，也展示每一节背后的规划、评审与一致性记忆。",
       principles: [
         "Story first, culture implicit",
         "Character attachment over explanation",
@@ -757,13 +822,13 @@ export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<S
         "English rewrite",
       ],
       stats: {
-        chapters: chapters.length,
+        chapters: allChapters.length,
         passages: allPassages.length,
         reviews: allPassages.filter((passage) => passage.review).length,
         approved_cn: allPassages.filter((passage) => passage.approved_cn.text).length,
       },
     },
-    chapters,
+    books,
     memory: {
       story_index: await readJson<SiteData["memory"]["story_index"]>(path.join(MEMORY_DIR, "story_index.json")),
       working_memory: await readJson<SiteData["memory"]["working_memory"]>(
@@ -773,12 +838,92 @@ export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<S
   };
 });
 
+export const getRepoAllBooks = cache(async function getRepoAllBooks(): Promise<BookMeta[]> {
+  const data = await getRepoSiteData();
+  return data.books.map((book) => ({
+    id: book.id,
+    title: book.title,
+    subtitle: book.subtitle,
+    description: book.description,
+    total_chapter_count: book.total_chapter_count,
+    available_chapter_count: book.available_chapter_count,
+    chapter_ids: book.chapter_ids,
+    chapter_count: book.chapter_count,
+  }));
+});
+
+export const getRepoBookById = cache(async function getRepoBookById(bookId: string): Promise<BookManifest | null> {
+  const data = await getRepoSiteData();
+  const book = data.books.find((item) => item.id === bookId);
+  if (!book) {
+    return null;
+  }
+
+  return {
+    id: book.id,
+    title: book.title,
+    subtitle: book.subtitle,
+    description: book.description,
+    total_chapter_count: book.total_chapter_count,
+    available_chapter_count: book.available_chapter_count,
+    chapter_ids: book.chapter_ids,
+    chapter_count: book.chapter_count,
+    chapters: book.chapters.map((chapter) => ({
+      id: chapter.id,
+      book_id: chapter.book_id,
+      source_title: chapter.source_title,
+      adapted_title_cn: chapter.adapted_title_cn,
+      viewpoint: chapter.viewpoint,
+      goal_cn: chapter.goal_cn,
+      passage_count: chapter.passage_count,
+      global_arc: chapter.global_arc,
+      passage_ids: chapter.passage_ids,
+    })),
+  };
+});
+
+export const getRepoChapterById = cache(
+  async function getRepoChapterById(bookId: string, chapterId: string): Promise<ChapterManifest | null> {
+    const data = await getRepoSiteData();
+    const book = data.books.find((item) => item.id === bookId);
+    const chapter = book?.chapters.find((item) => item.id === chapterId);
+    if (!chapter) {
+      return null;
+    }
+
+    return {
+      id: chapter.id,
+      book_id: chapter.book_id,
+      source_title: chapter.source_title,
+      adapted_title_cn: chapter.adapted_title_cn,
+      viewpoint: chapter.viewpoint,
+      goal_cn: chapter.goal_cn,
+      passage_count: chapter.passage_count,
+      global_arc: chapter.global_arc,
+      passage_ids: chapter.passage_ids,
+      passages: chapter.passages.map((passage) => buildPassagePreview(passage)),
+    };
+  }
+);
+
 export const getRepoAllPassages = cache(async function getRepoAllPassages(): Promise<Passage[]> {
   const data = await getRepoSiteData();
-  return data.chapters.flatMap((chapter) => chapter.passages);
+  return data.books.flatMap((book) => book.chapters.flatMap((chapter) => chapter.passages));
 });
 
 export const getRepoPassageById = cache(async function getRepoPassageById(passageId: string): Promise<Passage | null> {
   const passages = await getRepoAllPassages();
   return passages.find((passage) => passage.id === passageId) ?? null;
 });
+
+export const getRepoPassageBySlugs = cache(
+  async function getRepoPassageBySlugs(bookId: string, chapterId: string, passageId: string): Promise<Passage | null> {
+    const data = await getRepoSiteData();
+    return (
+      data.books
+        .find((book) => book.id === bookId)
+        ?.chapters.find((chapterItem) => chapterItem.id === chapterId)
+        ?.passages.find((passage) => passage.passage_id === passageId) ?? null
+    );
+  }
+);

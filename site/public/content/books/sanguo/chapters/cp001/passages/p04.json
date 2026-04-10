@@ -1,5 +1,6 @@
 {
   "id": "cp001-p04",
+  "book_id": "sanguo",
   "chapter_id": "cp001",
   "passage_id": "p04",
   "title": "初试锋芒",
@@ -61,8 +62,8 @@
     "text": ""
   },
   "image": {
-    "path": "assets/passages/cp001-p04.jpeg",
-    "url": "/assets/passages/cp001-p04.jpeg",
+    "path": "books/sanguo/chapters/cp001/assets/p04.jpeg",
+    "url": "/books/sanguo/chapters/cp001/assets/p04.jpeg",
     "alt": "初试锋芒 image",
     "width": 687,
     "height": 1024

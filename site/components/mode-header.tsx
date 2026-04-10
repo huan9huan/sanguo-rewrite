@@ -64,15 +64,15 @@ export function ModeHeader({
           {!isCompressed ? (
             <>
               <Link className="mode-link" href="/">
-                Home
+                首页
               </Link>
               <Link className="mode-link" href="/read">
-                全部章节
+                全部书目
               </Link>
             </>
           ) : (
             <Link className="mode-link" href="/read">
-              全部章节
+              全部书目
             </Link>
           )}
         </nav>

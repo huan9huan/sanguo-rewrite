@@ -12,7 +12,6 @@ export function CreatorPassageCard({ passage }: CreatorPassageCardProps) {
   return (
     <article className="creator-card">
       <div className="meta-row">
-        <span className="meta-chip">{passage.passage_id}</span>
         <span className="status-chip">{passage.status}</span>
       </div>
       <h3 className="passage-title">{passage.title}</h3>
