@@ -154,8 +154,10 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
                     <p className="section-copy">{chapter.goal_cn}</p>
                   </div>
                   <div className="reader-card-actions">
-                    <span className="meta-chip">{chapter.passage_count} 节</span>
-                    <span className={`chapter-toggle-icon ${isExpanded ? "chapter-toggle-icon-open" : ""}`} aria-hidden="true" />
+                    <span className="chapter-meta-toggle">
+                      <span>{chapter.passage_count} 节</span>
+                      <span className={`chapter-toggle-icon ${isExpanded ? "chapter-toggle-icon-open" : ""}`} aria-hidden="true" />
+                    </span>
                     <span className="visually-hidden">{isExpanded ? "收起章节" : "展开章节"}</span>
                   </div>
                 </button>
@@ -172,7 +174,7 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
                         return (
                           <article className="reader-card chapter-passage-card" key={passage.id}>
                             <h3 className="passage-title">{passage.title}</h3>
-                            {passage.teaser ? <p className="body-copy">{passage.teaser}</p> : null}
+                            {passage.catchup ? <p className="body-copy">{passage.catchup}</p> : null}
                             <div className="reader-card-actions">
                               <Link
                                 className="button-link button-link-secondary"
