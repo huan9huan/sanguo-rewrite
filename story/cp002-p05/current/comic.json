@@ -1,0 +1,156 @@
+{
+  "page_id": "cp002-p05-page-01",
+  "version": 2,
+  "viewport_mode": "mobile_vertical",
+  "frame_aspect_ratio": "4:3",
+  "frames": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp002_p05_s3",
+      "image_slot": {
+        "asset_key": "cp002-p05-page-01-f1",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "袁绍献计",
+        "items": [
+          {
+            "id": "f1_t1",
+            "kind": "speech",
+            "speaker": "yuan_shao",
+            "text": "可召四方英雄之士，带兵进京。到那时候事急了，太后不从也得从。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f1_t2",
+            "kind": "speech",
+            "speaker": "he_jin",
+            "text": "此计大妙！",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f1_t3",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "灵帝驾崩，何进拥立新帝。杀宦官的事被太后拦了三次——袁绍出了个主意。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 0.3359
+      }
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp002_p05_s3",
+      "image_slot": {
+        "asset_key": "cp002-p05-page-01-f2",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "倒持干戈",
+        "items": [
+          {
+            "id": "f2_t1",
+            "kind": "speech",
+            "speaker": "chen_lin",
+            "text": "倒持干戈，授人以柄——事成不了，反要生乱！",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f2_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "主簿陈琳说：将军手握皇威掌管兵权，要杀几个宦官如大火炉烧毛发。偏偏要召外兵，各怀异心——这是把刀柄递给人家。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.0,
+        "y": 0.3359,
+        "w": 0.5087,
+        "h": 0.3315
+      }
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp002_p05_s3",
+      "image_slot": {
+        "asset_key": "cp002-p05-page-01-f3",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "懦夫之见",
+        "items": [
+          {
+            "id": "f3_t1",
+            "kind": "speech",
+            "speaker": "he_jin",
+            "text": "懦夫之见。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f3_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "何进看了檄文，盖了印，发往各镇。召四方兵马进京。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.5087,
+        "y": 0.3359,
+        "w": 0.4913,
+        "h": 0.3315
+      }
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp002_p05_s3",
+      "image_slot": {
+        "asset_key": "cp002-p05-page-01-f4",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "门后面是狼",
+        "items": [
+          {
+            "id": "f4_t1",
+            "kind": "speech",
+            "speaker": "cao_cao",
+            "text": "这件事易如反掌。有什么好讨论的？",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f4_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "檄文发往各镇。各路诸侯点起兵马，往洛阳开拔。一个屠户的犹豫，打开了一扇门。门后面是狼。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.0,
+        "y": 0.6675,
+        "w": 1.0,
+        "h": 0.3325
+      }
+    }
+  ],
+  "panel_detection": {
+    "source": "comic.png",
+    "frame_count": 4,
+    "detected_count": 4
+  }
+}

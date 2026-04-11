@@ -5,15 +5,18 @@ passage_id: p05
 title: 引狼入室
 short_title: 引狼
 catchup: 何进手握天下兵权却杀不了几个太监——一个屠户的犹豫，即将打开帝国地狱之门。
-status: spec_draft
+status: comic_spec
 source_file: ../../source/cp002-p05.md
 spec_file: spec.json
 scene_spec_files:
   - s01-spec.json
   - s02-spec.json
   - s03-spec.json
-draft_files: []
-review_files: []
+draft_files:
+  - draft/v001/draft_cn.md
+  - draft/v002/draft_cn.md
+review_files:
+  - draft/v001/draft_cn_review.json
 approved_cn_files: []
 ---
 
