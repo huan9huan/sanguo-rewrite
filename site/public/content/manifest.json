@@ -1,6 +1,6 @@
 {
   "version": "v0.3.2",
-  "generated_at": "2026-04-10T12:25:06.352Z",
+  "generated_at": "2026-04-11T01:30:56.110Z",
   "project": {
     "title": "三国演义",
     "subtitle": "面向现代读者的故事化重写",
@@ -22,8 +22,8 @@
       "English rewrite"
     ],
     "stats": {
-      "chapters": 1,
-      "passages": 5,
+      "chapters": 2,
+      "passages": 7,
       "reviews": 5,
       "approved_cn": 0
     }
@@ -35,11 +35,12 @@
       "subtitle": "面向现代读者的故事化重写",
       "description": "从章节到段落，逐步重写《三国演义》，先打磨中文故事稿，再进入后续版本。",
       "total_chapter_count": 120,
-      "available_chapter_count": 1,
+      "available_chapter_count": 2,
       "chapter_ids": [
-        "cp001"
+        "cp001",
+        "cp002"
       ],
-      "chapter_count": 1
+      "chapter_count": 2
     }
   ],
   "memory": {

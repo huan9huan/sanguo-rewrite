@@ -8,6 +8,7 @@ V2 把 agent 定义成两类角色：
 
 1. Production Agents
 2. Gatekeepers
+3. IT Support / Operations
 
 这样每个 agent 都对一个 contract 或一个 gate 负责，而不是在流程里临时打零工。
 
@@ -157,6 +158,59 @@ V2 把 agent 定义成两类角色：
 
 - `agents/memory_keeper.md`
 
+## IT Support / Operations
+
+### Workspace Operator
+
+职责：
+
+- 维护 draft / comic workspace 到 `current/` 的 promote 流程
+- 对 comic run 执行 image normalization、panel detection、layout merge
+- 确保 `current/` 只暴露稳定 handoff 文件
+- 不重写 prose
+- 不改 planning contract
+- 不替 Comic QA 做审美判断
+
+对应当前脚本：
+
+- `pipeline/manage_passage_workspace.py`
+- `pipeline/update_comic_page.py`
+
+comic promote 必须先完成：
+
+- `comic/runNNN/comic.png`
+- `comic/runNNN/comic_panel_boxes.json`
+- `comic/runNNN/comic_panel_boxes_debug.png`
+- `comic/runNNN/comic.json`
+
+然后才能 promote 到：
+
+- `current/comic.png`
+- `current/comic.json`
+
+### Release Operator
+
+职责：
+
+- 从 `current/` 导出 website-ready payload
+- 生成 web-friendly image assets
+- 确保 exported JSON 与 reading model 同步
+
+对应当前脚本：
+
+- `site/scripts/export-content.mjs`
+
+### Publishing Operator
+
+职责：
+
+- 把选定稳定资产冻结到 `published/`
+- 维护 published surface，不从不稳定 draft 或 comic run 直接发布
+
+对应位置：
+
+- `story/<passage>/published/`
+
 ## Role Mapping
 
 旧角色到 V2 的映射：
@@ -170,6 +224,8 @@ V2 把 agent 定义成两类角色：
 - Comic Image Evaluator -> Comic QA
 - Memory Keeper -> Canon Keeper
 - Translator -> Language Adapter
+- Workspace / promote scripts -> Workspace Operator
+- Content export script -> Release Operator
 
 ## System Rule
 

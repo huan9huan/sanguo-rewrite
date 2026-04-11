@@ -168,6 +168,8 @@ def promote_comic(passage_dir: Path, run_dir: Path) -> dict[str, object]:
     }
     copied: list[str] = []
     for source_name, dest_name in mapping.items():
+        if dest_name in copied:
+            continue
         source_path = run_dir / source_name
         dest_path = dirs["current"] / dest_name
         if dest_name == CURRENT_FILES["comic_image"] and source_path.exists():
@@ -204,7 +206,7 @@ def promote_draft(passage_dir: Path, version_dir: Path) -> dict[str, object]:
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Initialize and promote the new passage workspace structure.")
+    parser = argparse.ArgumentParser(description="Initialize and promote passage workspaces into current/ handoff assets.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     init_cmd = subparsers.add_parser("init", help="Create draft/comic/current/published directories for a passage.")
@@ -216,7 +218,13 @@ def parse_args() -> argparse.Namespace:
     )
     bootstrap_cmd.add_argument("passage", help="Path to a passage directory like story/cp001-p01")
 
-    promote_comic_cmd = subparsers.add_parser("promote-comic", help="Promote a comic run directory into current/.")
+    promote_comic_cmd = subparsers.add_parser(
+        "promote-comic",
+        help=(
+            "Promote a validated comic run into current/. "
+            "Run update_comic_page.py refresh-boxes first so comic.png, comic_panel_boxes.json, and comic.json are ready."
+        ),
+    )
     promote_comic_cmd.add_argument("passage", help="Path to a passage directory like story/cp001-p01")
     promote_comic_cmd.add_argument("run", help="Path to a comic run directory like story/cp001-p01/comic/run001")
 

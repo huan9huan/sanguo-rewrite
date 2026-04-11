@@ -151,6 +151,139 @@ def detect_horizontal_bounds(gray_segment: np.ndarray) -> tuple[int, int]:
     return start, end
 
 
+def clamp(value: int, low: int, high: int) -> int:
+    return max(low, min(high, value))
+
+
+def pixel_box_from_panel(box: PanelBox, width: int, height: int) -> PixelBox:
+    x = int(round(box.x * width))
+    y = int(round(box.y * height))
+    w = int(round(box.w * width))
+    h = int(round(box.h * height))
+    return PixelBox(x=x, y=y, w=w, h=h)
+
+
+def panel_box_from_pixel(box: PixelBox, width: int, height: int) -> PanelBox:
+    return PanelBox(
+        x=box.x / width,
+        y=box.y / height,
+        w=box.w / width,
+        h=box.h / height,
+    )
+
+
+def edge_row_score(edges: np.ndarray, y: int, left: int, right: int) -> float:
+    band = edges[max(0, y - 1):min(edges.shape[0], y + 2), left:right]
+    return float(band.mean()) if band.size else 0.0
+
+
+def edge_col_score(edges: np.ndarray, x: int, top: int, bottom: int) -> float:
+    band = edges[top:bottom, max(0, x - 1):min(edges.shape[1], x + 2)]
+    return float(band.mean()) if band.size else 0.0
+
+
+def fit_boundary(score_fn, expected: int, search_start: int, search_end: int, threshold: float) -> int:
+    best_index = expected
+    best_score = -1.0
+    for index in range(search_start, search_end + 1):
+        score = score_fn(index)
+        adjusted = score - abs(index - expected) * 0.15
+        if adjusted > best_score:
+            best_score = adjusted
+            best_index = index
+    return best_index if best_score >= threshold else expected
+
+
+def fit_box_to_template(gray: np.ndarray, prior: PanelBox) -> PanelBox:
+    height, width = gray.shape
+    edges = cv2.Canny(cv2.GaussianBlur(gray, (5, 5), 0), 60, 180)
+    prior_px = pixel_box_from_panel(prior, width, height)
+
+    margin_x = max(10, int(width * 0.02))
+    margin_y = max(10, int(height * 0.02))
+    left_guess = prior_px.x
+    right_guess = prior_px.x + prior_px.w
+    top_guess = prior_px.y
+    bottom_guess = prior_px.y + prior_px.h
+
+    left = fit_boundary(
+        lambda x: edge_col_score(edges, x, clamp(top_guess, 0, height), clamp(bottom_guess, 0, height)),
+        left_guess,
+        clamp(left_guess - margin_x, 0, width - 1),
+        clamp(left_guess + margin_x, 0, width - 1),
+        18.0,
+    )
+    right = fit_boundary(
+        lambda x: edge_col_score(edges, x, clamp(top_guess, 0, height), clamp(bottom_guess, 0, height)),
+        right_guess,
+        clamp(right_guess - margin_x, 0, width - 1),
+        clamp(right_guess + margin_x, 0, width - 1),
+        18.0,
+    )
+    top = fit_boundary(
+        lambda y: edge_row_score(edges, y, clamp(left_guess, 0, width), clamp(right_guess, 0, width)),
+        top_guess,
+        clamp(top_guess - margin_y, 0, height - 1),
+        clamp(top_guess + margin_y, 0, height - 1),
+        18.0,
+    )
+    bottom = fit_boundary(
+        lambda y: edge_row_score(edges, y, clamp(left_guess, 0, width), clamp(right_guess, 0, width)),
+        bottom_guess,
+        clamp(bottom_guess - margin_y, 0, height - 1),
+        clamp(bottom_guess + margin_y, 0, height - 1),
+        18.0,
+    )
+
+    if right <= left + 24:
+        left, right = left_guess, right_guess
+    if bottom <= top + 24:
+        top, bottom = top_guess, bottom_guess
+
+    fitted = PixelBox(x=left, y=top, w=right - left, h=bottom - top)
+    area_ratio = fitted.area / max(prior_px.area, 1)
+    if area_ratio < 0.7 or area_ratio > 1.3:
+        fitted = prior_px
+
+    return panel_box_from_pixel(fitted, width, height)
+
+
+def template_boxes_from_layout(layout: dict[str, Any]) -> list[PanelBox]:
+    boxes: list[PanelBox] = []
+    for frame in layout.get("frames", []):
+        panel_box = frame.get("panel_box")
+        if not panel_box:
+            return []
+        boxes.append(
+            PanelBox(
+                x=float(panel_box.get("x", 0.0)),
+                y=float(panel_box.get("y", 0.0)),
+                w=float(panel_box.get("w", 0.0)),
+                h=float(panel_box.get("h", 0.0)),
+            )
+        )
+    return boxes
+
+
+def validate_template_pattern(boxes: list[PanelBox], layout_pattern: str) -> bool:
+    if len(boxes) != 4:
+        return False
+    if "top-wide / middle-two / bottom-wide" not in layout_pattern:
+        return True
+    f1, f2, f3, f4 = boxes
+    return (
+        f1.w > 0.75
+        and f4.w > 0.75
+        and abs(f2.y - f3.y) < 0.04
+        and abs(f2.h - f3.h) < 0.08
+        and f2.w > 0.25
+        and f3.w > 0.25
+        and f2.right <= f3.x + 0.06
+        and f1.bottom <= f2.y + 0.04
+        and f2.bottom <= f4.y + 0.06
+    )
+
+
 def iou(a: PixelBox, b: PixelBox) -> float:
     left = max(a.x, b.x)
     top = max(a.y, b.y)
@@ -341,15 +474,29 @@ def adjust_box_count(boxes: list[PixelBox], expected_count: int, gray: np.ndarra
     return sorted(adjusted[:expected_count], key=row_key)
 
 
-def detect_panel_boxes(image_path: Path, expected_count: int) -> tuple[list[PanelBox], np.ndarray]:
+def detect_panel_boxes(
+    image_path: Path,
+    layout_or_expected_count: dict[str, Any] | int,
+    expected_count: int | None = None,
+) -> tuple[list[PanelBox], np.ndarray]:
     image = cv2.imread(str(image_path))
     if image is None:
         raise FileNotFoundError(f"Unable to read image: {image_path}")
 
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     height, width = gray.shape
+
+    layout = layout_or_expected_count if isinstance(layout_or_expected_count, dict) else {}
+    count = expected_count if expected_count is not None else int(layout_or_expected_count)
+    template_boxes = template_boxes_from_layout(layout)
+    if len(template_boxes) == count:
+        fitted_boxes = normalize_panel_boxes([fit_box_to_template(gray, box) for box in template_boxes])
+        if validate_template_pattern(fitted_boxes, str(layout.get("layout_pattern", ""))):
+            return fitted_boxes, image
+        return normalize_panel_boxes(template_boxes), image
+
     rectangles = find_rectangular_boxes(gray)
-    pixel_boxes = adjust_box_count(rectangles, expected_count, gray)
+    pixel_boxes = adjust_box_count(rectangles, count, gray)
 
     boxes: list[PanelBox] = []
     for pixel_box in pixel_boxes:

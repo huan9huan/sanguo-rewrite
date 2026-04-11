@@ -1,0 +1,151 @@
+{
+  "page_id": "cp002-p01-page-01",
+  "version": 2,
+  "source_run": "run002",
+  "viewport_mode": "mobile_vertical",
+  "frame_aspect_ratio": "4:3",
+  "layout_pattern": "top-wide / middle-two / bottom-wide",
+  "frames": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp002_p01_s2",
+      "image_slot": {
+        "asset_key": "cp002-p01-page-01-f1",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "设伏",
+        "items": [
+          {
+            "id": "f1_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "朱儁说：妖术怕脏东西。准备猪羊狗血，装在桶里，埋伏在山后高冈上。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f1_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "关羽带一千人在左面山冈，张飞带一千人在右面。蹲着，等着。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.014,
+        "y": 0.0127,
+        "w": 0.9668,
+        "h": 0.3169
+      }
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp002_p01_s2",
+      "image_slot": {
+        "asset_key": "cp002-p01-page-01-f2",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "妖法再来",
+        "items": [
+          {
+            "id": "f2_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "第二天，张宝又来了。旗帜招展，鼓声震天。刘备出阵接战，几个回合后拨马便走。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f2_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "张宝挥军追来，又作妖法——风雷大作，黑气从天压下，比昨天还猛。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.014,
+        "y": 0.3296,
+        "w": 0.479,
+        "h": 0.3608
+      }
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp002_p01_s2",
+      "image_slot": {
+        "asset_key": "cp002-p01-page-01-f3",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "破法",
+        "items": [
+          {
+            "id": "f3_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "追兵过了山脚，冲上坡道——一声号炮。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f3_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "左右伏兵同时站起，秽物齐泼。黑气里的人影马影——纸做的，草扎的，纷纷坠地。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.493,
+        "y": 0.3296,
+        "w": 0.4878,
+        "h": 0.3608
+      }
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp002_p01_s2",
+      "image_slot": {
+        "asset_key": "cp002-p01-page-01-f4",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "追杀",
+        "items": [
+          {
+            "id": "f4_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "还没来得及后撤，左关羽、右张飞，两路杀到。背后主力也压上来了。三面夹击，黄巾军瞬间崩了。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f4_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "刘备看见“地公将军”旗号，飞马追去，一箭射中张宝左臂。张宝捂着胳膊跑进了阳城，关上城门，死不出来。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.014,
+        "y": 0.6904,
+        "w": 0.9668,
+        "h": 0.2988
+      }
+    }
+  ],
+  "panel_detection": {
+    "source": "comic.png",
+    "frame_count": 4,
+    "detected_count": 4
+  }
+}

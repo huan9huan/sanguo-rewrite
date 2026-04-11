@@ -42,10 +42,11 @@ Each passage usually contains 2-4 scenes.
 
 This content AI system is organized by role position, not by ad hoc file tasks.
 
-There are 3 core role layers:
+There are 4 core role layers:
 - Planning: defines the story contract
 - Production: turns the contract into reader-facing assets
 - Gatekeeping / Canon: decides what is good enough to pass forward and what becomes long-term truth
+- IT Support / Operations: moves assets between workspaces, current, and published surfaces
 
 There is also 1 downstream layer:
 - Adaptation: derives new reading forms from approved current assets, such as other languages
@@ -54,6 +55,7 @@ Core rule:
 - Planning roles define structure
 - Production roles implement structure
 - Gatekeepers judge readiness
+- IT support roles operate the pipeline surfaces but do not redefine content contracts
 - Adaptation roles consume approved assets and must not rewrite upstream contracts
 
 ## Role Registry
@@ -112,6 +114,24 @@ Detailed execution rules live in the role files under `agents/`.
   Owns: story canon, character canon, world state canon
   File: `agents/memory_keeper.md`
 
+### IT Support / Operations
+- Workspace Operator
+  中文常用名: `工作区运维`
+  Position: draft/comic workspaces -> validated current assets
+  Owns: workspace hygiene, image normalization, panel detection, layout merge, promote flow, current handoff correctness
+  File: `pipeline/manage_passage_workspace.py`
+  Supporting file: `pipeline/update_comic_page.py`
+- Release Operator
+  中文常用名: `发布运维`
+  Position: current assets -> website-ready exported content
+  Owns: content export, asset normalization, web-facing package generation
+  File: `site/scripts/export-content.mjs`
+- Publishing Operator
+  中文常用名: `发布员`
+  Position: selected stable current assets -> frozen published outputs
+  Owns: publish selection, freeze semantics, published surface discipline
+  File: `story/<passage>/published/` and future publish tooling
+
 ### Adaptation
 - Language Adapter
   中文常用名: `外语改写`
@@ -134,7 +154,49 @@ A CN draft should be reviewed for:
 - Story Reviewer must finish before Story Reviser or approval
 - Approved current CN is the input to Comic Adapter, Canon Keeper, and Language Adapter
 - Reading Integrator works on current assets only
+- Workspace Operator is responsible for promote into `current/`
+- Release Operator is responsible for export from `current/` to website-ready payloads
+- Publishing Operator only works from selected stable assets, never from unstable drafts
 - Website consumes current assets only
+
+## Workspace Operator Promote Rules
+
+Workspace Operator is an operations role, not a content author.
+It must not rewrite prose, change planning specs, or reinterpret comic semantics.
+
+Draft promote:
+- Input: `story/chNNN-pNN/draft/vNNN/`
+- Required files: `draft_cn.md`, review if available, approved text if available
+- Output: `current/draft_cn.md`, `current/draft_cn_review.json`, `current/approved_cn.md` when approved
+- Command: `python3 -m pipeline.manage_passage_workspace promote-draft <passage> <draft-version-dir>`
+
+Comic promote has two phases.
+
+Phase 1: prepare the run before promote.
+- Input: selected `story/chNNN-pNN/comic/runNNN/`
+- Required image: `comic.png` or an image that can be normalized into `comic.png`
+- Required layout source: a base or existing comic layout for the run
+- Required operation: normalize image, detect panel boxes, merge boxes into final `comic.json`
+- Command: `python3 -m pipeline.update_comic_page refresh-boxes <passage> --run <comic-run-dir>`
+
+Phase 2: promote validated assets into `current/`.
+- Required files after Phase 1: `comic.png`, `comic.json`
+- Output: `current/comic.png`, `current/comic.json`
+- Command: `python3 -m pipeline.manage_passage_workspace promote-comic <passage> <comic-run-dir>`
+
+Comic promote must check:
+- `comic.png` is web-safe normalized PNG
+- `comic_panel_boxes.json` exists in the selected run
+- `comic.json` exists in the selected run
+- `comic.json` frames have reasonable `panel_box` values
+- known layout patterns, such as `top-wide / middle-two / bottom-wide`, still match their expected geometry
+- `current/comic.png` and `current/comic.json` are both updated together
+
+If panel detection looks wrong:
+- do not promote blindly
+- rerun `refresh-boxes`
+- inspect `comic_panel_boxes_debug.png`
+- if the detected boxes are still wrong, fix detection or fall back to the trusted base layout before promote
 
 ## File Ownership
 - `story/chNNN.json`: Chapter Planner output
@@ -145,8 +207,8 @@ A CN draft should be reviewed for:
 - `story/chNNN-pNN/draft/vNNN/draft_cn_review.json`: Story Reviewer output
 - `story/chNNN-pNN/draft/vNNN/approved_cn.md`: approved CN readable output
 - `story/chNNN-pNN/comic/runNNN/`: comic run assets for one attempt
-- `story/chNNN-pNN/current/`: current promoted assets consumed by the site
-- `story/chNNN-pNN/published/`: frozen published outputs
+- `story/chNNN-pNN/current/`: Workspace Operator handoff surface consumed by the site
+- `story/chNNN-pNN/published/`: Publishing Operator frozen outputs
 - `memory/`: runtime memory and consistency files
 
 ## Safety for Context

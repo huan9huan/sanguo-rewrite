@@ -227,7 +227,7 @@ def prepare_prompt(passage_dir: Path, spec_path: Path | None) -> dict[str, str |
 def detect_and_merge(run_dir: Path, layout_path: Path, image_path: Path) -> dict[str, str]:
     layout = load_json_file(layout_path)
     expected_count = len(layout.get("frames", []))
-    boxes, image = detect_panel_boxes(image_path, expected_count)
+    boxes, image = detect_panel_boxes(image_path, layout, expected_count)
 
     detected_output = run_dir / "comic_panel_boxes.json"
     detection_payload = build_detection_payload(layout, boxes, image_path)

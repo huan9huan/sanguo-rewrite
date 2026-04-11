@@ -30,7 +30,7 @@ For one passage:
 - `story/<passage>/comic/runNNN/passage_comic_spec.md`
 - `story/<passage>/comic/runNNN/passage_comic_spec.json`
 - `story/<passage>/comic/runNNN/base_comic_reader_layout.json`
-- generated page prompt file via the prompt generator
+- `story/<passage>/comic/runNNN/page_prompt.txt`
 
 ## Goal
 
