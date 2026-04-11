@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
+import { PassageFeedback } from "@/components/passage-feedback";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { buildBookHref, buildChapterHref, buildPassageHref } from "@/lib/paths";
 
@@ -82,6 +83,8 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
               passageHref={buildPassageHref({ bookId, chapterId, passageId })}
               routeParams={{ bookId, chapterId, passageId }}
             />
+
+            <PassageFeedback mode="comic" passagePath={{ bookId, chapterId, passageId }} />
           </article>
         </div>
       </section>
