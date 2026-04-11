@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
+import { PassageFeedback } from "@/components/passage-feedback";
 import { PassageSceneFocus } from "@/components/passage-scene-focus";
 import { ReadingBookmarkSync } from "@/components/reading-bookmark-sync";
 import { proseToHtml } from "@/lib/format";
@@ -122,6 +123,8 @@ export default async function PassagePage({ params }: PassagePageProps) {
                 <div className="reading-body" dangerouslySetInnerHTML={{ __html: proseToHtml(passage.reading.text) }} />
               )}
             </div>
+
+            <PassageFeedback mode="text" passagePath={{ bookId, chapterId, passageId }} />
 
             <div className="passage-footer-nav">
               {previousPassage ? (
