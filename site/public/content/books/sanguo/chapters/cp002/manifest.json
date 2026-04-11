@@ -19,7 +19,9 @@
   },
   "passage_ids": [
     "cp002-p01",
-    "cp002-p02"
+    "cp002-p02",
+    "cp002-p03",
+    "cp002-p04"
   ],
   "passages": [
     {
@@ -59,6 +61,46 @@
         "url": "/books/sanguo/chapters/cp002/assets/p02.webp",
         "alt": "孙坚登场 image",
         "width": 619,
+        "height": 1024
+      }
+    },
+    {
+      "id": "cp002-p03",
+      "book_id": "sanguo",
+      "chapter_id": "cp002",
+      "passage_id": "p03",
+      "title": "怒鞭督邮",
+      "short_title": "怒鞭",
+      "catchup": "三兄弟血战有功却只得了个县尉小官，贪官上门索贿，张飞终于忍不住了。",
+      "status": "spec_draft",
+      "summary_markdown": "- 目标：用\"功高赏薄\"的不公引出体制对英雄的碾压，最终以张飞怒鞭督邮的爆发完成从\"忍\"到\"不忍\"的性格转折——三兄弟弃官而去，正式与体制决裂。\n- 冲突：有功不赏的屈辱 vs 忍辱负重的克制；贪官索贿的嚣张 vs 张飞的暴烈正义。\n- 转折：督邮逼勒县吏、欲害刘备——张飞闻讯从闷酒中暴起，揪发鞭打，关公顺势劝兄弃官，三人的\"忍\"字彻底碎裂。\n- 收束：挂印弃官，投奔刘恢——战场英雄被逼出走，忠义无处容身。",
+      "teaser": "朱儁班师回了洛阳。",
+      "has_comic": true,
+      "image": {
+        "path": "books/sanguo/chapters/cp002/assets/p03.webp",
+        "url": "/books/sanguo/chapters/cp002/assets/p03.webp",
+        "alt": "怒鞭督邮 image",
+        "width": 687,
+        "height": 1024
+      }
+    },
+    {
+      "id": "cp002-p04",
+      "book_id": "sanguo",
+      "chapter_id": "cp002",
+      "passage_id": "p04",
+      "title": "忠臣死谏",
+      "short_title": "死谏",
+      "catchup": "十常侍一手遮天，两位直臣以死进谏却换来身首异处——而在北方战场，刘备正迎来命运的转机。",
+      "status": "draft_v2",
+      "summary_markdown": "- 目标：从\"小人物被碾压\"（P03）翻到宏观视角——\"连皇帝身边的大臣说真话也要死\"。用刘陶恸哭、陈耽撞阶的悲壮，与刘备北征归来、重获起用的转机形成死与生的对比，为 P05 何进乱政埋下伏笔。\n- 冲突：忠臣的真话 vs 昏君的偏听；十常侍的鳄鱼眼泪操控术 vs 以死明志的刚烈。\n- 转折：刘陶被斩、陈耽撞阶下狱当夜被害——王朝自毁到极致；转而刘备被刘恢举荐给刘虞，征讨立功，赦免前罪守平原令——英雄不死。\n- 收束：忠臣已死无人敢言，十常侍更加肆无忌惮；刘备重整旗鼓，但朝堂已无可救——何进即将登场。",
+      "teaser": "十常侍杀人的手法，比战场还利落。",
+      "has_comic": true,
+      "image": {
+        "path": "books/sanguo/chapters/cp002/assets/p04.webp",
+        "url": "/books/sanguo/chapters/cp002/assets/p04.webp",
+        "alt": "忠臣死谏 image",
+        "width": 572,
         "height": 1024
       }
     }

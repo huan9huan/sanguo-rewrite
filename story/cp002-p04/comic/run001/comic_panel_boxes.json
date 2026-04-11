@@ -1,0 +1,48 @@
+{
+  "page_id": "cp002-p04-page-01",
+  "source_image": "comic.png",
+  "frame_count": 4,
+  "detected_count": 4,
+  "frames": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp002_p04_s1",
+      "panel_box": {
+        "x": 0.0035,
+        "y": 0.0049,
+        "w": 0.993,
+        "h": 0.3228
+      }
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp002_p04_s2",
+      "panel_box": {
+        "x": 0.0035,
+        "y": 0.3276,
+        "w": 0.4965,
+        "h": 0.3643
+      }
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp002_p04_s2",
+      "panel_box": {
+        "x": 0.5,
+        "y": 0.3276,
+        "w": 0.4965,
+        "h": 0.3643
+      }
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp002_p04_s2",
+      "panel_box": {
+        "x": 0.0035,
+        "y": 0.6919,
+        "w": 0.993,
+        "h": 0.2847
+      }
+    }
+  ]
+}

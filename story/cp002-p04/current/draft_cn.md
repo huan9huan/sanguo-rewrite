@@ -1,0 +1,1 @@
+/Users/huanghuan/sanguo-rewrite/story/cp002-p04/draft/v002/draft_cn.md

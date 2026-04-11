@@ -1,0 +1,113 @@
+{
+  "page_id": "cp002-p04-page-01",
+  "version": 1,
+  "viewport_mode": "mobile_vertical",
+  "frame_aspect_ratio": "4:3",
+  "frames": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp002_p04_s1",
+      "image_slot": {
+        "asset_key": "cp002-p04-page-01-f1",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "后花园宴饮",
+        "items": [
+          {
+            "id": "f1_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "赵忠封了车骑将军，张让等十三人封了列侯。功臣被罢了官，各地叛乱四起，奏报全被十常侍扣下——皇帝一份也没看到。",
+            "lang": "zh-CN"
+          }
+        ]
+      }
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp002_p04_s2",
+      "image_slot": {
+        "asset_key": "cp002-p04-page-01-f2",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "刘陶恸哭",
+        "items": [
+          {
+            "id": "f2_t1",
+            "kind": "speech",
+            "speaker": "liu_tao",
+            "text": "天下危在旦夕——陛下尚与阗宦共饮耶！",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f2_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "谏议大夫刘陶径到帝前大恸。他说四方盗贼并起，皆由十常侍卖官害民。",
+            "lang": "zh-CN"
+          }
+        ]
+      }
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp002_p04_s2",
+      "image_slot": {
+        "asset_key": "cp002-p04-page-01-f3",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "假哭操控",
+        "items": [
+          {
+            "id": "f3_t1",
+            "kind": "speech",
+            "speaker": "shi_chang_shi",
+            "text": "大臣不容臣等，臣等不能活了！只求保住一条命回家种田！",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f3_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "灵帝看着跪了一地的太监，对刘陶说：你家也有伺候你的人，怎么容不下朕的？推出斩了。",
+            "lang": "zh-CN"
+          }
+        ]
+      }
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp002_p04_s2",
+      "image_slot": {
+        "asset_key": "cp002-p04-page-01-f4",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "四百年休矣",
+        "items": [
+          {
+            "id": "f4_t1",
+            "kind": "speech",
+            "speaker": "liu_tao",
+            "text": "臣死不惜！可怜汉室天下，四百余年，到此一旦休矣！",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f4_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "陈耽拦刑入谏，以头撞阶，与刘陶同下狱。当夜，十常侍于狱中谋杀二人。远在北方，刘备正重新上马。",
+            "lang": "zh-CN"
+          }
+        ]
+      }
+    }
+  ]
+}
