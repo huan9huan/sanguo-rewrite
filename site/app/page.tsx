@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
+import { FutureBookForm } from "@/components/future-book-form";
 
 export default async function HomePage() {
   return (
@@ -13,6 +14,13 @@ export default async function HomePage() {
                 Start Reading 《三国演义》
               </Link>
             </div>
+          </div>
+        </section>
+
+        <section className="future-books-section">
+          <div className="container">
+            <h2 className="future-books-heading">下一本读什么？</h2>
+            <FutureBookForm />
           </div>
         </section>
       </main>
