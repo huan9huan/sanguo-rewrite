@@ -61,8 +61,8 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
       />
 
       <section className="section">
-        <div className="container comic-focus-shell">
-          <article className="panel comic-focus-header">
+        <div className="container passage-single-column">
+          <article className="passage-main reader-card">
             <p className="eyebrow">{book.title}</p>
             <h1 className="section-title passage-page-title">{passage.title}</h1>
             <p className="section-copy">
@@ -76,15 +76,13 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
                 返回章节
               </Link>
             </div>
-          </article>
 
-          <section className="panel comic-focus-panel">
             <ComicImageBlock
               passage={passage}
               passageHref={buildPassageHref({ bookId, chapterId, passageId })}
               routeParams={{ bookId, chapterId, passageId }}
             />
-          </section>
+          </article>
         </div>
       </section>
     </main>

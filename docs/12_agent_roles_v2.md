@@ -38,6 +38,7 @@ V2 把 agent 定义成两类角色：
 职责：
 
 - 负责 passage / scene planning contract
+- 负责 website list 入口文案：最短 `short_title` 和单行 `catchup`
 - 只产出 passage-level planning files
 - 不写 prose
 - 不写 comic
@@ -45,6 +46,7 @@ V2 把 agent 定义成两类角色：
 对应文件：
 
 - `story/chNNN-pNN/passage.md`
+- `story/chNNN-pNN/passage.md` frontmatter `short_title` / `catchup`
 - `story/chNNN-pNN/spec.json`
 - `story/chNNN-pNN/sNN-spec.json`
 
@@ -84,11 +86,36 @@ V2 把 agent 定义成两类角色：
 - 把 current readable CN 转成 comic reading contract
 - 定义 frame sequence、story function、page semantics
 - 产出 comic run 中的 spec / prompt / layout assets
+- 只使用 `memory/character_visuals.json` 中已登记的核心人物视觉锚点
 - 不重写 prose
+
+前置条件：
+
+- 如果当前 passage 有新的核心人物正式出场，必须先由 Character Visual Keeper 更新 `memory/character_visuals.json`
+- 如果核心人物缺少视觉 canon，Comic Adapter 应停止并交回 `角色定妆`
 
 对应当前 agent 文件：
 
 - `agents/build-comic-prompt.md`
+
+### Character Visual Keeper
+
+职责：
+
+- 在漫画改编前检查 passage 是否有新的核心人物正式出场
+- 为核心 / 反复出现 / 会进入 comic frame 的人物建立视觉锚点
+- 维护 `memory/character_visuals.json`
+- 不写 prose
+- 不生成 comic prompt
+- 不给路人角色建过度设定
+
+对应文件：
+
+- `memory/character_visuals.json`
+
+对应当前 agent 文件：
+
+- `agents/character-visual-keeper.md`
 
 ### Reading Integrator
 
@@ -183,6 +210,12 @@ comic promote 必须先完成：
 - `comic/runNNN/comic_panel_boxes_debug.png`
 - `comic/runNNN/comic.json`
 
+如果输入图是 JPG/JPEG/WebP：
+
+- 先用 ImageMagick 转成 web-friendly PNG
+- 最终 handoff 文件仍然固定为 `comic.png`
+- 不把 JPG/JPEG/WebP 原样 promote 到 `current/`
+
 然后才能 promote 到：
 
 - `current/comic.png`
@@ -200,17 +233,6 @@ comic promote 必须先完成：
 
 - `site/scripts/export-content.mjs`
 
-### Publishing Operator
-
-职责：
-
-- 把选定稳定资产冻结到 `published/`
-- 维护 published surface，不从不稳定 draft 或 comic run 直接发布
-
-对应位置：
-
-- `story/<passage>/published/`
-
 ## Role Mapping
 
 旧角色到 V2 的映射：
@@ -222,6 +244,7 @@ comic promote 必须先完成：
 - Build Comic Prompt -> Comic Adapter
 - Comic Passage Alignment -> Reading Integrator
 - Comic Image Evaluator -> Comic QA
+- Character visual check -> Character Visual Keeper
 - Memory Keeper -> Canon Keeper
 - Translator -> Language Adapter
 - Workspace / promote scripts -> Workspace Operator

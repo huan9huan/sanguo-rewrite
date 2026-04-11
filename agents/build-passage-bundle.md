@@ -85,6 +85,8 @@ id: cp001-p01
 chapter_id: cp001
 passage_id: p01
 title: <passage title in Chinese>
+short_title: <shortest list title in Chinese, usually 2-5 characters>
+catchup: <one-line reader catchup for chapter/passage lists>
 status: spec_draft
 source_file: ../../source/cp001-p01.md
 spec_file: spec.json
@@ -122,6 +124,9 @@ Rules:
 - short and readable
 - for humans, not schema completeness
 - should help someone understand the passage in 20 seconds
+- `short_title` is the website list label; make it shorter and sharper than `title`
+- `catchup` is a single reader-facing line for chapter / passage lists
+- `catchup` should tell readers what they need to remember or why to enter this passage, not summarize every event
 - `Source` 这里默认只写来源范围说明，不复制整段原文
 - 原文应通过 `source_file` 指向 `source/cp001-p01.md`
 

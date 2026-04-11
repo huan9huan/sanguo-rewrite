@@ -257,7 +257,39 @@ Gatekeepers:
 
 把 passage 的故事结构转成一页可阅读的小人书页面。
 
-### Step 1. Build Comic Semantics
+### Step 1. Check Character Visual Canon
+
+输入：
+
+- `story/chNNN-pNN/passage.md`
+- `story/chNNN-pNN/spec.json`
+- `story/chNNN-pNN/sNN-spec.json`
+- current readable CN text
+- `memory/character_memory.json`
+- `memory/character_visuals.json`
+
+输出：
+
+- updated `memory/character_visuals.json` if a new core character needs visual canon
+
+责任：
+
+- 判断当前 passage 是否有新的核心人物正式出场
+- 只为核心 / 反复出现 / 会进入 comic frame 的人物补视觉锚点
+- 不为路人和一次性群众建立视觉 canon
+- 保证 Comic Adapter 不需要临时发明人物外貌
+
+通过条件：
+
+- 当前 comic frames 需要出现的核心人物都已存在于 `memory/character_visuals.json`
+- 新增人物视觉条目短、稳、可直接进入 prompt
+- 没有覆盖已有核心人物的稳定视觉身份
+
+对应 agent：
+
+- `agents/character-visual-keeper.md` (`Character Visual Keeper`)
+
+### Step 2. Build Comic Semantics
 
 输入：
 
@@ -290,7 +322,7 @@ Gatekeepers:
 - `pipeline/generate_comic_prompt.py`
 - `pipeline/update_comic_page.py`
 
-### Step 2. Manual Text-to-Image
+### Step 3. Manual Text-to-Image
 
 输入：
 
@@ -305,7 +337,7 @@ Gatekeepers:
 - 这是手工图像生成步骤
 - 不是当前自动化范围
 
-### Step 3. Detect And Merge Layout
+### Step 4. Detect And Merge Layout
 
 输入：
 
@@ -329,7 +361,7 @@ Gatekeepers:
 - `pipeline/merge_comic_panel_boxes.py`
 - `pipeline/update_comic_page.py`
 
-### Step 4. Evaluate And Promote
+### Step 5. Evaluate And Promote
 
 输入：
 

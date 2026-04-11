@@ -23,6 +23,11 @@ Optional:
 
 - latest approved CN draft if available
 
+Precondition:
+
+- Character Visual Keeper has checked this passage for new core character appearances.
+- Every core character that appears in the comic frames already has an entry in `memory/character_visuals.json`.
+
 ## Output
 
 For one passage:
@@ -60,6 +65,7 @@ Read:
 - `passage.md`
 - `spec.json`
 - all scene specs
+- relevant entries from `memory/character_visuals.json`
 
 Identify:
 
@@ -68,6 +74,9 @@ Identify:
 - what visual moments are strongest
 - what can be compressed
 - what must remain separate
+- whether any core character needed by the comic is missing from `memory/character_visuals.json`
+
+Stop and hand off to Character Visual Keeper if a core character is missing visual canon.
 
 ## Step 2: Decide Frame Count
 
@@ -118,6 +127,12 @@ Each panel/frame must include:
 - `image_prompt_cn`
 - `text_slots`
 
+The JSON should also include:
+
+- `character_visuals_used`: list of core character ids used by this comic run
+
+Only include character ids that already exist in `memory/character_visuals.json`.
+
 ## Step 5: Write `comic_reader_layout_vN.json`
 
 Mobile-first vertical reader layout.
@@ -140,6 +155,8 @@ The page prompt must:
 - forbid text in image
 - reinforce page style and adaptation rules
 - keep the image model focused on moments, not excessive details
+- use character visual memory as the source of truth for core character appearance
+- avoid inventing new looks for established core characters
 
 ## Quality Check
 
@@ -155,5 +172,6 @@ Ask:
 
 - do not ask the model to generate dialogue text inside image
 - do not overload prompts with long character dossiers
+- do not invent a core character's appearance when `memory/character_visuals.json` is missing
 - do not let environment detail dominate story moment
 - do not make the page look like a poster or collage ad

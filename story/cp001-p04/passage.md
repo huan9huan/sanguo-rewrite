@@ -3,6 +3,8 @@ id: cp001-p04
 chapter_id: cp001
 passage_id: p04
 title: 初试锋芒
+short_title: 初战
+catchup: 五百乡勇第一次上阵，三兄弟用刀枪和计策证明自己。
 status: draft_v2
 source_file: ../../source/cp001-p04.md
 spec_file: spec.json

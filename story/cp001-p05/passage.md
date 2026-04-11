@@ -3,6 +3,8 @@ id: cp001-p05
 chapter_id: cp001
 passage_id: p05
 title: 英雄与小人
+short_title: 受辱
+catchup: 三兄弟浴血救人却因白身受辱，张飞的怒火终于压不住了。
 status: draft_v2
 source_file: ../../source/cp001-p05.md
 spec_file: spec.json

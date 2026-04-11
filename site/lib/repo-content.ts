@@ -384,6 +384,8 @@ function buildPassagePreview(passage: Passage): PassagePreview {
     chapter_id: passage.chapter_id,
     passage_id: passage.passage_id,
     title: passage.title,
+    short_title: passage.short_title,
+    catchup: passage.catchup,
     status: passage.status,
     summary_markdown: passage.summary_markdown,
     teaser: getPassageTeaser(passage.reading.text),
@@ -432,6 +434,7 @@ async function loadPassage(passageDir: string, bookId: string): Promise<Passage>
 
   const passageId = frontmatterString(frontmatter, "id") || path.basename(passageDir);
   const title = frontmatterString(frontmatter, "title") || spec.title_cn || path.basename(passageDir);
+  const shortTitle = frontmatterString(frontmatter, "short_title") || title;
   const imageMetadata = imagePath ? await readImageMetadata(imagePath) : { width: null, height: null };
   const draftText = latestDraftPath ? await readText(latestDraftPath) : "";
   const approvedText = latestApprovedPath ? await readText(latestApprovedPath) : "";
@@ -463,6 +466,8 @@ async function loadPassage(passageDir: string, bookId: string): Promise<Passage>
     chapter_id: frontmatterString(frontmatter, "chapter_id"),
     passage_id: frontmatterString(frontmatter, "passage_id"),
     title,
+    short_title: shortTitle,
+    catchup: frontmatterString(frontmatter, "catchup") || getPassageTeaser(reading.text),
     status: frontmatterString(frontmatter, "status") || spec.status || "draft",
     summary_markdown: extractSection(passageMd.body, "Summary"),
     scene_plan_markdown: extractSection(passageMd.body, "Scene Plan"),

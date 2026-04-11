@@ -1,9 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import type { KeyboardEvent } from "react";
+import type { CSSProperties, KeyboardEvent, ReactNode } from "react";
 import type { ComicFrame, Passage } from "@/lib/types";
 import { buildSceneHref } from "@/lib/paths";
+
+const COMPACT_PANEL_WIDTH = 560;
+const MAX_COMPACT_UPSCALE = 1.08;
+const NARROW_PANEL_RATIO = 0.62;
 
 type ComicImageBlockProps = {
   passage: Passage;
@@ -56,6 +60,25 @@ function getPixelCrop(frame: ComicFrame, imageWidth: number, imageHeight: number
     width: box.w * imageWidth,
     height: box.h * imageHeight,
   };
+}
+
+function getPanelCardStyle(crop: ReturnType<typeof getPixelCrop>): CSSProperties | undefined {
+  if (!crop) {
+    return undefined;
+  }
+
+  return {
+    "--comic-panel-max-width": `${Math.ceil(crop.width * MAX_COMPACT_UPSCALE)}px`,
+  } as CSSProperties;
+}
+
+function shouldUseSideCaption(frame: ComicFrame, crop: ReturnType<typeof getPixelCrop>): boolean {
+  const box = frame.panel_box;
+  if (!box || !crop) {
+    return false;
+  }
+
+  return crop.width < COMPACT_PANEL_WIDTH && box.w < NARROW_PANEL_RATIO;
 }
 
 function formatComicText(frame: ComicFrame): string {
@@ -134,54 +157,47 @@ export function ComicImageBlock({
           {orderedFrames.map((frame, index) => {
             const crop = getPixelCrop(frame, imageWidth, imageHeight);
             const frameHref = getFrameHref(routeParams, frame, passageHref);
+            const isCompact = shouldUseSideCaption(frame, crop);
+            const panelClassName = [
+              "comic-panel-card",
+              "comic-panel-card-stacked",
+              isCompact ? "comic-panel-card-compact" : "",
+            ].filter(Boolean).join(" ");
+            const panelStyle = getPanelCardStyle(crop);
+            const panelMedia: ReactNode = crop ? (
+              <svg
+                className="comic-panel-image"
+                viewBox={`${crop.x} ${crop.y} ${crop.width} ${crop.height}`}
+                preserveAspectRatio="xMidYMid meet"
+              >
+                <image href={image.url} x="0" y="0" width={imageWidth} height={imageHeight} />
+              </svg>
+            ) : (
+              <div
+                className="comic-panel-image comic-panel-image-fallback"
+                style={{
+                  aspectRatio: frame.panel_box ? `${frame.panel_box.w} / ${frame.panel_box.h}` : undefined,
+                  ...getFallbackPanelStyle(frame, image.url),
+                }}
+              />
+            );
+            const panelCaption = (
+              <div className="comic-panel-caption">
+                <p className="comic-panel-text">{formatComicText(frame)}</p>
+              </div>
+            );
             return (
-              <section className="comic-panel-card comic-panel-card-stacked" key={frame.frame_id || `${passage.id}-frame-${index}`}>
+              <section className={panelClassName} style={panelStyle} key={frame.frame_id || `${passage.id}-frame-${index}`}>
                 {frameHref ? (
-                  <button type="button" className="comic-panel-link" onClick={() => router.push(frameHref)}>
-                    {crop ? (
-                      <svg
-                        className="comic-panel-image"
-                        viewBox={`${crop.x} ${crop.y} ${crop.width} ${crop.height}`}
-                        preserveAspectRatio="xMidYMid meet"
-                      >
-                        <image href={image.url} x="0" y="0" width={imageWidth} height={imageHeight} />
-                      </svg>
-                    ) : (
-                      <div
-                        className="comic-panel-image comic-panel-image-fallback"
-                        style={{
-                          aspectRatio: frame.panel_box ? `${frame.panel_box.w} / ${frame.panel_box.h}` : undefined,
-                          ...getFallbackPanelStyle(frame, image.url),
-                        }}
-                      />
-                    )}
-                    <div className="comic-panel-caption">
-                      <p className="comic-panel-text">{formatComicText(frame)}</p>
-                    </div>
+                  <button type="button" className="comic-panel-link comic-panel-content" onClick={() => router.push(frameHref)}>
+                    {panelMedia}
+                    {panelCaption}
                   </button>
                 ) : (
-                  <>
-                    {crop ? (
-                      <svg
-                        className="comic-panel-image"
-                        viewBox={`${crop.x} ${crop.y} ${crop.width} ${crop.height}`}
-                        preserveAspectRatio="xMidYMid meet"
-                      >
-                        <image href={image.url} x="0" y="0" width={imageWidth} height={imageHeight} />
-                      </svg>
-                    ) : (
-                      <div
-                        className="comic-panel-image comic-panel-image-fallback"
-                        style={{
-                          aspectRatio: frame.panel_box ? `${frame.panel_box.w} / ${frame.panel_box.h}` : undefined,
-                          ...getFallbackPanelStyle(frame, image.url),
-                        }}
-                      />
-                    )}
-                    <div className="comic-panel-caption">
-                      <p className="comic-panel-text">{formatComicText(frame)}</p>
-                    </div>
-                  </>
+                  <div className="comic-panel-content">
+                    {panelMedia}
+                    {panelCaption}
+                  </div>
                 )}
               </section>
             );

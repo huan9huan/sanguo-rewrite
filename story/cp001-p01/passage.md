@@ -3,6 +3,8 @@ id: cp001-p01
 chapter_id: cp001
 passage_id: p01
 title: 乱世序幕
+short_title: 乱世
+catchup: 天下失序，黄巾四起，一张幽州榜文把刘备推到命运门前。
 status: spec_draft
 source_file: ../../source/cp001-p01.md
 spec_file: spec.json

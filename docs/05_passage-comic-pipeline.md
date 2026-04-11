@@ -37,6 +37,13 @@
 - 哪几个 scene 是核心
 - 人物长什么样
 
+漫画改编前必须先做一次核心人物视觉检查：
+
+- 如果当前 passage 有新的核心人物正式出场，先更新 `memory/character_visuals.json`
+- 只登记核心 / 反复出现 / 会进入 comic frame 的人物
+- 不给路人或一次性群众建立视觉 canon
+- 通过后才进入 `passage_comic_spec` 和 page prompt 生成
+
 ### 2. Passage Comic Spec
 
 由 planner / comic prompt builder 产出：
@@ -155,6 +162,15 @@
 ## 当前真实更新逻辑
 
 下面这段是当前代码已经在做的事情。
+
+### Step 0. 先确认角色视觉 canon
+
+在生成 `passage_comic_spec` / prompt 之前：
+
+- 读取当前 passage bundle
+- 找出本页 comic frame 需要出现的核心人物
+- 确认他们都存在于 `memory/character_visuals.json`
+- 如有缺失，先由 `角色定妆` 补齐
 
 ### Step 1. 先有 `comic_reader_layout` 初版
 

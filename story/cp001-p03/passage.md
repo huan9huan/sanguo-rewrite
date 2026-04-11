@@ -3,6 +3,8 @@ id: cp001-p03
 chapter_id: cp001
 passage_id: p03
 title: 桃园结义
+short_title: 结义
+catchup: 刘备、关羽、张飞在桃园立誓，从此把各自命运绑成一条路。
 status: spec_draft
 source_file: ../../source/cp001-p03.md
 spec_file: spec.json

@@ -138,6 +138,8 @@ export type Passage = {
   chapter_id: string;
   passage_id: string;
   title: string;
+  short_title: string;
+  catchup: string;
   status: string;
   summary_markdown: string;
   scene_plan_markdown: string;
@@ -166,6 +168,8 @@ export type PassagePreview = {
   chapter_id: string;
   passage_id: string;
   title: string;
+  short_title: string;
+  catchup: string;
   status: string;
   summary_markdown: string;
   teaser: string;

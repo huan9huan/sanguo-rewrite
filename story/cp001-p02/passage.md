@@ -3,6 +3,8 @@ id: cp001-p02
 chapter_id: cp001
 passage_id: p02
 title: 英雄叹息
+short_title: 叹息
+catchup: 落魄的刘备在榜前长叹，张飞的一声喝问让壮志有了去处。
 status: spec_draft
 source_file: ../../source/cp001-p02.md
 spec_file: spec.json

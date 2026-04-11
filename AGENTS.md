@@ -20,7 +20,6 @@ Primary experience:
 - Never generate a long draft without a PassageSpec
 - Never generate a PassageSpec without a ChapterSpec
 - Never translate before CN draft is reviewed
-- Do not edit published files in place; create a new version or explicit revision
 
 ## Writing Style Rules
 - Use simple Chinese
@@ -46,7 +45,7 @@ There are 4 core role layers:
 - Planning: defines the story contract
 - Production: turns the contract into reader-facing assets
 - Gatekeeping / Canon: decides what is good enough to pass forward and what becomes long-term truth
-- IT Support / Operations: moves assets between workspaces, current, and published surfaces
+- IT Support / Operations: moves assets between workspaces and current website handoff surfaces
 
 There is also 1 downstream layer:
 - Adaptation: derives new reading forms from approved current assets, such as other languages
@@ -72,7 +71,7 @@ Detailed execution rules live in the role files under `agents/`.
 - Passage Planner
   中文常用名: `段落策划`
   Position: source passage + chapter spec -> passage spec + scene specs
-  Owns: passage goal, conflict, turn, hook, scene structure
+  Owns: passage goal, conflict, turn, hook, scene structure, list title, one-line catchup
   File: `agents/build-passage-bundle.md`
 
 ### Production
@@ -108,6 +107,11 @@ Detailed execution rules live in the role files under `agents/`.
   Position: current comic run -> product usability judgment
   Owns: comic readiness, panel usability, image fidelity, regenerate judgment
   File: `agents/comic_image_evaluator.md`
+- Character Visual Keeper
+  中文常用名: `角色定妆`
+  Position: pre-comic passage check -> character visual canon
+  Owns: core character first-appearance visual anchors before comic adaptation
+  File: `agents/character-visual-keeper.md`
 - Canon Keeper
   中文常用名: `设定维护`
   Position: stable current text -> long-term memory
@@ -126,11 +130,6 @@ Detailed execution rules live in the role files under `agents/`.
   Position: current assets -> website-ready exported content
   Owns: content export, asset normalization, web-facing package generation
   File: `site/scripts/export-content.mjs`
-- Publishing Operator
-  中文常用名: `发布员`
-  Position: selected stable current assets -> frozen published outputs
-  Owns: publish selection, freeze semantics, published surface discipline
-  File: `story/<passage>/published/` and future publish tooling
 
 ### Adaptation
 - Language Adapter
@@ -138,6 +137,29 @@ Detailed execution rules live in the role files under `agents/`.
   Position: approved CN -> target-language reading edition
   Owns: downstream language rewrite
   File: `agents/translator.md`
+
+## Common Task Routing
+
+Use these examples to locate the right role quickly.
+
+- “把这一回拆成几个 passage” -> `章节策划` / Chapter Planner
+- “给这个 passage 生成 spec 和 scene spec” -> `段落策划` / Passage Planner
+- “这个 passage 的标题和列表 catchup 太弱，改短一点” -> `段落策划` / Passage Planner
+- “根据 spec 写一版中文正文” -> `正文写手` / Dramatist
+- “审一下这版正文能不能过” -> `正文审稿` / Story Reviewer
+- “按 review 改一版正文” -> `正文改稿` / Story Reviser
+- “更新这段之后的记忆和人物状态” -> `设定维护` / Canon Keeper
+- “漫画前看看有没有新核心人物要定妆” -> `角色定妆` / Character Visual Keeper
+- “把这个 passage 改编成小人书 prompt” -> `漫画改编` / Comic Adapter
+- “开始漫画改编” -> `漫画改编` / Comic Adapter
+- “漫画质检这张图能不能用” -> `漫画质检` / Comic QA
+- “把 comic frame 插进正文阅读流” -> `阅读编排` / Reading Integrator
+- “promote 这个 draft / comic 到 current” -> `工作区运维` / Workspace Operator
+- “JPG 转 PNG，然后作为 current/comic.png” -> `工作区运维` / Workspace Operator
+- "Comic文件已产生，帮我promote"  -> `工作区运维` / Workspace Operator
+- “重新 detect box 并 merge comic.json” -> `工作区运维` / Workspace Operator
+- “导出网站 content / 让 website 读到 current” -> `发布运维` / Release Operator
+- “基于中文定稿改写英文/日文/韩文” -> `外语改写` / Language Adapter
 
 ## Review Gates
 A CN draft should be reviewed for:
@@ -153,10 +175,11 @@ A CN draft should be reviewed for:
 - Dramatist must finish before Story Reviewer
 - Story Reviewer must finish before Story Reviser or approval
 - Approved current CN is the input to Comic Adapter, Canon Keeper, and Language Adapter
+- Character Visual Keeper must run before Comic Adapter when a passage may introduce a new core character
+- Comic Adapter must not invent visuals for core characters missing from `memory/character_visuals.json`
 - Reading Integrator works on current assets only
 - Workspace Operator is responsible for promote into `current/`
 - Release Operator is responsible for export from `current/` to website-ready payloads
-- Publishing Operator only works from selected stable assets, never from unstable drafts
 - Website consumes current assets only
 
 ## Workspace Operator Promote Rules
@@ -176,7 +199,7 @@ Phase 1: prepare the run before promote.
 - Input: selected `story/chNNN-pNN/comic/runNNN/`
 - Required image: `comic.png` or an image that can be normalized into `comic.png`
 - Required layout source: a base or existing comic layout for the run
-- Required operation: normalize image, detect panel boxes, merge boxes into final `comic.json`
+- Required operation: normalize image with ImageMagick, detect panel boxes, merge boxes into final `comic.json`
 - Command: `python3 -m pipeline.update_comic_page refresh-boxes <passage> --run <comic-run-dir>`
 
 Phase 2: promote validated assets into `current/`.
@@ -186,6 +209,7 @@ Phase 2: promote validated assets into `current/`.
 
 Comic promote must check:
 - `comic.png` is web-safe normalized PNG
+- JPG/JPEG/WebP inputs are converted to PNG by ImageMagick, never copied as-is into `current/comic.png`
 - `comic_panel_boxes.json` exists in the selected run
 - `comic.json` exists in the selected run
 - `comic.json` frames have reasonable `panel_box` values
@@ -198,19 +222,6 @@ If panel detection looks wrong:
 - inspect `comic_panel_boxes_debug.png`
 - if the detected boxes are still wrong, fix detection or fall back to the trusted base layout before promote
 
-## File Ownership
-- `story/chNNN.json`: Chapter Planner output
-- `story/chNNN-pNN/spec.json`: Passage Planner output
-- `story/chNNN-pNN/sNN-spec.json`: Passage Planner output
-- `story/chNNN-pNN/passage.md`: human-facing passage summary / entry file
-- `story/chNNN-pNN/draft/vNNN/draft_cn.md`: Dramatist output
-- `story/chNNN-pNN/draft/vNNN/draft_cn_review.json`: Story Reviewer output
-- `story/chNNN-pNN/draft/vNNN/approved_cn.md`: approved CN readable output
-- `story/chNNN-pNN/comic/runNNN/`: comic run assets for one attempt
-- `story/chNNN-pNN/current/`: Workspace Operator handoff surface consumed by the site
-- `story/chNNN-pNN/published/`: Publishing Operator frozen outputs
-- `memory/`: runtime memory and consistency files
-
 ## Safety for Context
 Do not feed the whole book into one prompt.
 Use only:
@@ -218,5 +229,6 @@ Use only:
 - current PassageSpec
 - current SceneSpec(s)
 - relevant character memory
+- relevant character visual memory before comic adaptation
 - recent passage summary
 - style rules

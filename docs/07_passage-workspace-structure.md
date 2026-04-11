@@ -25,7 +25,6 @@ Everything else should gradually move toward one of these folders:
 - `draft/`
 - `comic/`
 - `current/`
-- `published/`
 
 ## Recommended Layout
 
@@ -68,11 +67,6 @@ story/cp001-p01/
     approved_cn.md
     comic.png
     comic.json
-
-  published/
-    cn/
-    en/
-    comic/
 ```
 
 ## How To Think About Versions
@@ -125,16 +119,6 @@ Typical promoted assets:
 - current comic image
 - current comic reader layout
 
-## Role Of `published/`
-
-`published/` is for frozen outputs.
-
-Rules:
-
-- do not edit in place
-- publish by copying from `current/` or from a selected draft/comic workspace
-- treat published output as stable external output
-
 ## Recommended Iteration Flow
 
 ### Draft Flow
@@ -142,7 +126,6 @@ Rules:
 1. Create or revise a new `draft/vNNN/`
 2. Review it
 3. If selected, promote files into `current/`
-4. If finalized, publish from `current/`
 
 ### Comic Flow
 
@@ -152,7 +135,6 @@ Rules:
 4. Detect boxes and merge layout inside that run
 5. Evaluate that run
 6. If selected, promote files into `current/`
-7. If finalized, publish from `current/`
 
 ## Command Entry Points
 

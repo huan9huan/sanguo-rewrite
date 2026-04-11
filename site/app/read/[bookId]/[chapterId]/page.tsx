@@ -54,8 +54,8 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
         <div className="container reader-stack">
           {passages.map((passage) => (
             <article className="reader-card" key={passage.id}>
-              <h2 className="passage-title">{passage.title}</h2>
-              {passage.teaser ? <p className="body-copy">{passage.teaser}</p> : null}
+              <h2 className="passage-title">{passage.short_title || passage.title}</h2>
+              {passage.catchup || passage.teaser ? <p className="body-copy">{passage.catchup || passage.teaser}</p> : null}
               <div className="reader-card-actions">
                 <Link
                   className="button-link button-link-accent"
