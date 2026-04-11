@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { BookChapterBrowser } from "@/components/book-chapter-browser";
+import { BookChapterBrowser, type ReaderChapter } from "@/components/book-chapter-browser";
 import { ModeHeader } from "@/components/mode-header";
 import { getAllBooks, getBookById, getChapterById } from "@/lib/content";
 
@@ -26,6 +26,16 @@ export default async function BookPage({ params }: BookPageProps) {
   const chapters = (
     await Promise.all(chapterSummaries.map((chapter) => getChapterById(book.id, chapter.id)))
   ).filter((chapter): chapter is NonNullable<Awaited<ReturnType<typeof getChapterById>>> => Boolean(chapter));
+  const readerChapters: ReaderChapter[] = chapters.map((chapter) => ({
+    id: chapter.id,
+    source_title: chapter.source_title,
+    passages: chapter.passages.map((passage) => ({
+      id: passage.id,
+      passage_id: passage.passage_id,
+      title: passage.title,
+      catchup: passage.catchup,
+    })),
+  }));
 
   return (
     <main className="page-shell reader-page">
@@ -34,18 +44,13 @@ export default async function BookPage({ params }: BookPageProps) {
       <section className="section">
         <div className="container section-head">
           <div>
-            <p className="eyebrow">作品</p>
             <h1 className="section-title">{book.title}</h1>
             {book.subtitle ? <p className="section-copy">{book.subtitle}</p> : null}
-            <p className="section-copy">{book.description}</p>
-            <p className="section-copy">
-              总章节：{book.total_chapter_count ?? "待定"} · 当前已支持：{book.available_chapter_count} 章
-            </p>
           </div>
         </div>
       </section>
 
-      <BookChapterBrowser bookId={book.id} chapters={chapters} />
+      <BookChapterBrowser bookId={book.id} chapters={readerChapters} />
     </main>
   );
 }

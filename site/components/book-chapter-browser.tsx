@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
-import type { ChapterManifest } from "@/lib/types";
-import { buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
+import { formatChapterTitle } from "@/lib/chapter-title";
+import { buildComicHref, buildPassageHref } from "@/lib/paths";
 
 type ReadingBookmark = {
   bookId: string;
@@ -14,55 +14,26 @@ type ReadingBookmark = {
 
 type BookChapterBrowserProps = {
   bookId: string;
-  chapters: ChapterManifest[];
+  chapters: ReaderChapter[];
 };
 
 const BOOKMARK_KEY_PREFIX = "reading-bookmark:";
 
+export type ReaderChapter = {
+  id: string;
+  source_title: string;
+  passages: ReaderPassage[];
+};
+
+type ReaderPassage = {
+  id: string;
+  passage_id: string;
+  title: string;
+  catchup?: string;
+};
+
 function getBookmarkKey(bookId: string) {
   return `${BOOKMARK_KEY_PREFIX}${bookId}`;
-}
-
-function toChineseNumber(value: number): string {
-  const digits = ["零", "一", "二", "三", "四", "五", "六", "七", "八", "九"];
-
-  if (value <= 10) {
-    if (value === 10) return "十";
-    return digits[value] ?? String(value);
-  }
-
-  if (value < 20) {
-    return `十${digits[value % 10]}`;
-  }
-
-  if (value < 100) {
-    const tens = Math.floor(value / 10);
-    const ones = value % 10;
-    return `${digits[tens]}十${ones ? digits[ones] : ""}`;
-  }
-
-  if (value < 1000) {
-    const hundreds = Math.floor(value / 100);
-    const remainder = value % 100;
-    if (!remainder) {
-      return `${digits[hundreds]}百`;
-    }
-    if (remainder < 10) {
-      return `${digits[hundreds]}百零${digits[remainder]}`;
-    }
-    return `${digits[hundreds]}百${toChineseNumber(remainder)}`;
-  }
-
-  return String(value);
-}
-
-function formatChapterTitle(chapter: ChapterManifest): string {
-  const numeric = Number(chapter.id.replace(/\D/g, ""));
-  if (!numeric) {
-    return chapter.source_title;
-  }
-
-  return `第${toChineseNumber(numeric)}回 ${chapter.source_title}`;
 }
 
 export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps) {
@@ -149,13 +120,10 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
                   aria-expanded={isExpanded}
                 >
                   <div className="chapter-banner-copy">
-                    <p className="eyebrow">章节</p>
                     <h2 className="chapter-title">{formatChapterTitle(chapter)}</h2>
-                    <p className="section-copy">{chapter.goal_cn}</p>
                   </div>
                   <div className="reader-card-actions">
-                    <span className="chapter-meta-toggle">
-                      <span>{chapter.passage_count} 节</span>
+                    <span className="chapter-meta-toggle" aria-hidden="true">
                       <span className={`chapter-toggle-icon ${isExpanded ? "chapter-toggle-icon-open" : ""}`} aria-hidden="true" />
                     </span>
                     <span className="visually-hidden">{isExpanded ? "收起章节" : "展开章节"}</span>
@@ -164,11 +132,6 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
 
                 {isExpanded ? (
                   <div className="chapter-expand-body">
-                    <div className="chapter-expand-actions">
-                      <Link className="button-link" href={buildChapterHref(bookId, chapter.id)}>
-                        进入章节页
-                      </Link>
-                    </div>
                     <div className="chapter-passage-grid">
                       {chapter.passages.map((passage) => {
                         return (

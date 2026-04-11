@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ModeHeader } from "@/components/mode-header";
+import { formatChapterTitle } from "@/lib/chapter-title";
 import { getAllBooks, getBookById, getChapterById } from "@/lib/content";
-import { buildPassageHref } from "@/lib/paths";
+import { buildComicHref, buildPassageHref } from "@/lib/paths";
 
 type ChapterPageProps = {
   params: Promise<{
@@ -35,17 +36,17 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
   }
 
   const passages = Array.isArray(chapter.passages) ? chapter.passages : [];
+  const chapterTitle = formatChapterTitle(chapter);
 
   return (
     <main className="page-shell reader-page">
-      <ModeHeader chapterLabel={chapter.adapted_title_cn || chapter.source_title} compactTitle={chapter.adapted_title_cn} />
+      <ModeHeader chapterLabel={chapterTitle} compactTitle={chapterTitle} />
 
       <section className="section">
         <div className="container section-head">
           <div>
             <p className="eyebrow">{book.title}</p>
-            <h1 className="section-title">{chapter.adapted_title_cn || chapter.source_title}</h1>
-            <p className="section-copy">{chapter.goal_cn}</p>
+            <h1 className="section-title">{chapterTitle}</h1>
           </div>
         </div>
       </section>
@@ -61,7 +62,13 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                   className="button-link button-link-accent"
                   href={buildPassageHref({ bookId, chapterId, passageId: passage.passage_id })}
                 >
-                  进入正文
+                  正文
+                </Link>
+                <Link
+                  className="button-link button-link-secondary"
+                  href={buildComicHref({ bookId, chapterId, passageId: passage.passage_id })}
+                >
+                  漫画
                 </Link>
               </div>
             </article>

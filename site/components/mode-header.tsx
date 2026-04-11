@@ -158,7 +158,7 @@ export function ModeHeader({
                 首页
               </Link>
               <Link className="mode-link" href="/read">
-                全部书目
+                书库
               </Link>
             </>
           ) : (

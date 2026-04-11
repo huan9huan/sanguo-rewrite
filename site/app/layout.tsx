@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Read Chinese Classics - 让中国经典更加生动.",
-  description: "Read Chinese classics in a more vivid, story-first way.",
+  description: "Read Chinese Classics in a more vivid, story-first way.",
 };
 
 type RootLayoutProps = {

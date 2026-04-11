@@ -556,7 +556,7 @@ export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<S
   return {
     project: {
       title: "三国演义",
-      subtitle: "面向现代读者的故事化重写",
+      subtitle: "让三国故事更好读，更有画面",
       description:
         "当前中文重写稿的阅读空间，也展示每一节背后的规划、评审与一致性记忆。",
       principles: [

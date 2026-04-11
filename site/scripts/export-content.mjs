@@ -559,7 +559,7 @@ async function main() {
     generated_at: new Date().toISOString(),
     project: {
       title: "三国演义",
-      subtitle: "面向现代读者的故事化重写",
+      subtitle: "让三国故事更好读，更有画面",
       description:
         "当前中文重写稿的阅读空间，按作品、章节、段落逐步进入故事。",
       principles: [

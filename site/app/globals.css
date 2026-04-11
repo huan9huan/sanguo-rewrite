@@ -63,6 +63,8 @@ div {
 
 .page-shell {
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 
 .container {
@@ -565,6 +567,24 @@ div {
   box-shadow: none;
 }
 
+.site-footer {
+  margin-top: auto;
+  padding: 18px 0;
+  border-top: 1px solid var(--border-soft);
+}
+
+.site-footer-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.site-footer-trademark {
+  font-family: "SF Pro Text", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
+  font-size: 0.82rem;
+  color: var(--ink-muted);
+}
+
 .home-hero-page {
   background:
     radial-gradient(circle at top, rgba(234, 146, 96, 0.18), transparent 34%),
@@ -619,13 +639,6 @@ div {
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-}
-
-.home-hero-cta-secondary {
-  margin-top: 10px;
-  padding: 15px 22px;
-  font-size: 1rem;
-  font-weight: 600;
 }
 
 .reader-context-line {
@@ -796,29 +809,6 @@ div {
 
 .read-index-head {
   align-items: end;
-}
-
-.read-progress-card {
-  min-width: 190px;
-  padding: 18px 20px;
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  background: rgba(250, 249, 245, 0.68);
-  text-align: right;
-}
-
-.read-progress-value {
-  margin: 6px 0 0;
-  color: var(--ink);
-  font-size: clamp(1.6rem, 4vw, 2.4rem);
-  line-height: 1;
-  font-family: var(--font-display);
-}
-
-.read-progress-label {
-  margin: 8px 0 0;
-  color: var(--ink-soft);
-  font-size: 0.88rem;
 }
 
 .read-book-card {
@@ -1131,11 +1121,6 @@ div {
     align-items: stretch;
   }
 
-  .read-progress-card {
-    min-width: 0;
-    text-align: left;
-  }
-
   .read-book-card {
     align-items: flex-start;
     flex-direction: column;
@@ -1360,9 +1345,4 @@ div {
     align-items: center;
   }
 
-  .home-hero-cta-secondary {
-    width: min(100%, 220px);
-    justify-content: center;
-    padding: 14px 22px;
-  }
 }
