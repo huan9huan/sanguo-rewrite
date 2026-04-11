@@ -3,6 +3,8 @@ id: cp002-p01
 chapter_id: cp002
 passage_id: p01
 title: 破法斩将
+short_title: 破法
+catchup: 三兄弟离开董卓再上战场，用一场破妖法之战收束黄巾主力。
 status: draft_v2
 source_file: ../../source/cp002-p01.md
 spec_file: spec.json

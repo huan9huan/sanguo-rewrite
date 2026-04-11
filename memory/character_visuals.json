@@ -242,6 +242,73 @@
       "华丽帝王装"
     ]
   },
+  "sun_jian": {
+    "display_name_cn": "孙坚",
+    "role_cn": "江东猛虎，东吴基业的奠基人",
+    "visual_keywords": [
+      "宽额阔面",
+      "虎背熊腰",
+      "上半身不晃",
+      "往前推的步态",
+      "出鞘的刀",
+      "不张扬但压得住"
+    ],
+    "silhouette": {
+      "height": "中高偏壮",
+      "build": "肩背极厚，躯干宽实，像一堵移动的墙",
+      "posture": "重心前倾，步速快，上半身稳定不晃"
+    },
+    "face": {
+      "shape": "宽额阔面，方圆偏阔",
+      "skin_tone": "正常偏暖，日晒痕迹",
+      "features": [
+        "额头宽而饱满",
+        "脸盘大、下颌有力",
+        "目光沉稳带锋",
+        "不笑时有一股闷着的力"
+      ]
+    },
+    "hair_and_headwear": {
+      "hair": "黑发粗硬束起，实用不讲究",
+      "headwear": "武将简朴冠巾，不华丽"
+    },
+    "facial_hair": {
+      "style": "短须或中长须，粗硬不修饰",
+      "notes": "须发要配合虎体熊腰的整体感，不精致"
+    },
+    "costume": {
+      "base": "实用战袍，有征尘",
+      "outerwear": "厚实甲胄，被他撑得紧",
+      "colors": [
+        "暗红",
+        "深褐",
+        "铁灰"
+      ]
+    },
+    "color_palette": [
+      "iron gray",
+      "dark umber",
+      "muted crimson"
+    ],
+    "signature_items": [],
+    "expression_default": "沉稳、果断、不废话",
+    "combat_visual_anchors": [
+      "攀城墙不用云梯，踩砖缝上去",
+      "空手夺长槊——侧身、攥杆、拽、反刺，四步一气呵成",
+      "骑敌人的马冲杀"
+    ],
+    "cross_panel_rules": [
+      "虎背熊腰的体量感跨格必须一致，不可一格壮一格瘦",
+      "宽额阔面的面部特征不可丢失"
+    ],
+    "forbidden_visuals": [
+      "文弱书生型",
+      "精致偶像化",
+      "过度英雄化摆拍",
+      "与关羽/张飞体型混淆——孙坚偏矮壮，不是极高大型",
+      "花哨华丽甲胄"
+    ]
+  },
   "dong_zhuo": {
     "display_name_cn": "董卓",
     "role_cn": "制度性傲慢的化身",
@@ -294,60 +361,6 @@
       "卡通胖反派",
       "狰狞咆哮",
       "妖魔化怪物外形"
-    ]
-  },
-  "lu_zhi": {
-    "display_name_cn": "卢植",
-    "role_cn": "刘备恩师，儒将风骨",
-    "visual_keywords": [
-      "半白须发",
-      "身形挺拔",
-      "儒将",
-      "克制",
-      "有风骨"
-    ],
-    "silhouette": {
-      "height": "中高",
-      "build": "清瘦挺直",
-      "posture": "背直，不屈"
-    },
-    "face": {
-      "shape": "瘦长",
-      "skin_tone": "偏淡",
-      "features": [
-        "须发半白",
-        "眼神锋利",
-        "沉稳克制"
-      ]
-    },
-    "hair_and_headwear": {
-      "hair": "束起但略显年长",
-      "headwear": "儒将式冠巾"
-    },
-    "facial_hair": {
-      "style": "半白须髯",
-      "notes": "有年龄感但不能老弱"
-    },
-    "costume": {
-      "base": "儒将长袍",
-      "outerwear": "简练军装或披风",
-      "colors": [
-        "灰白",
-        "青灰",
-        "暗蓝"
-      ]
-    },
-    "color_palette": [
-      "ash gray",
-      "slate blue",
-      "faded white"
-    ],
-    "signature_items": [],
-    "expression_default": "克制、识人、有骨气",
-    "forbidden_visuals": [
-      "哭诉式软弱",
-      "老朽无力",
-      "书生气过重毫无武将感"
     ]
   }
 }

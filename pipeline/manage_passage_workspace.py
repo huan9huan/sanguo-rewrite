@@ -31,7 +31,10 @@ def resolve_path(path_str: str | Path) -> Path:
     path = Path(path_str)
     if path.is_absolute():
         return path
-    return (ROOT / path).resolve()
+    resolved = (ROOT / path).resolve()
+    if not resolved.exists() and (ROOT / "story" / path).resolve().exists():
+        return (ROOT / "story" / path).resolve()
+    return resolved
 
 
 def extract_version(name: str) -> int:
@@ -49,7 +52,6 @@ def ensure_dirs(passage_dir: Path) -> dict[str, Path]:
         "draft": passage_dir / "draft",
         "comic": passage_dir / "comic",
         "current": passage_dir / "current",
-        "published": passage_dir / "published",
     }
     for path in dirs.values():
         path.mkdir(parents=True, exist_ok=True)
@@ -115,7 +117,7 @@ def bootstrap_legacy(passage_dir: Path) -> dict[str, object]:
         CURRENT_FILES["comic_spec_md"]: copy_if_present(latest_spec_md, comic_dir / CURRENT_FILES["comic_spec_md"]),
         CURRENT_FILES["comic_prompt"]: copy_if_present(latest_prompt, comic_dir / CURRENT_FILES["comic_prompt"]),
         CURRENT_FILES["comic_frames"]: copy_if_present(latest_summary, comic_dir / CURRENT_FILES["comic_frames"]),
-        CURRENT_FILES["comic_image"]: copy_if_present(latest_image, comic_dir / CURRENT_FILES["comic_image"]),
+        CURRENT_FILES["comic_image"]: bool(latest_image and normalize_comic_png(latest_image, comic_dir / CURRENT_FILES["comic_image"])),
         CURRENT_FILES["comic_boxes"]: copy_if_present(latest_boxes, comic_dir / CURRENT_FILES["comic_boxes"]),
         CURRENT_FILES["comic_boxes_debug"]: copy_if_present(latest_boxes_debug, comic_dir / CURRENT_FILES["comic_boxes_debug"]),
         CURRENT_FILES["comic_layout"]: copy_if_present(latest_layout, comic_dir / CURRENT_FILES["comic_layout"]),
@@ -163,6 +165,12 @@ def promote_comic(passage_dir: Path, run_dir: Path) -> dict[str, object]:
     mapping = {
         "comic.png": CURRENT_FILES["comic_image"],
         "image.png": CURRENT_FILES["comic_image"],
+        "image.jpg": CURRENT_FILES["comic_image"],
+        "image.jpeg": CURRENT_FILES["comic_image"],
+        "image.webp": CURRENT_FILES["comic_image"],
+        "comic.jpg": CURRENT_FILES["comic_image"],
+        "comic.jpeg": CURRENT_FILES["comic_image"],
+        "comic.webp": CURRENT_FILES["comic_image"],
         "comic.json": CURRENT_FILES["comic_layout"],
         "comic_reader_layout.json": CURRENT_FILES["comic_layout"],
     }
@@ -209,7 +217,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Initialize and promote passage workspaces into current/ handoff assets.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    init_cmd = subparsers.add_parser("init", help="Create draft/comic/current/published directories for a passage.")
+    init_cmd = subparsers.add_parser("init", help="Create draft/comic/current directories for a passage.")
     init_cmd.add_argument("passage", help="Path to a passage directory like story/cp001-p01")
 
     bootstrap_cmd = subparsers.add_parser(

@@ -28,6 +28,8 @@
       "chapter_id": "cp002",
       "passage_id": "p01",
       "title": "破法斩将",
+      "short_title": "破法",
+      "catchup": "三兄弟离开董卓再上战场，用一场破妖法之战收束黄巾主力。",
       "status": "draft_v2",
       "summary_markdown": "- 目标：承接上回张飞欲杀董卓的余怒，完成三兄弟转投朱儁的过渡，用张宝妖法一战作为黄巾战场的收尾高潮。\n- 冲突：张飞的暴烈冲动 vs 刘备的克制理性；正面对阵 vs 妖术邪法。\n- 转折：秽物破法，纸人草马坠地——张宝从不可一世到溃败逃命。\n- 收束：黄巾三张全部覆灭，战场功成，但封赏尚未到来。",
       "teaser": "刀举到了帐帘前面。",
@@ -46,11 +48,19 @@
       "chapter_id": "cp002",
       "passage_id": "p02",
       "title": "孙坚登场",
+      "short_title": "孙坚",
+      "catchup": "宛城围攻陷入死局，一支新军从东方杀来，孙坚第一次站上舞台。",
       "status": "spec_draft",
       "summary_markdown": "- 目标：宛城围攻战中引入孙坚——用刘备的围城智谋引出韩忠之死与贼军反扑的危机，再以孙坚的惊艳登场化解危局，完成黄巾余党的最终扫荡。\n- 冲突：不接受投降的围城死局 vs 刘备的变通之智；贼军反扑的危机 vs 孙坚的破局之力。\n- 转折：韩忠弃城被杀后赵弘反扑复夺宛城，正当朱儁一筹莫展之际，孙坚率兵从正东而来，首战即夺城斩将。\n- 收束：南阳十余郡皆平，孙坚一战成名——为东吴基业埋下第一颗种子。",
-      "teaser": "",
-      "has_comic": false,
-      "image": null
+      "teaser": "军营里安静了一天。",
+      "has_comic": true,
+      "image": {
+        "path": "books/sanguo/chapters/cp002/assets/p02.webp",
+        "url": "/books/sanguo/chapters/cp002/assets/p02.webp",
+        "alt": "孙坚登场 image",
+        "width": 619,
+        "height": 1024
+      }
     }
   ]
 }

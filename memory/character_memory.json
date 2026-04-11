@@ -63,6 +63,22 @@
       "current_status_cn": "颍川截杀张梁张宝败军。与三兄弟擦肩而过，未正式互动。"
     }
   },
+  "sun_jian": {
+    "core_traits": ["胆大", "心细", "果断", "不张扬", "虎一样的攻击性"],
+    "speech_style": ["话少", "直接行动", "先做再说"],
+    "avoid": ["不要写成莽夫——十七岁虚张声势吓海贼是心计不是蛮干", "不要写成张扬炫耀型"],
+    "established_details": {
+      "appearance_cn": "广额阔面，虎体熊腰，走路上半身不晃，整个人往前推",
+      "background_cn": "吴郡富春人，孙武子之后。十七岁钱塘独斗海贼，从此扬名。后会稽破许昌之乱。辗转几任县丞都没干长。",
+      "youth_story_cn": "十七岁钱塘码头，十几个海贼分赃。孙坚一个人提刀上岸，大喊大叫比划手势装作指挥军队——海贼以为是官兵全跑了，他追上去砍翻一个。胆识+心计同时立住。",
+      "weapons_cn": "长刀（攻城战中使用）",
+      "combat_style_cn": "先登城头（不用云梯踩砖缝攀）。空手夺槊反杀——侧身攥槊、拽人下马、调头反刺，四步一气呵成。骑敌人马冲杀。"
+    },
+    "dynamic_state": {
+      "current_role": "新登场武将，淮泗义兵领袖",
+      "current_status_cn": "率一千五百余淮泗精兵来投朱儁。宛城首战先登城头斩贼二十余人，夺槊反杀赵弘。一战成名。"
+    }
+  },
   "dong_zhuo": {
     "core_traits": ["势利", "傲慢", "以身份看人"],
     "established_details": {
@@ -72,32 +88,6 @@
     "dynamic_state": {
       "current_role": "中郎将、被救者",
       "current_status_cn": "被三兄弟救了。问官职得知白身后不为礼。帐外张飞正提刀冲来。"
-    }
-  },
-  "lu_zhi": {
-    "core_traits": ["儒将", "话少有力", "识人", "有风骨"],
-    "speech_style": ["简短", "不废话"],
-    "established_details": {
-      "appearance_cn": "须发半白，身形挺拔，眼神跟刀一样利",
-      "background_cn": "中郎将，刘备恩师。被左丰诬陷，押回京问罪。"
-    },
-    "dynamic_state": {
-      "current_role": "前中郎将、囚徒（已离场）",
-      "current_status_cn": "被诬陷高垒不战惰慢军心，押回京问罪。槛车里背挺直头不回。已离场。"
-    }
-  },
-  "liu_yan": {
-    "core_traits": ["世故", "识人"],
-    "dynamic_state": {
-      "current_role": "幽州太守",
-      "current_status_cn": "已认刘备为侄。大兴山大胜后亲自迎接赏劳。"
-    }
-  },
-  "zhang_jiao": {
-    "core_traits": ["背景大反派"],
-    "dynamic_state": {
-      "current_role": "天公将军、黄巾军首领",
-      "current_status_cn": "广宗击败董卓，被三兄弟冲杀后败退五十余里。仍在活跃。"
     }
   }
 }

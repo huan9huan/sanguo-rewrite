@@ -3,6 +3,8 @@ id: cp002-p02
 chapter_id: cp002
 passage_id: p02
 title: 孙坚登场
+short_title: 孙坚
+catchup: 宛城围攻陷入死局，一支新军从东方杀来，孙坚第一次站上舞台。
 status: spec_draft
 source_file: ../../source/cp002-p02.md
 spec_file: spec.json
