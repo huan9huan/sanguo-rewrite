@@ -555,7 +555,7 @@ async function main() {
   const allPassages = bookExports.flatMap((item) => item.passages);
 
   const manifest = {
-    version: "v0.3.2",
+    version: "v0.3.3",
     generated_at: new Date().toISOString(),
     project: {
       title: "三国演义",
