@@ -459,6 +459,76 @@ Gatekeepers:
 - comic 插入点自然
 - 页面不需要理解内部流程才能使用
 
+## Pipeline 5: Release Operations
+
+### Purpose
+
+把本地验证通过的网站内容同步到远程 content bucket，并部署网站。
+
+Release Operations 不改 story，不改 current，不重新解释内容。
+它只负责把已经验证通过的 website-ready snapshot 发出去。
+
+### Step 1. Local Export And Build
+
+输入：
+
+- `story/` current assets
+- `site/scripts/export-content.mjs`
+- website source
+
+输出：
+
+- `site/public/content/`
+- local production build
+
+命令：
+
+- `cd site && npm run content:export`
+- `cd site && npm run build`
+
+通过条件：
+
+- content export 成功
+- build 成功
+- 本地页面检查通过
+
+### Step 2. Sync Content To GCS
+
+输入：
+
+- local `site/public/content/`
+- configured GCS content bucket / prefix
+
+输出：
+
+- remote GCS content snapshot
+
+典型命令：
+
+- `gsutil -m rsync -r -d site/public/content gs://<content-bucket>/<prefix>`
+
+规则：
+
+- 只同步 exported content snapshot
+- 不同步 `story/`、`draft/`、`comic/runNNN/` 源工作区
+- 同步后确认远程 `manifest.json` 已更新
+
+### Step 3. Deploy Website
+
+输入：
+
+- verified local build
+- remote content already synced
+
+命令：
+
+- `cd site && npm run deploy`
+
+通过条件：
+
+- deploy 成功
+- production website 能读取最新远程 content
+
 ## Passage State Model
 
 每个 passage 只需要关注当前阶段状态，不需要把全部版本历史暴露给网站。

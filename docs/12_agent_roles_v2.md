@@ -228,10 +228,27 @@ comic promote 必须先完成：
 - 从 `current/` 导出 website-ready payload
 - 生成 web-friendly image assets
 - 确保 exported JSON 与 reading model 同步
+- 本地验证 content export 和 website build
+- 本地确认没问题后，把 `site/public/content/` 同步到远程 GCS
+- GCS content sync 完成后，触发网站部署
 
 对应当前脚本：
 
 - `site/scripts/export-content.mjs`
+- `site/package.json` scripts: `content:export`, `build`, `deploy`
+
+典型命令：
+
+- `cd site && npm run content:export`
+- `cd site && npm run build`
+- `gsutil -m rsync -r -d site/public/content gs://<content-bucket>/<prefix>`
+- `cd site && npm run deploy`
+
+规则：
+
+- 不要跳过本地 build 直接同步远程
+- GCS 同步的是 exported content snapshot，不是 `story/` 源工作区
+- 部署前确认远程 content bucket 已经拿到最新 `manifest.json`
 
 ## Role Mapping
 

@@ -113,11 +113,17 @@
       "title": "引狼入室",
       "short_title": "引狼",
       "catchup": "何进手握天下兵权却杀不了几个太监——一个屠户的犹豫，即将打开帝国地狱之门。",
-      "status": "spec_draft",
+      "status": "comic_spec",
       "summary_markdown": "- 目标：完成从\"忠臣死谏无人听\"到\"庸人掌权引外兵\"的灾难闭环。何进是全段核心——手握兵权、身居高位、却毫无决断。用他的每一次犹豫，对比袁绍的蛮勇、陈琳的清醒、曹操的冷笑，最终以\"召外兵入京\"的致命决策收束全章。\n- 冲突：何进的\"有权无胆\" vs 袁绍的\"有胆无谋\"；何太后的\"私恩护宦\" vs 国家存亡；陈琳的\"倒持干戈\" vs 何进的\"懦夫之见\"。\n- 转折：灵帝崩→袁绍提兵拥立新帝（何进唯一果断时刻）→但面对杀宦官的关键决策反复被太后、何苗、宦官左右→最终采纳最荒谬的方案——召外兵入京。\n- 收束：檄文已发，各镇起兵赴京——大乱之门被一个屠户亲手打开。曹操大笑。",
-      "teaser": "",
-      "has_comic": false,
-      "image": null
+      "teaser": "何进是个屠户。",
+      "has_comic": true,
+      "image": {
+        "path": "books/sanguo/chapters/cp002/assets/p05.webp",
+        "url": "/books/sanguo/chapters/cp002/assets/p05.webp",
+        "alt": "引狼入室 image",
+        "width": 572,
+        "height": 1024
+      }
     }
   ]
 }

@@ -127,9 +127,10 @@ Detailed execution rules live in the role files under `agents/`.
   Supporting file: `pipeline/update_comic_page.py`
 - Release Operator
   中文常用名: `发布运维`
-  Position: current assets -> website-ready exported content
-  Owns: content export, asset normalization, web-facing package generation
+  Position: current assets -> website-ready exported content -> remote content sync -> site deploy
+  Owns: content export, asset normalization, web-facing package generation, GCS sync, deployment handoff
   File: `site/scripts/export-content.mjs`
+  Supporting commands: `npm run content:export`, `npm run build`, `gsutil -m rsync`, `npm run deploy`
 
 ### Adaptation
 - Language Adapter
@@ -159,6 +160,7 @@ Use these examples to locate the right role quickly.
 - "Comic文件已产生，帮我promote"  -> `工作区运维` / Workspace Operator
 - “重新 detect box 并 merge comic.json” -> `工作区运维` / Workspace Operator
 - “导出网站 content / 让 website 读到 current” -> `发布运维` / Release Operator
+- “本地测好了，同步到 GCS 然后部署” -> `发布运维` / Release Operator
 - “基于中文定稿改写英文/日文/韩文” -> `外语改写` / Language Adapter
 
 ## Review Gates
@@ -179,7 +181,7 @@ A CN draft should be reviewed for:
 - Comic Adapter must not invent visuals for core characters missing from `memory/character_visuals.json`
 - Reading Integrator works on current assets only
 - Workspace Operator is responsible for promote into `current/`
-- Release Operator is responsible for export from `current/` to website-ready payloads
+- Release Operator is responsible for local export/build validation, GCS content sync, and site deploy
 - Website consumes current assets only
 
 ## Workspace Operator Promote Rules
