@@ -1,6 +1,9 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useState, useEffect, type FormEvent } from "react";
+
+const CACHE_KEY = "future-books-submitted";
+const CACHE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 const BOOKS = [
   { id: "xiyouji", label: "西游记" },
@@ -11,11 +14,26 @@ const BOOKS = [
 
 type Status = "idle" | "submitting" | "success" | "error";
 
+function isCached(): boolean {
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return false;
+    return Date.now() < Number(raw);
+  } catch {
+    return false;
+  }
+}
+
 export function FutureBookForm() {
+  const [visible, setVisible] = useState(false);
   const [selectedBook, setSelectedBook] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (!isCached()) setVisible(true);
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -51,6 +69,10 @@ export function FutureBookForm() {
         return;
       }
 
+      try {
+        localStorage.setItem(CACHE_KEY, String(Date.now() + CACHE_MS));
+      } catch {}
+
       setStatus("success");
     } catch {
       setErrorMessage("网络错误，请稍后再试。");
@@ -58,79 +80,83 @@ export function FutureBookForm() {
     }
   }
 
+  if (!visible && status !== "success") return null;
+
   if (status === "success") {
     return (
-      <div className="future-books-card future-books-success">
+      <article className="reader-card future-books-card">
         <p className="future-books-success-text">
           收到了！我们会在你选的书可读时通知你。
         </p>
-      </div>
+      </article>
     );
   }
 
   return (
-    <form
-      className="future-books-card"
-      onSubmit={handleSubmit}
-      noValidate
-    >
-      <p className="future-books-prompt">你最想读哪一本？</p>
+    <article className="reader-card future-books-card">
+      <div>
+        <h2 className="passage-title">下一本读什么？</h2>
+        <p className="body-copy">告诉我们你最想读的经典，开始制作时通知你。</p>
+      </div>
+      <form onSubmit={handleSubmit} noValidate>
+        <p className="future-books-prompt">你最想读哪一本？</p>
 
-      <div className="book-option-grid">
-        {BOOKS.map((book) => (
-          <label
-            key={book.id}
-            className={`book-option-label ${selectedBook === book.id ? "book-option-selected" : ""}`}
+        <div className="book-option-grid">
+          {BOOKS.map((book) => (
+            <label
+              key={book.id}
+              className={`book-option-label ${selectedBook === book.id ? "book-option-selected" : ""}`}
+            >
+              <input
+                type="radio"
+                name="book"
+                value={book.id}
+                checked={selectedBook === book.id}
+                onChange={() => setSelectedBook(book.id)}
+                className="book-option-input"
+              />
+              {book.label}
+            </label>
+          ))}
+        </div>
+
+        <div className="future-books-email-row">
+          <input
+            type="email"
+            name="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="your@email.com"
+            className="future-books-email-input"
+            autoComplete="email"
+          />
+          <button
+            type="submit"
+            className="button-link button-link-secondary future-books-submit"
+            disabled={status === "submitting"}
           >
-            <input
-              type="radio"
-              name="book"
-              value={book.id}
-              checked={selectedBook === book.id}
-              onChange={() => setSelectedBook(book.id)}
-              className="book-option-input"
-            />
-            {book.label}
-          </label>
-        ))}
-      </div>
+            {status === "submitting" ? "提交中…" : "通知我"}
+          </button>
+        </div>
 
-      <div className="future-books-email-row">
+        {/* Honeypot — hidden from real users */}
         <input
-          type="email"
-          name="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="your@email.com"
-          className="future-books-email-input"
-          autoComplete="email"
+          type="text"
+          name="website"
+          tabIndex={-1}
+          autoComplete="off"
+          className="visually-hidden"
+          aria-hidden="true"
         />
-        <button
-          type="submit"
-          className="button-link button-link-accent future-books-submit"
-          disabled={status === "submitting"}
-        >
-          {status === "submitting" ? "提交中…" : "通知我"}
-        </button>
-      </div>
 
-      {/* Honeypot — hidden from real users */}
-      <input
-        type="text"
-        name="website"
-        tabIndex={-1}
-        autoComplete="off"
-        className="visually-hidden"
-        aria-hidden="true"
-      />
+        {errorMessage && (
+          <p className="future-books-error">{errorMessage}</p>
+        )}
 
-      {errorMessage && (
-        <p className="future-books-error">{errorMessage}</p>
-      )}
-
-      <p className="future-books-privacy">
-        我们只会在这本书可读时通知你。
-      </p>
-    </form>
+        <p className="future-books-privacy">
+          我们只会在这本书可读时通知你。
+        </p>
+      </form>
+    </article>
   );
 }

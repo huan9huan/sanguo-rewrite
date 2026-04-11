@@ -585,36 +585,22 @@ div {
   color: var(--ink-muted);
 }
 
-.future-books-section {
-  padding: 0 0 48px;
-}
-
 .future-books-card {
-  max-width: 560px;
-  margin: 0 auto;
-  padding: 32px;
-  border: 1px solid var(--border-soft);
-  background: var(--surface);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-ring), var(--shadow-soft);
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 20px;
 }
 
-.future-books-heading {
-  margin: 0;
-  text-align: center;
-  font-size: clamp(1.4rem, 3vw, 2rem);
-  font-weight: 500;
-  line-height: 1.15;
+.future-books-card form {
+  display: grid;
+  gap: 16px;
 }
 
 .future-books-prompt {
   margin: 0;
   font-family: "SF Pro Text", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
-  font-size: 1.05rem;
+  font-size: 0.95rem;
   color: var(--ink-soft);
-  text-align: center;
 }
 
 .book-option-grid {

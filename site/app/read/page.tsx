@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ModeHeader } from "@/components/mode-header";
 import { SiteFooter } from "@/components/site-footer";
+import { FutureBookForm } from "@/components/future-book-form";
 import { getAllBooks } from "@/lib/content";
 import { buildBookHref } from "@/lib/paths";
 
@@ -35,6 +36,8 @@ export default async function ReadIndexPage() {
                 </div>
               </article>
             ))}
+
+            <FutureBookForm />
           </div>
         </section>
       </main>
