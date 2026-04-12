@@ -98,7 +98,7 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
               routeParams={{ bookId, chapterId, passageId }}
             />
 
-            <PassageFeedback mode="comic" passagePath={{ bookId, chapterId, passageId }} />
+            <PassageFeedback mode="comic" passagePath={{ bookId, chapterId, passageId }} locale={safeLocale} />
           </article>
         </div>
       </section>

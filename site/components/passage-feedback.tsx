@@ -2,7 +2,7 @@
 
 import { useState, useEffect, type FormEvent } from "react";
 
-const NEGATIVE_REASONS = [
+const ZH_REASONS = [
   { id: "story_not_engaging", label: "故事不好看" },
   { id: "character_wrong", label: "人物不像 / 情绪不对" },
   { id: "chinese_too_hard", label: "中文太难" },
@@ -11,11 +11,25 @@ const NEGATIVE_REASONS = [
   { id: "other", label: "其他" },
 ] as const;
 
+const EN_REASONS = [
+  { id: "story_not_engaging", label: "Story not engaging" },
+  { id: "character_wrong", label: "Character / emotion off" },
+  { id: "clarity", label: "Hard to understand" },
+  { id: "naturalness", label: "Unnatural English" },
+  { id: "culture_fit", label: "Culture gap / context missing" },
+  { id: "name_confusion", label: "Names / terms confusing" },
+  { id: "story_flow", label: "Story flow broken" },
+  { id: "comic_confusing", label: "Comic confusing" },
+  { id: "image_quality", label: "Image quality issue" },
+  { id: "other", label: "Other" },
+] as const;
+
 const CACHE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 type Props = {
   mode: "text" | "comic";
   passagePath: { bookId: string; chapterId: string; passageId: string };
+  locale?: "zh" | "en";
 };
 
 type Status = "idle" | "expanded" | "submitting" | "success" | "error";
@@ -38,22 +52,23 @@ async function submitFeedback(
   passagePath: Props["passagePath"],
   mode: string,
   reason: string,
-  detail?: string,
+  detail: string | undefined,
+  locale: string,
 ): Promise<{ ok: boolean; error?: string }> {
   try {
     const res = await fetch("/api/passage-feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...passagePath, mode, reason, detail }),
+      body: JSON.stringify({ ...passagePath, mode, reason, detail, locale }),
     });
 
     if (!res.ok) {
       const data = await res.json();
-      return { ok: false, error: data.error || "提交失败，请稍后再试。" };
+      return { ok: false, error: data.error };
     }
     return { ok: true };
   } catch {
-    return { ok: false, error: "网络错误，请稍后再试。" };
+    return { ok: false, error: "network" };
   }
 }
 
@@ -63,7 +78,39 @@ function cacheSubmit(path: Props["passagePath"], mode: string) {
   } catch {}
 }
 
-export function PassageFeedback({ mode, passagePath }: Props) {
+const ZH_TEXT = {
+  disclosure: "本文和漫画由 AI 辅助生成，并经过编辑流程整理。",
+  like: "赞一下",
+  report: "有问题？告诉我们",
+  prompt: "你觉得哪里有问题？",
+  placeholder: "请描述一下具体问题…",
+  submitting: "提交中…",
+  submit: "提交反馈",
+  success: "感谢反馈！",
+  selectReason: "请选择一个问题。",
+  submitError: "提交失败，请稍后再试。",
+  networkError: "网络错误，请稍后再试。",
+} as const;
+
+const EN_TEXT = {
+  disclosure: "Text and comics are AI-assisted and edited by humans.",
+  like: "Like",
+  report: "Issue? Tell us",
+  prompt: "What's the problem?",
+  placeholder: "Describe the issue…",
+  submitting: "Submitting…",
+  submit: "Submit feedback",
+  success: "Thanks for your feedback!",
+  selectReason: "Please select an issue.",
+  submitError: "Submission failed. Please try again later.",
+  networkError: "Network error. Please try again later.",
+} as const;
+
+export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
+  const isEn = locale === "en";
+  const t = isEn ? EN_TEXT : ZH_TEXT;
+  const reasons = isEn ? EN_REASONS : ZH_REASONS;
+
   const [status, setStatus] = useState<Status>("idle");
   const [selectedReason, setSelectedReason] = useState("");
   const [detail, setDetail] = useState("");
@@ -75,14 +122,19 @@ export function PassageFeedback({ mode, passagePath }: Props) {
     }
   }, [passagePath, mode]);
 
+  function resolveError(error?: string): string {
+    if (error === "network") return t.networkError;
+    return error || t.submitError;
+  }
+
   async function handleLike() {
     setStatus("submitting");
-    const result = await submitFeedback(passagePath, mode, "liked");
+    const result = await submitFeedback(passagePath, mode, "liked", undefined, locale);
     if (result.ok) {
       cacheSubmit(passagePath, mode);
       setStatus("success");
     } else {
-      setErrorMessage(result.error || "提交失败。");
+      setErrorMessage(resolveError(result.error));
       setStatus("error");
     }
   }
@@ -96,18 +148,18 @@ export function PassageFeedback({ mode, passagePath }: Props) {
     setErrorMessage("");
 
     if (!selectedReason) {
-      setErrorMessage("请选择一个问题。");
+      setErrorMessage(t.selectReason);
       return;
     }
 
     setStatus("submitting");
     const detailValue = selectedReason === "other" ? detail.trim() : undefined;
-    const result = await submitFeedback(passagePath, mode, selectedReason, detailValue);
+    const result = await submitFeedback(passagePath, mode, selectedReason, detailValue, locale);
     if (result.ok) {
       cacheSubmit(passagePath, mode);
       setStatus("success");
     } else {
-      setErrorMessage(result.error || "提交失败。");
+      setErrorMessage(resolveError(result.error));
       setStatus("error");
     }
   }
@@ -115,7 +167,7 @@ export function PassageFeedback({ mode, passagePath }: Props) {
   return (
     <div className="passage-feedback">
       <p className="passage-feedback-disclosure">
-        本文和漫画由 AI 辅助生成，并经过编辑流程整理。
+        {t.disclosure}
       </p>
 
       {status === "idle" && (
@@ -125,23 +177,23 @@ export function PassageFeedback({ mode, passagePath }: Props) {
             className="passage-feedback-like"
             onClick={handleLike}
           >
-            赞一下
+            {t.like}
           </button>
           <button
             type="button"
             className="passage-feedback-toggle"
             onClick={handleExpand}
           >
-            有问题？告诉我们
+            {t.report}
           </button>
         </div>
       )}
 
       {status === "expanded" || status === "submitting" || status === "error" ? (
         <form onSubmit={handleSubmit} noValidate>
-          <p className="passage-feedback-prompt">你觉得哪里有问题？</p>
+          <p className="passage-feedback-prompt">{t.prompt}</p>
           <div className="passage-feedback-reasons">
-            {NEGATIVE_REASONS.map((r) => (
+            {reasons.map((r) => (
               <label
                 key={r.id}
                 className={`passage-feedback-reason ${selectedReason === r.id ? "passage-feedback-reason-selected" : ""}`}
@@ -164,7 +216,7 @@ export function PassageFeedback({ mode, passagePath }: Props) {
               className="passage-feedback-detail"
               value={detail}
               onChange={(e) => setDetail(e.target.value)}
-              placeholder="请描述一下具体问题…"
+              placeholder={t.placeholder}
               rows={2}
             />
           )}
@@ -174,7 +226,7 @@ export function PassageFeedback({ mode, passagePath }: Props) {
             className="button-link button-link-secondary passage-feedback-submit"
             disabled={status === "submitting"}
           >
-            {status === "submitting" ? "提交中…" : "提交反馈"}
+            {status === "submitting" ? t.submitting : t.submit}
           </button>
 
           {errorMessage && (
@@ -184,7 +236,7 @@ export function PassageFeedback({ mode, passagePath }: Props) {
       ) : null}
 
       {status === "success" && (
-        <p className="passage-feedback-success">感谢反馈！</p>
+        <p className="passage-feedback-success">{t.success}</p>
       )}
     </div>
   );

@@ -173,7 +173,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
               )}
             </div>
 
-            <PassageFeedback mode="text" passagePath={{ bookId, chapterId, passageId }} />
+            <PassageFeedback mode="text" passagePath={{ bookId, chapterId, passageId }} locale={safeLocale} />
 
             <div className="passage-footer-nav">
               {previousPassage ? (
