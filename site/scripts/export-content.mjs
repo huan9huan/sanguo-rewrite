@@ -333,6 +333,8 @@ function buildPassagePreview(payload) {
     has_comic: Boolean(payload.reading.comic.image || payload.reading.comic.layout?.frames?.length),
     image: payload.reading.comic.image,
     available_locales: payload.available_locales,
+    title_en: payload.localized?.en?.title || undefined,
+    catchup_en: payload.localized?.en?.catchup || undefined,
   };
 }
 

@@ -44,7 +44,9 @@ export default async function LocaleBookPage({ params }: LocaleBookPageProps) {
       id: passage.id,
       passage_id: passage.passage_id,
       title: passage.title,
-      catchup: passage.catchup,
+      title_en: passage.title_en,
+      catchup: passage.catchup_en ?? passage.catchup,
+      available_locales: passage.available_locales,
     })),
   }));
 
@@ -61,7 +63,7 @@ export default async function LocaleBookPage({ params }: LocaleBookPageProps) {
         </div>
       </section>
 
-      <BookChapterBrowser bookId={book.id} chapters={readerChapters} />
+      <BookChapterBrowser bookId={book.id} chapters={readerChapters} locale={safeLocale} />
     </main>
   );
 }

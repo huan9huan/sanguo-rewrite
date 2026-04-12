@@ -85,6 +85,7 @@
             "frame_id": "f1",
             "scene_id": "cp002_p04_s1",
             "title": "后花园宴饮",
+            "title_en": "",
             "items": [
               {
                 "id": "f1_t1",
@@ -105,6 +106,7 @@
             "frame_id": "f2",
             "scene_id": "cp002_p04_s2",
             "title": "刘陶恸哭",
+            "title_en": "",
             "items": [
               {
                 "id": "f2_t1",
@@ -132,6 +134,7 @@
             "frame_id": "f3",
             "scene_id": "cp002_p04_s2",
             "title": "假哭操控",
+            "title_en": "",
             "items": [
               {
                 "id": "f3_t1",
@@ -159,6 +162,7 @@
             "frame_id": "f4",
             "scene_id": "cp002_p04_s2",
             "title": "四百年休矣",
+            "title_en": "",
             "items": [
               {
                 "id": "f4_t1",
@@ -219,6 +223,7 @@
                 "frame_id": "f1",
                 "scene_id": "cp002_p04_s1",
                 "title": "后花园宴饮",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -243,6 +248,7 @@
             "frame_id": "f1",
             "scene_id": "cp002_p04_s1",
             "title": "后花园宴饮",
+            "title_en": "",
             "items": [
               {
                 "id": "f1_t1",
@@ -327,6 +333,7 @@
                 "frame_id": "f2",
                 "scene_id": "cp002_p04_s2",
                 "title": "刘陶恸哭",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -359,6 +366,7 @@
                 "frame_id": "f3",
                 "scene_id": "cp002_p04_s2",
                 "title": "假哭操控",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -391,6 +399,7 @@
                 "frame_id": "f4",
                 "scene_id": "cp002_p04_s2",
                 "title": "四百年休矣",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -422,6 +431,7 @@
             "frame_id": "f2",
             "scene_id": "cp002_p04_s2",
             "title": "刘陶恸哭",
+            "title_en": "",
             "items": [
               {
                 "id": "f2_t1",
@@ -449,6 +459,7 @@
             "frame_id": "f3",
             "scene_id": "cp002_p04_s2",
             "title": "假哭操控",
+            "title_en": "",
             "items": [
               {
                 "id": "f3_t1",
@@ -476,6 +487,7 @@
             "frame_id": "f4",
             "scene_id": "cp002_p04_s2",
             "title": "四百年休矣",
+            "title_en": "",
             "items": [
               {
                 "id": "f4_t1",
@@ -577,6 +589,7 @@
                 "frame_id": "f1",
                 "scene_id": "cp002_p04_s1",
                 "title": "后花园宴饮",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -597,6 +610,7 @@
                 "frame_id": "f2",
                 "scene_id": "cp002_p04_s2",
                 "title": "刘陶恸哭",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -624,6 +638,7 @@
                 "frame_id": "f3",
                 "scene_id": "cp002_p04_s2",
                 "title": "假哭操控",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -651,6 +666,7 @@
                 "frame_id": "f4",
                 "scene_id": "cp002_p04_s2",
                 "title": "四百年休矣",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -711,6 +727,7 @@
                     "frame_id": "f1",
                     "scene_id": "cp002_p04_s1",
                     "title": "后花园宴饮",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f1_t1",
@@ -735,6 +752,7 @@
                 "frame_id": "f1",
                 "scene_id": "cp002_p04_s1",
                 "title": "后花园宴饮",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -819,6 +837,7 @@
                     "frame_id": "f2",
                     "scene_id": "cp002_p04_s2",
                     "title": "刘陶恸哭",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f2_t1",
@@ -851,6 +870,7 @@
                     "frame_id": "f3",
                     "scene_id": "cp002_p04_s2",
                     "title": "假哭操控",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f3_t1",
@@ -883,6 +903,7 @@
                     "frame_id": "f4",
                     "scene_id": "cp002_p04_s2",
                     "title": "四百年休矣",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f4_t1",
@@ -914,6 +935,7 @@
                 "frame_id": "f2",
                 "scene_id": "cp002_p04_s2",
                 "title": "刘陶恸哭",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -941,6 +963,7 @@
                 "frame_id": "f3",
                 "scene_id": "cp002_p04_s2",
                 "title": "假哭操控",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -968,6 +991,7 @@
                 "frame_id": "f4",
                 "scene_id": "cp002_p04_s2",
                 "title": "四百年休矣",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",

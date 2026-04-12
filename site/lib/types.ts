@@ -191,6 +191,8 @@ export type PassagePreview = {
   has_comic: boolean;
   image: PassageImage | null;
   available_locales: Locale[];
+  title_en?: string;
+  catchup_en?: string;
 };
 
 export type ChapterSummary = {

@@ -392,6 +392,8 @@ function buildPassagePreview(passage: Passage): PassagePreview {
     has_comic: Boolean(passage.reading.comic.image || passage.reading.comic.layout?.frames?.length),
     image: passage.reading.comic.image,
     available_locales: passage.available_locales,
+    title_en: passage.localized?.en?.title || undefined,
+    catchup_en: passage.localized?.en?.catchup || undefined,
   };
 }
 

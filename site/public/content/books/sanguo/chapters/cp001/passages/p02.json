@@ -73,6 +73,7 @@
             "frame_id": "f1",
             "scene_id": "cp001_p02_s1",
             "title": "楼桑树下",
+            "title_en": "",
             "items": [
               {
                 "id": "f1_t1",
@@ -93,6 +94,7 @@
             "frame_id": "f2",
             "scene_id": "cp001_p02_s2",
             "title": "榜前长叹",
+            "title_en": "",
             "items": [
               {
                 "id": "f2_t1",
@@ -113,6 +115,7 @@
             "frame_id": "f3",
             "scene_id": "cp001_p02_s3",
             "title": "厉声一喝",
+            "title_en": "",
             "items": [
               {
                 "id": "f3_t1",
@@ -133,6 +136,7 @@
             "frame_id": "f4",
             "scene_id": "cp001_p02_s3",
             "title": "行动开始",
+            "title_en": "",
             "items": [
               {
                 "id": "f4_t1",
@@ -237,6 +241,7 @@
                 "frame_id": "f1",
                 "scene_id": "cp001_p02_s1",
                 "title": "楼桑树下",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -261,6 +266,7 @@
             "frame_id": "f1",
             "scene_id": "cp001_p02_s1",
             "title": "楼桑树下",
+            "title_en": "",
             "items": [
               {
                 "id": "f1_t1",
@@ -311,6 +317,7 @@
                 "frame_id": "f2",
                 "scene_id": "cp001_p02_s2",
                 "title": "榜前长叹",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -335,6 +342,7 @@
             "frame_id": "f2",
             "scene_id": "cp001_p02_s2",
             "title": "榜前长叹",
+            "title_en": "",
             "items": [
               {
                 "id": "f2_t1",
@@ -381,6 +389,7 @@
                 "frame_id": "f3",
                 "scene_id": "cp001_p02_s3",
                 "title": "厉声一喝",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -406,6 +415,7 @@
                 "frame_id": "f4",
                 "scene_id": "cp001_p02_s3",
                 "title": "行动开始",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -437,6 +447,7 @@
             "frame_id": "f3",
             "scene_id": "cp001_p02_s3",
             "title": "厉声一喝",
+            "title_en": "",
             "items": [
               {
                 "id": "f3_t1",
@@ -457,6 +468,7 @@
             "frame_id": "f4",
             "scene_id": "cp001_p02_s3",
             "title": "行动开始",
+            "title_en": "",
             "items": [
               {
                 "id": "f4_t1",
@@ -513,6 +525,7 @@
                 "frame_id": "f1",
                 "scene_id": "cp001_p02_s1",
                 "title": "楼桑树下",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -533,6 +546,7 @@
                 "frame_id": "f2",
                 "scene_id": "cp001_p02_s2",
                 "title": "榜前长叹",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -553,6 +567,7 @@
                 "frame_id": "f3",
                 "scene_id": "cp001_p02_s3",
                 "title": "厉声一喝",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -573,6 +588,7 @@
                 "frame_id": "f4",
                 "scene_id": "cp001_p02_s3",
                 "title": "行动开始",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -677,6 +693,7 @@
                     "frame_id": "f1",
                     "scene_id": "cp001_p02_s1",
                     "title": "楼桑树下",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f1_t1",
@@ -701,6 +718,7 @@
                 "frame_id": "f1",
                 "scene_id": "cp001_p02_s1",
                 "title": "楼桑树下",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -751,6 +769,7 @@
                     "frame_id": "f2",
                     "scene_id": "cp001_p02_s2",
                     "title": "榜前长叹",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f2_t1",
@@ -775,6 +794,7 @@
                 "frame_id": "f2",
                 "scene_id": "cp001_p02_s2",
                 "title": "榜前长叹",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -821,6 +841,7 @@
                     "frame_id": "f3",
                     "scene_id": "cp001_p02_s3",
                     "title": "厉声一喝",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f3_t1",
@@ -846,6 +867,7 @@
                     "frame_id": "f4",
                     "scene_id": "cp001_p02_s3",
                     "title": "行动开始",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f4_t1",
@@ -877,6 +899,7 @@
                 "frame_id": "f3",
                 "scene_id": "cp001_p02_s3",
                 "title": "厉声一喝",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -897,6 +920,7 @@
                 "frame_id": "f4",
                 "scene_id": "cp001_p02_s3",
                 "title": "行动开始",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",

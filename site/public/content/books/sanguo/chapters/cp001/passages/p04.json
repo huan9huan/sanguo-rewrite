@@ -84,6 +84,7 @@
             "frame_id": "f1",
             "scene_id": "cp001_p04_s1",
             "title": "五百对五万",
+            "title_en": "",
             "items": [
               {
                 "id": "f1_t1",
@@ -104,6 +105,7 @@
             "frame_id": "f2",
             "scene_id": "cp001_p04_s1",
             "title": "一矛一刀",
+            "title_en": "",
             "items": [
               {
                 "id": "f2_t1",
@@ -124,6 +126,7 @@
             "frame_id": "f3",
             "scene_id": "cp001_p04_s2",
             "title": "油灯下的计策",
+            "title_en": "",
             "items": [
               {
                 "id": "f3_t1",
@@ -144,6 +147,7 @@
             "frame_id": "f4",
             "scene_id": "cp001_p04_s2",
             "title": "三路夹攻",
+            "title_en": "",
             "items": [
               {
                 "id": "f4_t1",
@@ -164,6 +168,7 @@
             "frame_id": "f5",
             "scene_id": "cp001_p04_s3",
             "title": "来了就好",
+            "title_en": "",
             "items": [
               {
                 "id": "f5_t1",
@@ -298,6 +303,7 @@
                 "frame_id": "f1",
                 "scene_id": "cp001_p04_s1",
                 "title": "五百对五万",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -323,6 +329,7 @@
                 "frame_id": "f2",
                 "scene_id": "cp001_p04_s1",
                 "title": "一矛一刀",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -347,6 +354,7 @@
             "frame_id": "f1",
             "scene_id": "cp001_p04_s1",
             "title": "五百对五万",
+            "title_en": "",
             "items": [
               {
                 "id": "f1_t1",
@@ -367,6 +375,7 @@
             "frame_id": "f2",
             "scene_id": "cp001_p04_s1",
             "title": "一矛一刀",
+            "title_en": "",
             "items": [
               {
                 "id": "f2_t1",
@@ -427,6 +436,7 @@
                 "frame_id": "f3",
                 "scene_id": "cp001_p04_s2",
                 "title": "油灯下的计策",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -452,6 +462,7 @@
                 "frame_id": "f4",
                 "scene_id": "cp001_p04_s2",
                 "title": "三路夹攻",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -476,6 +487,7 @@
             "frame_id": "f3",
             "scene_id": "cp001_p04_s2",
             "title": "油灯下的计策",
+            "title_en": "",
             "items": [
               {
                 "id": "f3_t1",
@@ -496,6 +508,7 @@
             "frame_id": "f4",
             "scene_id": "cp001_p04_s2",
             "title": "三路夹攻",
+            "title_en": "",
             "items": [
               {
                 "id": "f4_t1",
@@ -553,6 +566,7 @@
                 "frame_id": "f5",
                 "scene_id": "cp001_p04_s3",
                 "title": "来了就好",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f5_t1",
@@ -584,6 +598,7 @@
             "frame_id": "f5",
             "scene_id": "cp001_p04_s3",
             "title": "来了就好",
+            "title_en": "",
             "items": [
               {
                 "id": "f5_t1",
@@ -640,6 +655,7 @@
                 "frame_id": "f1",
                 "scene_id": "cp001_p04_s1",
                 "title": "五百对五万",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -660,6 +676,7 @@
                 "frame_id": "f2",
                 "scene_id": "cp001_p04_s1",
                 "title": "一矛一刀",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -680,6 +697,7 @@
                 "frame_id": "f3",
                 "scene_id": "cp001_p04_s2",
                 "title": "油灯下的计策",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -700,6 +718,7 @@
                 "frame_id": "f4",
                 "scene_id": "cp001_p04_s2",
                 "title": "三路夹攻",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -720,6 +739,7 @@
                 "frame_id": "f5",
                 "scene_id": "cp001_p04_s3",
                 "title": "来了就好",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f5_t1",
@@ -854,6 +874,7 @@
                     "frame_id": "f1",
                     "scene_id": "cp001_p04_s1",
                     "title": "五百对五万",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f1_t1",
@@ -879,6 +900,7 @@
                     "frame_id": "f2",
                     "scene_id": "cp001_p04_s1",
                     "title": "一矛一刀",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f2_t1",
@@ -903,6 +925,7 @@
                 "frame_id": "f1",
                 "scene_id": "cp001_p04_s1",
                 "title": "五百对五万",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -923,6 +946,7 @@
                 "frame_id": "f2",
                 "scene_id": "cp001_p04_s1",
                 "title": "一矛一刀",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -983,6 +1007,7 @@
                     "frame_id": "f3",
                     "scene_id": "cp001_p04_s2",
                     "title": "油灯下的计策",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f3_t1",
@@ -1008,6 +1033,7 @@
                     "frame_id": "f4",
                     "scene_id": "cp001_p04_s2",
                     "title": "三路夹攻",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f4_t1",
@@ -1032,6 +1058,7 @@
                 "frame_id": "f3",
                 "scene_id": "cp001_p04_s2",
                 "title": "油灯下的计策",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -1052,6 +1079,7 @@
                 "frame_id": "f4",
                 "scene_id": "cp001_p04_s2",
                 "title": "三路夹攻",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -1109,6 +1137,7 @@
                     "frame_id": "f5",
                     "scene_id": "cp001_p04_s3",
                     "title": "来了就好",
+                    "title_en": "",
                     "items": [
                       {
                         "id": "f5_t1",
@@ -1140,6 +1169,7 @@
                 "frame_id": "f5",
                 "scene_id": "cp001_p04_s3",
                 "title": "来了就好",
+                "title_en": "",
                 "items": [
                   {
                     "id": "f5_t1",
