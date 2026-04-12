@@ -1,27 +1,29 @@
 "use client";
 
 import { useState, useEffect, type FormEvent } from "react";
+import { getDictionary } from "@/i18n";
+import type { Locale } from "@/lib/types";
 
-const ZH_REASONS = [
-  { id: "story_not_engaging", label: "故事不好看" },
-  { id: "character_wrong", label: "人物不像 / 情绪不对" },
-  { id: "chinese_too_hard", label: "中文太难" },
-  { id: "comic_confusing", label: "漫画看不懂" },
-  { id: "image_quality", label: "图片质量有问题" },
-  { id: "other", label: "其他" },
+const ZH_REASON_IDS = [
+  "story_not_engaging",
+  "character_wrong",
+  "chinese_too_hard",
+  "comic_confusing",
+  "image_quality",
+  "other",
 ] as const;
 
-const EN_REASONS = [
-  { id: "story_not_engaging", label: "Story not engaging" },
-  { id: "character_wrong", label: "Character / emotion off" },
-  { id: "clarity", label: "Hard to understand" },
-  { id: "naturalness", label: "Unnatural English" },
-  { id: "culture_fit", label: "Culture gap / context missing" },
-  { id: "name_confusion", label: "Names / terms confusing" },
-  { id: "story_flow", label: "Story flow broken" },
-  { id: "comic_confusing", label: "Comic confusing" },
-  { id: "image_quality", label: "Image quality issue" },
-  { id: "other", label: "Other" },
+const EN_REASON_IDS = [
+  "story_not_engaging",
+  "character_wrong",
+  "clarity",
+  "naturalness",
+  "culture_fit",
+  "name_confusion",
+  "story_flow",
+  "comic_confusing",
+  "image_quality",
+  "other",
 ] as const;
 
 const CACHE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
@@ -29,7 +31,7 @@ const CACHE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 type Props = {
   mode: "text" | "comic";
   passagePath: { bookId: string; chapterId: string; passageId: string };
-  locale?: "zh" | "en";
+  locale?: Locale;
 };
 
 type Status = "idle" | "expanded" | "submitting" | "success" | "error";
@@ -78,38 +80,9 @@ function cacheSubmit(path: Props["passagePath"], mode: string) {
   } catch {}
 }
 
-const ZH_TEXT = {
-  disclosure: "本文和漫画由 AI 辅助生成，并经过编辑流程整理。",
-  like: "赞一下",
-  report: "有问题？告诉我们",
-  prompt: "你觉得哪里有问题？（可多选）",
-  placeholder: "请描述一下具体问题…",
-  submitting: "提交中…",
-  submit: "提交反馈",
-  success: "感谢反馈！",
-  selectReason: "请至少选择一个问题。",
-  submitError: "提交失败，请稍后再试。",
-  networkError: "网络错误，请稍后再试。",
-} as const;
-
-const EN_TEXT = {
-  disclosure: "Text and comics are AI-assisted and edited by humans.",
-  like: "Like",
-  report: "Issue? Tell us",
-  prompt: "What's the problem? (pick all that apply)",
-  placeholder: "Describe the issue…",
-  submitting: "Submitting…",
-  submit: "Submit feedback",
-  success: "Thanks for your feedback!",
-  selectReason: "Please select at least one issue.",
-  submitError: "Submission failed. Please try again later.",
-  networkError: "Network error. Please try again later.",
-} as const;
-
 export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
-  const isEn = locale === "en";
-  const t = isEn ? EN_TEXT : ZH_TEXT;
-  const reasons = isEn ? EN_REASONS : ZH_REASONS;
+  const t = getDictionary(locale);
+  const reasonIds = locale === "en" ? EN_REASON_IDS : ZH_REASON_IDS;
 
   const [status, setStatus] = useState<Status>("idle");
   const [selectedReasons, setSelectedReasons] = useState<Set<string>>(new Set());
@@ -123,8 +96,8 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
   }, [passagePath, mode]);
 
   function resolveError(error?: string): string {
-    if (error === "network") return t.networkError;
-    return error || t.submitError;
+    if (error === "network") return t.feedback.networkError;
+    return error || t.feedback.submitError;
   }
 
   function toggleReason(id: string) {
@@ -132,9 +105,6 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
       const next = new Set(prev);
       if (next.has(id)) {
         next.delete(id);
-        if (id !== "other") {
-          // keep detail only if "other" is still selected
-        }
       } else {
         next.add(id);
       }
@@ -163,7 +133,7 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
     setErrorMessage("");
 
     if (selectedReasons.size === 0) {
-      setErrorMessage(t.selectReason);
+      setErrorMessage(t.feedback.selectReason);
       return;
     }
 
@@ -182,7 +152,7 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
   return (
     <div className="passage-feedback">
       <p className="passage-feedback-disclosure">
-        {t.disclosure}
+        {t.feedback.disclosure}
       </p>
 
       {status === "idle" && (
@@ -192,36 +162,36 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
             className="passage-feedback-like"
             onClick={handleLike}
           >
-            {t.like}
+            {t.feedback.like}
           </button>
           <button
             type="button"
             className="passage-feedback-toggle"
             onClick={handleExpand}
           >
-            {t.report}
+            {t.feedback.report}
           </button>
         </div>
       )}
 
       {status === "expanded" || status === "submitting" || status === "error" ? (
         <form onSubmit={handleSubmit} noValidate>
-          <p className="passage-feedback-prompt">{t.prompt}</p>
+          <p className="passage-feedback-prompt">{t.feedback.prompt}</p>
           <div className="passage-feedback-reasons">
-            {reasons.map((r) => (
+            {reasonIds.map((id) => (
               <label
-                key={r.id}
-                className={`passage-feedback-reason ${selectedReasons.has(r.id) ? "passage-feedback-reason-selected" : ""}`}
+                key={id}
+                className={`passage-feedback-reason ${selectedReasons.has(id) ? "passage-feedback-reason-selected" : ""}`}
               >
                 <input
                   type="checkbox"
                   name="reasons"
-                  value={r.id}
-                  checked={selectedReasons.has(r.id)}
-                  onChange={() => toggleReason(r.id)}
+                  value={id}
+                  checked={selectedReasons.has(id)}
+                  onChange={() => toggleReason(id)}
                   className="visually-hidden"
                 />
-                {r.label}
+                {t.feedback.reasons[id as keyof typeof t.feedback.reasons]}
               </label>
             ))}
           </div>
@@ -231,7 +201,7 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
               className="passage-feedback-detail"
               value={detail}
               onChange={(e) => setDetail(e.target.value)}
-              placeholder={t.placeholder}
+              placeholder={t.feedback.placeholder}
               rows={2}
             />
           )}
@@ -241,7 +211,7 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
             className="button-link button-link-secondary passage-feedback-submit"
             disabled={status === "submitting"}
           >
-            {status === "submitting" ? t.submitting : t.submit}
+            {status === "submitting" ? t.common.submitting : t.feedback.submit}
           </button>
 
           {errorMessage && (
@@ -251,7 +221,7 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
       ) : null}
 
       {status === "success" && (
-        <p className="passage-feedback-success">{t.success}</p>
+        <p className="passage-feedback-success">{t.feedback.success}</p>
       )}
     </div>
   );

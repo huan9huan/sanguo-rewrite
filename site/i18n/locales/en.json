@@ -1,0 +1,82 @@
+{
+  "common": {
+    "home": "Home",
+    "library": "Library",
+    "allBooks": "All Books",
+    "text": "Text",
+    "comic": "Comic",
+    "previous": "Previous",
+    "next": "Next",
+    "backToChapter": "Back to chapter",
+    "backToText": "Back to text",
+    "submitting": "Submitting…",
+    "noContent": "No content yet."
+  },
+  "landing": {
+    "heroTitle": "Bringing Chinese Classics to Life",
+    "cta": "Start Reading Romance of the Three Kingdoms"
+  },
+  "read": {
+    "pageTitle": "Read Chinese Classics",
+    "openBook": "Open this book"
+  },
+  "bookmark": {
+    "label": "Reading Bookmark",
+    "title": "Continue reading",
+    "continue": "Continue"
+  },
+  "chapter": {
+    "collapse": "Collapse chapter",
+    "expand": "Expand chapter"
+  },
+  "comic": {
+    "description": "Read this passage in comic mode, switch to text anytime."
+  },
+  "feedback": {
+    "disclosure": "Text and comics are AI-assisted and edited by humans.",
+    "like": "Like",
+    "report": "Issue? Tell us",
+    "prompt": "What's the problem? (pick all that apply)",
+    "placeholder": "Describe the issue…",
+    "submit": "Submit feedback",
+    "success": "Thanks for your feedback!",
+    "submitError": "Submission failed. Please try again later.",
+    "networkError": "Network error. Please try again later.",
+    "selectReason": "Please select at least one issue.",
+    "reasons": {
+      "story_not_engaging": "Story not engaging",
+      "character_wrong": "Character / emotion off",
+      "chinese_too_hard": "Chinese too hard",
+      "comic_confusing": "Comic confusing",
+      "image_quality": "Image quality issue",
+      "clarity": "Hard to understand",
+      "naturalness": "Unnatural English",
+      "culture_fit": "Culture gap / context missing",
+      "name_confusion": "Names / terms confusing",
+      "story_flow": "Story flow broken",
+      "other": "Other"
+    }
+  },
+  "futureBooks": {
+    "title": "What to read next?",
+    "description": "Tell us which classic you'd love to read. We'll notify you when it's ready.",
+    "prompt": "Which one do you want most?",
+    "notify": "Notify me",
+    "privacy": "We'll only notify you when the book is ready to read.",
+    "success": "Got it! We'll let you know when your pick is ready.",
+    "selectBook": "Please select a book.",
+    "invalidEmail": "Please enter a valid email address.",
+    "submitError": "Submission failed. Please try again later.",
+    "networkError": "Network error. Please try again later.",
+    "books": {
+      "xiyouji": "Journey to the West",
+      "shuihu": "Water Margin",
+      "hongloumeng": "Dream of the Red Chamber",
+      "jinpingmei": "Jin Ping Mei"
+    }
+  },
+  "locale": {
+    "passageUnavailable": "This passage is not yet available in {locale}.",
+    "readInOther": "Read in Chinese"
+  }
+}

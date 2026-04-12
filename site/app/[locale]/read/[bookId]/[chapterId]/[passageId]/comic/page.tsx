@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
+import { getDictionary } from "@/i18n";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { buildBookHref, buildChapterHref, buildPassageHref } from "@/lib/paths";
 import type { Locale } from "@/lib/types";
@@ -47,6 +48,7 @@ export async function generateStaticParams() {
 export default async function LocaleComicPage({ params }: LocaleComicPageProps) {
   const { locale, bookId, chapterId, passageId } = await params;
   const safeLocale = VALID_LOCALES.includes(locale as Locale) ? (locale as Locale) : "zh";
+  const t = getDictionary(safeLocale);
 
   const [book, chapter, passage] = await Promise.all([
     getBookById(bookId),
@@ -70,7 +72,7 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
         passageLabel={passage.title}
         compactTitle={passage.title}
         primaryLink={{ label: bookTitle, href: buildBookHref(book.id, safeLocale) }}
-        actionLink={{ label: isEn ? "Text" : "正文", href: buildPassageHref({ bookId, chapterId, passageId }, safeLocale) }}
+        actionLink={{ label: t.common.text, href: buildPassageHref({ bookId, chapterId, passageId }, safeLocale) }}
         secondaryLink={{ label: chapterLabel, href: buildChapterHref(book.id, chapter.id, safeLocale) }}
       />
 
@@ -80,14 +82,14 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
             <p className="eyebrow">{bookTitle}</p>
             <h1 className="section-title passage-page-title">{passage.title}</h1>
             <p className="section-copy">
-              {isEn ? "Read this passage in comic mode, switch to text anytime." : "用漫画模式阅读这一节，需要时再随时回到正文。"}
+              {t.comic.description}
             </p>
             <div className="reader-card-actions">
               <Link className="button-link" href={buildPassageHref({ bookId, chapterId, passageId }, safeLocale)}>
-                {isEn ? "Back to text" : "返回正文"}
+                {t.common.backToText}
               </Link>
               <Link className="button-link button-link-accent" href={buildChapterHref(bookId, chapterId, safeLocale)}>
-                {isEn ? "Back to chapter" : "返回章节"}
+                {t.common.backToChapter}
               </Link>
             </div>
 

@@ -2,7 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { getDictionary } from "@/i18n";
 import { formatChapterTitle } from "@/lib/chapter-title";
+import type { Locale } from "@/lib/types";
 import { buildComicHref, buildPassageHref } from "@/lib/paths";
 
 type ReadingBookmark = {
@@ -15,7 +17,7 @@ type ReadingBookmark = {
 type BookChapterBrowserProps = {
   bookId: string;
   chapters: ReaderChapter[];
-  locale?: string;
+  locale?: Locale;
 };
 
 const BOOKMARK_KEY_PREFIX = "reading-bookmark:";
@@ -40,8 +42,9 @@ function getBookmarkKey(bookId: string) {
   return `${BOOKMARK_KEY_PREFIX}${bookId}`;
 }
 
-export function BookChapterBrowser({ bookId, chapters, locale }: BookChapterBrowserProps) {
+export function BookChapterBrowser({ bookId, chapters, locale = "zh" }: BookChapterBrowserProps) {
   const isEn = locale === "en";
+  const t = getDictionary(locale);
   const [expandedChapterId, setExpandedChapterId] = useState<string | null>(chapters[0]?.id ?? null);
   const [bookmark, setBookmark] = useState<ReadingBookmark | null>(null);
 
@@ -87,10 +90,10 @@ export function BookChapterBrowser({ bookId, chapters, locale }: BookChapterBrow
         <section className="section">
           <div className="container">
             <article className="panel bookmark-panel">
-              <p className="eyebrow">阅读书签</p>
+              <p className="eyebrow">{t.bookmark.label}</p>
               <div className="bookmark-row">
                 <div>
-                  <h2 className="panel-title">{isEn ? "Continue reading" : "继续上次阅读"}</h2>
+                  <h2 className="panel-title">{t.bookmark.title}</h2>
                   <p className="body-copy">
                     {isEn && bookmarkLabel.passage.title_en ? bookmarkLabel.passage.title_en : bookmarkLabel.passage.title}
                   </p>
@@ -103,7 +106,7 @@ export function BookChapterBrowser({ bookId, chapters, locale }: BookChapterBrow
                     passageId: bookmarkLabel.passage.passage_id,
                   }, locale as "zh" | "en")}
                 >
-                  {isEn ? "Continue" : "继续阅读"}
+                  {t.bookmark.continue}
                 </Link>
               </div>
             </article>
@@ -131,7 +134,7 @@ export function BookChapterBrowser({ bookId, chapters, locale }: BookChapterBrow
                     <span className="chapter-meta-toggle" aria-hidden="true">
                       <span className={`chapter-toggle-icon ${isExpanded ? "chapter-toggle-icon-open" : ""}`} aria-hidden="true" />
                     </span>
-                    <span className="visually-hidden">{isExpanded ? "收起章节" : "展开章节"}</span>
+                    <span className="visually-hidden">{isExpanded ? t.chapter.collapse : t.chapter.expand}</span>
                   </div>
                 </button>
 
@@ -155,13 +158,13 @@ export function BookChapterBrowser({ bookId, chapters, locale }: BookChapterBrow
                                 className="button-link button-link-secondary"
                                 href={buildPassageHref({ bookId, chapterId: chapter.id, passageId: passage.passage_id }, locale as "zh" | "en")}
                               >
-                                {isEn ? "Text" : "正文"}
+                                {t.common.text}
                               </Link>
                               <Link
                                 className="button-link button-link-secondary"
                                 href={buildComicHref({ bookId, chapterId: chapter.id, passageId: passage.passage_id }, locale as "zh" | "en")}
                               >
-                                {isEn ? "Comic" : "漫画"}
+                                {t.common.comic}
                               </Link>
                             </div>
                           </article>
