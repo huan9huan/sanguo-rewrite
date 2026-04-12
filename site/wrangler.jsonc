@@ -4,6 +4,14 @@
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-04-09",
   "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "read-chinese-classics-reader",
+      "database_id": "c8cdf7c7-8321-448d-a8c4-db58dda7f712",
+      "migrations_dir": "migrations"
+    }
+  ],
   "vars": {
     "CONTENT_BASE_URL": "https://storage.googleapis.com/zh-books/sanguo"
   },

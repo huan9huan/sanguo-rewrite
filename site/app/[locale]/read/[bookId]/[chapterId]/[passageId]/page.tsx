@@ -7,6 +7,7 @@ import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { PassageSceneFocus } from "@/components/passage-scene-focus";
 import { ReadingBookmarkSync } from "@/components/reading-bookmark-sync";
+import { ReadingSessionTracker } from "@/components/reading-session-tracker";
 import { getDictionary } from "@/i18n";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { proseToHtml } from "@/lib/format";
@@ -104,6 +105,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
   return (
     <main className="page-shell passage-page">
       <ReadingBookmarkSync bookId={bookId} chapterId={chapterId} passageId={passageId} />
+      <ReadingSessionTracker bookId={bookId} chapterId={chapterId} passageId={passageId} />
       <Suspense fallback={null}>
         <PassageSceneFocus />
       </Suspense>
