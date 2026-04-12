@@ -1,6 +1,6 @@
 # English Style Guide — Three Kingdoms Rewrite
 
-This guide defines the English voice for prose reading text and comic frame text. It governs all Chapter 1 English production and applies to future chapters unless superseded.
+This guide defines the English voice for prose reading text, comic frame text, and reader-facing metadata. It governs all Chapter 1 English production and applies to future chapters unless superseded.
 
 ## 1. Core Principle
 
@@ -99,13 +99,34 @@ Comic text is adapted **per frame**, not extracted from the English prose draft.
 
 Current comic policy keeps text outside the image. English text replaces Chinese text in the overlay. Only flag a frame for image regeneration if the original image contains unremoveable embedded Chinese characters that break the English reading experience.
 
-## 4. Continuity Rules
+### 3.5 Comic Text Storage
+
+English comic text must be stored as a language overlay, not embedded into the base comic layout.
+
+- `current/comic.json` is the canonical visual/layout file and Chinese baseline.
+- `current/comic_text_en.json` is the English source of truth for frame titles, captions, and dialogue.
+- Do not add `title_en` or English `items` directly to `current/comic.json`.
+- Content export merges `current/comic.json` with `current/comic_text_en.json` into the localized English comic layout.
+- Keep `page_id`, `frame_id`, and `scene_id` stable so the overlay can merge cleanly.
+
+## 4. Metadata Copy Rules
+
+Metadata copy includes project, book, and chapter titles, subtitles, descriptions, goals, and summaries.
+
+- Write for a new English reader deciding what to read next.
+- Keep titles concrete and memorable. Avoid literal glosses when they sound stiff.
+- Keep subtitles and descriptions short. Prefer one clear promise over a packed explanation.
+- Do not explain the project mechanics in reader-facing copy unless the field explicitly asks for production notes.
+- Do not use academic labels like "classic Chinese novel adaptation" as the main hook.
+- Store metadata as locale overlays such as `story/books.en.json` and `story/cp001.en.json`, not as English fields inside canonical Chinese metadata files.
+
+## 5. Continuity Rules
 
 - Passage N+1 can reference events from Passage N, but each passage must stand on its own as a reading unit.
 - Recurring characters keep the same name and voice across passages.
 - The emotional arc of the chapter (here: grim → oppressive → urgent) should be readable across the English passages even if the exact beats differ slightly from Chinese.
 
-## 5. Quality Checklist
+## 6. Quality Checklist
 
 Before any English passage is promoted to `approved_en.md`, verify:
 
@@ -116,6 +137,8 @@ Before any English passage is promoted to `approved_en.md`, verify:
 - [ ] Opening poem follows section 2.6
 - [ ] Comic frame titles are ≤6 words
 - [ ] Comic captions are ≤2 sentences
+- [ ] English comic text lives in `current/comic_text_en.json` or a draft overlay, not inside base `comic.json`
+- [ ] English metadata lives in locale overlay files, not inside canonical Chinese metadata files
 - [ ] No sentence reads like a translation ("was known as," "is referred to")
 - [ ] Active voice dominates; passive is used only when the agent is genuinely unknown or unimportant
 - [ ] The passage reads as if it were originally written in English

@@ -20,6 +20,8 @@ Primary experience:
 - Never generate a long draft without a PassageSpec
 - Never generate a PassageSpec without a ChapterSpec
 - Never translate before CN draft is reviewed
+- English adaptation must start from `current/approved_cn.md`, not from draft CN
+- English prose and English comic frame text must follow `docs/13_en-style-guide.md`
 
 ## Writing Style Rules
 - Use simple Chinese
@@ -135,9 +137,10 @@ Detailed execution rules live in the role files under `agents/`.
 ### Adaptation
 - Language Adapter
   中文常用名: `外语改写`
-  Position: approved CN -> target-language reading edition
-  Owns: downstream language rewrite
+  Position: approved CN + current comic text + canonical metadata -> target-language reading edition and locale overlays
+  Owns: downstream language rewrite, English prose draft, English comic frame text adaptation, project/book/chapter metadata localization, style-guide self-check
   File: `agents/translator.md`
+  Required guide for English: `docs/13_en-style-guide.md`
 
 ## Common Task Routing
 
@@ -162,6 +165,12 @@ Use these examples to locate the right role quickly.
 - “导出网站 content / 让 website 读到 current” -> `发布运维` / Release Operator
 - “本地测好了，同步到 GCS 然后部署” -> `发布运维` / Release Operator
 - “基于中文定稿改写英文/日文/韩文” -> `外语改写` / Language Adapter
+- “把 approved CN 改写成英文正文” -> `外语改写` / Language Adapter, Prose Mode, must follow `docs/13_en-style-guide.md`
+- “把漫画旁白/对白改成英文” -> `外语改写` / Language Adapter, Comic Text Mode, must follow `docs/13_en-style-guide.md`
+- “生成 books.en.json / cp001.en.json 元数据文案” -> `外语改写` / Language Adapter, Metadata Mode, must follow `docs/13_en-style-guide.md`
+- “把项目/书籍/章节元数据本地化成英文 overlay” -> `外语改写` / Language Adapter, Metadata Mode
+- “检查英文正文和 comic text 是否符合风格指南” -> `外语改写` / Language Adapter self-check, using `docs/13_en-style-guide.md`
+- “promote 英文 draft 到 current/approved_en.md” -> `工作区运维` / Workspace Operator
 
 ## Review Gates
 A CN draft should be reviewed for:
@@ -177,10 +186,16 @@ A CN draft should be reviewed for:
 - Dramatist must finish before Story Reviewer
 - Story Reviewer must finish before Story Reviser or approval
 - Approved current CN is the input to Comic Adapter, Canon Keeper, and Language Adapter
+- Language Adapter must read `docs/13_en-style-guide.md` before English prose, English comic text, or English metadata work
+- Language Adapter Prose Mode and Comic Text Mode must stop if `current/approved_cn.md` is missing
+- Language Adapter Metadata Mode may run from canonical metadata files and does not require passage `current/approved_cn.md`
+- Metadata Mode outputs locale overlay files such as `story/books.en.json` and `story/cp001.en.json`; it must not add English fields to `story/books.json` or `story/cpNNN.json`
+- English comic frame text is adapted per frame and must not be mechanically extracted from English prose
 - Character Visual Keeper must run before Comic Adapter when a passage may introduce a new core character
 - Comic Adapter must not invent visuals for core characters missing from `memory/character_visuals.json`
 - Reading Integrator works on current assets only
 - Workspace Operator is responsible for promote into `current/`
+- Workspace Operator owns language promote from reviewed language drafts into `current/`
 - Release Operator is responsible for local export/build validation, GCS content sync, and site deploy
 - Website consumes current assets only
 
@@ -194,6 +209,19 @@ Draft promote:
 - Required files: `draft_cn.md`, review if available, approved text if available
 - Output: `current/draft_cn.md`, `current/draft_cn_review.json`, `current/approved_cn.md` when approved
 - Command: `python3 -m pipeline.manage_passage_workspace promote-draft <passage> <draft-version-dir>`
+
+Language promote:
+- Input: `story/chNNN-pNN/draft/<lang>/vNNN/`
+- Required prose file for English: `draft_en.md`
+- Required readiness evidence: `self_check.md` or review notes showing the language draft is approved
+- Required source gate: `story/chNNN-pNN/current/approved_cn.md` must exist
+- Output for English prose: `current/approved_en.md`
+- Optional comic text input for English: `comic_text_en.json`
+- Optional comic text output for English: `current/comic_text_en.json`
+- Workspace Operator must not rewrite prose, translate text, edit comic semantics, or change frame ids during language promote
+- Language promote must preserve existing `current/approved_cn.md`, `current/comic.png`, `current/comic.json`, and Chinese comic text
+- English comic text must not be embedded into `current/comic.json` as `title_en` or English `items`
+- Content export is responsible for merging `current/comic.json` with `current/comic_text_en.json` into localized website payloads
 
 Comic promote has two phases.
 
