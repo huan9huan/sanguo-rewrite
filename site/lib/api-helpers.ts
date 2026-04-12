@@ -5,13 +5,17 @@ export type DbResult =
   | { ok: false; reason: string };
 
 export function getDb(): DbResult {
-  const { env } = getCloudflareContext();
+  try {
+    const { env } = getCloudflareContext();
 
-  if (!env.DB) {
-    return { ok: false, reason: "D1 is not bound" };
+    if (!env.DB) {
+      return { ok: false, reason: "D1 is not bound" };
+    }
+
+    return { db: env.DB, ok: true };
+  } catch {
+    return { ok: false, reason: "Cloudflare context unavailable (dev mode?)" };
   }
-
-  return { db: env.DB, ok: true };
 }
 
 export function jsonResponse(data: Record<string, unknown>, init?: ResponseInit) {
