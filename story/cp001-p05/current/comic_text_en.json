@@ -1,0 +1,78 @@
+{
+  "page_id": "cp001-p05-page-01",
+  "source": "story/cp001-p05/current/comic.json",
+  "lang": "en",
+  "frames": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp001_p05_s1",
+      "title": "Fire Over Yingchuan",
+      "items": [
+        {
+          "id": "f1_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "By the time they arrived, the battle was over. A cavalry colonel named Cao Cao had already cut down ten thousand."
+        }
+      ]
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp001_p05_s1",
+      "title": "Crossing Paths",
+      "items": [
+        {
+          "id": "f2_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Cao Cao barely glanced at them. Go back, said Huangfu Song — your teacher needs you."
+        }
+      ]
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p05_s2",
+      "title": "The Prison Cart",
+      "items": [
+        {
+          "id": "f3_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "A wooden cart on the road. Inside it — Lu Zhi, in chains."
+        }
+      ]
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp001_p05_s2",
+      "title": "Blade Drawn",
+      "items": [
+        {
+          "id": "f4_t1",
+          "kind": "speech",
+          "speaker": "zhang_fei",
+          "text": "Let me cut them down and free the teacher!"
+        },
+        {
+          "id": "f4_t2",
+          "kind": "speech",
+          "speaker": "liu_bei",
+          "text": "No. The court will sort this out."
+        }
+      ]
+    },
+    {
+      "frame_id": "f5",
+      "scene_id": "cp001_p05_s2",
+      "title": "Back to Zhuo",
+      "items": [
+        {
+          "id": "f5_t1",
+          "kind": "speech",
+          "speaker": "guan_yu",
+          "text": "General Lu is gone. There's nothing for us here — we should go home."
+        }
+      ]
+    }
+  ]
+}

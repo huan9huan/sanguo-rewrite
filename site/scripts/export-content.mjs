@@ -8,13 +8,16 @@ const REPO_ROOT = path.resolve(SITE_ROOT, "..");
 const STORY_DIR = path.join(REPO_ROOT, "story");
 const MEMORY_DIR = path.join(REPO_ROOT, "memory");
 const BOOKS_FILE = path.join(STORY_DIR, "books.json");
+const BOOKS_EN_FILE = path.join(STORY_DIR, "books.en.json");
 const CONTENT_DIR = path.join(SITE_ROOT, "public", "content");
 const BOOKS_DIR = path.join(CONTENT_DIR, "books");
 const CURRENT_FILES = {
   draft: "draft_cn.md",
   review: "draft_cn_review.json",
   approved: "approved_cn.md",
+  approvedEn: "approved_en.md",
   comicLayout: "comic.json",
+  comicTextEn: "comic_text_en.json",
   comicAlignment: "comic_alignment.json",
   comicImage: "comic.png",
 };
@@ -312,8 +315,56 @@ async function loadComicAlignment(alignmentPath) {
   return readJson(alignmentPath);
 }
 
+function mergeEnglishComicOverlay(baseLayout, enOverlay) {
+  if (!baseLayout || !enOverlay) {
+    return baseLayout;
+  }
+
+  const enFrameMap = new Map(
+    (enOverlay.frames ?? []).map((frame) => [frame.frame_id, frame])
+  );
+
+  return {
+    ...baseLayout,
+    frames: baseLayout.frames.map((baseFrame) => {
+      const enFrame = enFrameMap.get(baseFrame.frame_id);
+      if (!enFrame) {
+        return baseFrame;
+      }
+
+      const enItemMap = new Map(
+        (enFrame.items ?? []).map((item) => [item.id, item])
+      );
+
+      return {
+        ...baseFrame,
+        title: enFrame.title ?? baseFrame.title,
+        items: baseFrame.items.map((baseItem) => {
+          const enItem = enItemMap.get(baseItem.id);
+          if (!enItem) {
+            return baseItem;
+          }
+          return {
+            ...baseItem,
+            text: enItem.text ?? baseItem.text,
+            speaker: enItem.speaker ?? baseItem.speaker,
+            lang: "en",
+          };
+        }),
+      };
+    }),
+  };
+}
+
 async function loadBooksConfig() {
   return readJson(BOOKS_FILE);
+}
+
+async function loadBooksEnOverlay() {
+  if (await fileExists(BOOKS_EN_FILE)) {
+    return readJson(BOOKS_EN_FILE);
+  }
+  return null;
 }
 
 function buildPassagePreview(payload) {
@@ -330,6 +381,9 @@ function buildPassagePreview(payload) {
     teaser: getPassageTeaser(payload.reading.text),
     has_comic: Boolean(payload.reading.comic.image || payload.reading.comic.layout?.frames?.length),
     image: payload.reading.comic.image,
+    available_locales: payload.available_locales,
+    title_en: payload.localized?.en?.title || undefined,
+    catchup_en: payload.localized?.en?.catchup || undefined,
   };
 }
 
@@ -363,6 +417,13 @@ async function exportPassage(passageDir, book) {
   const comicAlignmentPath = await firstExistingPath([
     path.join(currentDir, CURRENT_FILES.comicAlignment),
   ]);
+  const approvedEnPath = await firstExistingPath([
+    path.join(currentDir, CURRENT_FILES.approvedEn),
+    await latestVersionFile(passageDir, /^cp.*_en_v\d+\.md$/),
+  ]);
+  const comicTextEnPath = await firstExistingPath([
+    path.join(currentDir, CURRENT_FILES.comicTextEn),
+  ]);
 
   const sourceRef = frontmatterString(frontmatter, "source_file");
   const sourcePath = sourceRef ? path.resolve(passageDir, sourceRef) : null;
@@ -380,6 +441,17 @@ async function exportPassage(passageDir, book) {
   const scenes = await loadSceneSpecs(passageDir);
   const comicLayout = await loadComicLayout(comicLayoutPath);
   const comicAlignment = await loadComicAlignment(comicAlignmentPath);
+  const comicTextEn = comicTextEnPath ? await readJson(comicTextEnPath) : null;
+
+  if (comicTextEn && comicLayoutPath) {
+    const rawComic = await readJson(comicLayoutPath);
+    const hasEmbeddedEn = (rawComic.frames ?? []).some(
+      (f) => (f.text_block?.title_en ?? "") !== "" || (f.text_block?.items ?? []).some((item) => (item.lang ?? "") === "en")
+    );
+    if (hasEmbeddedEn) {
+      console.warn(`[drift] ${passageId}: comic.json has embedded English but comic_text_en.json also exists — clean up comic.json`);
+    }
+  }
 
   let exportedImage = null;
   if (imagePath) {
@@ -406,6 +478,33 @@ async function exportPassage(passageDir, book) {
     passageId,
     scenes,
   });
+
+  const approvedEnText = approvedEnPath ? await readText(approvedEnPath) : "";
+  const enTitle = approvedEnText ? approvedEnText.split("\n").find((line) => line.startsWith("# "))?.replace(/^# /, "") || title : title;
+  const enComicLayout = mergeEnglishComicOverlay(comicLayout, comicTextEn);
+  const enReading = approvedEnText
+    ? buildPassageReadingModel({
+        draftText: "",
+        approvedText: approvedEnText,
+        sourceLabel: "approved_en",
+        image: exportedImage,
+        comicLayout: enComicLayout,
+        comicAlignment,
+        passageId,
+        scenes,
+      })
+    : null;
+
+  const availableLocales = ["zh"];
+  if (enReading) {
+    availableLocales.push("en");
+  }
+
+  const localized = {};
+  localized.zh = { title, short_title: shortTitle, catchup: frontmatterString(frontmatter, "catchup") || getPassageTeaser(reading.text), reading };
+  if (enReading) {
+    localized.en = { title: enTitle, short_title: enTitle, catchup: getPassageTeaser(enReading.text), reading: enReading };
+  }
 
   const payload = {
     id: passageId,
@@ -442,6 +541,8 @@ async function exportPassage(passageDir, book) {
       text: approvedText,
     },
     reading,
+    available_locales: availableLocales,
+    localized,
     review: await loadReview(latestReviewPath),
     scenes,
     source: {
@@ -463,9 +564,18 @@ async function exportPassage(passageDir, book) {
   return payload;
 }
 
+async function loadChapterOverlay(chapterSlug) {
+  const overlayPath = path.join(STORY_DIR, `${chapterSlug}.en.json`);
+  if (await fileExists(overlayPath)) {
+    return readJson(overlayPath);
+  }
+  return null;
+}
+
 async function exportChapter(chapterPath, book) {
   const chapter = await readJson(chapterPath);
   const chapterSlug = path.basename(chapterPath, ".json");
+  const chapterEn = await loadChapterOverlay(chapterSlug);
   const storyEntries = await fs.readdir(STORY_DIR, { withFileTypes: true });
   const passageDirs = storyEntries
     .filter((entry) => entry.isDirectory() && entry.name.startsWith(`${chapterSlug}-p`))
@@ -478,6 +588,8 @@ async function exportChapter(chapterPath, book) {
     book_id: book.id,
     source_title: chapter.source_title,
     adapted_title_cn: chapter.adapted_title_cn,
+    display_title_en: chapterEn?.display_title ?? "",
+    summary_en: chapterEn?.summary ?? "",
     viewpoint: chapter.viewpoint ?? [],
     goal_cn: chapter.goal_cn,
     passage_count: chapter.passage_count ?? passages.length,
@@ -496,6 +608,8 @@ async function exportChapter(chapterPath, book) {
       book_id: chapterManifest.book_id,
       source_title: chapterManifest.source_title,
       adapted_title_cn: chapterManifest.adapted_title_cn,
+      display_title_en: chapterManifest.display_title_en,
+      summary_en: chapterManifest.summary_en,
       viewpoint: chapterManifest.viewpoint,
       goal_cn: chapterManifest.goal_cn,
       passage_count: chapterManifest.passage_count,
@@ -510,8 +624,12 @@ async function main() {
   await ensureDir(BOOKS_DIR);
 
   const books = await loadBooksConfig();
+  const booksEn = await loadBooksEnOverlay();
+  const projectEn = booksEn?.project ?? null;
+  const booksEnMap = booksEn?.books ?? {};
   const bookExports = await Promise.all(
     books.map(async (book) => {
+      const bookEn = booksEnMap[book.id] ?? null;
       const chapterExports = await Promise.all(
         (book.chapter_ids ?? []).map((chapterId) => exportChapter(path.join(STORY_DIR, `${chapterId}.json`), book))
       );
@@ -523,6 +641,9 @@ async function main() {
         title: book.title,
         subtitle: book.subtitle,
         description: book.description,
+        title_en: bookEn?.title ?? "",
+        subtitle_en: bookEn?.subtitle ?? "",
+        description_en: bookEn?.description ?? "",
         total_chapter_count: book.total_chapter_count ?? null,
         available_chapter_count: chapters.length,
         chapter_ids: chapters.map((chapter) => chapter.id),
@@ -540,6 +661,9 @@ async function main() {
           title: bookManifest.title,
           subtitle: bookManifest.subtitle,
           description: bookManifest.description,
+          title_en: bookManifest.title_en,
+          subtitle_en: bookManifest.subtitle_en,
+          description_en: bookManifest.description_en,
           total_chapter_count: bookManifest.total_chapter_count,
           available_chapter_count: bookManifest.available_chapter_count,
           chapter_ids: bookManifest.chapter_ids,
@@ -562,6 +686,9 @@ async function main() {
       subtitle: "让三国故事更好读，更有画面",
       description:
         "当前中文重写稿的阅读空间，按作品、章节、段落逐步进入故事。",
+      title_en: projectEn?.title ?? "",
+      subtitle_en: projectEn?.subtitle ?? "",
+      description_en: projectEn?.description ?? "",
       principles: [
         "Story first, culture implicit",
         "Character attachment over explanation",
@@ -583,6 +710,7 @@ async function main() {
         passages: allPassages.length,
         reviews: allPassages.filter((passage) => passage.review).length,
         approved_cn: allPassages.filter((passage) => passage.approved_cn.text).length,
+        approved_en: allPassages.filter((passage) => passage.available_locales.includes("en")).length,
       },
     },
     books: bookExports.map((item) => item.book),
@@ -593,6 +721,37 @@ async function main() {
   };
 
   await fs.writeFile(path.join(CONTENT_DIR, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
+
+  const warnings = validateLocaleIntegrity(allPassages);
+  if (warnings.length) {
+    console.warn("Locale validation warnings:");
+    for (const warning of warnings) {
+      console.warn(`  - ${warning}`);
+    }
+  }
+  console.log(`Exported ${allPassages.length} passages (${manifest.project.stats.approved_en} with English).`);
+}
+
+function validateLocaleIntegrity(passages) {
+  const warnings = [];
+
+  for (const passage of passages) {
+    const locales = passage.available_locales ?? [];
+
+    if (!locales.includes("zh")) {
+      warnings.push(`${passage.id}: available_locales is missing "zh" — every passage must have Chinese`);
+    }
+
+    if (locales.includes("en") && !passage.localized?.en?.reading?.text) {
+      warnings.push(`${passage.id}: available_locales includes "en" but localized.en has no reading text`);
+    }
+
+    if (passage.localized?.en?.reading?.text && !locales.includes("en")) {
+      warnings.push(`${passage.id}: localized.en has content but "en" is not in available_locales`);
+    }
+  }
+
+  return warnings;
 }
 
 main().catch((error) => {

@@ -62,6 +62,7 @@ export type ComicFrame = {
   frame_id: string;
   scene_id: string;
   title: string;
+  title_en?: string;
   items: ComicFrameTextItem[];
   panel_box?: {
     x: number;
@@ -95,7 +96,7 @@ export type ReadingSegment = {
 };
 
 export type PassageReadingModel = {
-  source: "approved_cn" | "draft_cn" | "none";
+  source: "approved_cn" | "approved_en" | "draft_cn" | "none";
   text: string;
   comic: {
     image: PassageImage | null;
@@ -126,6 +127,15 @@ export type ComicPassageAlignment = {
   notes: string[];
 };
 
+export type Locale = "zh" | "en";
+
+export type LocalizedPassageContent = {
+  title: string;
+  short_title: string;
+  catchup: string;
+  reading: PassageReadingModel;
+};
+
 export type PassageRouteParams = {
   bookId: string;
   chapterId: string;
@@ -154,6 +164,11 @@ export type Passage = {
     text: string;
   };
   reading: PassageReadingModel;
+  available_locales: Locale[];
+  localized?: {
+    zh?: LocalizedPassageContent;
+    en?: LocalizedPassageContent;
+  };
   review: Review | null;
   scenes: Scene[];
   source: {
@@ -175,6 +190,9 @@ export type PassagePreview = {
   teaser: string;
   has_comic: boolean;
   image: PassageImage | null;
+  available_locales: Locale[];
+  title_en?: string;
+  catchup_en?: string;
 };
 
 export type ChapterSummary = {
@@ -182,6 +200,8 @@ export type ChapterSummary = {
   book_id: string;
   source_title: string;
   adapted_title_cn: string;
+  display_title_en?: string;
+  summary_en?: string;
   viewpoint: string[];
   goal_cn: string;
   passage_count: number;
@@ -202,6 +222,9 @@ export type BookMeta = {
   title: string;
   subtitle: string;
   description: string;
+  title_en?: string;
+  subtitle_en?: string;
+  description_en?: string;
   total_chapter_count: number | null;
   available_chapter_count: number;
   chapter_ids: string[];
@@ -235,6 +258,9 @@ export type SiteData = {
     title: string;
     subtitle: string;
     description: string;
+    title_en?: string;
+    subtitle_en?: string;
+    description_en?: string;
     principles: string[];
     pipeline: string[];
     stats: {
@@ -242,6 +268,7 @@ export type SiteData = {
       passages: number;
       reviews: number;
       approved_cn: number;
+      approved_en: number;
     };
   };
   books: Book[];

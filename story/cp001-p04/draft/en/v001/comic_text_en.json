@@ -1,0 +1,78 @@
+{
+  "page_id": "cp001-p04-page-01",
+  "source": "story/cp001-p04/current/comic.json",
+  "lang": "en",
+  "frames": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp001_p04_s1",
+      "title": "Five Hundred Against Fifty Thousand",
+      "items": [
+        {
+          "id": "f1_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Nobody argued. They took the order and marched."
+        }
+      ]
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp001_p04_s1",
+      "title": "Spear and Blade",
+      "items": [
+        {
+          "id": "f2_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Zhang Fei's spear found Deng Mao's heart. Guan Yu's blade split Cheng Yuanzhi in two."
+        }
+      ]
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p04_s2",
+      "title": "A Plan by Lamplight",
+      "items": [
+        {
+          "id": "f3_t1",
+          "kind": "speech",
+          "speaker": "liu_bei",
+          "text": "Hide on the flanks — I'll lure them in, and when the gong sounds, we strike from three sides."
+        }
+      ]
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp001_p04_s2",
+      "title": "The Trap Closes",
+      "items": [
+        {
+          "id": "f4_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Three forces fell like three blades. The Yellow Turbans shattered."
+        }
+      ]
+    },
+    {
+      "frame_id": "f5",
+      "scene_id": "cp001_p04_s3",
+      "title": "You're Here",
+      "items": [
+        {
+          "id": "f5_t1",
+          "kind": "speech",
+          "speaker": "lu_zhi",
+          "text": "You're here. Good."
+        },
+        {
+          "id": "f5_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Their blades were not yet cold. The fighting was not yet done."
+        }
+      ]
+    }
+  ]
+}

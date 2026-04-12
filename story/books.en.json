@@ -1,0 +1,14 @@
+{
+  "project": {
+    "title": "Read Chinese Classics",
+    "subtitle": "Clear, cinematic retellings for modern readers",
+    "description": "A reading space for Chinese classics rewritten passage by passage."
+  },
+  "books": {
+    "sanguo": {
+      "title": "Romance of the Three Kingdoms",
+      "subtitle": "A great story, told so you can't put it down",
+      "description": "The epic of war, loyalty, and ambition — chapter by chapter, passage by passage, rewritten for readers who want story over scholarship."
+    }
+  }
+}

@@ -1,10 +1,13 @@
 {
   "version": "v0.3.3",
-  "generated_at": "2026-04-11T08:48:30.482Z",
+  "generated_at": "2026-04-12T05:59:47.032Z",
   "project": {
     "title": "三国演义",
     "subtitle": "让三国故事更好读，更有画面",
     "description": "当前中文重写稿的阅读空间，按作品、章节、段落逐步进入故事。",
+    "title_en": "Read Chinese Classics",
+    "subtitle_en": "Clear, cinematic retellings for modern readers",
+    "description_en": "A reading space for Chinese classics rewritten passage by passage.",
     "principles": [
       "Story first, culture implicit",
       "Character attachment over explanation",
@@ -25,7 +28,8 @@
       "chapters": 2,
       "passages": 10,
       "reviews": 5,
-      "approved_cn": 0
+      "approved_cn": 5,
+      "approved_en": 5
     }
   },
   "books": [
@@ -34,6 +38,9 @@
       "title": "三国演义",
       "subtitle": "让三国故事更好读，更有画面",
       "description": "从章节到段落，逐步重写《三国演义》，先打磨中文故事稿，再进入后续版本。",
+      "title_en": "Romance of the Three Kingdoms",
+      "subtitle_en": "A great story, told so you can't put it down",
+      "description_en": "The epic of war, loyalty, and ambition — chapter by chapter, passage by passage, rewritten for readers who want story over scholarship.",
       "total_chapter_count": 120,
       "available_chapter_count": 2,
       "chapter_ids": [

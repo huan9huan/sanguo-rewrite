@@ -245,7 +245,7 @@ function applyComicAlignment(segments, alignment, comicLayout) {
 }
 
 export function buildPassageReadingModel(args) {
-  const source = args.approvedText ? "approved_cn" : args.draftText ? "draft_cn" : "none";
+  const source = args.sourceLabel || (args.approvedText ? "approved_cn" : args.draftText ? "draft_cn" : "none");
   const text = args.approvedText || args.draftText;
   const segments = applyComicAlignment(
     buildReadingSegments(args.passageId, args.scenes, text, args.comicLayout),

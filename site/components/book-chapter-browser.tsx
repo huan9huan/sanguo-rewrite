@@ -15,6 +15,7 @@ type ReadingBookmark = {
 type BookChapterBrowserProps = {
   bookId: string;
   chapters: ReaderChapter[];
+  locale?: string;
 };
 
 const BOOKMARK_KEY_PREFIX = "reading-bookmark:";
@@ -22,6 +23,7 @@ const BOOKMARK_KEY_PREFIX = "reading-bookmark:";
 export type ReaderChapter = {
   id: string;
   source_title: string;
+  display_title_en?: string;
   passages: ReaderPassage[];
 };
 
@@ -29,14 +31,17 @@ type ReaderPassage = {
   id: string;
   passage_id: string;
   title: string;
+  title_en?: string;
   catchup?: string;
+  available_locales?: string[];
 };
 
 function getBookmarkKey(bookId: string) {
   return `${BOOKMARK_KEY_PREFIX}${bookId}`;
 }
 
-export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps) {
+export function BookChapterBrowser({ bookId, chapters, locale }: BookChapterBrowserProps) {
+  const isEn = locale === "en";
   const [expandedChapterId, setExpandedChapterId] = useState<string | null>(chapters[0]?.id ?? null);
   const [bookmark, setBookmark] = useState<ReadingBookmark | null>(null);
 
@@ -85,9 +90,9 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
               <p className="eyebrow">阅读书签</p>
               <div className="bookmark-row">
                 <div>
-                  <h2 className="panel-title">继续上次阅读</h2>
+                  <h2 className="panel-title">{isEn ? "Continue reading" : "继续上次阅读"}</h2>
                   <p className="body-copy">
-                    {bookmarkLabel.passage.title}
+                    {isEn && bookmarkLabel.passage.title_en ? bookmarkLabel.passage.title_en : bookmarkLabel.passage.title}
                   </p>
                 </div>
                 <Link
@@ -96,9 +101,9 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
                     bookId,
                     chapterId: bookmarkLabel.chapter.id,
                     passageId: bookmarkLabel.passage.passage_id,
-                  })}
+                  }, locale as "zh" | "en")}
                 >
-                  继续阅读
+                  {isEn ? "Continue" : "继续阅读"}
                 </Link>
               </div>
             </article>
@@ -120,7 +125,7 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
                   aria-expanded={isExpanded}
                 >
                   <div className="chapter-banner-copy">
-                    <h2 className="chapter-title">{formatChapterTitle(chapter)}</h2>
+                    <h2 className="chapter-title">{formatChapterTitle(chapter, isEn ? "en" : "zh")}</h2>
                   </div>
                   <div className="reader-card-actions">
                     <span className="chapter-meta-toggle" aria-hidden="true">
@@ -134,22 +139,29 @@ export function BookChapterBrowser({ bookId, chapters }: BookChapterBrowserProps
                   <div className="chapter-expand-body">
                     <div className="chapter-passage-grid">
                       {chapter.passages.map((passage) => {
+                        const displayTitle = isEn && passage.title_en ? passage.title_en : passage.title;
+                        const hasEn = passage.available_locales?.includes("en");
                         return (
                           <article className="reader-card chapter-passage-card" key={passage.id}>
-                            <h3 className="passage-title">{passage.title}</h3>
+                            <h3 className="passage-title">
+                              {displayTitle}
+                              {isEn && !hasEn ? (
+                                <span className="locale-badge locale-badge-unavailable">EN unavailable</span>
+                              ) : null}
+                            </h3>
                             {passage.catchup ? <p className="body-copy">{passage.catchup}</p> : null}
                             <div className="reader-card-actions">
                               <Link
                                 className="button-link button-link-secondary"
-                                href={buildPassageHref({ bookId, chapterId: chapter.id, passageId: passage.passage_id })}
+                                href={buildPassageHref({ bookId, chapterId: chapter.id, passageId: passage.passage_id }, locale as "zh" | "en")}
                               >
-                                正文
+                                {isEn ? "Text" : "正文"}
                               </Link>
                               <Link
                                 className="button-link button-link-secondary"
-                                href={buildComicHref({ bookId, chapterId: chapter.id, passageId: passage.passage_id })}
+                                href={buildComicHref({ bookId, chapterId: chapter.id, passageId: passage.passage_id }, locale as "zh" | "en")}
                               >
-                                漫画
+                                {isEn ? "Comic" : "漫画"}
                               </Link>
                             </div>
                           </article>

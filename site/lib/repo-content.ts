@@ -21,6 +21,7 @@ const REPO_ROOT = path.resolve(process.cwd(), "..");
 const STORY_DIR = path.join(REPO_ROOT, "story");
 const MEMORY_DIR = path.join(REPO_ROOT, "memory");
 const BOOKS_FILE = path.join(STORY_DIR, "books.json");
+const BOOKS_EN_FILE = path.join(STORY_DIR, "books.en.json");
 
 const CURRENT_FILES = {
   draft: "draft_cn.md",
@@ -106,6 +107,12 @@ type ChapterFile = {
   goal_cn: string;
   passage_count?: number;
   global_arc?: Record<string, unknown>;
+};
+
+type ChapterEnFile = {
+  id?: string;
+  display_title?: string;
+  summary?: string;
 };
 
 type BookConfig = {
@@ -391,6 +398,9 @@ function buildPassagePreview(passage: Passage): PassagePreview {
     teaser: getPassageTeaser(passage.reading.text),
     has_comic: Boolean(passage.reading.comic.image || passage.reading.comic.layout?.frames?.length),
     image: passage.reading.comic.image,
+    available_locales: passage.available_locales,
+    title_en: passage.localized?.en?.title || undefined,
+    catchup_en: passage.localized?.en?.catchup || undefined,
   };
 }
 
@@ -495,6 +505,10 @@ async function loadPassage(passageDir: string, bookId: string): Promise<Passage>
       text: approvedText,
     },
     reading,
+    available_locales: ["zh"] as const,
+    localized: {
+      zh: { title, short_title: shortTitle, catchup: frontmatterString(frontmatter, "catchup") || getPassageTeaser(reading.text), reading },
+    },
     review: await loadReview(latestReviewPath),
     scenes,
     source: {
@@ -504,9 +518,18 @@ async function loadPassage(passageDir: string, bookId: string): Promise<Passage>
   };
 }
 
+async function loadChapterEnOverlay(chapterSlug: string): Promise<ChapterEnFile | null> {
+  const overlayPath = path.join(STORY_DIR, `${chapterSlug}.en.json`);
+  if (await fileExists(overlayPath)) {
+    return readJson<ChapterEnFile>(overlayPath);
+  }
+  return null;
+}
+
 async function loadChapter(chapterPath: string, bookId: string): Promise<Chapter> {
   const chapter = await readJson<ChapterFile>(chapterPath);
   const chapterSlug = path.basename(chapterPath, ".json");
+  const chapterEn = await loadChapterEnOverlay(chapterSlug);
   const storyEntries = await fs.readdir(STORY_DIR, { withFileTypes: true });
   const passageDirs = storyEntries
     .filter((entry) => entry.isDirectory() && entry.name.startsWith(`${chapterSlug}-p`))
@@ -520,6 +543,8 @@ async function loadChapter(chapterPath: string, bookId: string): Promise<Chapter
     book_id: bookId,
     source_title: chapter.source_title,
     adapted_title_cn: chapter.adapted_title_cn,
+    display_title_en: chapterEn?.display_title ?? "",
+    summary_en: chapterEn?.summary ?? "",
     viewpoint: chapter.viewpoint ?? [],
     goal_cn: chapter.goal_cn,
     passage_count: chapter.passage_count ?? passages.length,
@@ -529,10 +554,33 @@ async function loadChapter(chapterPath: string, bookId: string): Promise<Chapter
   };
 }
 
+type BooksEnFile = {
+  project?: {
+    title?: string;
+    subtitle?: string;
+    description?: string;
+  };
+  books?: Record<string, {
+    title?: string;
+    subtitle?: string;
+    description?: string;
+  }>;
+};
+
+async function loadBooksEnOverlay(): Promise<BooksEnFile | null> {
+  if (await fileExists(BOOKS_EN_FILE)) {
+    return readJson<BooksEnFile>(BOOKS_EN_FILE);
+  }
+  return null;
+}
+
 export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<SiteData> {
   const booksConfig = await loadBooksConfig();
+  const booksEn = await loadBooksEnOverlay();
+  const booksEnMap = booksEn?.books ?? {};
   const books = await Promise.all(
     booksConfig.map(async (book) => {
+      const bookEn = booksEnMap[book.id] ?? null;
       const chapters = await Promise.all(
         book.chapter_ids.map((chapterId) => loadChapter(path.join(STORY_DIR, `${chapterId}.json`), book.id))
       );
@@ -542,6 +590,9 @@ export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<S
         title: book.title,
         subtitle: book.subtitle,
         description: book.description,
+        title_en: bookEn?.title ?? "",
+        subtitle_en: bookEn?.subtitle ?? "",
+        description_en: bookEn?.description ?? "",
         total_chapter_count: book.total_chapter_count ?? null,
         available_chapter_count: chapters.length,
         chapter_ids: chapters.map((chapter) => chapter.id),
@@ -557,6 +608,9 @@ export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<S
     project: {
       title: "三国演义",
       subtitle: "让三国故事更好读，更有画面",
+      title_en: booksEn?.project?.title ?? "",
+      subtitle_en: booksEn?.project?.subtitle ?? "",
+      description_en: booksEn?.project?.description ?? "",
       description:
         "当前中文重写稿的阅读空间，也展示每一节背后的规划、评审与一致性记忆。",
       principles: [
@@ -580,6 +634,7 @@ export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<S
         passages: allPassages.length,
         reviews: allPassages.filter((passage) => passage.review).length,
         approved_cn: allPassages.filter((passage) => passage.approved_cn.text).length,
+        approved_en: 0,
       },
     },
     books,
@@ -599,6 +654,9 @@ export const getRepoAllBooks = cache(async function getRepoAllBooks(): Promise<B
     title: book.title,
     subtitle: book.subtitle,
     description: book.description,
+    title_en: book.title_en,
+    subtitle_en: book.subtitle_en,
+    description_en: book.description_en,
     total_chapter_count: book.total_chapter_count,
     available_chapter_count: book.available_chapter_count,
     chapter_ids: book.chapter_ids,
@@ -618,6 +676,9 @@ export const getRepoBookById = cache(async function getRepoBookById(bookId: stri
     title: book.title,
     subtitle: book.subtitle,
     description: book.description,
+    title_en: book.title_en,
+    subtitle_en: book.subtitle_en,
+    description_en: book.description_en,
     total_chapter_count: book.total_chapter_count,
     available_chapter_count: book.available_chapter_count,
     chapter_ids: book.chapter_ids,
@@ -627,6 +688,8 @@ export const getRepoBookById = cache(async function getRepoBookById(bookId: stri
       book_id: chapter.book_id,
       source_title: chapter.source_title,
       adapted_title_cn: chapter.adapted_title_cn,
+      display_title_en: chapter.display_title_en,
+      summary_en: chapter.summary_en,
       viewpoint: chapter.viewpoint,
       goal_cn: chapter.goal_cn,
       passage_count: chapter.passage_count,
@@ -650,6 +713,8 @@ export const getRepoChapterById = cache(
       book_id: chapter.book_id,
       source_title: chapter.source_title,
       adapted_title_cn: chapter.adapted_title_cn,
+      display_title_en: chapter.display_title_en,
+      summary_en: chapter.summary_en,
       viewpoint: chapter.viewpoint,
       goal_cn: chapter.goal_cn,
       passage_count: chapter.passage_count,

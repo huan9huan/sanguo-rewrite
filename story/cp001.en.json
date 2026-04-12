@@ -1,0 +1,13 @@
+{
+  "id": "cp001",
+  "book_id": "sanguo",
+  "display_title": "Oath of the Peach Garden",
+  "summary": "In a crumbling empire, three strangers — a sandal-weaver with royal blood, a hot-tempered butcher, and a quiet giant with a halberd — meet, swear brotherhood, and ride into their first battle. Meanwhile, a sly young officer named Cao Cao watches from the edge of the frame.",
+  "source_title": "A Peach Garden Oath, Heroes Sworn Brothers; Yellow Turbans Slain, First Glory Won",
+  "global_arc": {
+    "start": "The empire is rotting. Eunuchs run the court. A rebel army in yellow headwraps sweeps the countryside. A recruitment notice goes up in Zhuo County.",
+    "end": "The three brothers fought through blood and smoke to save a man who looked at them and asked what rank they held. No rank. No reward. Zhang Fei raised his blade.",
+    "core_change": "Three nobodies became sworn brothers, proved themselves on the battlefield — and learned that courage without credentials means nothing to the men in charge.",
+    "chapter_drive": "Chaos makes heroes — but the same broken system that gives nobodies a chance also slams the door in their faces."
+  }
+}
