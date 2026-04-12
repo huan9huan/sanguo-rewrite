@@ -1,0 +1,65 @@
+{
+  "page_id": "cp001-p02-page-01",
+  "source": "story/cp001-p02/current/comic.json",
+  "lang": "en",
+  "frames": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp001_p02_s1",
+      "title": "The Mulberry's Shadow",
+      "items": [
+        {
+          "id": "f1_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Imperial blood ran in his veins. Straw sandals wove through his fingers."
+        }
+      ]
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp001_p02_s2",
+      "title": "The Sigh",
+      "items": [
+        {
+          "id": "f2_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "He did not sigh from fear. The fire was there — he just had nothing to burn it on."
+        }
+      ]
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p02_s3",
+      "title": "A Voice Like Thunder",
+      "items": [
+        {
+          "id": "f3_t1",
+          "kind": "speech",
+          "speaker": "zhang_fei",
+          "text": "If you're a real man, fight for your country — why stand here sighing!"
+        }
+      ]
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp001_p02_s3",
+      "title": "The Offer",
+      "items": [
+        {
+          "id": "f4_t1",
+          "kind": "speech",
+          "speaker": "zhang_fei",
+          "text": "I'll fund it — we recruit men and fight together."
+        },
+        {
+          "id": "f4_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "The wine hadn't arrived, but the shadow at the door moved first."
+        }
+      ]
+    }
+  ]
+}
