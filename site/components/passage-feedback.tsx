@@ -4,10 +4,23 @@ import { useState, useEffect, type FormEvent } from "react";
 import { getDictionary } from "@/i18n";
 import type { Locale } from "@/lib/types";
 
-const REASON_IDS = [
+const ZH_REASON_IDS = [
   "story_not_engaging",
   "character_wrong",
   "chinese_too_hard",
+  "comic_confusing",
+  "image_quality",
+  "other",
+] as const;
+
+const EN_REASON_IDS = [
+  "story_not_engaging",
+  "character_wrong",
+  "clarity",
+  "naturalness",
+  "culture_fit",
+  "name_confusion",
+  "story_flow",
   "comic_confusing",
   "image_quality",
   "other",
@@ -40,14 +53,15 @@ function isCached(path: Props["passagePath"], mode: string): boolean {
 async function submitFeedback(
   passagePath: Props["passagePath"],
   mode: string,
-  reason: string,
-  detail?: string,
+  reasons: string[],
+  detail: string | undefined,
+  locale: string,
 ): Promise<{ ok: boolean; error?: string }> {
   try {
     const res = await fetch("/api/passage-feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...passagePath, mode, reason, detail }),
+      body: JSON.stringify({ ...passagePath, mode, reasons, detail, locale }),
     });
 
     if (!res.ok) {
@@ -68,8 +82,10 @@ function cacheSubmit(path: Props["passagePath"], mode: string) {
 
 export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
   const t = getDictionary(locale);
+  const reasonIds = locale === "en" ? EN_REASON_IDS : ZH_REASON_IDS;
+
   const [status, setStatus] = useState<Status>("idle");
-  const [selectedReason, setSelectedReason] = useState("");
+  const [selectedReasons, setSelectedReasons] = useState<Set<string>>(new Set());
   const [detail, setDetail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -84,9 +100,21 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
     return error || t.feedback.submitError;
   }
 
+  function toggleReason(id: string) {
+    setSelectedReasons((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }
+
   async function handleLike() {
     setStatus("submitting");
-    const result = await submitFeedback(passagePath, mode, "liked");
+    const result = await submitFeedback(passagePath, mode, [], undefined, locale);
     if (result.ok) {
       cacheSubmit(passagePath, mode);
       setStatus("success");
@@ -104,14 +132,14 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
     e.preventDefault();
     setErrorMessage("");
 
-    if (!selectedReason) {
+    if (selectedReasons.size === 0) {
       setErrorMessage(t.feedback.selectReason);
       return;
     }
 
     setStatus("submitting");
-    const detailValue = selectedReason === "other" ? detail.trim() : undefined;
-    const result = await submitFeedback(passagePath, mode, selectedReason, detailValue);
+    const detailValue = selectedReasons.has("other") ? detail.trim() : undefined;
+    const result = await submitFeedback(passagePath, mode, [...selectedReasons], detailValue, locale);
     if (result.ok) {
       cacheSubmit(passagePath, mode);
       setStatus("success");
@@ -150,25 +178,25 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
         <form onSubmit={handleSubmit} noValidate>
           <p className="passage-feedback-prompt">{t.feedback.prompt}</p>
           <div className="passage-feedback-reasons">
-            {REASON_IDS.map((id) => (
+            {reasonIds.map((id) => (
               <label
                 key={id}
-                className={`passage-feedback-reason ${selectedReason === id ? "passage-feedback-reason-selected" : ""}`}
+                className={`passage-feedback-reason ${selectedReasons.has(id) ? "passage-feedback-reason-selected" : ""}`}
               >
                 <input
-                  type="radio"
-                  name="reason"
+                  type="checkbox"
+                  name="reasons"
                   value={id}
-                  checked={selectedReason === id}
-                  onChange={() => { setSelectedReason(id); if (id !== "other") setDetail(""); }}
+                  checked={selectedReasons.has(id)}
+                  onChange={() => toggleReason(id)}
                   className="visually-hidden"
                 />
-                {t.feedback.reasons[id]}
+                {t.feedback.reasons[id as keyof typeof t.feedback.reasons]}
               </label>
             ))}
           </div>
 
-          {selectedReason === "other" && (
+          {selectedReasons.has("other") && (
             <textarea
               className="passage-feedback-detail"
               value={detail}
