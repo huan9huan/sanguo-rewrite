@@ -14,6 +14,7 @@ const CURRENT_FILES = {
   draft: "draft_cn.md",
   review: "draft_cn_review.json",
   approved: "approved_cn.md",
+  approvedEn: "approved_en.md",
   comicLayout: "comic.json",
   comicAlignment: "comic_alignment.json",
   comicImage: "comic.png",
@@ -330,6 +331,7 @@ function buildPassagePreview(payload) {
     teaser: getPassageTeaser(payload.reading.text),
     has_comic: Boolean(payload.reading.comic.image || payload.reading.comic.layout?.frames?.length),
     image: payload.reading.comic.image,
+    available_locales: payload.available_locales,
   };
 }
 
@@ -362,6 +364,10 @@ async function exportPassage(passageDir, book) {
   ]);
   const comicAlignmentPath = await firstExistingPath([
     path.join(currentDir, CURRENT_FILES.comicAlignment),
+  ]);
+  const approvedEnPath = await firstExistingPath([
+    path.join(currentDir, CURRENT_FILES.approvedEn),
+    await latestVersionFile(passageDir, /^cp.*_en_v\d+\.md$/),
   ]);
 
   const sourceRef = frontmatterString(frontmatter, "source_file");
@@ -407,6 +413,30 @@ async function exportPassage(passageDir, book) {
     scenes,
   });
 
+  const approvedEnText = approvedEnPath ? await readText(approvedEnPath) : "";
+  const enReading = approvedEnText
+    ? buildPassageReadingModel({
+        draftText: "",
+        approvedText: approvedEnText,
+        image: null,
+        comicLayout: null,
+        comicAlignment: null,
+        passageId,
+        scenes,
+      })
+    : null;
+
+  const availableLocales = ["zh"];
+  if (enReading) {
+    availableLocales.push("en");
+  }
+
+  const localized = {};
+  localized.zh = { title, short_title: shortTitle, catchup: frontmatterString(frontmatter, "catchup") || getPassageTeaser(reading.text), reading };
+  if (enReading) {
+    localized.en = { title, short_title: shortTitle, catchup: getPassageTeaser(enReading.text), reading: enReading };
+  }
+
   const payload = {
     id: passageId,
     book_id: book.id,
@@ -442,6 +472,8 @@ async function exportPassage(passageDir, book) {
       text: approvedText,
     },
     reading,
+    available_locales: availableLocales,
+    localized,
     review: await loadReview(latestReviewPath),
     scenes,
     source: {
@@ -583,6 +615,7 @@ async function main() {
         passages: allPassages.length,
         reviews: allPassages.filter((passage) => passage.review).length,
         approved_cn: allPassages.filter((passage) => passage.approved_cn.text).length,
+        approved_en: allPassages.filter((passage) => passage.available_locales.includes("en")).length,
       },
     },
     books: bookExports.map((item) => item.book),
@@ -593,6 +626,37 @@ async function main() {
   };
 
   await fs.writeFile(path.join(CONTENT_DIR, "manifest.json"), `${JSON.stringify(manifest, null, 2)}\n`);
+
+  const warnings = validateLocaleIntegrity(allPassages);
+  if (warnings.length) {
+    console.warn("Locale validation warnings:");
+    for (const warning of warnings) {
+      console.warn(`  - ${warning}`);
+    }
+  }
+  console.log(`Exported ${allPassages.length} passages (${manifest.project.stats.approved_en} with English).`);
+}
+
+function validateLocaleIntegrity(passages) {
+  const warnings = [];
+
+  for (const passage of passages) {
+    const locales = passage.available_locales ?? [];
+
+    if (!locales.includes("zh")) {
+      warnings.push(`${passage.id}: available_locales is missing "zh" — every passage must have Chinese`);
+    }
+
+    if (locales.includes("en") && !passage.localized?.en?.reading?.text) {
+      warnings.push(`${passage.id}: available_locales includes "en" but localized.en has no reading text`);
+    }
+
+    if (passage.localized?.en?.reading?.text && !locales.includes("en")) {
+      warnings.push(`${passage.id}: localized.en has content but "en" is not in available_locales`);
+    }
+  }
+
+  return warnings;
 }
 
 main().catch((error) => {

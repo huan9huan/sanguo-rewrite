@@ -43,7 +43,10 @@
         "alt": "破法斩将 image",
         "width": 572,
         "height": 1024
-      }
+      },
+      "available_locales": [
+        "zh"
+      ]
     },
     {
       "id": "cp002-p02",
@@ -63,7 +66,10 @@
         "alt": "孙坚登场 image",
         "width": 619,
         "height": 1024
-      }
+      },
+      "available_locales": [
+        "zh"
+      ]
     },
     {
       "id": "cp002-p03",
@@ -83,7 +89,10 @@
         "alt": "怒鞭督邮 image",
         "width": 687,
         "height": 1024
-      }
+      },
+      "available_locales": [
+        "zh"
+      ]
     },
     {
       "id": "cp002-p04",
@@ -103,7 +112,10 @@
         "alt": "忠臣死谏 image",
         "width": 572,
         "height": 1024
-      }
+      },
+      "available_locales": [
+        "zh"
+      ]
     },
     {
       "id": "cp002-p05",
@@ -123,7 +135,10 @@
         "alt": "引狼入室 image",
         "width": 572,
         "height": 1024
-      }
+      },
+      "available_locales": [
+        "zh"
+      ]
     }
   ]
 }

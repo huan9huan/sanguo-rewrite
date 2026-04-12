@@ -126,6 +126,15 @@ export type ComicPassageAlignment = {
   notes: string[];
 };
 
+export type Locale = "zh" | "en";
+
+export type LocalizedPassageContent = {
+  title: string;
+  short_title: string;
+  catchup: string;
+  reading: PassageReadingModel;
+};
+
 export type PassageRouteParams = {
   bookId: string;
   chapterId: string;
@@ -154,6 +163,11 @@ export type Passage = {
     text: string;
   };
   reading: PassageReadingModel;
+  available_locales: Locale[];
+  localized?: {
+    zh?: LocalizedPassageContent;
+    en?: LocalizedPassageContent;
+  };
   review: Review | null;
   scenes: Scene[];
   source: {
@@ -175,6 +189,7 @@ export type PassagePreview = {
   teaser: string;
   has_comic: boolean;
   image: PassageImage | null;
+  available_locales: Locale[];
 };
 
 export type ChapterSummary = {
@@ -242,6 +257,7 @@ export type SiteData = {
       passages: number;
       reviews: number;
       approved_cn: number;
+      approved_en: number;
     };
   };
   books: Book[];

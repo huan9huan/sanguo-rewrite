@@ -391,6 +391,7 @@ function buildPassagePreview(passage: Passage): PassagePreview {
     teaser: getPassageTeaser(passage.reading.text),
     has_comic: Boolean(passage.reading.comic.image || passage.reading.comic.layout?.frames?.length),
     image: passage.reading.comic.image,
+    available_locales: passage.available_locales,
   };
 }
 
@@ -495,6 +496,10 @@ async function loadPassage(passageDir: string, bookId: string): Promise<Passage>
       text: approvedText,
     },
     reading,
+    available_locales: ["zh"] as const,
+    localized: {
+      zh: { title, short_title: shortTitle, catchup: frontmatterString(frontmatter, "catchup") || getPassageTeaser(reading.text), reading },
+    },
     review: await loadReview(latestReviewPath),
     scenes,
     source: {
@@ -580,6 +585,7 @@ export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<S
         passages: allPassages.length,
         reviews: allPassages.filter((passage) => passage.review).length,
         approved_cn: allPassages.filter((passage) => passage.approved_cn.text).length,
+        approved_en: 0,
       },
     },
     books,

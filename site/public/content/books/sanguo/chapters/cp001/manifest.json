@@ -42,7 +42,10 @@
         "alt": "乱世序幕 image",
         "width": 765,
         "height": 1024
-      }
+      },
+      "available_locales": [
+        "zh"
+      ]
     },
     {
       "id": "cp001-p02",
@@ -62,7 +65,10 @@
         "alt": "英雄叹息 image",
         "width": 572,
         "height": 1024
-      }
+      },
+      "available_locales": [
+        "zh"
+      ]
     },
     {
       "id": "cp001-p03",
@@ -82,7 +88,10 @@
         "alt": "桃园结义 image",
         "width": 572,
         "height": 1024
-      }
+      },
+      "available_locales": [
+        "zh"
+      ]
     },
     {
       "id": "cp001-p04",
@@ -102,7 +111,10 @@
         "alt": "初试锋芒 image",
         "width": 687,
         "height": 1024
-      }
+      },
+      "available_locales": [
+        "zh"
+      ]
     },
     {
       "id": "cp001-p05",
@@ -122,7 +134,10 @@
         "alt": "英雄与小人 image",
         "width": 572,
         "height": 1024
-      }
+      },
+      "available_locales": [
+        "zh"
+      ]
     }
   ]
 }
