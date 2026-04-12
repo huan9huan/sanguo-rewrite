@@ -61,7 +61,7 @@ export function FutureBookForm({ locale = "zh" }: { locale?: Locale }) {
       });
 
       if (!res.ok) {
-        const data = await res.json();
+        const data = (await res.json()) as { error?: string };
         setErrorMessage(data.error || t.futureBooks.submitError);
         setStatus("error");
         return;

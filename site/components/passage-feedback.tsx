@@ -65,7 +65,7 @@ async function submitFeedback(
     });
 
     if (!res.ok) {
-      const data = await res.json();
+      const data = (await res.json()) as { error?: string };
       return { ok: false, error: data.error };
     }
     return { ok: true };

@@ -91,8 +91,8 @@ export function useReadingSession(bookId: string, chapterId: string, passageId: 
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ userId, bookId, locale, chapterId, passageId }),
     })
-      .then((res) => res.json())
-      .then((data: { ok: boolean; sessionId?: string }) => {
+      .then((res) => res.json() as Promise<{ ok: boolean; sessionId?: string }>)
+      .then((data) => {
         if (data.ok && data.sessionId) {
           setSessionId(data.sessionId);
         }

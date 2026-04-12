@@ -3,3 +3,5 @@ node_modules
 out
 .open-next
 .wrangler
+worker-configuration.d.ts
+tsconfig.tsbuildinfo
