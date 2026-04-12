@@ -16,6 +16,7 @@ const CURRENT_FILES = {
   approved: "approved_cn.md",
   approvedEn: "approved_en.md",
   comicLayout: "comic.json",
+  comicTextEn: "comic_text_en.json",
   comicAlignment: "comic_alignment.json",
   comicImage: "comic.png",
 };
@@ -286,7 +287,6 @@ async function loadComicLayout(layoutPath) {
       frame_id: frame.frame_id ?? "",
       scene_id: frame.scene_id ?? "",
       title: frame.text_block?.title ?? "",
-      title_en: frame.text_block?.title_en ?? "",
       items: (frame.text_block?.items ?? []).map((item) => ({
         id: item.id ?? "",
         kind: item.kind ?? "",
@@ -312,6 +312,47 @@ async function loadComicAlignment(alignmentPath) {
   }
 
   return readJson(alignmentPath);
+}
+
+function mergeEnglishComicOverlay(baseLayout, enOverlay) {
+  if (!baseLayout || !enOverlay) {
+    return baseLayout;
+  }
+
+  const enFrameMap = new Map(
+    (enOverlay.frames ?? []).map((frame) => [frame.frame_id, frame])
+  );
+
+  return {
+    ...baseLayout,
+    frames: baseLayout.frames.map((baseFrame) => {
+      const enFrame = enFrameMap.get(baseFrame.frame_id);
+      if (!enFrame) {
+        return baseFrame;
+      }
+
+      const enItemMap = new Map(
+        (enFrame.items ?? []).map((item) => [item.id, item])
+      );
+
+      return {
+        ...baseFrame,
+        title: enFrame.title ?? baseFrame.title,
+        items: baseFrame.items.map((baseItem) => {
+          const enItem = enItemMap.get(baseItem.id);
+          if (!enItem) {
+            return baseItem;
+          }
+          return {
+            ...baseItem,
+            text: enItem.text ?? baseItem.text,
+            speaker: enItem.speaker ?? baseItem.speaker,
+            lang: "en",
+          };
+        }),
+      };
+    }),
+  };
 }
 
 async function loadBooksConfig() {
@@ -372,6 +413,9 @@ async function exportPassage(passageDir, book) {
     path.join(currentDir, CURRENT_FILES.approvedEn),
     await latestVersionFile(passageDir, /^cp.*_en_v\d+\.md$/),
   ]);
+  const comicTextEnPath = await firstExistingPath([
+    path.join(currentDir, CURRENT_FILES.comicTextEn),
+  ]);
 
   const sourceRef = frontmatterString(frontmatter, "source_file");
   const sourcePath = sourceRef ? path.resolve(passageDir, sourceRef) : null;
@@ -389,6 +433,17 @@ async function exportPassage(passageDir, book) {
   const scenes = await loadSceneSpecs(passageDir);
   const comicLayout = await loadComicLayout(comicLayoutPath);
   const comicAlignment = await loadComicAlignment(comicAlignmentPath);
+  const comicTextEn = comicTextEnPath ? await readJson(comicTextEnPath) : null;
+
+  if (comicTextEn && comicLayoutPath) {
+    const rawComic = await readJson(comicLayoutPath);
+    const hasEmbeddedEn = (rawComic.frames ?? []).some(
+      (f) => (f.text_block?.title_en ?? "") !== "" || (f.text_block?.items ?? []).some((item) => (item.lang ?? "") === "en")
+    );
+    if (hasEmbeddedEn) {
+      console.warn(`[drift] ${passageId}: comic.json has embedded English but comic_text_en.json also exists — clean up comic.json`);
+    }
+  }
 
   let exportedImage = null;
   if (imagePath) {
@@ -418,13 +473,14 @@ async function exportPassage(passageDir, book) {
 
   const approvedEnText = approvedEnPath ? await readText(approvedEnPath) : "";
   const enTitle = approvedEnText ? approvedEnText.split("\n").find((line) => line.startsWith("# "))?.replace(/^# /, "") || title : title;
+  const enComicLayout = mergeEnglishComicOverlay(comicLayout, comicTextEn);
   const enReading = approvedEnText
     ? buildPassageReadingModel({
         draftText: "",
         approvedText: approvedEnText,
         sourceLabel: "approved_en",
         image: exportedImage,
-        comicLayout,
+        comicLayout: enComicLayout,
         comicAlignment,
         passageId,
         scenes,
