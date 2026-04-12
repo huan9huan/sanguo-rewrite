@@ -51,7 +51,7 @@ function isCached(path: Props["passagePath"], mode: string): boolean {
 async function submitFeedback(
   passagePath: Props["passagePath"],
   mode: string,
-  reason: string,
+  reasons: string[],
   detail: string | undefined,
   locale: string,
 ): Promise<{ ok: boolean; error?: string }> {
@@ -59,7 +59,7 @@ async function submitFeedback(
     const res = await fetch("/api/passage-feedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ...passagePath, mode, reason, detail, locale }),
+      body: JSON.stringify({ ...passagePath, mode, reasons, detail, locale }),
     });
 
     if (!res.ok) {
@@ -82,12 +82,12 @@ const ZH_TEXT = {
   disclosure: "本文和漫画由 AI 辅助生成，并经过编辑流程整理。",
   like: "赞一下",
   report: "有问题？告诉我们",
-  prompt: "你觉得哪里有问题？",
+  prompt: "你觉得哪里有问题？（可多选）",
   placeholder: "请描述一下具体问题…",
   submitting: "提交中…",
   submit: "提交反馈",
   success: "感谢反馈！",
-  selectReason: "请选择一个问题。",
+  selectReason: "请至少选择一个问题。",
   submitError: "提交失败，请稍后再试。",
   networkError: "网络错误，请稍后再试。",
 } as const;
@@ -96,12 +96,12 @@ const EN_TEXT = {
   disclosure: "Text and comics are AI-assisted and edited by humans.",
   like: "Like",
   report: "Issue? Tell us",
-  prompt: "What's the problem?",
+  prompt: "What's the problem? (pick all that apply)",
   placeholder: "Describe the issue…",
   submitting: "Submitting…",
   submit: "Submit feedback",
   success: "Thanks for your feedback!",
-  selectReason: "Please select an issue.",
+  selectReason: "Please select at least one issue.",
   submitError: "Submission failed. Please try again later.",
   networkError: "Network error. Please try again later.",
 } as const;
@@ -112,7 +112,7 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
   const reasons = isEn ? EN_REASONS : ZH_REASONS;
 
   const [status, setStatus] = useState<Status>("idle");
-  const [selectedReason, setSelectedReason] = useState("");
+  const [selectedReasons, setSelectedReasons] = useState<Set<string>>(new Set());
   const [detail, setDetail] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -127,9 +127,24 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
     return error || t.submitError;
   }
 
+  function toggleReason(id: string) {
+    setSelectedReasons((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+        if (id !== "other") {
+          // keep detail only if "other" is still selected
+        }
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  }
+
   async function handleLike() {
     setStatus("submitting");
-    const result = await submitFeedback(passagePath, mode, "liked", undefined, locale);
+    const result = await submitFeedback(passagePath, mode, [], undefined, locale);
     if (result.ok) {
       cacheSubmit(passagePath, mode);
       setStatus("success");
@@ -147,14 +162,14 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
     e.preventDefault();
     setErrorMessage("");
 
-    if (!selectedReason) {
+    if (selectedReasons.size === 0) {
       setErrorMessage(t.selectReason);
       return;
     }
 
     setStatus("submitting");
-    const detailValue = selectedReason === "other" ? detail.trim() : undefined;
-    const result = await submitFeedback(passagePath, mode, selectedReason, detailValue, locale);
+    const detailValue = selectedReasons.has("other") ? detail.trim() : undefined;
+    const result = await submitFeedback(passagePath, mode, [...selectedReasons], detailValue, locale);
     if (result.ok) {
       cacheSubmit(passagePath, mode);
       setStatus("success");
@@ -196,14 +211,14 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
             {reasons.map((r) => (
               <label
                 key={r.id}
-                className={`passage-feedback-reason ${selectedReason === r.id ? "passage-feedback-reason-selected" : ""}`}
+                className={`passage-feedback-reason ${selectedReasons.has(r.id) ? "passage-feedback-reason-selected" : ""}`}
               >
                 <input
-                  type="radio"
-                  name="reason"
+                  type="checkbox"
+                  name="reasons"
                   value={r.id}
-                  checked={selectedReason === r.id}
-                  onChange={() => { setSelectedReason(r.id); if (r.id !== "other") setDetail(""); }}
+                  checked={selectedReasons.has(r.id)}
+                  onChange={() => toggleReason(r.id)}
                   className="visually-hidden"
                 />
                 {r.label}
@@ -211,7 +226,7 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
             ))}
           </div>
 
-          {selectedReason === "other" && (
+          {selectedReasons.has("other") && (
             <textarea
               className="passage-feedback-detail"
               value={detail}
