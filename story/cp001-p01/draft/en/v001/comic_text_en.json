@@ -1,0 +1,65 @@
+{
+  "page_id": "cp001-p01-page-01",
+  "source": "story/cp001-p01/current/comic.json",
+  "lang": "en",
+  "frames": [
+    {
+      "frame_id": "f1",
+      "scene_id": "cp001_p01_s1",
+      "title": "A Snake on the Throne",
+      "items": [
+        {
+          "id": "f1_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "The empire splits, reunites, splits again. Four hundred years of Han, and now the luck has run out."
+        }
+      ]
+    },
+    {
+      "frame_id": "f2",
+      "scene_id": "cp001_p01_s2",
+      "title": "Roots of Rebellion",
+      "items": [
+        {
+          "id": "f2_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "A failed scholar found three ancient scrolls in the mountains. He healed the sick, asked nothing, and followers poured in across eight provinces."
+        }
+      ]
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p01_s2",
+      "title": "The Yellow Heaven Rises",
+      "items": [
+        {
+          "id": "f3_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "The Blue Heaven is dead — the Yellow Heaven rises. Half a million people wrapped yellow cloth around their heads, and government troops fled."
+        }
+      ]
+    },
+    {
+      "frame_id": "f4",
+      "scene_id": "cp001_p01_s3",
+      "title": "The Notice",
+      "items": [
+        {
+          "id": "f4_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Governor Liu Yan posted a recruitment notice in Youzhou. Within days, every city gate carried the same paper."
+        },
+        {
+          "id": "f4_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "No one knew yet who it would bring."
+        }
+      ]
+    }
+  ]
+}

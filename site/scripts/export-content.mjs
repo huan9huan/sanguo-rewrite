@@ -286,6 +286,7 @@ async function loadComicLayout(layoutPath) {
       frame_id: frame.frame_id ?? "",
       scene_id: frame.scene_id ?? "",
       title: frame.text_block?.title ?? "",
+      title_en: frame.text_block?.title_en ?? "",
       items: (frame.text_block?.items ?? []).map((item) => ({
         id: item.id ?? "",
         kind: item.kind ?? "",
@@ -414,10 +415,12 @@ async function exportPassage(passageDir, book) {
   });
 
   const approvedEnText = approvedEnPath ? await readText(approvedEnPath) : "";
+  const enTitle = approvedEnText ? approvedEnText.split("\n").find((line) => line.startsWith("# "))?.replace(/^# /, "") || title : title;
   const enReading = approvedEnText
     ? buildPassageReadingModel({
         draftText: "",
         approvedText: approvedEnText,
+        sourceLabel: "approved_en",
         image: null,
         comicLayout: null,
         comicAlignment: null,
@@ -434,7 +437,7 @@ async function exportPassage(passageDir, book) {
   const localized = {};
   localized.zh = { title, short_title: shortTitle, catchup: frontmatterString(frontmatter, "catchup") || getPassageTeaser(reading.text), reading };
   if (enReading) {
-    localized.en = { title, short_title: shortTitle, catchup: getPassageTeaser(enReading.text), reading: enReading };
+    localized.en = { title: enTitle, short_title: enTitle, catchup: getPassageTeaser(enReading.text), reading: enReading };
   }
 
   const payload = {

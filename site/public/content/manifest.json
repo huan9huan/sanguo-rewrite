@@ -1,6 +1,6 @@
 {
   "version": "v0.3.3",
-  "generated_at": "2026-04-12T03:04:11.454Z",
+  "generated_at": "2026-04-12T03:57:23.004Z",
   "project": {
     "title": "三国演义",
     "subtitle": "让三国故事更好读，更有画面",
@@ -25,8 +25,8 @@
       "chapters": 2,
       "passages": 10,
       "reviews": 5,
-      "approved_cn": 0,
-      "approved_en": 0
+      "approved_cn": 1,
+      "approved_en": 1
     }
   },
   "books": [

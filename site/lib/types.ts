@@ -62,6 +62,7 @@ export type ComicFrame = {
   frame_id: string;
   scene_id: string;
   title: string;
+  title_en?: string;
   items: ComicFrameTextItem[];
   panel_box?: {
     x: number;
@@ -95,7 +96,7 @@ export type ReadingSegment = {
 };
 
 export type PassageReadingModel = {
-  source: "approved_cn" | "draft_cn" | "none";
+  source: "approved_cn" | "approved_en" | "draft_cn" | "none";
   text: string;
   comic: {
     image: PassageImage | null;
