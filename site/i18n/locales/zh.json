@@ -1,0 +1,77 @@
+{
+  "common": {
+    "home": "首页",
+    "library": "书库",
+    "allBooks": "全部书目",
+    "text": "正文",
+    "comic": "漫画",
+    "previous": "上一节",
+    "next": "下一节",
+    "backToChapter": "返回章节",
+    "backToText": "返回正文",
+    "submitting": "提交中…",
+    "noContent": "暂无内容。"
+  },
+  "landing": {
+    "heroTitle": "让中国经典更加生动",
+    "cta": "开始阅读《三国演义》"
+  },
+  "read": {
+    "pageTitle": "阅读中国经典",
+    "openBook": "打开这本书"
+  },
+  "bookmark": {
+    "label": "阅读书签",
+    "title": "继续上次阅读",
+    "continue": "继续阅读"
+  },
+  "chapter": {
+    "collapse": "收起章节",
+    "expand": "展开章节"
+  },
+  "comic": {
+    "description": "用漫画模式阅读这一节，需要时再随时回到正文。"
+  },
+  "feedback": {
+    "disclosure": "本文和漫画由 AI 辅助生成，并经过编辑流程整理。",
+    "like": "赞一下",
+    "report": "有问题？告诉我们",
+    "prompt": "你觉得哪里有问题？",
+    "placeholder": "请描述一下具体问题…",
+    "submit": "提交反馈",
+    "success": "感谢反馈！",
+    "submitError": "提交失败，请稍后再试。",
+    "networkError": "网络错误，请稍后再试。",
+    "selectReason": "请选择一个问题。",
+    "reasons": {
+      "story_not_engaging": "故事不好看",
+      "character_wrong": "人物不像 / 情绪不对",
+      "chinese_too_hard": "中文太难",
+      "comic_confusing": "漫画看不懂",
+      "image_quality": "图片质量有问题",
+      "other": "其他"
+    }
+  },
+  "futureBooks": {
+    "title": "下一本读什么？",
+    "description": "告诉我们你最想读的经典，开始制作时通知你。",
+    "prompt": "你最想读哪一本？",
+    "notify": "通知我",
+    "privacy": "我们只会在这本书可读时通知你。",
+    "success": "收到了！我们会在你选的书可读时通知你。",
+    "selectBook": "请选择一本书。",
+    "invalidEmail": "请输入有效的邮箱地址。",
+    "submitError": "提交失败，请稍后再试。",
+    "networkError": "网络错误，请稍后再试。",
+    "books": {
+      "xiyouji": "西游记",
+      "shuihu": "水浒传",
+      "hongloumeng": "红楼梦",
+      "jinpingmei": "金瓶梅"
+    }
+  },
+  "locale": {
+    "passageUnavailable": "这段内容暂无{locale}版本。",
+    "readInOther": "阅读中文版"
+  }
+}

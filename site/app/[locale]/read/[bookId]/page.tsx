@@ -37,6 +37,8 @@ export default async function LocaleBookPage({ params }: LocaleBookPageProps) {
   const chapters = (
     await Promise.all(chapterSummaries.map((chapter) => getChapterById(book.id, chapter.id)))
   ).filter((chapter): chapter is NonNullable<Awaited<ReturnType<typeof getChapterById>>> => Boolean(chapter));
+  const isEn = safeLocale === "en";
+
   const readerChapters: ReaderChapter[] = chapters.map((chapter) => ({
     id: chapter.id,
     source_title: chapter.source_title,
@@ -46,12 +48,10 @@ export default async function LocaleBookPage({ params }: LocaleBookPageProps) {
       passage_id: passage.passage_id,
       title: passage.title,
       title_en: passage.title_en,
-      catchup: passage.catchup_en ?? passage.catchup,
+      catchup: isEn && passage.catchup_en ? passage.catchup_en : passage.catchup,
       available_locales: passage.available_locales,
     })),
   }));
-
-  const isEn = safeLocale === "en";
   const bookTitle = isEn && book.title_en ? book.title_en : book.title;
   const bookSubtitle = isEn && book.subtitle_en ? book.subtitle_en : book.subtitle;
 

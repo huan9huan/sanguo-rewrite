@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { getDictionary } from "@/i18n";
+import type { Locale } from "@/lib/types";
 
 function TextIcon({ className }: { className?: string }) {
   return (
@@ -67,6 +69,7 @@ type ModeHeaderProps = {
     label: string;
     href: string;
   };
+  locale?: Locale;
 };
 
 export function ModeHeader({
@@ -78,7 +81,9 @@ export function ModeHeader({
   primaryLink,
   secondaryLink,
   actionLink,
+  locale = "zh",
 }: ModeHeaderProps) {
+  const t = getDictionary(locale);
   const [isCompressed, setIsCompressed] = useState(false);
 
   useEffect(() => {
@@ -146,7 +151,7 @@ export function ModeHeader({
               href={actionLink.href}
               title={actionLink.label}
             >
-              {actionLink.label === "漫画" ? <ComicIcon /> : <TextIcon />}
+              {actionLink.label === t.common.comic ? <ComicIcon /> : <TextIcon />}
             </Link>
           ) : secondaryLink ? (
             <Link className="mode-link" href={secondaryLink.href}>
@@ -155,15 +160,15 @@ export function ModeHeader({
           ) : !isCompressed ? (
             <>
               <Link className="mode-link" href="/">
-                首页
+                {t.common.home}
               </Link>
               <Link className="mode-link" href="/read">
-                书库
+                {t.common.library}
               </Link>
             </>
           ) : (
             <Link className="mode-link" href="/read">
-              全部书目
+              {t.common.allBooks}
             </Link>
           )}
         </nav>

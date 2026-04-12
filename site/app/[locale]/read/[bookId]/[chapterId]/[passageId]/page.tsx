@@ -7,6 +7,7 @@ import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { PassageSceneFocus } from "@/components/passage-scene-focus";
 import { ReadingBookmarkSync } from "@/components/reading-bookmark-sync";
+import { getDictionary } from "@/i18n";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { proseToHtml } from "@/lib/format";
 import { resolveLocalizedPassage } from "@/lib/locale";
@@ -53,6 +54,7 @@ export async function generateStaticParams() {
 export default async function LocalePassagePage({ params }: LocalePassagePageProps) {
   const { locale, bookId, chapterId, passageId } = await params;
   const safeLocale = VALID_LOCALES.includes(locale as Locale) ? (locale as Locale) : "zh";
+  const t = getDictionary(safeLocale);
 
   const [book, chapter, passage] = await Promise.all([
     getBookById(bookId),
@@ -81,9 +83,9 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
           <div className="container passage-single-column">
             <article className="passage-main reader-card">
               <h1 className="section-title passage-page-title">{passage.title}</h1>
-              <p className="body-copy">This passage is not yet available in {safeLocale === "en" ? "English" : "Chinese"}.</p>
+              <p className="body-copy">{t.locale.passageUnavailable.replace("{locale}", safeLocale === "en" ? "English" : "中文")}</p>
               <Link className="button-link button-link-accent" href={buildPassageHref({ bookId, chapterId, passageId }, "zh")}>
-                Read in Chinese
+                {t.locale.readInOther}
               </Link>
             </article>
           </div>
@@ -111,7 +113,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
         passageLabel={localized.title}
         compactTitle={localized.title}
         primaryLink={{ label: bookTitle, href: buildBookHref(book.id, safeLocale) }}
-        actionLink={{ label: isEn ? "Comic" : "漫画", href: buildComicHref(routeParams, safeLocale) }}
+        actionLink={{ label: t.common.comic, href: buildComicHref(routeParams, safeLocale) }}
         secondaryLink={{ label: chapterLabel, href: buildChapterHref(book.id, chapter.id, safeLocale) }}
       />
 
@@ -173,7 +175,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
               )}
             </div>
 
-            <PassageFeedback mode="text" passagePath={{ bookId, chapterId, passageId }} />
+            <PassageFeedback mode="text" passagePath={{ bookId, chapterId, passageId }} locale={safeLocale} />
 
             <div className="passage-footer-nav">
               {previousPassage ? (
@@ -181,11 +183,11 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
                   className="text-nav-link"
                   href={buildPassageHref({ bookId, chapterId, passageId: previousPassage.passage_id }, safeLocale)}
                 >
-                  {isEn ? "Previous" : "上一节"}
+                  {t.common.previous}
                 </Link>
               ) : (
                 <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId, safeLocale)}>
-                  {isEn ? "Back to chapter" : "返回章节"}
+                  {t.common.backToChapter}
                 </Link>
               )}
               {nextPassage ? (
@@ -193,7 +195,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
                   className="button-link button-link-accent"
                   href={buildPassageHref({ bookId, chapterId, passageId: nextPassage.passage_id }, safeLocale)}
                 >
-                  {isEn ? "Next" : "下一节"}
+                  {t.common.next}
                 </Link>
               ) : null}
             </div>

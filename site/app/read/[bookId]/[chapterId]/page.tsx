@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ModeHeader } from "@/components/mode-header";
+import { getDictionary } from "@/i18n";
 import { formatChapterTitle } from "@/lib/chapter-title";
 import { getAllBooks, getBookById, getChapterById } from "@/lib/content";
 import { buildComicHref, buildPassageHref } from "@/lib/paths";
@@ -29,6 +30,7 @@ export async function generateStaticParams() {
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
   const { bookId, chapterId } = await params;
+  const t = getDictionary("zh");
   const [book, chapter] = await Promise.all([getBookById(bookId), getChapterById(bookId, chapterId)]);
 
   if (!book || !chapter) {
@@ -62,13 +64,13 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
                   className="button-link button-link-accent"
                   href={buildPassageHref({ bookId, chapterId, passageId: passage.passage_id })}
                 >
-                  正文
+                  {t.common.text}
                 </Link>
                 <Link
                   className="button-link button-link-secondary"
                   href={buildComicHref({ bookId, chapterId, passageId: passage.passage_id })}
                 >
-                  漫画
+                  {t.common.comic}
                 </Link>
               </div>
             </article>

@@ -6,6 +6,7 @@ import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { PassageSceneFocus } from "@/components/passage-scene-focus";
 import { ReadingBookmarkSync } from "@/components/reading-bookmark-sync";
+import { getDictionary } from "@/i18n";
 import { proseToHtml } from "@/lib/format";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
@@ -43,6 +44,7 @@ export async function generateStaticParams() {
 
 export default async function PassagePage({ params }: PassagePageProps) {
   const { bookId, chapterId, passageId } = await params;
+  const t = getDictionary("zh");
   const [book, chapter, passage] = await Promise.all([
     getBookById(bookId),
     getChapterById(bookId, chapterId),
@@ -70,7 +72,7 @@ export default async function PassagePage({ params }: PassagePageProps) {
         passageLabel={passage.title}
         compactTitle={passage.title}
         primaryLink={{ label: book.title, href: buildBookHref(book.id) }}
-        actionLink={{ label: "漫画", href: buildComicHref({ bookId, chapterId, passageId }) }}
+        actionLink={{ label: t.common.comic, href: buildComicHref({ bookId, chapterId, passageId }) }}
         secondaryLink={{ label: chapter.adapted_title_cn || chapter.source_title, href: buildChapterHref(book.id, chapter.id) }}
       />
 
@@ -124,7 +126,7 @@ export default async function PassagePage({ params }: PassagePageProps) {
               )}
             </div>
 
-            <PassageFeedback mode="text" passagePath={{ bookId, chapterId, passageId }} />
+            <PassageFeedback mode="text" passagePath={{ bookId, chapterId, passageId }} locale="zh" />
 
             <div className="passage-footer-nav">
               {previousPassage ? (
@@ -132,11 +134,11 @@ export default async function PassagePage({ params }: PassagePageProps) {
                   className="text-nav-link"
                   href={buildPassageHref({ bookId, chapterId, passageId: previousPassage.passage_id })}
                 >
-                  上一节
+                  {t.common.previous}
                 </Link>
               ) : (
                 <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId)}>
-                  返回章节
+                  {t.common.backToChapter}
                 </Link>
               )}
               {nextPassage ? (
@@ -144,7 +146,7 @@ export default async function PassagePage({ params }: PassagePageProps) {
                   className="button-link button-link-accent"
                   href={buildPassageHref({ bookId, chapterId, passageId: nextPassage.passage_id })}
                 >
-                  下一节
+                  {t.common.next}
                 </Link>
               ) : null}
             </div>

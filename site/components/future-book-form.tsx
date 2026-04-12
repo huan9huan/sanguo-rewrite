@@ -1,16 +1,13 @@
 "use client";
 
 import { useState, useEffect, type FormEvent } from "react";
+import { getDictionary } from "@/i18n";
+import type { Locale } from "@/lib/types";
 
 const CACHE_KEY = "future-books-submitted";
 const CACHE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
-const BOOKS = [
-  { id: "xiyouji", label: "西游记" },
-  { id: "shuihu", label: "水浒传" },
-  { id: "hongloumeng", label: "红楼梦" },
-  { id: "jinpingmei", label: "金瓶梅" },
-] as const;
+const BOOK_IDS = ["xiyouji", "shuihu", "hongloumeng", "jinpingmei"] as const;
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -24,7 +21,8 @@ function isCached(): boolean {
   }
 }
 
-export function FutureBookForm() {
+export function FutureBookForm({ locale = "zh" }: { locale?: Locale }) {
+  const t = getDictionary(locale);
   const [visible, setVisible] = useState(false);
   const [selectedBook, setSelectedBook] = useState("");
   const [email, setEmail] = useState("");
@@ -40,13 +38,13 @@ export function FutureBookForm() {
     setErrorMessage("");
 
     if (!selectedBook) {
-      setErrorMessage("请选择一本书。");
+      setErrorMessage(t.futureBooks.selectBook);
       return;
     }
 
     const trimmed = email.trim();
     if (!trimmed || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)) {
-      setErrorMessage("请输入有效的邮箱地址。");
+      setErrorMessage(t.futureBooks.invalidEmail);
       return;
     }
 
@@ -64,7 +62,7 @@ export function FutureBookForm() {
 
       if (!res.ok) {
         const data = await res.json();
-        setErrorMessage(data.error || "提交失败，请稍后再试。");
+        setErrorMessage(data.error || t.futureBooks.submitError);
         setStatus("error");
         return;
       }
@@ -75,7 +73,7 @@ export function FutureBookForm() {
 
       setStatus("success");
     } catch {
-      setErrorMessage("网络错误，请稍后再试。");
+      setErrorMessage(t.futureBooks.networkError);
       setStatus("error");
     }
   }
@@ -86,7 +84,7 @@ export function FutureBookForm() {
     return (
       <article className="reader-card future-books-card">
         <p className="future-books-success-text">
-          收到了！我们会在你选的书可读时通知你。
+          {t.futureBooks.success}
         </p>
       </article>
     );
@@ -95,27 +93,27 @@ export function FutureBookForm() {
   return (
     <article className="reader-card future-books-card">
       <div>
-        <h2 className="passage-title">下一本读什么？</h2>
-        <p className="body-copy">告诉我们你最想读的经典，开始制作时通知你。</p>
+        <h2 className="passage-title">{t.futureBooks.title}</h2>
+        <p className="body-copy">{t.futureBooks.description}</p>
       </div>
       <form onSubmit={handleSubmit} noValidate>
-        <p className="future-books-prompt">你最想读哪一本？</p>
+        <p className="future-books-prompt">{t.futureBooks.prompt}</p>
 
         <div className="book-option-grid">
-          {BOOKS.map((book) => (
+          {BOOK_IDS.map((id) => (
             <label
-              key={book.id}
-              className={`book-option-label ${selectedBook === book.id ? "book-option-selected" : ""}`}
+              key={id}
+              className={`book-option-label ${selectedBook === id ? "book-option-selected" : ""}`}
             >
               <input
                 type="radio"
                 name="book"
-                value={book.id}
-                checked={selectedBook === book.id}
-                onChange={() => setSelectedBook(book.id)}
+                value={id}
+                checked={selectedBook === id}
+                onChange={() => setSelectedBook(id)}
                 className="book-option-input"
               />
-              {book.label}
+              {t.futureBooks.books[id]}
             </label>
           ))}
         </div>
@@ -135,7 +133,7 @@ export function FutureBookForm() {
             className="button-link button-link-secondary future-books-submit"
             disabled={status === "submitting"}
           >
-            {status === "submitting" ? "提交中…" : "通知我"}
+            {status === "submitting" ? t.common.submitting : t.futureBooks.notify}
           </button>
         </div>
 
@@ -154,7 +152,7 @@ export function FutureBookForm() {
         )}
 
         <p className="future-books-privacy">
-          我们只会在这本书可读时通知你。
+          {t.futureBooks.privacy}
         </p>
       </form>
     </article>

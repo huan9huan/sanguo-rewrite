@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ModeHeader } from "@/components/mode-header";
+import { getDictionary } from "@/i18n";
 import { formatChapterTitle } from "@/lib/chapter-title";
 import { getAllBooks, getBookById, getChapterById } from "@/lib/content";
 import { buildComicHref, buildPassageHref } from "@/lib/paths";
@@ -37,6 +38,7 @@ export async function generateStaticParams() {
 export default async function LocaleChapterPage({ params }: LocaleChapterPageProps) {
   const { locale, bookId, chapterId } = await params;
   const safeLocale = VALID_LOCALES.includes(locale as Locale) ? (locale as Locale) : "zh";
+  const t = getDictionary(safeLocale);
 
   const [book, chapter] = await Promise.all([getBookById(bookId), getChapterById(bookId, chapterId)]);
 
@@ -81,13 +83,13 @@ export default async function LocaleChapterPage({ params }: LocaleChapterPagePro
                     className="button-link button-link-accent"
                     href={buildPassageHref({ bookId, chapterId, passageId: passage.passage_id }, safeLocale)}
                   >
-                    正文
+                    {t.common.text}
                   </Link>
                   <Link
                     className="button-link button-link-secondary"
                     href={buildComicHref({ bookId, chapterId, passageId: passage.passage_id }, safeLocale)}
                   >
-                    漫画
+                    {t.common.comic}
                   </Link>
                 </div>
               </article>
