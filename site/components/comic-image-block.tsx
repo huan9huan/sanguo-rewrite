@@ -14,6 +14,7 @@ type ComicImageBlockProps = {
   frames?: ComicFrame[];
   comicHref?: string;
   passageHref?: string;
+  locale?: string;
   routeParams?: {
     bookId: string;
     chapterId: string;
@@ -81,8 +82,11 @@ function shouldUseSideCaption(frame: ComicFrame, crop: ReturnType<typeof getPixe
   return crop.width < COMPACT_PANEL_WIDTH && box.w < NARROW_PANEL_RATIO;
 }
 
-function formatComicText(frame: ComicFrame): string {
-  const items = Array.isArray(frame.items) ? frame.items : [];
+function formatComicText(frame: ComicFrame, locale?: string): string {
+  let items = Array.isArray(frame.items) ? frame.items : [];
+  if (locale) {
+    items = items.filter((item) => item.lang === locale);
+  }
   return items
     .map((item) => (item.kind === "speech" ? `“${item.text}”` : item.text))
     .map((text) =>
@@ -121,6 +125,7 @@ export function ComicImageBlock({
   frames: framesOverride,
   comicHref,
   passageHref,
+  locale,
   routeParams,
 }: ComicImageBlockProps) {
   const router = useRouter();
@@ -183,7 +188,7 @@ export function ComicImageBlock({
             );
             const panelCaption = (
               <div className="comic-panel-caption">
-                <p className="comic-panel-text">{formatComicText(frame)}</p>
+                <p className="comic-panel-text">{formatComicText(frame, locale)}</p>
               </div>
             );
             return (
@@ -218,12 +223,12 @@ export function ComicImageBlock({
                   {frameHref ? (
                     <button type="button" className="comic-frame-link" onClick={() => router.push(frameHref)}>
                       <div className="comic-frame-text-list">
-                        <p className="comic-frame-text">{formatComicText(frame)}</p>
+                        <p className="comic-frame-text">{formatComicText(frame, locale)}</p>
                       </div>
                     </button>
                   ) : (
                     <div className="comic-frame-text-list">
-                      <p className="comic-frame-text">{formatComicText(frame)}</p>
+                      <p className="comic-frame-text">{formatComicText(frame, locale)}</p>
                     </div>
                   )}
                 </section>

@@ -151,6 +151,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
                                     frames={placement.frames}
                                     comicHref={buildComicHref(routeParams, safeLocale)}
                                     passageHref={buildPassageHref(routeParams, safeLocale)}
+                                    locale={safeLocale === "en" ? "en" : "zh-CN"}
                                     routeParams={routeParams}
                                   />
                                 </div>

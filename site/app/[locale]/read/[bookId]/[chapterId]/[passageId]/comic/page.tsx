@@ -90,6 +90,7 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
             <ComicImageBlock
               passage={passage}
               passageHref={buildPassageHref({ bookId, chapterId, passageId }, safeLocale)}
+              locale={safeLocale === "en" ? "en" : "zh-CN"}
               routeParams={{ bookId, chapterId, passageId }}
             />
 
