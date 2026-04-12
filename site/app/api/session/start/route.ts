@@ -13,6 +13,7 @@ export async function POST(request: Request) {
   const bookId = typeof body.bookId === "string" ? body.bookId : "";
   const locale = typeof body.locale === "string" ? body.locale : undefined;
   const chapterId = typeof body.chapterId === "string" ? body.chapterId : undefined;
+  const passageId = typeof body.passageId === "string" ? body.passageId : undefined;
 
   if (!userId || !bookId) {
     return jsonResponse({ ok: false, error: "missing_userId_or_bookId" }, { status: 400 });
@@ -28,7 +29,7 @@ export async function POST(request: Request) {
   // Reuse active session if exists
   const active = await getActiveSession(db, userId, bookId);
   if (active) {
-    await heartbeatSession(db, active.session_id);
+    await heartbeatSession(db, active.session_id, { chapterId, passageId });
     await insertReadingEvent(db, {
       eventId: crypto.randomUUID(),
       sessionId: active.session_id,
@@ -36,6 +37,7 @@ export async function POST(request: Request) {
       eventType: "resume",
       bookId,
       chapterId,
+      passageId,
       locale,
     });
     return jsonResponse({
@@ -56,6 +58,7 @@ export async function POST(request: Request) {
     eventType: "start",
     bookId,
     chapterId,
+    passageId,
     locale,
   });
 

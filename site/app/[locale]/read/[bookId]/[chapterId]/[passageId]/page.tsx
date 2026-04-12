@@ -105,7 +105,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
   return (
     <main className="page-shell passage-page">
       <ReadingBookmarkSync bookId={bookId} chapterId={chapterId} passageId={passageId} />
-      <ReadingSessionTracker bookId={bookId} />
+      <ReadingSessionTracker bookId={bookId} chapterId={chapterId} passageId={passageId} />
       <Suspense fallback={null}>
         <PassageSceneFocus />
       </Suspense>

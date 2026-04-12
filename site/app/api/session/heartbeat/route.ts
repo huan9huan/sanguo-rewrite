@@ -17,6 +17,7 @@ export async function POST(request: Request) {
   const passageId = typeof body.passageId === "string" ? body.passageId : undefined;
   const mode = typeof body.mode === "string" ? body.mode : undefined;
   const path = typeof body.path === "string" ? body.path : undefined;
+  const eventType = body.eventType === "navigate" ? "navigate" : "heartbeat";
 
   if (!sessionId) {
     return jsonResponse({ ok: false, error: "missing_sessionId" }, { status: 400 });
@@ -36,7 +37,7 @@ export async function POST(request: Request) {
       eventId: crypto.randomUUID(),
       sessionId,
       userId,
-      eventType: "heartbeat",
+      eventType,
       bookId,
       chapterId,
       passageId,
