@@ -3,6 +3,8 @@
   "book_id": "sanguo",
   "source_title": "宴桃园豪杰三结义 斩黄巾英雄首立功",
   "adapted_title_cn": "桃园结义",
+  "display_title_en": "Oath of the Peach Garden",
+  "summary_en": "In a crumbling empire, three strangers — a sandal-weaver with royal blood, a hot-tempered butcher, and a quiet giant with a halberd — meet, swear brotherhood, and ride into their first battle. Meanwhile, a sly young officer named Cao Cao watches from the edge of the frame.",
   "viewpoint": [
     "liu_bei",
     "guan_yu",
@@ -70,8 +72,11 @@
         "height": 1024
       },
       "available_locales": [
-        "zh"
-      ]
+        "zh",
+        "en"
+      ],
+      "title_en": "A Hero's Sigh",
+      "catchup_en": "The day the recruitment notice reached Zhuo County, a ma..."
     },
     {
       "id": "cp001-p03",
@@ -93,8 +98,11 @@
         "height": 1024
       },
       "available_locales": [
-        "zh"
-      ]
+        "zh",
+        "en"
+      ],
+      "title_en": "Oath of the Peach Garden",
+      "catchup_en": "The shadow at the door became a man."
     },
     {
       "id": "cp001-p04",
@@ -116,8 +124,11 @@
         "height": 1024
       },
       "available_locales": [
-        "zh"
-      ]
+        "zh",
+        "en"
+      ],
+      "title_en": "First Blood",
+      "catchup_en": "A few days later, word came."
     },
     {
       "id": "cp001-p05",
@@ -139,8 +150,11 @@
         "height": 1024
       },
       "available_locales": [
-        "zh"
-      ]
+        "zh",
+        "en"
+      ],
+      "title_en": "Heroes and Small Men",
+      "catchup_en": "By the time they reached Yingchuan, the battle was alrea..."
     }
   ]
 }

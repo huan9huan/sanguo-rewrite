@@ -73,7 +73,6 @@
             "frame_id": "f1",
             "scene_id": "cp002_p01_s2",
             "title": "设伏",
-            "title_en": "",
             "items": [
               {
                 "id": "f1_t1",
@@ -101,7 +100,6 @@
             "frame_id": "f2",
             "scene_id": "cp002_p01_s2",
             "title": "妖法再来",
-            "title_en": "",
             "items": [
               {
                 "id": "f2_t1",
@@ -129,7 +127,6 @@
             "frame_id": "f3",
             "scene_id": "cp002_p01_s2",
             "title": "破法",
-            "title_en": "",
             "items": [
               {
                 "id": "f3_t1",
@@ -157,7 +154,6 @@
             "frame_id": "f4",
             "scene_id": "cp002_p01_s2",
             "title": "追杀",
-            "title_en": "",
             "items": [
               {
                 "id": "f4_t1",
@@ -271,7 +267,6 @@
                 "frame_id": "f1",
                 "scene_id": "cp002_p01_s2",
                 "title": "设伏",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -304,7 +299,6 @@
                 "frame_id": "f2",
                 "scene_id": "cp002_p01_s2",
                 "title": "妖法再来",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -337,7 +331,6 @@
                 "frame_id": "f3",
                 "scene_id": "cp002_p01_s2",
                 "title": "破法",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -370,7 +363,6 @@
                 "frame_id": "f4",
                 "scene_id": "cp002_p01_s2",
                 "title": "追杀",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -402,7 +394,6 @@
             "frame_id": "f1",
             "scene_id": "cp002_p01_s2",
             "title": "设伏",
-            "title_en": "",
             "items": [
               {
                 "id": "f1_t1",
@@ -430,7 +421,6 @@
             "frame_id": "f2",
             "scene_id": "cp002_p01_s2",
             "title": "妖法再来",
-            "title_en": "",
             "items": [
               {
                 "id": "f2_t1",
@@ -458,7 +448,6 @@
             "frame_id": "f3",
             "scene_id": "cp002_p01_s2",
             "title": "破法",
-            "title_en": "",
             "items": [
               {
                 "id": "f3_t1",
@@ -486,7 +475,6 @@
             "frame_id": "f4",
             "scene_id": "cp002_p01_s2",
             "title": "追杀",
-            "title_en": "",
             "items": [
               {
                 "id": "f4_t1",
@@ -569,7 +557,6 @@
                 "frame_id": "f1",
                 "scene_id": "cp002_p01_s2",
                 "title": "设伏",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -597,7 +584,6 @@
                 "frame_id": "f2",
                 "scene_id": "cp002_p01_s2",
                 "title": "妖法再来",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -625,7 +611,6 @@
                 "frame_id": "f3",
                 "scene_id": "cp002_p01_s2",
                 "title": "破法",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -653,7 +638,6 @@
                 "frame_id": "f4",
                 "scene_id": "cp002_p01_s2",
                 "title": "追杀",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -767,7 +751,6 @@
                     "frame_id": "f1",
                     "scene_id": "cp002_p01_s2",
                     "title": "设伏",
-                    "title_en": "",
                     "items": [
                       {
                         "id": "f1_t1",
@@ -800,7 +783,6 @@
                     "frame_id": "f2",
                     "scene_id": "cp002_p01_s2",
                     "title": "妖法再来",
-                    "title_en": "",
                     "items": [
                       {
                         "id": "f2_t1",
@@ -833,7 +815,6 @@
                     "frame_id": "f3",
                     "scene_id": "cp002_p01_s2",
                     "title": "破法",
-                    "title_en": "",
                     "items": [
                       {
                         "id": "f3_t1",
@@ -866,7 +847,6 @@
                     "frame_id": "f4",
                     "scene_id": "cp002_p01_s2",
                     "title": "追杀",
-                    "title_en": "",
                     "items": [
                       {
                         "id": "f4_t1",
@@ -898,7 +878,6 @@
                 "frame_id": "f1",
                 "scene_id": "cp002_p01_s2",
                 "title": "设伏",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -926,7 +905,6 @@
                 "frame_id": "f2",
                 "scene_id": "cp002_p01_s2",
                 "title": "妖法再来",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -954,7 +932,6 @@
                 "frame_id": "f3",
                 "scene_id": "cp002_p01_s2",
                 "title": "破法",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -982,7 +959,6 @@
                 "frame_id": "f4",
                 "scene_id": "cp002_p01_s2",
                 "title": "追杀",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",

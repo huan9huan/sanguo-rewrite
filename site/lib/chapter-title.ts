@@ -1,6 +1,9 @@
+import type { Locale } from "./types";
+
 type ChapterTitleInput = {
   id: string;
   source_title: string;
+  display_title_en?: string;
 };
 
 function toChineseNumber(value: number): string {
@@ -36,10 +39,14 @@ function toChineseNumber(value: number): string {
   return String(value);
 }
 
-export function formatChapterTitle(chapter: ChapterTitleInput): string {
+export function formatChapterTitle(chapter: ChapterTitleInput, locale: Locale = "zh"): string {
   const numeric = Number(chapter.id.replace(/\D/g, ""));
   if (!numeric) {
     return chapter.source_title;
+  }
+
+  if (locale === "en" && chapter.display_title_en) {
+    return `Chapter ${numeric}: ${chapter.display_title_en}`;
   }
 
   return `第${toChineseNumber(numeric)}回 ${chapter.source_title}`;

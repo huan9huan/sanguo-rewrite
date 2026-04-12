@@ -65,14 +65,17 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
   }
 
   const localized = resolveLocalizedPassage(passage, safeLocale);
+  const isEn = safeLocale === "en";
+  const bookTitle = isEn && book.title_en ? book.title_en : book.title;
+  const chapterLabel = isEn && chapter.display_title_en ? chapter.display_title_en : (chapter.adapted_title_cn || chapter.source_title);
 
   if (!localized) {
     return (
       <main className="page-shell passage-page">
         <ModeHeader
           compactTitle={passage.title}
-          primaryLink={{ label: book.title, href: buildBookHref(book.id, safeLocale) }}
-          secondaryLink={{ label: chapter.adapted_title_cn || chapter.source_title, href: buildChapterHref(book.id, chapter.id, safeLocale) }}
+          primaryLink={{ label: bookTitle, href: buildBookHref(book.id, safeLocale) }}
+          secondaryLink={{ label: chapterLabel, href: buildChapterHref(book.id, chapter.id, safeLocale) }}
         />
         <section className="section">
           <div className="container passage-single-column">
@@ -103,13 +106,13 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
         <PassageSceneFocus />
       </Suspense>
       <ModeHeader
-        bookLabel={book.title}
-        chapterLabel={chapter.adapted_title_cn || chapter.source_title}
+        bookLabel={bookTitle}
+        chapterLabel={chapterLabel}
         passageLabel={localized.title}
         compactTitle={localized.title}
-        primaryLink={{ label: book.title, href: buildBookHref(book.id, safeLocale) }}
-        actionLink={{ label: "漫画", href: buildComicHref(routeParams, safeLocale) }}
-        secondaryLink={{ label: chapter.adapted_title_cn || chapter.source_title, href: buildChapterHref(book.id, chapter.id, safeLocale) }}
+        primaryLink={{ label: bookTitle, href: buildBookHref(book.id, safeLocale) }}
+        actionLink={{ label: isEn ? "Comic" : "漫画", href: buildComicHref(routeParams, safeLocale) }}
+        secondaryLink={{ label: chapterLabel, href: buildChapterHref(book.id, chapter.id, safeLocale) }}
       />
 
       <section className="section">
@@ -178,11 +181,11 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
                   className="text-nav-link"
                   href={buildPassageHref({ bookId, chapterId, passageId: previousPassage.passage_id }, safeLocale)}
                 >
-                  上一节
+                  {isEn ? "Previous" : "上一节"}
                 </Link>
               ) : (
                 <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId, safeLocale)}>
-                  返回章节
+                  {isEn ? "Back to chapter" : "返回章节"}
                 </Link>
               )}
               {nextPassage ? (
@@ -190,7 +193,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
                   className="button-link button-link-accent"
                   href={buildPassageHref({ bookId, chapterId, passageId: nextPassage.passage_id }, safeLocale)}
                 >
-                  下一节
+                  {isEn ? "Next" : "下一节"}
                 </Link>
               ) : null}
             </div>

@@ -67,7 +67,6 @@
             "frame_id": "f1",
             "scene_id": "cp001_p01_s1",
             "title": "龙椅惊蛇",
-            "title_en": "A Snake on the Throne",
             "items": [
               {
                 "id": "f1_t1",
@@ -75,13 +74,6 @@
                 "speaker": "narrator",
                 "text": "话说天下大势，分久必合，合久必分。汉朝传了四百年，到了桓帝灵帝手上，气数尽了。",
                 "lang": "zh-CN"
-              },
-              {
-                "id": "f1_t1_en",
-                "kind": "caption",
-                "speaker": "narrator",
-                "text": "The empire splits, reunites, splits again. Four hundred years of Han, and now the luck has run out.",
-                "lang": "en"
               }
             ],
             "panel_box": {
@@ -95,7 +87,6 @@
             "frame_id": "f2",
             "scene_id": "cp001_p01_s2",
             "title": "暗流涌动",
-            "title_en": "Roots of Rebellion",
             "items": [
               {
                 "id": "f2_t1",
@@ -103,13 +94,6 @@
                 "speaker": "narrator",
                 "text": "巨鹿张角，本是个落第秀才。入山采药，得了天书《太平要术》，学会符水治病，信徒越滚越多，遍布八州。",
                 "lang": "zh-CN"
-              },
-              {
-                "id": "f2_t1_en",
-                "kind": "caption",
-                "speaker": "narrator",
-                "text": "A failed scholar found three ancient scrolls in the mountains. He healed the sick, asked nothing, and followers poured in across eight provinces.",
-                "lang": "en"
               }
             ],
             "panel_box": {
@@ -123,7 +107,6 @@
             "frame_id": "f3",
             "scene_id": "cp001_p01_s2",
             "title": "黄巾洪流",
-            "title_en": "The Yellow Heaven Rises",
             "items": [
               {
                 "id": "f3_t1",
@@ -131,13 +114,6 @@
                 "speaker": "narrator",
                 "text": "苍天已死，黄天当立。岁在甲子，天下大吉。四方裹黄巾从反者四五十万，官军望风而逃。",
                 "lang": "zh-CN"
-              },
-              {
-                "id": "f3_t1_en",
-                "kind": "caption",
-                "speaker": "narrator",
-                "text": "The Blue Heaven is dead — the Yellow Heaven rises. Half a million people wrapped yellow cloth around their heads, and government troops fled.",
-                "lang": "en"
               }
             ],
             "panel_box": {
@@ -151,7 +127,6 @@
             "frame_id": "f4",
             "scene_id": "cp001_p01_s3",
             "title": "榜文",
-            "title_en": "The Notice",
             "items": [
               {
                 "id": "f4_t1",
@@ -166,20 +141,6 @@
                 "speaker": "narrator",
                 "text": "没有人知道它会引来什么样的人。",
                 "lang": "zh-CN"
-              },
-              {
-                "id": "f4_t1_en",
-                "kind": "caption",
-                "speaker": "narrator",
-                "text": "Governor Liu Yan posted a recruitment notice in Youzhou. Within days, every city gate carried the same paper.",
-                "lang": "en"
-              },
-              {
-                "id": "f4_t2_en",
-                "kind": "caption",
-                "speaker": "narrator",
-                "text": "No one knew yet who it would bring.",
-                "lang": "en"
               }
             ],
             "panel_box": {
@@ -276,7 +237,6 @@
                 "frame_id": "f1",
                 "scene_id": "cp001_p01_s1",
                 "title": "龙椅惊蛇",
-                "title_en": "A Snake on the Throne",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -284,13 +244,6 @@
                     "speaker": "narrator",
                     "text": "话说天下大势，分久必合，合久必分。汉朝传了四百年，到了桓帝灵帝手上，气数尽了。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f1_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "The empire splits, reunites, splits again. Four hundred years of Han, and now the luck has run out.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -308,7 +261,6 @@
             "frame_id": "f1",
             "scene_id": "cp001_p01_s1",
             "title": "龙椅惊蛇",
-            "title_en": "A Snake on the Throne",
             "items": [
               {
                 "id": "f1_t1",
@@ -316,13 +268,6 @@
                 "speaker": "narrator",
                 "text": "话说天下大势，分久必合，合久必分。汉朝传了四百年，到了桓帝灵帝手上，气数尽了。",
                 "lang": "zh-CN"
-              },
-              {
-                "id": "f1_t1_en",
-                "kind": "caption",
-                "speaker": "narrator",
-                "text": "The empire splits, reunites, splits again. Four hundred years of Han, and now the luck has run out.",
-                "lang": "en"
               }
             ],
             "panel_box": {
@@ -362,7 +307,6 @@
                 "frame_id": "f2",
                 "scene_id": "cp001_p01_s2",
                 "title": "暗流涌动",
-                "title_en": "Roots of Rebellion",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -370,13 +314,6 @@
                     "speaker": "narrator",
                     "text": "巨鹿张角，本是个落第秀才。入山采药，得了天书《太平要术》，学会符水治病，信徒越滚越多，遍布八州。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f2_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "A failed scholar found three ancient scrolls in the mountains. He healed the sick, asked nothing, and followers poured in across eight provinces.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -395,7 +332,6 @@
                 "frame_id": "f3",
                 "scene_id": "cp001_p01_s2",
                 "title": "黄巾洪流",
-                "title_en": "The Yellow Heaven Rises",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -403,13 +339,6 @@
                     "speaker": "narrator",
                     "text": "苍天已死，黄天当立。岁在甲子，天下大吉。四方裹黄巾从反者四五十万，官军望风而逃。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f3_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "The Blue Heaven is dead — the Yellow Heaven rises. Half a million people wrapped yellow cloth around their heads, and government troops fled.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -427,7 +356,6 @@
             "frame_id": "f2",
             "scene_id": "cp001_p01_s2",
             "title": "暗流涌动",
-            "title_en": "Roots of Rebellion",
             "items": [
               {
                 "id": "f2_t1",
@@ -435,13 +363,6 @@
                 "speaker": "narrator",
                 "text": "巨鹿张角，本是个落第秀才。入山采药，得了天书《太平要术》，学会符水治病，信徒越滚越多，遍布八州。",
                 "lang": "zh-CN"
-              },
-              {
-                "id": "f2_t1_en",
-                "kind": "caption",
-                "speaker": "narrator",
-                "text": "A failed scholar found three ancient scrolls in the mountains. He healed the sick, asked nothing, and followers poured in across eight provinces.",
-                "lang": "en"
               }
             ],
             "panel_box": {
@@ -455,7 +376,6 @@
             "frame_id": "f3",
             "scene_id": "cp001_p01_s2",
             "title": "黄巾洪流",
-            "title_en": "The Yellow Heaven Rises",
             "items": [
               {
                 "id": "f3_t1",
@@ -463,13 +383,6 @@
                 "speaker": "narrator",
                 "text": "苍天已死，黄天当立。岁在甲子，天下大吉。四方裹黄巾从反者四五十万，官军望风而逃。",
                 "lang": "zh-CN"
-              },
-              {
-                "id": "f3_t1_en",
-                "kind": "caption",
-                "speaker": "narrator",
-                "text": "The Blue Heaven is dead — the Yellow Heaven rises. Half a million people wrapped yellow cloth around their heads, and government troops fled.",
-                "lang": "en"
               }
             ],
             "panel_box": {
@@ -505,7 +418,6 @@
                 "frame_id": "f4",
                 "scene_id": "cp001_p01_s3",
                 "title": "榜文",
-                "title_en": "The Notice",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -520,20 +432,6 @@
                     "speaker": "narrator",
                     "text": "没有人知道它会引来什么样的人。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f4_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "Governor Liu Yan posted a recruitment notice in Youzhou. Within days, every city gate carried the same paper.",
-                    "lang": "en"
-                  },
-                  {
-                    "id": "f4_t2_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "No one knew yet who it would bring.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -551,7 +449,6 @@
             "frame_id": "f4",
             "scene_id": "cp001_p01_s3",
             "title": "榜文",
-            "title_en": "The Notice",
             "items": [
               {
                 "id": "f4_t1",
@@ -566,20 +463,6 @@
                 "speaker": "narrator",
                 "text": "没有人知道它会引来什么样的人。",
                 "lang": "zh-CN"
-              },
-              {
-                "id": "f4_t1_en",
-                "kind": "caption",
-                "speaker": "narrator",
-                "text": "Governor Liu Yan posted a recruitment notice in Youzhou. Within days, every city gate carried the same paper.",
-                "lang": "en"
-              },
-              {
-                "id": "f4_t2_en",
-                "kind": "caption",
-                "speaker": "narrator",
-                "text": "No one knew yet who it would bring.",
-                "lang": "en"
               }
             ],
             "panel_box": {
@@ -623,7 +506,6 @@
                 "frame_id": "f1",
                 "scene_id": "cp001_p01_s1",
                 "title": "龙椅惊蛇",
-                "title_en": "A Snake on the Throne",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -631,13 +513,6 @@
                     "speaker": "narrator",
                     "text": "话说天下大势，分久必合，合久必分。汉朝传了四百年，到了桓帝灵帝手上，气数尽了。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f1_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "The empire splits, reunites, splits again. Four hundred years of Han, and now the luck has run out.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -651,7 +526,6 @@
                 "frame_id": "f2",
                 "scene_id": "cp001_p01_s2",
                 "title": "暗流涌动",
-                "title_en": "Roots of Rebellion",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -659,13 +533,6 @@
                     "speaker": "narrator",
                     "text": "巨鹿张角，本是个落第秀才。入山采药，得了天书《太平要术》，学会符水治病，信徒越滚越多，遍布八州。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f2_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "A failed scholar found three ancient scrolls in the mountains. He healed the sick, asked nothing, and followers poured in across eight provinces.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -679,7 +546,6 @@
                 "frame_id": "f3",
                 "scene_id": "cp001_p01_s2",
                 "title": "黄巾洪流",
-                "title_en": "The Yellow Heaven Rises",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -687,13 +553,6 @@
                     "speaker": "narrator",
                     "text": "苍天已死，黄天当立。岁在甲子，天下大吉。四方裹黄巾从反者四五十万，官军望风而逃。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f3_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "The Blue Heaven is dead — the Yellow Heaven rises. Half a million people wrapped yellow cloth around their heads, and government troops fled.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -707,7 +566,6 @@
                 "frame_id": "f4",
                 "scene_id": "cp001_p01_s3",
                 "title": "榜文",
-                "title_en": "The Notice",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -722,20 +580,6 @@
                     "speaker": "narrator",
                     "text": "没有人知道它会引来什么样的人。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f4_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "Governor Liu Yan posted a recruitment notice in Youzhou. Within days, every city gate carried the same paper.",
-                    "lang": "en"
-                  },
-                  {
-                    "id": "f4_t2_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "No one knew yet who it would bring.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -832,7 +676,6 @@
                     "frame_id": "f1",
                     "scene_id": "cp001_p01_s1",
                     "title": "龙椅惊蛇",
-                    "title_en": "A Snake on the Throne",
                     "items": [
                       {
                         "id": "f1_t1",
@@ -840,13 +683,6 @@
                         "speaker": "narrator",
                         "text": "话说天下大势，分久必合，合久必分。汉朝传了四百年，到了桓帝灵帝手上，气数尽了。",
                         "lang": "zh-CN"
-                      },
-                      {
-                        "id": "f1_t1_en",
-                        "kind": "caption",
-                        "speaker": "narrator",
-                        "text": "The empire splits, reunites, splits again. Four hundred years of Han, and now the luck has run out.",
-                        "lang": "en"
                       }
                     ],
                     "panel_box": {
@@ -864,7 +700,6 @@
                 "frame_id": "f1",
                 "scene_id": "cp001_p01_s1",
                 "title": "龙椅惊蛇",
-                "title_en": "A Snake on the Throne",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -872,13 +707,6 @@
                     "speaker": "narrator",
                     "text": "话说天下大势，分久必合，合久必分。汉朝传了四百年，到了桓帝灵帝手上，气数尽了。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f1_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "The empire splits, reunites, splits again. Four hundred years of Han, and now the luck has run out.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -918,7 +746,6 @@
                     "frame_id": "f2",
                     "scene_id": "cp001_p01_s2",
                     "title": "暗流涌动",
-                    "title_en": "Roots of Rebellion",
                     "items": [
                       {
                         "id": "f2_t1",
@@ -926,13 +753,6 @@
                         "speaker": "narrator",
                         "text": "巨鹿张角，本是个落第秀才。入山采药，得了天书《太平要术》，学会符水治病，信徒越滚越多，遍布八州。",
                         "lang": "zh-CN"
-                      },
-                      {
-                        "id": "f2_t1_en",
-                        "kind": "caption",
-                        "speaker": "narrator",
-                        "text": "A failed scholar found three ancient scrolls in the mountains. He healed the sick, asked nothing, and followers poured in across eight provinces.",
-                        "lang": "en"
                       }
                     ],
                     "panel_box": {
@@ -951,7 +771,6 @@
                     "frame_id": "f3",
                     "scene_id": "cp001_p01_s2",
                     "title": "黄巾洪流",
-                    "title_en": "The Yellow Heaven Rises",
                     "items": [
                       {
                         "id": "f3_t1",
@@ -959,13 +778,6 @@
                         "speaker": "narrator",
                         "text": "苍天已死，黄天当立。岁在甲子，天下大吉。四方裹黄巾从反者四五十万，官军望风而逃。",
                         "lang": "zh-CN"
-                      },
-                      {
-                        "id": "f3_t1_en",
-                        "kind": "caption",
-                        "speaker": "narrator",
-                        "text": "The Blue Heaven is dead — the Yellow Heaven rises. Half a million people wrapped yellow cloth around their heads, and government troops fled.",
-                        "lang": "en"
                       }
                     ],
                     "panel_box": {
@@ -983,7 +795,6 @@
                 "frame_id": "f2",
                 "scene_id": "cp001_p01_s2",
                 "title": "暗流涌动",
-                "title_en": "Roots of Rebellion",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -991,13 +802,6 @@
                     "speaker": "narrator",
                     "text": "巨鹿张角，本是个落第秀才。入山采药，得了天书《太平要术》，学会符水治病，信徒越滚越多，遍布八州。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f2_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "A failed scholar found three ancient scrolls in the mountains. He healed the sick, asked nothing, and followers poured in across eight provinces.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -1011,7 +815,6 @@
                 "frame_id": "f3",
                 "scene_id": "cp001_p01_s2",
                 "title": "黄巾洪流",
-                "title_en": "The Yellow Heaven Rises",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -1019,13 +822,6 @@
                     "speaker": "narrator",
                     "text": "苍天已死，黄天当立。岁在甲子，天下大吉。四方裹黄巾从反者四五十万，官军望风而逃。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f3_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "The Blue Heaven is dead — the Yellow Heaven rises. Half a million people wrapped yellow cloth around their heads, and government troops fled.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -1061,7 +857,6 @@
                     "frame_id": "f4",
                     "scene_id": "cp001_p01_s3",
                     "title": "榜文",
-                    "title_en": "The Notice",
                     "items": [
                       {
                         "id": "f4_t1",
@@ -1076,20 +871,6 @@
                         "speaker": "narrator",
                         "text": "没有人知道它会引来什么样的人。",
                         "lang": "zh-CN"
-                      },
-                      {
-                        "id": "f4_t1_en",
-                        "kind": "caption",
-                        "speaker": "narrator",
-                        "text": "Governor Liu Yan posted a recruitment notice in Youzhou. Within days, every city gate carried the same paper.",
-                        "lang": "en"
-                      },
-                      {
-                        "id": "f4_t2_en",
-                        "kind": "caption",
-                        "speaker": "narrator",
-                        "text": "No one knew yet who it would bring.",
-                        "lang": "en"
                       }
                     ],
                     "panel_box": {
@@ -1107,7 +888,6 @@
                 "frame_id": "f4",
                 "scene_id": "cp001_p01_s3",
                 "title": "榜文",
-                "title_en": "The Notice",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -1122,20 +902,6 @@
                     "speaker": "narrator",
                     "text": "没有人知道它会引来什么样的人。",
                     "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f4_t1_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "Governor Liu Yan posted a recruitment notice in Youzhou. Within days, every city gate carried the same paper.",
-                    "lang": "en"
-                  },
-                  {
-                    "id": "f4_t2_en",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "No one knew yet who it would bring.",
-                    "lang": "en"
                   }
                 ],
                 "panel_box": {
@@ -1174,18 +940,10 @@
               {
                 "frame_id": "f1",
                 "scene_id": "cp001_p01_s1",
-                "title": "龙椅惊蛇",
-                "title_en": "A Snake on the Throne",
+                "title": "A Snake on the Throne",
                 "items": [
                   {
                     "id": "f1_t1",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "话说天下大势，分久必合，合久必分。汉朝传了四百年，到了桓帝灵帝手上，气数尽了。",
-                    "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f1_t1_en",
                     "kind": "caption",
                     "speaker": "narrator",
                     "text": "The empire splits, reunites, splits again. Four hundred years of Han, and now the luck has run out.",
@@ -1202,18 +960,10 @@
               {
                 "frame_id": "f2",
                 "scene_id": "cp001_p01_s2",
-                "title": "暗流涌动",
-                "title_en": "Roots of Rebellion",
+                "title": "Roots of Rebellion",
                 "items": [
                   {
                     "id": "f2_t1",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "巨鹿张角，本是个落第秀才。入山采药，得了天书《太平要术》，学会符水治病，信徒越滚越多，遍布八州。",
-                    "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f2_t1_en",
                     "kind": "caption",
                     "speaker": "narrator",
                     "text": "A failed scholar found three ancient scrolls in the mountains. He healed the sick, asked nothing, and followers poured in across eight provinces.",
@@ -1230,18 +980,10 @@
               {
                 "frame_id": "f3",
                 "scene_id": "cp001_p01_s2",
-                "title": "黄巾洪流",
-                "title_en": "The Yellow Heaven Rises",
+                "title": "The Yellow Heaven Rises",
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "苍天已死，黄天当立。岁在甲子，天下大吉。四方裹黄巾从反者四五十万，官军望风而逃。",
-                    "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f3_t1_en",
                     "kind": "caption",
                     "speaker": "narrator",
                     "text": "The Blue Heaven is dead — the Yellow Heaven rises. Half a million people wrapped yellow cloth around their heads, and government troops fled.",
@@ -1258,32 +1000,17 @@
               {
                 "frame_id": "f4",
                 "scene_id": "cp001_p01_s3",
-                "title": "榜文",
-                "title_en": "The Notice",
+                "title": "The Notice",
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "幽州太守刘焉出榜招兵。几天之内，各县城门口都贴上了同一张纸。",
-                    "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f4_t2",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "没有人知道它会引来什么样的人。",
-                    "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f4_t1_en",
                     "kind": "caption",
                     "speaker": "narrator",
                     "text": "Governor Liu Yan posted a recruitment notice in Youzhou. Within days, every city gate carried the same paper.",
                     "lang": "en"
                   },
                   {
-                    "id": "f4_t2_en",
+                    "id": "f4_t2",
                     "kind": "caption",
                     "speaker": "narrator",
                     "text": "No one knew yet who it would bring.",
@@ -1374,18 +1101,10 @@
                   {
                     "frame_id": "f1",
                     "scene_id": "cp001_p01_s1",
-                    "title": "龙椅惊蛇",
-                    "title_en": "A Snake on the Throne",
+                    "title": "A Snake on the Throne",
                     "items": [
                       {
                         "id": "f1_t1",
-                        "kind": "caption",
-                        "speaker": "narrator",
-                        "text": "话说天下大势，分久必合，合久必分。汉朝传了四百年，到了桓帝灵帝手上，气数尽了。",
-                        "lang": "zh-CN"
-                      },
-                      {
-                        "id": "f1_t1_en",
                         "kind": "caption",
                         "speaker": "narrator",
                         "text": "The empire splits, reunites, splits again. Four hundred years of Han, and now the luck has run out.",
@@ -1406,18 +1125,10 @@
               {
                 "frame_id": "f1",
                 "scene_id": "cp001_p01_s1",
-                "title": "龙椅惊蛇",
-                "title_en": "A Snake on the Throne",
+                "title": "A Snake on the Throne",
                 "items": [
                   {
                     "id": "f1_t1",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "话说天下大势，分久必合，合久必分。汉朝传了四百年，到了桓帝灵帝手上，气数尽了。",
-                    "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f1_t1_en",
                     "kind": "caption",
                     "speaker": "narrator",
                     "text": "The empire splits, reunites, splits again. Four hundred years of Han, and now the luck has run out.",
@@ -1470,18 +1181,10 @@
                   {
                     "frame_id": "f2",
                     "scene_id": "cp001_p01_s2",
-                    "title": "暗流涌动",
-                    "title_en": "Roots of Rebellion",
+                    "title": "Roots of Rebellion",
                     "items": [
                       {
                         "id": "f2_t1",
-                        "kind": "caption",
-                        "speaker": "narrator",
-                        "text": "巨鹿张角，本是个落第秀才。入山采药，得了天书《太平要术》，学会符水治病，信徒越滚越多，遍布八州。",
-                        "lang": "zh-CN"
-                      },
-                      {
-                        "id": "f2_t1_en",
                         "kind": "caption",
                         "speaker": "narrator",
                         "text": "A failed scholar found three ancient scrolls in the mountains. He healed the sick, asked nothing, and followers poured in across eight provinces.",
@@ -1503,18 +1206,10 @@
                   {
                     "frame_id": "f3",
                     "scene_id": "cp001_p01_s2",
-                    "title": "黄巾洪流",
-                    "title_en": "The Yellow Heaven Rises",
+                    "title": "The Yellow Heaven Rises",
                     "items": [
                       {
                         "id": "f3_t1",
-                        "kind": "caption",
-                        "speaker": "narrator",
-                        "text": "苍天已死，黄天当立。岁在甲子，天下大吉。四方裹黄巾从反者四五十万，官军望风而逃。",
-                        "lang": "zh-CN"
-                      },
-                      {
-                        "id": "f3_t1_en",
                         "kind": "caption",
                         "speaker": "narrator",
                         "text": "The Blue Heaven is dead — the Yellow Heaven rises. Half a million people wrapped yellow cloth around their heads, and government troops fled.",
@@ -1535,18 +1230,10 @@
               {
                 "frame_id": "f2",
                 "scene_id": "cp001_p01_s2",
-                "title": "暗流涌动",
-                "title_en": "Roots of Rebellion",
+                "title": "Roots of Rebellion",
                 "items": [
                   {
                     "id": "f2_t1",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "巨鹿张角，本是个落第秀才。入山采药，得了天书《太平要术》，学会符水治病，信徒越滚越多，遍布八州。",
-                    "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f2_t1_en",
                     "kind": "caption",
                     "speaker": "narrator",
                     "text": "A failed scholar found three ancient scrolls in the mountains. He healed the sick, asked nothing, and followers poured in across eight provinces.",
@@ -1563,18 +1250,10 @@
               {
                 "frame_id": "f3",
                 "scene_id": "cp001_p01_s2",
-                "title": "黄巾洪流",
-                "title_en": "The Yellow Heaven Rises",
+                "title": "The Yellow Heaven Rises",
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "苍天已死，黄天当立。岁在甲子，天下大吉。四方裹黄巾从反者四五十万，官军望风而逃。",
-                    "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f3_t1_en",
                     "kind": "caption",
                     "speaker": "narrator",
                     "text": "The Blue Heaven is dead — the Yellow Heaven rises. Half a million people wrapped yellow cloth around their heads, and government troops fled.",
@@ -1612,32 +1291,17 @@
                   {
                     "frame_id": "f4",
                     "scene_id": "cp001_p01_s3",
-                    "title": "榜文",
-                    "title_en": "The Notice",
+                    "title": "The Notice",
                     "items": [
                       {
                         "id": "f4_t1",
-                        "kind": "caption",
-                        "speaker": "narrator",
-                        "text": "幽州太守刘焉出榜招兵。几天之内，各县城门口都贴上了同一张纸。",
-                        "lang": "zh-CN"
-                      },
-                      {
-                        "id": "f4_t2",
-                        "kind": "caption",
-                        "speaker": "narrator",
-                        "text": "没有人知道它会引来什么样的人。",
-                        "lang": "zh-CN"
-                      },
-                      {
-                        "id": "f4_t1_en",
                         "kind": "caption",
                         "speaker": "narrator",
                         "text": "Governor Liu Yan posted a recruitment notice in Youzhou. Within days, every city gate carried the same paper.",
                         "lang": "en"
                       },
                       {
-                        "id": "f4_t2_en",
+                        "id": "f4_t2",
                         "kind": "caption",
                         "speaker": "narrator",
                         "text": "No one knew yet who it would bring.",
@@ -1658,32 +1322,17 @@
               {
                 "frame_id": "f4",
                 "scene_id": "cp001_p01_s3",
-                "title": "榜文",
-                "title_en": "The Notice",
+                "title": "The Notice",
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "幽州太守刘焉出榜招兵。几天之内，各县城门口都贴上了同一张纸。",
-                    "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f4_t2",
-                    "kind": "caption",
-                    "speaker": "narrator",
-                    "text": "没有人知道它会引来什么样的人。",
-                    "lang": "zh-CN"
-                  },
-                  {
-                    "id": "f4_t1_en",
                     "kind": "caption",
                     "speaker": "narrator",
                     "text": "Governor Liu Yan posted a recruitment notice in Youzhou. Within days, every city gate carried the same paper.",
                     "lang": "en"
                   },
                   {
-                    "id": "f4_t2_en",
+                    "id": "f4_t2",
                     "kind": "caption",
                     "speaker": "narrator",
                     "text": "No one knew yet who it would bring.",

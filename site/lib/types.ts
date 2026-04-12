@@ -200,6 +200,8 @@ export type ChapterSummary = {
   book_id: string;
   source_title: string;
   adapted_title_cn: string;
+  display_title_en?: string;
+  summary_en?: string;
   viewpoint: string[];
   goal_cn: string;
   passage_count: number;
@@ -220,6 +222,9 @@ export type BookMeta = {
   title: string;
   subtitle: string;
   description: string;
+  title_en?: string;
+  subtitle_en?: string;
+  description_en?: string;
   total_chapter_count: number | null;
   available_chapter_count: number;
   chapter_ids: string[];
@@ -253,6 +258,9 @@ export type SiteData = {
     title: string;
     subtitle: string;
     description: string;
+    title_en?: string;
+    subtitle_en?: string;
+    description_en?: string;
     principles: string[];
     pipeline: string[];
     stats: {

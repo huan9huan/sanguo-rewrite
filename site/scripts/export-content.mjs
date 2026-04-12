@@ -8,6 +8,7 @@ const REPO_ROOT = path.resolve(SITE_ROOT, "..");
 const STORY_DIR = path.join(REPO_ROOT, "story");
 const MEMORY_DIR = path.join(REPO_ROOT, "memory");
 const BOOKS_FILE = path.join(STORY_DIR, "books.json");
+const BOOKS_EN_FILE = path.join(STORY_DIR, "books.en.json");
 const CONTENT_DIR = path.join(SITE_ROOT, "public", "content");
 const BOOKS_DIR = path.join(CONTENT_DIR, "books");
 const CURRENT_FILES = {
@@ -359,6 +360,13 @@ async function loadBooksConfig() {
   return readJson(BOOKS_FILE);
 }
 
+async function loadBooksEnOverlay() {
+  if (await fileExists(BOOKS_EN_FILE)) {
+    return readJson(BOOKS_EN_FILE);
+  }
+  return null;
+}
+
 function buildPassagePreview(payload) {
   return {
     id: payload.id,
@@ -556,9 +564,18 @@ async function exportPassage(passageDir, book) {
   return payload;
 }
 
+async function loadChapterOverlay(chapterSlug) {
+  const overlayPath = path.join(STORY_DIR, `${chapterSlug}.en.json`);
+  if (await fileExists(overlayPath)) {
+    return readJson(overlayPath);
+  }
+  return null;
+}
+
 async function exportChapter(chapterPath, book) {
   const chapter = await readJson(chapterPath);
   const chapterSlug = path.basename(chapterPath, ".json");
+  const chapterEn = await loadChapterOverlay(chapterSlug);
   const storyEntries = await fs.readdir(STORY_DIR, { withFileTypes: true });
   const passageDirs = storyEntries
     .filter((entry) => entry.isDirectory() && entry.name.startsWith(`${chapterSlug}-p`))
@@ -571,6 +588,8 @@ async function exportChapter(chapterPath, book) {
     book_id: book.id,
     source_title: chapter.source_title,
     adapted_title_cn: chapter.adapted_title_cn,
+    display_title_en: chapterEn?.display_title ?? "",
+    summary_en: chapterEn?.summary ?? "",
     viewpoint: chapter.viewpoint ?? [],
     goal_cn: chapter.goal_cn,
     passage_count: chapter.passage_count ?? passages.length,
@@ -589,6 +608,8 @@ async function exportChapter(chapterPath, book) {
       book_id: chapterManifest.book_id,
       source_title: chapterManifest.source_title,
       adapted_title_cn: chapterManifest.adapted_title_cn,
+      display_title_en: chapterManifest.display_title_en,
+      summary_en: chapterManifest.summary_en,
       viewpoint: chapterManifest.viewpoint,
       goal_cn: chapterManifest.goal_cn,
       passage_count: chapterManifest.passage_count,
@@ -603,8 +624,12 @@ async function main() {
   await ensureDir(BOOKS_DIR);
 
   const books = await loadBooksConfig();
+  const booksEn = await loadBooksEnOverlay();
+  const projectEn = booksEn?.project ?? null;
+  const booksEnMap = booksEn?.books ?? {};
   const bookExports = await Promise.all(
     books.map(async (book) => {
+      const bookEn = booksEnMap[book.id] ?? null;
       const chapterExports = await Promise.all(
         (book.chapter_ids ?? []).map((chapterId) => exportChapter(path.join(STORY_DIR, `${chapterId}.json`), book))
       );
@@ -616,6 +641,9 @@ async function main() {
         title: book.title,
         subtitle: book.subtitle,
         description: book.description,
+        title_en: bookEn?.title ?? "",
+        subtitle_en: bookEn?.subtitle ?? "",
+        description_en: bookEn?.description ?? "",
         total_chapter_count: book.total_chapter_count ?? null,
         available_chapter_count: chapters.length,
         chapter_ids: chapters.map((chapter) => chapter.id),
@@ -633,6 +661,9 @@ async function main() {
           title: bookManifest.title,
           subtitle: bookManifest.subtitle,
           description: bookManifest.description,
+          title_en: bookManifest.title_en,
+          subtitle_en: bookManifest.subtitle_en,
+          description_en: bookManifest.description_en,
           total_chapter_count: bookManifest.total_chapter_count,
           available_chapter_count: bookManifest.available_chapter_count,
           chapter_ids: bookManifest.chapter_ids,
@@ -655,6 +686,9 @@ async function main() {
       subtitle: "让三国故事更好读，更有画面",
       description:
         "当前中文重写稿的阅读空间，按作品、章节、段落逐步进入故事。",
+      title_en: projectEn?.title ?? "",
+      subtitle_en: projectEn?.subtitle ?? "",
+      description_en: projectEn?.description ?? "",
       principles: [
         "Story first, culture implicit",
         "Character attachment over explanation",

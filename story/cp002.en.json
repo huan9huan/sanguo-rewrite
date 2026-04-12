@@ -1,0 +1,13 @@
+{
+  "id": "cp002",
+  "book_id": "sanguo",
+  "display_title": "The Whip and the Undertow",
+  "summary": "The battlefield is over. Now the real fight begins — against a system that rewards cowards and punishes heroes. The brothers are stripped of rank, loyal ministers are put to death, and a butcher who stumbled into supreme power prepares to open a door he can never close.",
+  "source_title": "Zhang Fei Beats the Inspector; He Jin Plots Against the Eunuchs",
+  "global_arc": {
+    "start": "The three brothers leave Dong Zhuo and rejoin the campaign. The Yellow Turban rebellion enters its final chapter.",
+    "end": "He Jin, frozen by indecision, lets Yuan Shao talk him into summoning warlords to the capital. Cao Cao watches and laughs. The door to catastrophe swings open.",
+    "core_change": "Battlefield heroes cannot survive in peacetime office. Meanwhile, a slaughterhouse butcher holds the fate of the dynasty in his hands and cannot decide whether to swing the blade.",
+    "chapter_drive": "Two parallel failures — a hero stripped of credit, an empire stripped of reason. Personal fate mirrors dynastic fate, and both curves point down."
+  }
+}

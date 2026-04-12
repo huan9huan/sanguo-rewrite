@@ -45,7 +45,9 @@ export default async function LocaleChapterPage({ params }: LocaleChapterPagePro
   }
 
   const passages = Array.isArray(chapter.passages) ? chapter.passages : [];
-  const chapterTitle = formatChapterTitle(chapter);
+  const chapterTitle = formatChapterTitle(chapter, safeLocale);
+  const isEn = safeLocale === "en";
+  const bookTitle = isEn && book.title_en ? book.title_en : book.title;
 
   return (
     <main className="page-shell reader-page">
@@ -54,7 +56,7 @@ export default async function LocaleChapterPage({ params }: LocaleChapterPagePro
       <section className="section">
         <div className="container section-head">
           <div>
-            <p className="eyebrow">{book.title}</p>
+            <p className="eyebrow">{bookTitle}</p>
             <h1 className="section-title">{chapterTitle}</h1>
           </div>
         </div>
@@ -68,7 +70,7 @@ export default async function LocaleChapterPage({ params }: LocaleChapterPagePro
             return (
               <article className="reader-card" key={passage.id}>
                 <h2 className="passage-title">
-                  {passage.title}
+                  {isEn && passage.title_en ? passage.title_en : passage.title}
                   {safeLocale === "en" && !hasCurrentLocale ? (
                     <span className="locale-badge locale-badge-unavailable">EN unavailable</span>
                   ) : null}

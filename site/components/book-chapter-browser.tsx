@@ -23,6 +23,7 @@ const BOOKMARK_KEY_PREFIX = "reading-bookmark:";
 export type ReaderChapter = {
   id: string;
   source_title: string;
+  display_title_en?: string;
   passages: ReaderPassage[];
 };
 
@@ -124,7 +125,7 @@ export function BookChapterBrowser({ bookId, chapters, locale }: BookChapterBrow
                   aria-expanded={isExpanded}
                 >
                   <div className="chapter-banner-copy">
-                    <h2 className="chapter-title">{formatChapterTitle(chapter)}</h2>
+                    <h2 className="chapter-title">{formatChapterTitle(chapter, isEn ? "en" : "zh")}</h2>
                   </div>
                   <div className="reader-card-actions">
                     <span className="chapter-meta-toggle" aria-hidden="true">

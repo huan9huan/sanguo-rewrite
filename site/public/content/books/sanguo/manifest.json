@@ -3,6 +3,9 @@
   "title": "三国演义",
   "subtitle": "让三国故事更好读，更有画面",
   "description": "从章节到段落，逐步重写《三国演义》，先打磨中文故事稿，再进入后续版本。",
+  "title_en": "Romance of the Three Kingdoms",
+  "subtitle_en": "A great story, told so you can't put it down",
+  "description_en": "The epic of war, loyalty, and ambition — chapter by chapter, passage by passage, rewritten for readers who want story over scholarship.",
   "total_chapter_count": 120,
   "available_chapter_count": 2,
   "chapter_ids": [
@@ -16,6 +19,8 @@
       "book_id": "sanguo",
       "source_title": "宴桃园豪杰三结义 斩黄巾英雄首立功",
       "adapted_title_cn": "桃园结义",
+      "display_title_en": "Oath of the Peach Garden",
+      "summary_en": "In a crumbling empire, three strangers — a sandal-weaver with royal blood, a hot-tempered butcher, and a quiet giant with a halberd — meet, swear brotherhood, and ride into their first battle. Meanwhile, a sly young officer named Cao Cao watches from the edge of the frame.",
       "viewpoint": [
         "liu_bei",
         "guan_yu",
@@ -42,6 +47,8 @@
       "book_id": "sanguo",
       "source_title": "张翼德怒鞭督邮 何国舅谋诛宦竖",
       "adapted_title_cn": "怒鞭与暗涌",
+      "display_title_en": "The Whip and the Undertow",
+      "summary_en": "The battlefield is over. Now the real fight begins — against a system that rewards cowards and punishes heroes. The brothers are stripped of rank, loyal ministers are put to death, and a butcher who stumbled into supreme power prepares to open a door he can never close.",
       "viewpoint": [
         "zhang_fei",
         "liu_bei",

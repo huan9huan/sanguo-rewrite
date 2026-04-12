@@ -80,7 +80,6 @@
             "frame_id": "f1",
             "scene_id": "cp002_p02_s1",
             "title": "困局",
-            "title_en": "",
             "items": [
               {
                 "id": "f1_t1",
@@ -101,7 +100,6 @@
             "frame_id": "f2",
             "scene_id": "cp002_p02_s2",
             "title": "孙坚",
-            "title_en": "",
             "items": [
               {
                 "id": "f2_t1",
@@ -129,7 +127,6 @@
             "frame_id": "f3",
             "scene_id": "cp002_p02_s3",
             "title": "夺槊",
-            "title_en": "",
             "items": [
               {
                 "id": "f3_t1",
@@ -157,7 +154,6 @@
             "frame_id": "f4",
             "scene_id": "cp002_p02_s3",
             "title": "平定",
-            "title_en": "",
             "items": [
               {
                 "id": "f4_t1",
@@ -224,7 +220,6 @@
                 "frame_id": "f1",
                 "scene_id": "cp002_p02_s1",
                 "title": "困局",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -249,7 +244,6 @@
             "frame_id": "f1",
             "scene_id": "cp002_p02_s1",
             "title": "困局",
-            "title_en": "",
             "items": [
               {
                 "id": "f1_t1",
@@ -297,7 +291,6 @@
                 "frame_id": "f2",
                 "scene_id": "cp002_p02_s2",
                 "title": "孙坚",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -329,7 +322,6 @@
             "frame_id": "f2",
             "scene_id": "cp002_p02_s2",
             "title": "孙坚",
-            "title_en": "",
             "items": [
               {
                 "id": "f2_t1",
@@ -386,7 +378,6 @@
                 "frame_id": "f3",
                 "scene_id": "cp002_p02_s3",
                 "title": "夺槊",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -419,7 +410,6 @@
                 "frame_id": "f4",
                 "scene_id": "cp002_p02_s3",
                 "title": "平定",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -451,7 +441,6 @@
             "frame_id": "f3",
             "scene_id": "cp002_p02_s3",
             "title": "夺槊",
-            "title_en": "",
             "items": [
               {
                 "id": "f3_t1",
@@ -479,7 +468,6 @@
             "frame_id": "f4",
             "scene_id": "cp002_p02_s3",
             "title": "平定",
-            "title_en": "",
             "items": [
               {
                 "id": "f4_t1",
@@ -536,7 +524,6 @@
                 "frame_id": "f1",
                 "scene_id": "cp002_p02_s1",
                 "title": "困局",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -557,7 +544,6 @@
                 "frame_id": "f2",
                 "scene_id": "cp002_p02_s2",
                 "title": "孙坚",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -585,7 +571,6 @@
                 "frame_id": "f3",
                 "scene_id": "cp002_p02_s3",
                 "title": "夺槊",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -613,7 +598,6 @@
                 "frame_id": "f4",
                 "scene_id": "cp002_p02_s3",
                 "title": "平定",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",
@@ -680,7 +664,6 @@
                     "frame_id": "f1",
                     "scene_id": "cp002_p02_s1",
                     "title": "困局",
-                    "title_en": "",
                     "items": [
                       {
                         "id": "f1_t1",
@@ -705,7 +688,6 @@
                 "frame_id": "f1",
                 "scene_id": "cp002_p02_s1",
                 "title": "困局",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f1_t1",
@@ -753,7 +735,6 @@
                     "frame_id": "f2",
                     "scene_id": "cp002_p02_s2",
                     "title": "孙坚",
-                    "title_en": "",
                     "items": [
                       {
                         "id": "f2_t1",
@@ -785,7 +766,6 @@
                 "frame_id": "f2",
                 "scene_id": "cp002_p02_s2",
                 "title": "孙坚",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f2_t1",
@@ -842,7 +822,6 @@
                     "frame_id": "f3",
                     "scene_id": "cp002_p02_s3",
                     "title": "夺槊",
-                    "title_en": "",
                     "items": [
                       {
                         "id": "f3_t1",
@@ -875,7 +854,6 @@
                     "frame_id": "f4",
                     "scene_id": "cp002_p02_s3",
                     "title": "平定",
-                    "title_en": "",
                     "items": [
                       {
                         "id": "f4_t1",
@@ -907,7 +885,6 @@
                 "frame_id": "f3",
                 "scene_id": "cp002_p02_s3",
                 "title": "夺槊",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f3_t1",
@@ -935,7 +912,6 @@
                 "frame_id": "f4",
                 "scene_id": "cp002_p02_s3",
                 "title": "平定",
-                "title_en": "",
                 "items": [
                   {
                     "id": "f4_t1",

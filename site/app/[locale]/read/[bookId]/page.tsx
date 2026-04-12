@@ -40,6 +40,7 @@ export default async function LocaleBookPage({ params }: LocaleBookPageProps) {
   const readerChapters: ReaderChapter[] = chapters.map((chapter) => ({
     id: chapter.id,
     source_title: chapter.source_title,
+    display_title_en: chapter.display_title_en,
     passages: chapter.passages.map((passage) => ({
       id: passage.id,
       passage_id: passage.passage_id,
@@ -50,15 +51,19 @@ export default async function LocaleBookPage({ params }: LocaleBookPageProps) {
     })),
   }));
 
+  const isEn = safeLocale === "en";
+  const bookTitle = isEn && book.title_en ? book.title_en : book.title;
+  const bookSubtitle = isEn && book.subtitle_en ? book.subtitle_en : book.subtitle;
+
   return (
     <main className="page-shell reader-page">
-      <ModeHeader compactTitle={book.title} />
+      <ModeHeader compactTitle={bookTitle} />
 
       <section className="section">
         <div className="container section-head">
           <div>
-            <h1 className="section-title">{book.title}</h1>
-            {book.subtitle ? <p className="section-copy">{book.subtitle}</p> : null}
+            <h1 className="section-title">{bookTitle}</h1>
+            {bookSubtitle ? <p className="section-copy">{bookSubtitle}</p> : null}
           </div>
         </div>
       </section>
