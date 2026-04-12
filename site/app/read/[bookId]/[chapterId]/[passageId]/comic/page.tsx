@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
+import { getDictionary } from "@/i18n";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { buildBookHref, buildChapterHref, buildPassageHref } from "@/lib/paths";
 
@@ -39,6 +40,7 @@ export async function generateStaticParams() {
 
 export default async function PassageComicPage({ params }: ComicPageProps) {
   const { bookId, chapterId, passageId } = await params;
+  const t = getDictionary("zh");
   const [book, chapter, passage] = await Promise.all([
     getBookById(bookId),
     getChapterById(bookId, chapterId),
@@ -57,7 +59,7 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
         passageLabel={passage.title}
         compactTitle={passage.title}
         primaryLink={{ label: book.title, href: buildBookHref(book.id) }}
-        actionLink={{ label: "正文", href: buildPassageHref({ bookId, chapterId, passageId }) }}
+        actionLink={{ label: t.common.text, href: buildPassageHref({ bookId, chapterId, passageId }) }}
         secondaryLink={{ label: chapter.adapted_title_cn || chapter.source_title, href: buildChapterHref(book.id, chapter.id) }}
       />
 
@@ -67,14 +69,14 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
             <p className="eyebrow">{book.title}</p>
             <h1 className="section-title passage-page-title">{passage.title}</h1>
             <p className="section-copy">
-              用漫画模式阅读这一节，需要时再随时回到正文。
+              {t.comic.description}
             </p>
             <div className="reader-card-actions">
               <Link className="button-link" href={buildPassageHref({ bookId, chapterId, passageId })}>
-                返回正文
+                {t.common.backToText}
               </Link>
               <Link className="button-link button-link-accent" href={buildChapterHref(bookId, chapterId)}>
-                返回章节
+                {t.common.backToChapter}
               </Link>
             </div>
 
@@ -84,7 +86,7 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
               routeParams={{ bookId, chapterId, passageId }}
             />
 
-            <PassageFeedback mode="comic" passagePath={{ bookId, chapterId, passageId }} />
+            <PassageFeedback mode="comic" passagePath={{ bookId, chapterId, passageId }} locale="zh" />
           </article>
         </div>
       </section>

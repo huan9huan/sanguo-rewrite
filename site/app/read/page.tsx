@@ -2,21 +2,23 @@ import Link from "next/link";
 import { ModeHeader } from "@/components/mode-header";
 import { SiteFooter } from "@/components/site-footer";
 import { FutureBookForm } from "@/components/future-book-form";
+import { getDictionary } from "@/i18n";
 import { getAllBooks } from "@/lib/content";
 import { buildBookHref } from "@/lib/paths";
 
 export default async function ReadIndexPage() {
   const books = await getAllBooks();
+  const t = getDictionary("zh");
 
   return (
     <div className="page-shell reader-page">
       <main>
-        <ModeHeader compactTitle="Read Chinese Classics" bookLabel="Read Chinese Classics" />
+        <ModeHeader compactTitle={t.read.pageTitle} bookLabel={t.read.pageTitle} />
 
         <section className="section">
           <div className="container section-head read-index-head">
             <div>
-              <h1 className="section-title">Read Chinese Classics</h1>
+              <h1 className="section-title">{t.read.pageTitle}</h1>
             </div>
           </div>
         </section>
@@ -31,17 +33,17 @@ export default async function ReadIndexPage() {
                 </div>
                 <div className="read-book-side">
                   <Link className="button-link button-link-accent" href={buildBookHref(book.id)}>
-                    打开这本书
+                    {t.read.openBook}
                   </Link>
                 </div>
               </article>
             ))}
 
-            <FutureBookForm />
+            <FutureBookForm locale="zh" />
           </div>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter locale="zh" />
     </div>
   );
 }
