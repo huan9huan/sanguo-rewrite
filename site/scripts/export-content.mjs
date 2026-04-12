@@ -421,9 +421,9 @@ async function exportPassage(passageDir, book) {
         draftText: "",
         approvedText: approvedEnText,
         sourceLabel: "approved_en",
-        image: null,
-        comicLayout: null,
-        comicAlignment: null,
+        image: exportedImage,
+        comicLayout,
+        comicAlignment,
         passageId,
         scenes,
       })
