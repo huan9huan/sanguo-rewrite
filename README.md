@@ -86,3 +86,21 @@ source chapter
 - Keep context local to the current passage
 - Use working memory, not full-history prompt stuffing
 - `memory/story_events.jsonl` only stores story-content events, not pipeline/process events
+
+## Site Analytics
+
+The website supports a small GA4 layer for funnel validation.
+
+- Configure `NEXT_PUBLIC_GA_MEASUREMENT_ID` in the site runtime to enable GA4.
+- When the variable is unset, analytics code stays inert and the site should behave normally.
+- Current tracked events:
+  - `page_view`
+  - `landing_cta_click`
+  - `read_start`
+  - `comic_view`
+  - `language_switch`
+  - `passage_feedback_submit`
+  - `follow_subscribe_submit`
+  - `future_book_interest_submit`
+- Common params include `locale`, `book_id`, `chapter_id`, `passage_id`, `mode`, `trigger`, `target_locale`, and `feedback_kind` where relevant.
+- Validate locally with GA4 DebugView after setting the measurement ID and navigating through landing, reader, comic, feedback, and email capture flows.

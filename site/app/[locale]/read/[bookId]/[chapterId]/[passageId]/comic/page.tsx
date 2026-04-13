@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ComicViewTracker } from "@/components/comic-view-tracker";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
@@ -50,6 +51,7 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
 
   return (
     <main className="page-shell passage-page">
+      <ComicViewTracker bookId={bookId} chapterId={chapterId} passageId={passageId} locale={safeLocale} />
       <ModeHeader
         bookLabel={bookTitle}
         chapterLabel={chapterLabel}

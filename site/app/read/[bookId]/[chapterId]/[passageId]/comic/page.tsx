@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { ComicViewTracker } from "@/components/comic-view-tracker";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
@@ -37,6 +38,7 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
 
   return (
     <main className="page-shell passage-page">
+      <ComicViewTracker bookId={bookId} chapterId={chapterId} passageId={passageId} locale="zh" />
       <ModeHeader
         bookLabel={book.title}
         chapterLabel={chapter.adapted_title_cn || chapter.source_title}

@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { LandingCtaLink } from "@/components/landing-cta-link";
 import { SiteFooter } from "@/components/site-footer";
 import { getDictionary } from "@/i18n";
 import type { Locale } from "@/lib/types";
@@ -25,9 +25,13 @@ export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
           <div className="container home-hero-inner">
             <h1 className="home-hero-title">{t.landing.heroTitle}</h1>
             <div className="home-hero-actions">
-              <Link className="button-link button-link-accent home-hero-cta" href={`/${safeLocale}/read`}>
+              <LandingCtaLink
+                className="button-link button-link-accent home-hero-cta"
+                href={`/${safeLocale}/read`}
+                locale={safeLocale}
+              >
                 {t.landing.cta}
-              </Link>
+              </LandingCtaLink>
             </div>
           </div>
         </section>
