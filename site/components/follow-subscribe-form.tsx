@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { getDictionary } from "@/i18n";
+import { trackEvent } from "@/lib/client/analytics";
 import type { Locale } from "@/lib/types";
 
 const CACHE_MS = 7 * 24 * 60 * 60 * 1000;
@@ -93,6 +94,13 @@ export function FollowSubscribeForm({
       }
 
       cacheSubmit({ bookId, chapterId, passageId, trigger });
+      trackEvent("follow_subscribe_submit", {
+        locale,
+        book_id: bookId,
+        chapter_id: chapterId,
+        passage_id: passageId,
+        trigger,
+      });
       setStatus("success");
     } catch {
       setErrorMessage(t.followSubscription.networkError);

@@ -2,6 +2,7 @@
 
 import { useState, useEffect, type FormEvent } from "react";
 import { getDictionary } from "@/i18n";
+import { trackEvent } from "@/lib/client/analytics";
 import type { Locale } from "@/lib/types";
 
 const ZH_REASON_IDS = [
@@ -117,6 +118,14 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
     const result = await submitFeedback(passagePath, mode, [], undefined, locale);
     if (result.ok) {
       cacheSubmit(passagePath, mode);
+      trackEvent("passage_feedback_submit", {
+        locale,
+        book_id: passagePath.bookId,
+        chapter_id: passagePath.chapterId,
+        passage_id: passagePath.passageId,
+        mode,
+        feedback_kind: "liked",
+      });
       setStatus("success");
     } else {
       setErrorMessage(resolveError(result.error));
@@ -142,6 +151,14 @@ export function PassageFeedback({ mode, passagePath, locale = "zh" }: Props) {
     const result = await submitFeedback(passagePath, mode, [...selectedReasons], detailValue, locale);
     if (result.ok) {
       cacheSubmit(passagePath, mode);
+      trackEvent("passage_feedback_submit", {
+        locale,
+        book_id: passagePath.bookId,
+        chapter_id: passagePath.chapterId,
+        passage_id: passagePath.passageId,
+        mode,
+        feedback_kind: [...selectedReasons].join(","),
+      });
       setStatus("success");
     } else {
       setErrorMessage(resolveError(result.error));

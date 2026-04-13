@@ -2,6 +2,7 @@
 
 import { useState, useEffect, type FormEvent } from "react";
 import { getDictionary } from "@/i18n";
+import { trackEvent } from "@/lib/client/analytics";
 import type { Locale } from "@/lib/types";
 
 const CACHE_KEY = "future-books-submitted";
@@ -71,6 +72,10 @@ export function FutureBookForm({ locale = "zh" }: { locale?: Locale }) {
         localStorage.setItem(CACHE_KEY, String(Date.now() + CACHE_MS));
       } catch {}
 
+      trackEvent("future_book_interest_submit", {
+        locale,
+        book_id: selectedBook,
+      });
       setStatus("success");
     } catch {
       setErrorMessage(t.futureBooks.networkError);

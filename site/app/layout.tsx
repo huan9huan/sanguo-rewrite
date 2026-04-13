@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import { Suspense, type ReactNode } from "react";
+import { AnalyticsRouteTracker } from "@/components/analytics-route-tracker";
+import { GoogleAnalytics } from "@/components/google-analytics";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -14,7 +16,13 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="zh-CN">
-      <body>{children}</body>
+      <body>
+        <GoogleAnalytics />
+        <Suspense fallback={null}>
+          <AnalyticsRouteTracker />
+        </Suspense>
+        {children}
+      </body>
     </html>
   );
 }

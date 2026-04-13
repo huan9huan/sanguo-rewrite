@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { trackEvent } from "@/lib/client/analytics";
 import type { Locale } from "@/lib/types";
 
 type LanguageSwitchProps = {
@@ -44,6 +45,12 @@ export function LanguageSwitch({ currentLocale, availableLocales, localeHrefs }:
             href={localeHrefs[locale]}
             prefetch={false}
             lang={locale}
+            onClick={() => {
+              trackEvent("language_switch", {
+                locale: currentLocale,
+                target_locale: locale,
+              });
+            }}
           >
             {localeLabels[locale]}
           </Link>
