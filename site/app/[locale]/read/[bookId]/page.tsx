@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { BookChapterBrowser, type ReaderChapter } from "@/components/book-chapter-browser";
 import { ModeHeader } from "@/components/mode-header";
 import { getAllBooks, getBookById, getChapterById } from "@/lib/content";
+import { buildLibraryHref } from "@/lib/paths";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -50,7 +51,7 @@ export default async function LocaleBookPage({ params }: LocaleBookPageProps) {
 
   return (
     <main className="page-shell reader-page">
-      <ModeHeader compactTitle={bookTitle} />
+      <ModeHeader compactTitle={bookTitle} logoHref={buildLibraryHref(safeLocale)} />
 
       <section className="section">
         <div className="container section-head">

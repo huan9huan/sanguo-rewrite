@@ -13,7 +13,7 @@ import { getDictionary } from "@/i18n";
 import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { proseToHtml } from "@/lib/format";
 import { resolveLocalizedPassage } from "@/lib/locale";
-import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
+import { buildBookHref, buildChapterHref, buildComicHref, buildLibraryHref, buildPassageHref } from "@/lib/paths";
 import type { Locale, PassageRouteParams } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -51,6 +51,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
     return (
       <main className="page-shell passage-page">
         <ModeHeader
+          logoHref={buildLibraryHref(safeLocale)}
           compactTitle={passage.title}
           primaryLink={{ label: bookTitle, href: buildBookHref(book.id, safeLocale) }}
           secondaryLink={{ label: chapterLabel, href: buildChapterHref(book.id, chapter.id, safeLocale) }}
@@ -100,6 +101,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
         <PassageSceneFocus />
       </Suspense>
       <ModeHeader
+        logoHref={buildLibraryHref(safeLocale)}
         bookLabel={bookTitle}
         chapterLabel={chapterLabel}
         passageLabel={localized.title}

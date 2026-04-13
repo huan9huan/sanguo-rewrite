@@ -4,7 +4,7 @@ import { ModeHeader } from "@/components/mode-header";
 import { getDictionary } from "@/i18n";
 import { formatChapterTitle } from "@/lib/chapter-title";
 import { getBookById, getChapterById } from "@/lib/content";
-import { buildBookHref, buildComicHref, buildPassageHref } from "@/lib/paths";
+import { buildBookHref, buildComicHref, buildLibraryHref, buildPassageHref } from "@/lib/paths";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -39,7 +39,7 @@ export default async function LocaleChapterPage({ params }: LocaleChapterPagePro
   if (isEn && visiblePassages.length === 0) {
     return (
       <main className="page-shell reader-page">
-        <ModeHeader chapterLabel={chapterTitle} compactTitle={chapterTitle} />
+        <ModeHeader chapterLabel={chapterTitle} compactTitle={chapterTitle} logoHref={buildLibraryHref(safeLocale)} />
 
         <section className="section">
           <div className="container section-head">
@@ -71,7 +71,7 @@ export default async function LocaleChapterPage({ params }: LocaleChapterPagePro
 
   return (
     <main className="page-shell reader-page">
-      <ModeHeader chapterLabel={chapterTitle} compactTitle={chapterTitle} />
+      <ModeHeader chapterLabel={chapterTitle} compactTitle={chapterTitle} logoHref={buildLibraryHref(safeLocale)} />
 
       <section className="section">
         <div className="container section-head">

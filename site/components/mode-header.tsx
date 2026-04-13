@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { getDictionary } from "@/i18n";
 import type { Locale } from "@/lib/types";
+import { SiteMark } from "@/components/site-mark";
 
 function TextIcon({ className }: { className?: string }) {
   return (
@@ -49,6 +50,7 @@ function ComicIcon({ className }: { className?: string }) {
 }
 
 type ModeHeaderProps = {
+  logoHref?: string;
   chapterLabel?: string;
   passageLabel?: string;
   compactTitle?: string;
@@ -74,6 +76,7 @@ type ModeHeaderProps = {
 };
 
 export function ModeHeader({
+  logoHref,
   chapterLabel,
   passageLabel,
   compactTitle,
@@ -109,40 +112,79 @@ export function ModeHeader({
     primaryLink?.label ||
     compactTitle ||
     "三国演义";
+  const isPassageHeader = Boolean(passageLabel && chapterLabel);
 
   return (
     <header className={`site-header ${isCompressed ? "site-header-compressed" : ""} ${actionLink ? "site-header-with-action" : ""}`}>
       <div className="container header-row">
-        <div className="header-copy">
-          {!isCompressed ? (
-            <>
-              <div>
-                <Link href={primaryLink?.href || "/"} prefetch={false} className="header-subtitle-link">
-                  {bookLabel || primaryLink?.label || "三国演义"}
-                </Link>
-              </div>
-              {chapterLabel ? (
-                <div>
-                  {secondaryLink ? (
-                    <Link href={secondaryLink.href} prefetch={false} className="site-title">
-                      {chapterLabel}
+        <div className={`header-brand ${isPassageHeader ? "header-brand-passage" : ""}`}>
+          <Link href={logoHref || "/read"} prefetch={false} className="header-brand-mark" aria-label="All books">
+            <SiteMark label={bookLabel || primaryLink?.label || "Read Chinese Classics"} />
+          </Link>
+          <div className="header-copy">
+            {!isCompressed ? (
+              isPassageHeader ? (
+                <>
+                  <div className="header-meta-trail">
+                    <Link href={primaryLink?.href || "/"} prefetch={false} className="header-subtitle-link">
+                      {bookLabel || primaryLink?.label || "三国演义"}
                     </Link>
-                  ) : (
-                    <p className="site-title">{chapterLabel}</p>
-                  )}
-                </div>
-              ) : null}
-              {passageLabel ? (
-                <p className="header-context header-context-subtitle">
-                  <span>{passageLabel}</span>
-                </p>
-              ) : null}
-            </>
-          ) : (
-            <Link href={secondaryLink?.href || primaryLink?.href || "/"} prefetch={false} className="sticky-passage-title">
-              {title}
-            </Link>
-          )}
+                    {secondaryLink ? (
+                      <>
+                        <span className="header-meta-sep">/</span>
+                        <Link href={secondaryLink.href} prefetch={false} className="header-subtitle-link">
+                          {chapterLabel}
+                        </Link>
+                      </>
+                    ) : null}
+                  </div>
+                  <div>
+                    <p className="site-title header-passage-title">{passageLabel}</p>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <Link href={primaryLink?.href || "/"} prefetch={false} className="header-subtitle-link">
+                      {bookLabel || primaryLink?.label || "三国演义"}
+                    </Link>
+                  </div>
+                  {chapterLabel ? (
+                    <div>
+                      {secondaryLink ? (
+                        <Link href={secondaryLink.href} prefetch={false} className="site-title">
+                          {chapterLabel}
+                        </Link>
+                      ) : (
+                        <p className="site-title">{chapterLabel}</p>
+                      )}
+                    </div>
+                  ) : null}
+                  {passageLabel ? (
+                    <p className="header-context header-context-subtitle">
+                      <span>{passageLabel}</span>
+                    </p>
+                  ) : null}
+                </>
+              )
+            ) : isPassageHeader ? (
+              <div className="sticky-passage-inline">
+                {secondaryLink ? (
+                  <Link href={secondaryLink.href} prefetch={false} className="sticky-passage-link">
+                    {chapterLabel}
+                  </Link>
+                ) : (
+                  <span className="sticky-passage-link">{chapterLabel}</span>
+                )}
+                <span className="sticky-passage-sep">/</span>
+                <span className="sticky-passage-current">{passageLabel}</span>
+              </div>
+            ) : (
+              <Link href={secondaryLink?.href || primaryLink?.href || "/"} prefetch={false} className="sticky-passage-title">
+                {title}
+              </Link>
+            )}
+          </div>
         </div>
 
         <nav className="mode-nav">

@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { BookChapterBrowser, type ReaderChapter } from "@/components/book-chapter-browser";
 import { ModeHeader } from "@/components/mode-header";
 import { getAllBooks, getBookById, getChapterById } from "@/lib/content";
+import { buildLibraryHref } from "@/lib/paths";
 
 type BookPageProps = {
   params: Promise<{
@@ -34,7 +35,7 @@ export default async function BookPage({ params }: BookPageProps) {
 
   return (
     <main className="page-shell reader-page">
-      <ModeHeader compactTitle={book.title} />
+      <ModeHeader compactTitle={book.title} logoHref={buildLibraryHref()} />
 
       <section className="section">
         <div className="container section-head">

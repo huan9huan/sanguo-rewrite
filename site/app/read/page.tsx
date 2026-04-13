@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { FutureBookForm } from "@/components/future-book-form";
 import { getDictionary } from "@/i18n";
 import { getAllBooks } from "@/lib/content";
-import { buildBookHref } from "@/lib/paths";
+import { buildBookHref, buildLibraryHref } from "@/lib/paths";
 
 export default async function ReadIndexPage() {
   const books = await getAllBooks();
@@ -13,7 +13,7 @@ export default async function ReadIndexPage() {
   return (
     <div className="page-shell reader-page">
       <main>
-        <ModeHeader compactTitle={t.read.pageTitle} bookLabel={t.read.pageTitle} />
+        <ModeHeader compactTitle={t.read.pageTitle} bookLabel={t.read.pageTitle} logoHref={buildLibraryHref()} />
 
         <section className="section">
           <div className="container section-head read-index-head">

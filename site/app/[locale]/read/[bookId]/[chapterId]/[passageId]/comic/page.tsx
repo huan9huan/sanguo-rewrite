@@ -7,7 +7,7 @@ import { PassageFeedback } from "@/components/passage-feedback";
 import { getDictionary } from "@/i18n";
 import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { resolveLocalizedPassage } from "@/lib/locale";
-import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
+import { buildBookHref, buildChapterHref, buildComicHref, buildLibraryHref, buildPassageHref } from "@/lib/paths";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -53,6 +53,7 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
     <main className="page-shell passage-page">
       <ComicViewTracker bookId={bookId} chapterId={chapterId} passageId={passageId} locale={safeLocale} />
       <ModeHeader
+        logoHref={buildLibraryHref(safeLocale)}
         bookLabel={bookTitle}
         chapterLabel={chapterLabel}
         passageLabel={passage.title}

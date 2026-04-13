@@ -4,7 +4,7 @@ import { SiteFooter } from "@/components/site-footer";
 import { FutureBookForm } from "@/components/future-book-form";
 import { getDictionary } from "@/i18n";
 import { getAllBooks } from "@/lib/content";
-import { buildBookHref } from "@/lib/paths";
+import { buildBookHref, buildLibraryHref } from "@/lib/paths";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -27,7 +27,7 @@ export default async function LocaleReadIndexPage({ params }: LocaleReadIndexPag
   return (
     <div className="page-shell reader-page">
       <main>
-        <ModeHeader compactTitle={t.read.pageTitle} bookLabel={t.read.pageTitle} locale={safeLocale} />
+        <ModeHeader compactTitle={t.read.pageTitle} bookLabel={t.read.pageTitle} locale={safeLocale} logoHref={buildLibraryHref(safeLocale)} />
 
         <section className="section">
           <div className="container section-head read-index-head">

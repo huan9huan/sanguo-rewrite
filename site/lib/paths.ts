@@ -1,5 +1,10 @@
 import type { Locale, PassageRouteParams } from "@/lib/types";
 
+export function buildLibraryHref(locale?: Locale): string {
+  const prefix = locale ? `/${locale}` : "";
+  return `${prefix}/read`;
+}
+
 export function buildBookHref(bookId: string, locale?: Locale): string {
   const prefix = locale ? `/${locale}` : "";
   return `${prefix}/read/${bookId}`;

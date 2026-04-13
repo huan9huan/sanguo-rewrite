@@ -11,7 +11,7 @@ import { ReadingSessionTracker } from "@/components/reading-session-tracker";
 import { getDictionary } from "@/i18n";
 import { proseToHtml } from "@/lib/format";
 import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
-import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
+import { buildBookHref, buildChapterHref, buildComicHref, buildLibraryHref, buildPassageHref } from "@/lib/paths";
 
 type PassagePageProps = {
   params: Promise<{
@@ -55,6 +55,7 @@ export default async function PassagePage({ params }: PassagePageProps) {
         <PassageSceneFocus />
       </Suspense>
       <ModeHeader
+        logoHref={buildLibraryHref()}
         bookLabel={book.title}
         chapterLabel={chapter.adapted_title_cn || chapter.source_title}
         passageLabel={passage.title}
