@@ -9,7 +9,7 @@ import { ReadingBookmarkSync } from "@/components/reading-bookmark-sync";
 import { ReadingSessionTracker } from "@/components/reading-session-tracker";
 import { getDictionary } from "@/i18n";
 import { proseToHtml } from "@/lib/format";
-import { getBookById, getChapterById, getPassageBySlugs, getStaticPassageRouteParams } from "@/lib/content";
+import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
 
 type PassagePageProps = {
@@ -19,10 +19,6 @@ type PassagePageProps = {
     passageId: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  return getStaticPassageRouteParams();
-}
 
 export default async function PassagePage({ params }: PassagePageProps) {
   const { bookId, chapterId, passageId } = await params;

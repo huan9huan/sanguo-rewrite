@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ModeHeader } from "@/components/mode-header";
 import { getDictionary } from "@/i18n";
 import { formatChapterTitle } from "@/lib/chapter-title";
-import { getBookById, getChapterById, getStaticChapterRouteParams } from "@/lib/content";
+import { getBookById, getChapterById } from "@/lib/content";
 import { buildComicHref, buildPassageHref } from "@/lib/paths";
 
 type ChapterPageProps = {
@@ -12,10 +12,6 @@ type ChapterPageProps = {
     chapterId: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  return getStaticChapterRouteParams();
-}
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
   const { bookId, chapterId } = await params;

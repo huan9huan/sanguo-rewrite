@@ -13,16 +13,6 @@ type LocaleBookPageProps = {
   }>;
 };
 
-export async function generateStaticParams() {
-  const books = await getAllBooks();
-  return books.flatMap((book) =>
-    VALID_LOCALES.map((locale) => ({
-      locale,
-      bookId: book.id,
-    }))
-  );
-}
-
 export default async function LocaleBookPage({ params }: LocaleBookPageProps) {
   const { locale, bookId } = await params;
   const safeLocale = VALID_LOCALES.includes(locale as Locale) ? (locale as Locale) : "zh";

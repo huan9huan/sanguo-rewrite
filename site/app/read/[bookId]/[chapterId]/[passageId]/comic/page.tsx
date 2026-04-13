@@ -4,7 +4,7 @@ import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { getDictionary } from "@/i18n";
-import { getBookById, getChapterById, getPassageBySlugs, getStaticPassageRouteParams } from "@/lib/content";
+import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
 
 export const dynamic = "force-dynamic";
@@ -16,10 +16,6 @@ type ComicPageProps = {
     passageId: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  return getStaticPassageRouteParams();
-}
 
 export default async function PassageComicPage({ params }: ComicPageProps) {
   const { bookId, chapterId, passageId } = await params;

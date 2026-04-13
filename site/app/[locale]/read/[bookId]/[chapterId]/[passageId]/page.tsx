@@ -9,7 +9,7 @@ import { PassageSceneFocus } from "@/components/passage-scene-focus";
 import { ReadingBookmarkSync } from "@/components/reading-bookmark-sync";
 import { ReadingSessionTracker } from "@/components/reading-session-tracker";
 import { getDictionary } from "@/i18n";
-import { getBookById, getChapterById, getPassageBySlugs, getStaticPassageRouteParams } from "@/lib/content";
+import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { proseToHtml } from "@/lib/format";
 import { resolveLocalizedPassage } from "@/lib/locale";
 import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
@@ -25,16 +25,6 @@ type LocalePassagePageProps = {
     passageId: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  const params = await getStaticPassageRouteParams();
-  return params.flatMap((param) =>
-    VALID_LOCALES.map((locale) => ({
-      locale,
-      ...param,
-    }))
-  );
-}
 
 export default async function LocalePassagePage({ params }: LocalePassagePageProps) {
   const { locale, bookId, chapterId, passageId } = await params;

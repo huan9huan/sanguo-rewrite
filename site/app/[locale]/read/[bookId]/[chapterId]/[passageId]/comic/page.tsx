@@ -4,7 +4,7 @@ import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { getDictionary } from "@/i18n";
-import { getBookById, getChapterById, getPassageBySlugs, getStaticPassageRouteParams } from "@/lib/content";
+import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { resolveLocalizedPassage } from "@/lib/locale";
 import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
 import type { Locale } from "@/lib/types";
@@ -21,16 +21,6 @@ type LocaleComicPageProps = {
     passageId: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  const params = await getStaticPassageRouteParams();
-  return params.flatMap((param) =>
-    VALID_LOCALES.map((locale) => ({
-      locale,
-      ...param,
-    }))
-  );
-}
 
 export default async function LocaleComicPage({ params }: LocaleComicPageProps) {
   const { locale, bookId, chapterId, passageId } = await params;
