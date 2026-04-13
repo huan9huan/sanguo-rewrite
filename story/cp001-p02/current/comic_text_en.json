@@ -12,7 +12,7 @@
           "id": "f1_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Imperial blood ran in his veins. Straw sandals wove through his fingers."
+          "text": "Liu Bei carried imperial blood, but he fed his family by weaving mats and sandals."
         }
       ]
     },
@@ -25,7 +25,7 @@
           "id": "f2_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "He did not sigh from fear. The fire was there — he just had nothing to burn it on."
+          "text": "The recruitment notice was up. He wanted to fight the rebels, but he had no money, no men, and no army."
         }
       ]
     },
@@ -36,9 +36,9 @@
       "items": [
         {
           "id": "f3_t1",
-          "kind": "speech",
-          "speaker": "zhang_fei",
-          "text": "If you're a real man, fight for your country — why stand here sighing!"
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Zhang Fei's thunderous challenge pulled Liu Bei out of his sigh."
         }
       ]
     },
@@ -49,15 +49,15 @@
       "items": [
         {
           "id": "f4_t1",
-          "kind": "speech",
-          "speaker": "zhang_fei",
-          "text": "I'll fund it — we recruit men and fight together."
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Zhang Fei had money and men could be gathered. Liu Bei's eyes lit up."
         },
         {
           "id": "f4_t2",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "The wine hadn't arrived, but the shadow at the door moved first."
+          "text": "Before the wine arrived, a new shadow moved at the door."
         }
       ]
     }

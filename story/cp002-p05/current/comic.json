@@ -17,16 +17,16 @@
         "items": [
           {
             "id": "f1_t1",
-            "kind": "speech",
-            "speaker": "yuan_shao",
-            "text": "可召四方英雄之士，带兵进京。到那时候事急了，太后不从也得从。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "袁绍献计：召四方兵马进京，逼太后同意诛宦官。",
             "lang": "zh-CN"
           },
           {
             "id": "f1_t2",
-            "kind": "speech",
-            "speaker": "he_jin",
-            "text": "此计大妙！",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "何进听了心动。他举不起自己的刀，却敢把外兵叫进洛阳。",
             "lang": "zh-CN"
           },
           {
@@ -58,9 +58,9 @@
         "items": [
           {
             "id": "f2_t1",
-            "kind": "speech",
-            "speaker": "chen_lin",
-            "text": "倒持干戈，授人以柄——事成不了，反要生乱！",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "陈琳看出了祸根：这是倒拿兵器，把刀柄递给别人。",
             "lang": "zh-CN"
           },
           {
@@ -92,9 +92,9 @@
         "items": [
           {
             "id": "f3_t1",
-            "kind": "speech",
-            "speaker": "he_jin",
-            "text": "懦夫之见。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "何进没有听劝。他盖下印，把檄文发往各镇。",
             "lang": "zh-CN"
           },
           {
@@ -126,9 +126,9 @@
         "items": [
           {
             "id": "f4_t1",
-            "kind": "speech",
-            "speaker": "cao_cao",
-            "text": "这件事易如反掌。有什么好讨论的？",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "曹操看得明白：杀几个宦官，本该易如反掌。",
             "lang": "zh-CN"
           },
           {

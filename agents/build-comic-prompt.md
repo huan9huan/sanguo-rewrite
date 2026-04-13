@@ -54,6 +54,8 @@ That means:
 - one frame = one clear dramatic instant
 - image without text
 - text sits below each frame, not inside the image
+- frame text is narrator-only caption text
+- image plus captions should be readable without the prose
 - mobile-first vertical reading
 - people and action over environment detail
 - use lianhuanhua / black-and-white sketch storytelling when appropriate
@@ -100,6 +102,8 @@ Typical frame jobs:
 - closure
 - hook
 
+Caption jobs should match the frame jobs. A caption should explain the core story beat or turn, not merely label what the image already shows.
+
 ## Step 3: Write `passage_comic_spec_vN.md`
 
 Human-readable.
@@ -126,6 +130,19 @@ Each panel/frame must include:
 - `must_avoid`
 - `image_prompt_cn`
 - `text_slots`
+
+`text_slots` rules:
+
+- use `kind: "caption"` only
+- use `speaker: "narrator"` only
+- do not include dialogue-style speech lines
+- do not write captions as quoted dialogue
+- use names only for viewpoint anchors or characters the reader must remember long-term
+- when a character is not meant to be remembered, use a functional phrase such as `黄巾先锋`, `押车军士`, `朝廷使者`, or `旧日老师`
+- do not make minor, one-off, or non-core characters the caption subject
+- do not name minor commanders, messengers, officials, merchants, guards, or temporary allies in captions unless the page's core story depends on that name
+- compress minor-character actions into story results when possible
+- each caption should help a reader understand setup, pressure, turn, closure, or hook from the comic page alone
 
 The JSON should also include:
 
@@ -163,14 +180,19 @@ The page prompt must:
 Ask:
 
 - if someone reads only the frames, is the passage still clear?
+- if someone reads only the image plus captions, is the passage's core story clear?
 - does each frame do different story work?
 - are the text blocks naturally attachable below each frame?
+- are all text blocks narrator-only captions?
+- do captions avoid foregrounding minor or one-off characters?
 - is the page mobile-friendly?
 - does the prompt emphasize story clarity over visual clutter?
 
 ## Do Not
 
 - do not ask the model to generate dialogue text inside image
+- do not use dialogue lines as frame text
+- do not let minor characters enter captions as named or speaking subjects
 - do not overload prompts with long character dossiers
 - do not invent a core character's appearance when `memory/character_visuals.json` is missing
 - do not let environment detail dominate story moment

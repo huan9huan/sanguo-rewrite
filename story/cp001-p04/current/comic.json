@@ -19,7 +19,7 @@
             "id": "f1_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "五百对五万。邹靖没说话，领了令。刘备、关羽、张飞也没说话，领了兵。",
+            "text": "五百对五万。刘备、关羽、张飞没有退，带着人迎了上去。",
             "lang": "zh-CN"
           }
         ]
@@ -46,7 +46,7 @@
             "id": "f2_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "张飞一矛刺中邓茂心窝。程远志冲过来，关羽一刀劈成两段。快得像闪电。",
+            "text": "黄巾军的先锋刚冲出来，就被张飞和关羽连破两阵。胜负快得像闪电。",
             "lang": "zh-CN"
           }
         ]
@@ -71,9 +71,9 @@
         "items": [
           {
             "id": "f3_t1",
-            "kind": "speech",
-            "speaker": "liu_bei",
-            "text": "贼众我寡，硬打不行。云长埋伏山左，翼德埋伏山右。我诱敌过来，鸣金为号，三路齐出。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "青州城下，刘备改用奇兵。关羽伏左，张飞伏右，他从正面诱敌入山。",
             "lang": "zh-CN"
           }
         ]
@@ -125,9 +125,9 @@
         "items": [
           {
             "id": "f5_t1",
-            "kind": "speech",
-            "speaker": "lu_zhi",
-            "text": "来了就好。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "广宗大营里，刘备终于见到了旧日老师。",
             "lang": "zh-CN"
           },
           {

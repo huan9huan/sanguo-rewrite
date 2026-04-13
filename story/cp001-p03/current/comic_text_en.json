@@ -10,15 +10,15 @@
       "items": [
         {
           "id": "f1_t1",
-          "kind": "speech",
-          "speaker": "guan_yu",
-          "text": "Wine, fast — I'm heading in to enlist."
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Guan Yu walked into the village tavern, bound for the same war."
         },
         {
           "id": "f1_t2",
-          "kind": "speech",
-          "speaker": "liu_bei",
-          "text": "Friend — sit and drink with us."
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Liu Bei and Zhang Fei saw another man willing to face the chaos."
         }
       ]
     },
@@ -35,9 +35,9 @@
         },
         {
           "id": "f2_t2",
-          "kind": "speech",
-          "speaker": "all",
-          "text": "Not born on the same day — but we swear to die on the same day."
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "From that day on, Liu Bei, Guan Yu, and Zhang Fei stood as one."
         }
       ]
     },
@@ -48,9 +48,9 @@
       "items": [
         {
           "id": "f3_t1",
-          "kind": "speech",
-          "speaker": "merchant",
-          "text": "Fifty horses, five hundred taels of silver, a thousand jin of iron — all yours."
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Horses, silver, and iron arrived. The brothers finally had the means to raise an army."
         }
       ]
     },
@@ -63,7 +63,7 @@
           "id": "f4_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Five hundred men. Three brothers. One road ahead."
+          "text": "Five hundred men followed the three brothers into Youzhou. Their fate turned with the road."
         }
       ]
     }

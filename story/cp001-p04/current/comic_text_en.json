@@ -12,7 +12,7 @@
           "id": "f1_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Nobody argued. They took the order and marched."
+          "text": "Five hundred against fifty thousand. Liu Bei, Guan Yu, and Zhang Fei did not step back."
         }
       ]
     },
@@ -25,7 +25,7 @@
           "id": "f2_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Zhang Fei's spear found Deng Mao's heart. Guan Yu's blade split Cheng Yuanzhi in two."
+          "text": "The Yellow Turban vanguard charged. Zhang Fei and Guan Yu broke it almost before the battle began."
         }
       ]
     },
@@ -36,9 +36,9 @@
       "items": [
         {
           "id": "f3_t1",
-          "kind": "speech",
-          "speaker": "liu_bei",
-          "text": "Hide on the flanks — I'll lure them in, and when the gong sounds, we strike from three sides."
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "At Qingzhou, Liu Bei chose a trap. Guan Yu and Zhang Fei hid on the flanks while he drew the enemy in."
         }
       ]
     },
@@ -62,9 +62,9 @@
       "items": [
         {
           "id": "f5_t1",
-          "kind": "speech",
-          "speaker": "lu_zhi",
-          "text": "You're here. Good."
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "At Guangzong, Liu Bei finally stood before his old teacher."
         },
         {
           "id": "f5_t2",

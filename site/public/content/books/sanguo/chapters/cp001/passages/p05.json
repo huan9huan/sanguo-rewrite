@@ -145,16 +145,16 @@
             "items": [
               {
                 "id": "f4_t1",
-                "kind": "speech",
-                "speaker": "zhang_fei",
-                "text": "待我杀了这些人，救出老师！",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "张飞怒到拔刀，要劫车救出卢植。",
                 "lang": "zh-CN"
               },
               {
                 "id": "f4_t2",
-                "kind": "speech",
-                "speaker": "liu_bei",
-                "text": "不可造次。朝廷自有公论。",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "刘备拦住了他。老师被押走，三兄弟只能看着。",
                 "lang": "zh-CN"
               }
             ],
@@ -172,9 +172,9 @@
             "items": [
               {
                 "id": "f5_t1",
-                "kind": "speech",
-                "speaker": "guan_yu",
-                "text": "卢中郎已去，别人领兵我们无所依，不如先回涿郡。",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "卢植已去，广宗无处可依。三兄弟转身回涿郡，路上又遇见战火。",
                 "lang": "zh-CN"
               }
             ],
@@ -433,16 +433,16 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "待我杀了这些人，救出老师！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "张飞怒到拔刀，要劫车救出卢植。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f4_t2",
-                    "kind": "speech",
-                    "speaker": "liu_bei",
-                    "text": "不可造次。朝廷自有公论。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "刘备拦住了他。老师被押走，三兄弟只能看着。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -465,9 +465,9 @@
                 "items": [
                   {
                     "id": "f5_t1",
-                    "kind": "speech",
-                    "speaker": "guan_yu",
-                    "text": "卢中郎已去，别人领兵我们无所依，不如先回涿郡。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "卢植已去，广宗无处可依。三兄弟转身回涿郡，路上又遇见战火。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -509,16 +509,16 @@
             "items": [
               {
                 "id": "f4_t1",
-                "kind": "speech",
-                "speaker": "zhang_fei",
-                "text": "待我杀了这些人，救出老师！",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "张飞怒到拔刀，要劫车救出卢植。",
                 "lang": "zh-CN"
               },
               {
                 "id": "f4_t2",
-                "kind": "speech",
-                "speaker": "liu_bei",
-                "text": "不可造次。朝廷自有公论。",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "刘备拦住了他。老师被押走，三兄弟只能看着。",
                 "lang": "zh-CN"
               }
             ],
@@ -536,9 +536,9 @@
             "items": [
               {
                 "id": "f5_t1",
-                "kind": "speech",
-                "speaker": "guan_yu",
-                "text": "卢中郎已去，别人领兵我们无所依，不如先回涿郡。",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "卢植已去，广宗无处可依。三兄弟转身回涿郡，路上又遇见战火。",
                 "lang": "zh-CN"
               }
             ],
@@ -688,16 +688,16 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "待我杀了这些人，救出老师！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "张飞怒到拔刀，要劫车救出卢植。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f4_t2",
-                    "kind": "speech",
-                    "speaker": "liu_bei",
-                    "text": "不可造次。朝廷自有公论。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "刘备拦住了他。老师被押走，三兄弟只能看着。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -715,9 +715,9 @@
                 "items": [
                   {
                     "id": "f5_t1",
-                    "kind": "speech",
-                    "speaker": "guan_yu",
-                    "text": "卢中郎已去，别人领兵我们无所依，不如先回涿郡。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "卢植已去，广宗无处可依。三兄弟转身回涿郡，路上又遇见战火。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -976,16 +976,16 @@
                     "items": [
                       {
                         "id": "f4_t1",
-                        "kind": "speech",
-                        "speaker": "zhang_fei",
-                        "text": "待我杀了这些人，救出老师！",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "张飞怒到拔刀，要劫车救出卢植。",
                         "lang": "zh-CN"
                       },
                       {
                         "id": "f4_t2",
-                        "kind": "speech",
-                        "speaker": "liu_bei",
-                        "text": "不可造次。朝廷自有公论。",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "刘备拦住了他。老师被押走，三兄弟只能看着。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -1008,9 +1008,9 @@
                     "items": [
                       {
                         "id": "f5_t1",
-                        "kind": "speech",
-                        "speaker": "guan_yu",
-                        "text": "卢中郎已去，别人领兵我们无所依，不如先回涿郡。",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "卢植已去，广宗无处可依。三兄弟转身回涿郡，路上又遇见战火。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -1052,16 +1052,16 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "待我杀了这些人，救出老师！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "张飞怒到拔刀，要劫车救出卢植。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f4_t2",
-                    "kind": "speech",
-                    "speaker": "liu_bei",
-                    "text": "不可造次。朝廷自有公论。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "刘备拦住了他。老师被押走，三兄弟只能看着。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -1079,9 +1079,9 @@
                 "items": [
                   {
                     "id": "f5_t1",
-                    "kind": "speech",
-                    "speaker": "guan_yu",
-                    "text": "卢中郎已去，别人领兵我们无所依，不如先回涿郡。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "卢植已去，广宗无处可依。三兄弟转身回涿郡，路上又遇见战火。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -1227,16 +1227,16 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "Let me cut them down and free the teacher!",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "Zhang Fei drew his blade, ready to break Lu Zhi out of the prison cart.",
                     "lang": "en"
                   },
                   {
                     "id": "f4_t2",
-                    "kind": "speech",
-                    "speaker": "liu_bei",
-                    "text": "No. The court will sort this out.",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "Liu Bei stopped him. Their teacher was taken away while they watched.",
                     "lang": "en"
                   }
                 ],
@@ -1254,9 +1254,9 @@
                 "items": [
                   {
                     "id": "f5_t1",
-                    "kind": "speech",
-                    "speaker": "guan_yu",
-                    "text": "General Lu is gone. There's nothing for us here — we should go home.",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "With Lu Zhi gone, Guangzong offered them no foothold. The brothers turned back toward Zhuo.",
                     "lang": "en"
                   }
                 ],
@@ -1338,23 +1338,14 @@
             "scene_id": "cp001_p05_s1",
             "scene_title": "三兄弟赶到颍川，远处火光冲天、喊杀声震天。等他们到时，仗已经打完了。皇甫嵩和朱儁趁大风夜袭，火攻烧了黄巾军连营。张梁张宝带残兵败走，被一彪红旗军马截住——为首一将，身长七尺，细眼长髯，骑都尉曹操。曹操大杀一阵斩首万余。三兄弟见到皇甫嵩朱儁，转达卢植之意。皇甫嵩说：张梁张宝必投广宗，你星夜回去助你老师。这一幕要让读者感觉到：战场很大，三兄弟只是其中一小支力量。同时曹操的亮相要给人留下印象",
             "scene_type": "convergence",
-            "text": "By the time they reached Yingchuan, the battle was already over.\n\nThey saw it from a distance — the night sky burned orange, the flames lighting up half the horizon. By the time the three brothers led their men into Changshe, the fires had died. Only scorched tents and fields of dead remained.\n\nHuangfu Song and Zhu Jun had struck on a windy night, burning the Yellow Turban camps in a single blaze. Zhang Liang and Zhang Bao fled west with the remnants.\n\nThey did not get far.\n\nA force emerged from the darkness, red banners flying, and cut off the road. The man at its head sat seven chi tall, with narrow eyes and a neatly trimmed beard. He was young, but he carried himself differently — still on his horse, unhurried, as if he had come to close the matter.\n\nA cavalry colonel from Qiao County in Peiguo. His name was Cao Cao. Courtesy name Mengde.\n\nCao Cao planted his five thousand men across the road and gave no speeches. He simply attacked. Ten thousand heads fell. Banners, drums, horses — all seized. Zhang Liang and Zhang Bao barely escaped with their lives. Cao Cao wiped his blade, looked up at the fading smoke on the horizon, and the corner of his mouth moved.\n\nBy the time Liu Bei, Guan Yu, and Zhang Fei arrived, all of this had happened without them.\n\nThey met Huangfu Song and Zhu Jun — two white-haired generals who gave Liu Bei a brief glance and little small talk. Liu Bei passed on Lu Zhi's message.\n\nHuangfu Song said, \"Zhang Liang and Zhang Bao are spent. They'll head for Guangzong to join Zhang Jiao. Go back tonight and help your teacher.\"",
+            "text": "By the time they reached Yingchuan, the battle was already over.",
             "paragraph_offset": 0,
             "paragraphs": [
-              "By the time they reached Yingchuan, the battle was already over.",
-              "They saw it from a distance — the night sky burned orange, the flames lighting up half the horizon. By the time the three brothers led their men into Changshe, the fires had died. Only scorched tents and fields of dead remained.",
-              "Huangfu Song and Zhu Jun had struck on a windy night, burning the Yellow Turban camps in a single blaze. Zhang Liang and Zhang Bao fled west with the remnants.",
-              "They did not get far.",
-              "A force emerged from the darkness, red banners flying, and cut off the road. The man at its head sat seven chi tall, with narrow eyes and a neatly trimmed beard. He was young, but he carried himself differently — still on his horse, unhurried, as if he had come to close the matter.",
-              "A cavalry colonel from Qiao County in Peiguo. His name was Cao Cao. Courtesy name Mengde.",
-              "Cao Cao planted his five thousand men across the road and gave no speeches. He simply attacked. Ten thousand heads fell. Banners, drums, horses — all seized. Zhang Liang and Zhang Bao barely escaped with their lives. Cao Cao wiped his blade, looked up at the fading smoke on the horizon, and the corner of his mouth moved.",
-              "By the time Liu Bei, Guan Yu, and Zhang Fei arrived, all of this had happened without them.",
-              "They met Huangfu Song and Zhu Jun — two white-haired generals who gave Liu Bei a brief glance and little small talk. Liu Bei passed on Lu Zhi's message.",
-              "Huangfu Song said, \"Zhang Liang and Zhang Bao are spent. They'll head for Guangzong to join Zhang Jiao. Go back tonight and help your teacher.\""
+              "By the time they reached Yingchuan, the battle was already over."
             ],
             "comic_placements": [
               {
-                "after_paragraph": 6,
+                "after_paragraph": 0,
                 "frames": [
                   {
                     "frame_id": "f1",
@@ -1375,12 +1366,7 @@
                       "w": 0.9476,
                       "h": 0.2031
                     }
-                  }
-                ]
-              },
-              {
-                "after_paragraph": 9,
-                "frames": [
+                  },
                   {
                     "frame_id": "f2",
                     "scene_id": "cp001_p05_s1",
@@ -1452,9 +1438,18 @@
             "scene_id": "cp001_p05_s2",
             "scene_title": "三兄弟离开颍川往回走。半路上迎面来了一簇军马，护送一辆槛车。车里坐的是卢植。刘备大惊下马问缘由。卢植说：我围张角将次可破，但张角用妖术僵持不下。朝廷差黄门左丰来视察，向我要贿赂。我说军粮尚缺哪有余钱。左丰回去诬奏我高垒不战惰慢军心。朝廷震怒，派董卓来接替，把我押回去问罪。张飞听到这里拔刀要砍护送的人——刘备制止：朝廷自有公论，不可造次。槛车远去。关羽说：卢中郎被逮，别人领兵我们无所依，不如回涿郡。刘备从之。这一幕要写出'好人被制度碾碎'的残酷感",
             "scene_type": "crisis",
-            "text": "Liu Bei took the order. The three brothers turned their fifteen hundred men around and marched back through the night.\n\nThey pushed hard. Hoofbeats echoed on the dark road for half the night. Near dawn, shapes appeared ahead.\n\nA cluster of soldiers escorting a prison cart.\n\nThe cart was wooden, the prisoner inside dressed in gray, his hair half white, his hands bound to the rails.\n\nLiu Bei stopped cold.\n\nHe slid from his horse and ran to the cart.\n\n\"Teacher —\"\n\nLu Zhi sat inside. He looked up. No surprise. No grief. He simply said:\n\n\"I had Zhang Jiao surrounded. We were close to breaking him — but he managed to stall. The court sent a eunuch named Zuo Feng to inspect. He opened his hand and asked for a bribe. I told him we barely had enough grain for the troops, let alone gifts for an imperial envoy.\"\n\nHe paused.\n\n\"Zuo Feng went back and told the court I was hiding behind my walls, refusing to fight, demoralizing the army. The court believed him. They sent Dong Zhuo to replace me and had me chained up for trial.\"\n\nLiu Bei stood beside the cart, silent. His grip on his sword hilt tightened until his knuckles went white.\n\nBehind him, Zhang Fei's hand was already on his spear shaft, his teeth grinding.\n\n\"Brother — let me cut down these escorts and get the teacher out —\"\n\n\"No.\"\n\nLiu Bei's voice was low but hard.\n\n\"The court will sort this out. You will not act rashly.\"\n\nZhang Fei's eyes bulged like bronze bells. He stared at Liu Bei for two seconds, then his hand slid off the spear.\n\nThe escort did not pause. They pushed the cart forward. Lu Zhi sat upright inside, his back straight. He did not turn his head.\n\nThe cart disappeared at the end of the road.\n\nGuan Yu walked over and said, \"General Lu has been arrested. Someone else commands the army now — there's no point staying. We should go back to Zhuo.\"\n\nLiu Bei looked at the road behind, then at the road ahead. A long silence.\n\n\"Let's go. Back to Zhuo.\"\n\nThey marched north. Less than two days later, the sound of fighting erupted from behind a ridge.\n\nThe three men spurred their horses up a hill.\n\nBelow — government troops in full rout. Soldiers throwing down helmets and armor, scattering in every direction. Behind them surged a yellow tide, blanketing the hills and valleys. On their banners, four large characters: General of Heaven.\n\nZhang Jiao.\n\nLiu Bei's gaze swept the field from the ridge. Two words:\n\n\"Fast fight.\"\n\nThe three men plunged down the hillside.\n\nFifteen hundred men followed. Liu Bei said nothing more — Guan Yu peeled left, Zhang Fei right, no instruction needed. Two blades drove into the Yellow Turban mass. Liu Bei charged up the middle with his twin swords.\n\nZhang Jiao's army had just won a battle and was busy chasing broken troops when this force smashed into their flank. The line buckled, then shattered. They fell back fifty li.\n\nWhen the Yellow Turbans had vanished into the distance, Liu Bei saw who they had saved.\n\nA thick general sat on his horse, surrounded by a few dozen bodyguards. Fat. His belly strained against his armor. He looked at people with drooping eyelids, as though he were watching ants on the ground.\n\nGeneral Dong Zhuo.\n\nLiu Bei stepped forward and bowed. Dong Zhuo gave him a glance, then asked:\n\n\"What is your current rank?\"\n\n\"No rank. A commoner.\"\n\nThe words were barely out before Dong Zhuo's face changed.\n\nNot anger. Something worse — the expression of a man who suddenly found the conversation beneath him. He flicked his hand, gesturing Liu Bei away. No word of thanks. He turned and walked back to his tent.\n\nLiu Bei stood where he was. He did not move.\n\nGuan Yu's lips pressed into a line. Zhang Fei's face went the color of a liver.\n\nThe three men walked out of Dong Zhuo's camp.\n\nZhang Fei stopped dead.\n\n\"We —\"\n\nHis voice was shaking.\n\n\"We fought through blood to save that man. He asks what rank we hold, hears 'commoner,' and won't even look at us!\"\n\nHe yanked his blade from its sheath.\n\n\"I won't rest until I kill him!\"\n\nHe turned and charged back toward the tent.\n\nGuan Yu reached out — Zhang Fei did not stop.\n\nLiu Bei stood behind, watching Zhang Fei's back. His face was calm.",
-            "paragraph_offset": 10,
+            "text": "They saw it from a distance — the night sky burned orange, the flames lighting up half the horizon. By the time the three brothers led their men into Changshe, the fires had died. Only scorched tents and fields of dead remained.\n\nHuangfu Song and Zhu Jun had struck on a windy night, burning the Yellow Turban camps in a single blaze. Zhang Liang and Zhang Bao fled west with the remnants.\n\nThey did not get far.\n\nA force emerged from the darkness, red banners flying, and cut off the road. The man at its head sat seven chi tall, with narrow eyes and a neatly trimmed beard. He was young, but he carried himself differently — still on his horse, unhurried, as if he had come to close the matter.\n\nA cavalry colonel from Qiao County in Peiguo. His name was Cao Cao. Courtesy name Mengde.\n\nCao Cao planted his five thousand men across the road and gave no speeches. He simply attacked. Ten thousand heads fell. Banners, drums, horses — all seized. Zhang Liang and Zhang Bao barely escaped with their lives. Cao Cao wiped his blade, looked up at the fading smoke on the horizon, and the corner of his mouth moved.\n\nBy the time Liu Bei, Guan Yu, and Zhang Fei arrived, all of this had happened without them.\n\nThey met Huangfu Song and Zhu Jun — two white-haired generals who gave Liu Bei a brief glance and little small talk. Liu Bei passed on Lu Zhi's message.\n\nHuangfu Song said, \"Zhang Liang and Zhang Bao are spent. They'll head for Guangzong to join Zhang Jiao. Go back tonight and help your teacher.\"\n\nLiu Bei took the order. The three brothers turned their fifteen hundred men around and marched back through the night.\n\nThey pushed hard. Hoofbeats echoed on the dark road for half the night. Near dawn, shapes appeared ahead.\n\nA cluster of soldiers escorting a prison cart.\n\nThe cart was wooden, the prisoner inside dressed in gray, his hair half white, his hands bound to the rails.\n\nLiu Bei stopped cold.\n\nHe slid from his horse and ran to the cart.\n\n\"Teacher —\"\n\nLu Zhi sat inside. He looked up. No surprise. No grief. He simply said:\n\n\"I had Zhang Jiao surrounded. We were close to breaking him — but he managed to stall. The court sent a eunuch named Zuo Feng to inspect. He opened his hand and asked for a bribe. I told him we barely had enough grain for the troops, let alone gifts for an imperial envoy.\"\n\nHe paused.\n\n\"Zuo Feng went back and told the court I was hiding behind my walls, refusing to fight, demoralizing the army. The court believed him. They sent Dong Zhuo to replace me and had me chained up for trial.\"\n\nLiu Bei stood beside the cart, silent. His grip on his sword hilt tightened until his knuckles went white.\n\nBehind him, Zhang Fei's hand was already on his spear shaft, his teeth grinding.\n\n\"Brother — let me cut down these escorts and get the teacher out —\"\n\n\"No.\"\n\nLiu Bei's voice was low but hard.\n\n\"The court will sort this out. You will not act rashly.\"\n\nZhang Fei's eyes bulged like bronze bells. He stared at Liu Bei for two seconds, then his hand slid off the spear.\n\nThe escort did not pause. They pushed the cart forward. Lu Zhi sat upright inside, his back straight. He did not turn his head.\n\nThe cart disappeared at the end of the road.\n\nGuan Yu walked over and said, \"General Lu has been arrested. Someone else commands the army now — there's no point staying. We should go back to Zhuo.\"\n\nLiu Bei looked at the road behind, then at the road ahead. A long silence.\n\n\"Let's go. Back to Zhuo.\"\n\nThey marched north. Less than two days later, the sound of fighting erupted from behind a ridge.\n\nThe three men spurred their horses up a hill.\n\nBelow — government troops in full rout. Soldiers throwing down helmets and armor, scattering in every direction. Behind them surged a yellow tide, blanketing the hills and valleys. On their banners, four large characters: General of Heaven.\n\nZhang Jiao.\n\nLiu Bei's gaze swept the field from the ridge. Two words:\n\n\"Fast fight.\"\n\nThe three men plunged down the hillside.\n\nFifteen hundred men followed. Liu Bei said nothing more — Guan Yu peeled left, Zhang Fei right, no instruction needed. Two blades drove into the Yellow Turban mass. Liu Bei charged up the middle with his twin swords.\n\nZhang Jiao's army had just won a battle and was busy chasing broken troops when this force smashed into their flank. The line buckled, then shattered. They fell back fifty li.\n\nWhen the Yellow Turbans had vanished into the distance, Liu Bei saw who they had saved.\n\nA thick general sat on his horse, surrounded by a few dozen bodyguards. Fat. His belly strained against his armor. He looked at people with drooping eyelids, as though he were watching ants on the ground.\n\nGeneral Dong Zhuo.\n\nLiu Bei stepped forward and bowed. Dong Zhuo gave him a glance, then asked:\n\n\"What is your current rank?\"\n\n\"No rank. A commoner.\"\n\nThe words were barely out before Dong Zhuo's face changed.\n\nNot anger. Something worse — the expression of a man who suddenly found the conversation beneath him. He flicked his hand, gesturing Liu Bei away. No word of thanks. He turned and walked back to his tent.\n\nLiu Bei stood where he was. He did not move.\n\nGuan Yu's lips pressed into a line. Zhang Fei's face went the color of a liver.\n\nThe three men walked out of Dong Zhuo's camp.\n\nZhang Fei stopped dead.\n\n\"We —\"\n\nHis voice was shaking.\n\n\"We fought through blood to save that man. He asks what rank we hold, hears 'commoner,' and won't even look at us!\"\n\nHe yanked his blade from its sheath.\n\n\"I won't rest until I kill him!\"\n\nHe turned and charged back toward the tent.\n\nGuan Yu reached out — Zhang Fei did not stop.\n\nLiu Bei stood behind, watching Zhang Fei's back. His face was calm.",
+            "paragraph_offset": 1,
             "paragraphs": [
+              "They saw it from a distance — the night sky burned orange, the flames lighting up half the horizon. By the time the three brothers led their men into Changshe, the fires had died. Only scorched tents and fields of dead remained.",
+              "Huangfu Song and Zhu Jun had struck on a windy night, burning the Yellow Turban camps in a single blaze. Zhang Liang and Zhang Bao fled west with the remnants.",
+              "They did not get far.",
+              "A force emerged from the darkness, red banners flying, and cut off the road. The man at its head sat seven chi tall, with narrow eyes and a neatly trimmed beard. He was young, but he carried himself differently — still on his horse, unhurried, as if he had come to close the matter.",
+              "A cavalry colonel from Qiao County in Peiguo. His name was Cao Cao. Courtesy name Mengde.",
+              "Cao Cao planted his five thousand men across the road and gave no speeches. He simply attacked. Ten thousand heads fell. Banners, drums, horses — all seized. Zhang Liang and Zhang Bao barely escaped with their lives. Cao Cao wiped his blade, looked up at the fading smoke on the horizon, and the corner of his mouth moved.",
+              "By the time Liu Bei, Guan Yu, and Zhang Fei arrived, all of this had happened without them.",
+              "They met Huangfu Song and Zhu Jun — two white-haired generals who gave Liu Bei a brief glance and little small talk. Liu Bei passed on Lu Zhi's message.",
+              "Huangfu Song said, \"Zhang Liang and Zhang Bao are spent. They'll head for Guangzong to join Zhang Jiao. Go back tonight and help your teacher.\"",
               "Liu Bei took the order. The three brothers turned their fifteen hundred men around and marched back through the night.",
               "They pushed hard. Hoofbeats echoed on the dark road for half the night. Near dawn, shapes appeared ahead.",
               "A cluster of soldiers escorting a prison cart.",
@@ -1510,7 +1505,7 @@
             ],
             "comic_placements": [
               {
-                "after_paragraph": 6,
+                "after_paragraph": 15,
                 "frames": [
                   {
                     "frame_id": "f3",
@@ -1535,7 +1530,7 @@
                 ]
               },
               {
-                "after_paragraph": 16,
+                "after_paragraph": 25,
                 "frames": [
                   {
                     "frame_id": "f4",
@@ -1544,16 +1539,16 @@
                     "items": [
                       {
                         "id": "f4_t1",
-                        "kind": "speech",
-                        "speaker": "zhang_fei",
-                        "text": "Let me cut them down and free the teacher!",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "Zhang Fei drew his blade, ready to break Lu Zhi out of the prison cart.",
                         "lang": "en"
                       },
                       {
                         "id": "f4_t2",
-                        "kind": "speech",
-                        "speaker": "liu_bei",
-                        "text": "No. The court will sort this out.",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "Liu Bei stopped him. Their teacher was taken away while they watched.",
                         "lang": "en"
                       }
                     ],
@@ -1567,7 +1562,7 @@
                 ]
               },
               {
-                "after_paragraph": 22,
+                "after_paragraph": 31,
                 "frames": [
                   {
                     "frame_id": "f5",
@@ -1576,9 +1571,9 @@
                     "items": [
                       {
                         "id": "f5_t1",
-                        "kind": "speech",
-                        "speaker": "guan_yu",
-                        "text": "General Lu is gone. There's nothing for us here — we should go home.",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "With Lu Zhi gone, Guangzong offered them no foothold. The brothers turned back toward Zhuo.",
                         "lang": "en"
                       }
                     ],
@@ -1620,16 +1615,16 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "Let me cut them down and free the teacher!",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "Zhang Fei drew his blade, ready to break Lu Zhi out of the prison cart.",
                     "lang": "en"
                   },
                   {
                     "id": "f4_t2",
-                    "kind": "speech",
-                    "speaker": "liu_bei",
-                    "text": "No. The court will sort this out.",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "Liu Bei stopped him. Their teacher was taken away while they watched.",
                     "lang": "en"
                   }
                 ],
@@ -1647,9 +1642,9 @@
                 "items": [
                   {
                     "id": "f5_t1",
-                    "kind": "speech",
-                    "speaker": "guan_yu",
-                    "text": "General Lu is gone. There's nothing for us here — we should go home.",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "With Lu Zhi gone, Guangzong offered them no foothold. The brothers turned back toward Zhuo.",
                     "lang": "en"
                   }
                 ],

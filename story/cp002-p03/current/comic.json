@@ -44,9 +44,9 @@
         "items": [
           {
             "id": "f2_t1",
-            "kind": "speech",
-            "speaker": "du_you",
-            "text": "诈称皇亲！虚报功绩！朝廷正要清理你这等滥官污吏！",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "督邮一到安喜，就把刘备当犯人审。军功、出身，都被他说成罪名。",
             "lang": "zh-CN"
           },
           {
@@ -78,9 +78,9 @@
         "items": [
           {
             "id": "f3_t1",
-            "kind": "speech",
-            "speaker": "zhang_fei",
-            "text": "害民贼！认得我么！",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "张飞听见百姓哭诉，怒火再也压不住。",
             "lang": "zh-CN"
           },
           {
@@ -112,9 +112,9 @@
         "items": [
           {
             "id": "f4_t1",
-            "kind": "speech",
-            "speaker": "liu_bei",
-            "text": "据汝害民，本当杀却。今姑饶你一命。印绶还你，从此我们走了。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "刘备饶了督邮一命，却把官印还了回去。",
             "lang": "zh-CN"
           },
           {

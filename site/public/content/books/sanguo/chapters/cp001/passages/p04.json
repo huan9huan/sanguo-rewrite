@@ -89,7 +89,7 @@
                 "id": "f1_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "五百对五万。邹靖没说话，领了令。刘备、关羽、张飞也没说话，领了兵。",
+                "text": "五百对五万。刘备、关羽、张飞没有退，带着人迎了上去。",
                 "lang": "zh-CN"
               }
             ],
@@ -109,7 +109,7 @@
                 "id": "f2_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "张飞一矛刺中邓茂心窝。程远志冲过来，关羽一刀劈成两段。快得像闪电。",
+                "text": "黄巾军的先锋刚冲出来，就被张飞和关羽连破两阵。胜负快得像闪电。",
                 "lang": "zh-CN"
               }
             ],
@@ -127,9 +127,9 @@
             "items": [
               {
                 "id": "f3_t1",
-                "kind": "speech",
-                "speaker": "liu_bei",
-                "text": "贼众我寡，硬打不行。云长埋伏山左，翼德埋伏山右。我诱敌过来，鸣金为号，三路齐出。",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "青州城下，刘备改用奇兵。关羽伏左，张飞伏右，他从正面诱敌入山。",
                 "lang": "zh-CN"
               }
             ],
@@ -167,9 +167,9 @@
             "items": [
               {
                 "id": "f5_t1",
-                "kind": "speech",
-                "speaker": "lu_zhi",
-                "text": "来了就好。",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "广宗大营里，刘备终于见到了旧日老师。",
                 "lang": "zh-CN"
               },
               {
@@ -303,7 +303,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "五百对五万。邹靖没说话，领了令。刘备、关羽、张飞也没说话，领了兵。",
+                    "text": "五百对五万。刘备、关羽、张飞没有退，带着人迎了上去。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -328,7 +328,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "张飞一矛刺中邓茂心窝。程远志冲过来，关羽一刀劈成两段。快得像闪电。",
+                    "text": "黄巾军的先锋刚冲出来，就被张飞和关羽连破两阵。胜负快得像闪电。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -352,7 +352,7 @@
                 "id": "f1_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "五百对五万。邹靖没说话，领了令。刘备、关羽、张飞也没说话，领了兵。",
+                "text": "五百对五万。刘备、关羽、张飞没有退，带着人迎了上去。",
                 "lang": "zh-CN"
               }
             ],
@@ -372,7 +372,7 @@
                 "id": "f2_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "张飞一矛刺中邓茂心窝。程远志冲过来，关羽一刀劈成两段。快得像闪电。",
+                "text": "黄巾军的先锋刚冲出来，就被张飞和关羽连破两阵。胜负快得像闪电。",
                 "lang": "zh-CN"
               }
             ],
@@ -430,9 +430,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "liu_bei",
-                    "text": "贼众我寡，硬打不行。云长埋伏山左，翼德埋伏山右。我诱敌过来，鸣金为号，三路齐出。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "青州城下，刘备改用奇兵。关羽伏左，张飞伏右，他从正面诱敌入山。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -479,9 +479,9 @@
             "items": [
               {
                 "id": "f3_t1",
-                "kind": "speech",
-                "speaker": "liu_bei",
-                "text": "贼众我寡，硬打不行。云长埋伏山左，翼德埋伏山右。我诱敌过来，鸣金为号，三路齐出。",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "青州城下，刘备改用奇兵。关羽伏左，张飞伏右，他从正面诱敌入山。",
                 "lang": "zh-CN"
               }
             ],
@@ -556,9 +556,9 @@
                 "items": [
                   {
                     "id": "f5_t1",
-                    "kind": "speech",
-                    "speaker": "lu_zhi",
-                    "text": "来了就好。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "广宗大营里，刘备终于见到了旧日老师。",
                     "lang": "zh-CN"
                   },
                   {
@@ -587,9 +587,9 @@
             "items": [
               {
                 "id": "f5_t1",
-                "kind": "speech",
-                "speaker": "lu_zhi",
-                "text": "来了就好。",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "广宗大营里，刘备终于见到了旧日老师。",
                 "lang": "zh-CN"
               },
               {
@@ -646,7 +646,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "五百对五万。邹靖没说话，领了令。刘备、关羽、张飞也没说话，领了兵。",
+                    "text": "五百对五万。刘备、关羽、张飞没有退，带着人迎了上去。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -666,7 +666,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "张飞一矛刺中邓茂心窝。程远志冲过来，关羽一刀劈成两段。快得像闪电。",
+                    "text": "黄巾军的先锋刚冲出来，就被张飞和关羽连破两阵。胜负快得像闪电。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -684,9 +684,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "liu_bei",
-                    "text": "贼众我寡，硬打不行。云长埋伏山左，翼德埋伏山右。我诱敌过来，鸣金为号，三路齐出。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "青州城下，刘备改用奇兵。关羽伏左，张飞伏右，他从正面诱敌入山。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -724,9 +724,9 @@
                 "items": [
                   {
                     "id": "f5_t1",
-                    "kind": "speech",
-                    "speaker": "lu_zhi",
-                    "text": "来了就好。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "广宗大营里，刘备终于见到了旧日老师。",
                     "lang": "zh-CN"
                   },
                   {
@@ -860,7 +860,7 @@
                         "id": "f1_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "五百对五万。邹靖没说话，领了令。刘备、关羽、张飞也没说话，领了兵。",
+                        "text": "五百对五万。刘备、关羽、张飞没有退，带着人迎了上去。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -885,7 +885,7 @@
                         "id": "f2_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "张飞一矛刺中邓茂心窝。程远志冲过来，关羽一刀劈成两段。快得像闪电。",
+                        "text": "黄巾军的先锋刚冲出来，就被张飞和关羽连破两阵。胜负快得像闪电。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -909,7 +909,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "五百对五万。邹靖没说话，领了令。刘备、关羽、张飞也没说话，领了兵。",
+                    "text": "五百对五万。刘备、关羽、张飞没有退，带着人迎了上去。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -929,7 +929,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "张飞一矛刺中邓茂心窝。程远志冲过来，关羽一刀劈成两段。快得像闪电。",
+                    "text": "黄巾军的先锋刚冲出来，就被张飞和关羽连破两阵。胜负快得像闪电。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -987,9 +987,9 @@
                     "items": [
                       {
                         "id": "f3_t1",
-                        "kind": "speech",
-                        "speaker": "liu_bei",
-                        "text": "贼众我寡，硬打不行。云长埋伏山左，翼德埋伏山右。我诱敌过来，鸣金为号，三路齐出。",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "青州城下，刘备改用奇兵。关羽伏左，张飞伏右，他从正面诱敌入山。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -1036,9 +1036,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "liu_bei",
-                    "text": "贼众我寡，硬打不行。云长埋伏山左，翼德埋伏山右。我诱敌过来，鸣金为号，三路齐出。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "青州城下，刘备改用奇兵。关羽伏左，张飞伏右，他从正面诱敌入山。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -1113,9 +1113,9 @@
                     "items": [
                       {
                         "id": "f5_t1",
-                        "kind": "speech",
-                        "speaker": "lu_zhi",
-                        "text": "来了就好。",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "广宗大营里，刘备终于见到了旧日老师。",
                         "lang": "zh-CN"
                       },
                       {
@@ -1144,9 +1144,9 @@
                 "items": [
                   {
                     "id": "f5_t1",
-                    "kind": "speech",
-                    "speaker": "lu_zhi",
-                    "text": "来了就好。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "广宗大营里，刘备终于见到了旧日老师。",
                     "lang": "zh-CN"
                   },
                   {
@@ -1199,7 +1199,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "Nobody argued. They took the order and marched.",
+                    "text": "Five hundred against fifty thousand. Liu Bei, Guan Yu, and Zhang Fei did not step back.",
                     "lang": "en"
                   }
                 ],
@@ -1219,7 +1219,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "Zhang Fei's spear found Deng Mao's heart. Guan Yu's blade split Cheng Yuanzhi in two.",
+                    "text": "The Yellow Turban vanguard charged. Zhang Fei and Guan Yu broke it almost before the battle began.",
                     "lang": "en"
                   }
                 ],
@@ -1237,9 +1237,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "liu_bei",
-                    "text": "Hide on the flanks — I'll lure them in, and when the gong sounds, we strike from three sides.",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "At Qingzhou, Liu Bei chose a trap. Guan Yu and Zhang Fei hid on the flanks while he drew the enemy in.",
                     "lang": "en"
                   }
                 ],
@@ -1277,9 +1277,9 @@
                 "items": [
                   {
                     "id": "f5_t1",
-                    "kind": "speech",
-                    "speaker": "lu_zhi",
-                    "text": "You're here. Good.",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "At Guangzong, Liu Bei finally stood before his old teacher.",
                     "lang": "en"
                   },
                   {
@@ -1368,7 +1368,7 @@
             "scene_id": "cp001_p04_s1",
             "scene_title": "消息传来：黄巾贼将程远志带五万人来犯涿郡。刘焉派邹靖带着三兄弟和五百人去迎敌。大兴山下两军照面——对面乌压压一片，但三兄弟没怕。程远志派副将邓茂出战，张飞冲出去，一矛刺中邓茂心窝。程远志见折了人亲自冲张飞，关羽纵马迎上去一刀劈成两段。群贼溃散，大胜回城。这场仗要写得快、狠、干净——三兄弟初战告捷，读者应该觉得痛快",
             "scene_type": "combat",
-            "text": "A few days later, word came.\n\nA Yellow Turban commander named Cheng Yuanzhi was marching on Zhuo County with fifty thousand men.\n\nGovernor Liu Yan sat in his hall, his face grim. Fifty thousand — Youzhou did not have the troops to fill that hole. He thought for a moment, then called Zou Jing and ordered him to lead Liu Bei and the other two with their five hundred recruits to meet the enemy.\n\nFive hundred against fifty thousand.\n\nZou Jing said nothing and took the order. Liu Bei, Guan Yu, and Zhang Fei said nothing and took the troops.\n\nDaxing Mountain.\n\nThe two forces met at the foot of the hills.\n\nThe Yellow Turbans spread across the valley, dark and endless. Every man had his hair loose, a strip of yellow cloth tied around his forehead, gripping whatever he could find — hoes, hatchets, sharpened sticks, and some proper spears. Not trained soldiers. But there were a lot of them.\n\nLiu Bei sat on his horse, Guan Yu on the left, Zhang Fei on the right. Five hundred men stood behind them in a ragged line.\n\nHe did not shout. He did not curse. He glanced at the mass across the field, then at Guan Yu and Zhang Fei.\n\nGuan Yu's hand rested on the hilt of his Frostfair Blade. Steady.\n\nZhang Fei had his spear raised, the tip pointed forward, taut as a bowstring.\n\nA rider burst from the enemy ranks, spear leveled. Cheng Yuanzhi's lieutenant — Deng Mao.\n\nLiu Bei's gaze shifted from Deng Mao to Zhang Fei. A slight nod.\n\nZhang Fei moved.\n\nHis black horse surged forward, the eighteen-chi spear driving ahead — fast as a snake striking from the grass. Deng Mao's spear had not begun to rise before the point punched through his chest. He toppled from his horse and did not move.\n\nZhang Fei yanked the spear free and flicked it. Blood scattered across the grass.\n\nCheng Yuanzhi saw it from the rear. His eyes went red. He spurred his horse, raised his blade, and charged straight at Zhang Fei.\n\nZhang Fei was about to meet him when a flash of steel swept past from his right.\n\nGuan Yu's horse was faster than expected. The Green Dragon Crescent swept horizontally — Cheng Yuanzhi's blade was still halfway up when the edge caught him across the shoulder and neck.\n\nOne cut. Clean through.\n\nCheng Yuanzhi went down, horse and all.\n\nGuan Yu collected his blade without a glance at the body. He wheeled his horse around, rode back to Liu Bei's side, and rested the halberd across his shoulder.\n\nFifty thousand men stood frozen.",
+            "text": "A few days later, word came.\n\nA Yellow Turban commander named Cheng Yuanzhi was marching on Zhuo County with fifty thousand men.\n\nGovernor Liu Yan sat in his hall, his face grim. Fifty thousand — Youzhou did not have the troops to fill that hole. He thought for a moment, then called Zou Jing and ordered him to lead Liu Bei and the other two with their five hundred recruits to meet the enemy.\n\nFive hundred against fifty thousand.\n\nZou Jing said nothing and took the order. Liu Bei, Guan Yu, and Zhang Fei said nothing and took the troops.\n\nDaxing Mountain.\n\nThe two forces met at the foot of the hills.\n\nThe Yellow Turbans spread across the valley, dark and endless. Every man had his hair loose, a strip of yellow cloth tied around his forehead, gripping whatever he could find — hoes, hatchets, sharpened sticks, and some proper spears. Not trained soldiers. But there were a lot of them.\n\nLiu Bei sat on his horse, Guan Yu on the left, Zhang Fei on the right. Five hundred men stood behind them in a ragged line.\n\nHe did not shout. He did not curse. He glanced at the mass across the field, then at Guan Yu and Zhang Fei.\n\nGuan Yu's hand rested on the hilt of his Frostfair Blade. Steady.\n\nZhang Fei had his spear raised, the tip pointed forward, taut as a bowstring.\n\nA rider burst from the enemy ranks, spear leveled. Cheng Yuanzhi's lieutenant — Deng Mao.\n\nLiu Bei's gaze shifted from Deng Mao to Zhang Fei. A slight nod.\n\nZhang Fei moved.\n\nHis black horse surged forward, the eighteen-chi spear driving ahead — fast as a snake striking from the grass. Deng Mao's spear had not begun to rise before the point punched through his chest. He toppled from his horse and did not move.\n\nZhang Fei yanked the spear free and flicked it. Blood scattered across the grass.\n\nCheng Yuanzhi saw it from the rear. His eyes went red. He spurred his horse, raised his blade, and charged straight at Zhang Fei.\n\nZhang Fei was about to meet him when a flash of steel swept past from his right.\n\nGuan Yu's horse was faster than expected. The Green Dragon Crescent swept horizontally — Cheng Yuanzhi's blade was still halfway up when the edge caught him across the shoulder and neck.\n\nOne cut. Clean through.\n\nCheng Yuanzhi went down, horse and all.\n\nGuan Yu collected his blade without a glance at the body. He wheeled his horse around, rode back to Liu Bei's side, and rested the halberd across his shoulder.\n\nFifty thousand men stood frozen.\n\nTheir leader was dead. Their lieutenant was dead. A few seconds of silence, and then the retreat began — one man, two men, then a whole wave, then everyone running. Weapons scattered across the ground, yellow headcloths littered the road.\n\nLiu Bei raised his sword and surged forward.\n\nFive hundred men charged after them. They chased for miles. The number of surrenders was beyond counting.\n\nBack in Youzhou City, Governor Liu Yan came out to meet them in person.\n\nWine, meat, silver — all given. Five hundred recruits, their first victory, every face bright.",
             "paragraph_offset": 0,
             "paragraphs": [
               "A few days later, word came.",
@@ -1394,7 +1394,12 @@
               "One cut. Clean through.",
               "Cheng Yuanzhi went down, horse and all.",
               "Guan Yu collected his blade without a glance at the body. He wheeled his horse around, rode back to Liu Bei's side, and rested the halberd across his shoulder.",
-              "Fifty thousand men stood frozen."
+              "Fifty thousand men stood frozen.",
+              "Their leader was dead. Their lieutenant was dead. A few seconds of silence, and then the retreat began — one man, two men, then a whole wave, then everyone running. Weapons scattered across the ground, yellow headcloths littered the road.",
+              "Liu Bei raised his sword and surged forward.",
+              "Five hundred men charged after them. They chased for miles. The number of surrenders was beyond counting.",
+              "Back in Youzhou City, Governor Liu Yan came out to meet them in person.",
+              "Wine, meat, silver — all given. Five hundred recruits, their first victory, every face bright."
             ],
             "comic_placements": [
               {
@@ -1409,7 +1414,7 @@
                         "id": "f1_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "Nobody argued. They took the order and marched.",
+                        "text": "Five hundred against fifty thousand. Liu Bei, Guan Yu, and Zhang Fei did not step back.",
                         "lang": "en"
                       }
                     ],
@@ -1434,7 +1439,7 @@
                         "id": "f2_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "Zhang Fei's spear found Deng Mao's heart. Guan Yu's blade split Cheng Yuanzhi in two.",
+                        "text": "The Yellow Turban vanguard charged. Zhang Fei and Guan Yu broke it almost before the battle began.",
                         "lang": "en"
                       }
                     ],
@@ -1458,7 +1463,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "Nobody argued. They took the order and marched.",
+                    "text": "Five hundred against fifty thousand. Liu Bei, Guan Yu, and Zhang Fei did not step back.",
                     "lang": "en"
                   }
                 ],
@@ -1478,7 +1483,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "Zhang Fei's spear found Deng Mao's heart. Guan Yu's blade split Cheng Yuanzhi in two.",
+                    "text": "The Yellow Turban vanguard charged. Zhang Fei and Guan Yu broke it almost before the battle began.",
                     "lang": "en"
                   }
                 ],
@@ -1496,14 +1501,9 @@
             "scene_id": "cp001_p04_s2",
             "scene_title": "大兴山胜后不久，青州太守龚景来求救——黄巾围城将破。刘备主动请缨。邹靖带五千人同往。但到了青州一交手，贼众兵多，打不过，退了三十里下寨。关羽和张飞不说话，等刘备拿主意。刘备说：贼众我寡，得用奇兵——关羽带一千人埋伏山左，张飞带一千人埋伏山右，我和邹靖正面诱敌，鸣金为号。次日依计行事，三路夹攻大破贼军，解了青州之围。这场仗要写出刘备的冷静和判断力",
             "scene_type": "tactical",
-            "text": "Their leader was dead. Their lieutenant was dead. A few seconds of silence, and then the retreat began — one man, two men, then a whole wave, then everyone running. Weapons scattered across the ground, yellow headcloths littered the road.\n\nLiu Bei raised his sword and surged forward.\n\nFive hundred men charged after them. They chased for miles. The number of surrenders was beyond counting.\n\nBack in Youzhou City, Governor Liu Yan came out to meet them in person.\n\nWine, meat, silver — all given. Five hundred recruits, their first victory, every face bright.\n\nBut good news lasted only two days.\n\nAn urgent dispatch arrived at the governor's mansion — Gong Jing, governor of Qingzhou, begging for help. Yellow Turbans had surrounded the city, and the walls were about to fall.\n\nLiu Yan called Liu Bei in and showed him the message.\n\nLiu Bei read it and said four words: \"I will go.\"\n\nLiu Yan nodded. He sent Zou Jing with five thousand soldiers to join the three brothers and march on Qingzhou.\n\nWhen they reached Qingzhou, fire flickered on the city walls from a distance. The rebel camps spread around the city, tents packed so tight there was no end in sight.\n\nZou Jing ordered an assault.\n\nThe first charge told them everything they needed to know. Too many rebels. Five thousand men surged in, and the enemy swell swallowed them whole. After a hard fight, Liu Bei told Zou Jing to pull back. They fell back thirty li and made camp.\n\nThat night, a single oil lamp burned in the command tent.\n\nGuan Yu and Zhang Fei sat to the side, silent. Waiting for Liu Bei to think it through.\n\nLiu Bei stared at the map for a long time. He traced two lines with his finger.\n\n\"We're outnumbered. A straight fight won't work. We need surprise.\"\n\nHe looked up at Guan Yu. \"Tomorrow, you take a thousand men and hide on the left side of the hills.\"\n\nThen at Zhang Fei. \"You take a thousand and hide on the right.\"\n\n\"Zou Jing and I push from the front and draw them out. When they chase us past the ridge, I sound the gong — and you both hit them from the sides.\"\n\nGuan Yu nodded. Zhang Fei cracked a grin.\n\nThe next day.\n\nLiu Bei and Zou Jing led their troops forward, drums beating, straight toward the Qingzhou walls. The rebels came out to fight. Liu Bei engaged for a stretch, then turned and ran.\n\nThe rebels chased.\n\nThe moment they crossed the ridge, a gong rang out.\n\nGuan Yu burst from the left, the Green Dragon Crescent sweeping. Zhang Fei burst from the right, the eighteen-chi spear thrusting. Liu Bei turned and charged back in.\n\nThree forces struck at once, like three blades falling together.\n\nRebels crowded from every direction — no one knew which way to run. The formation collapsed into a rout, driven all the way back toward the city walls. Inside, Gong Jing saw the fighting and led his militia out to join the attack.\n\nThe Yellow Turbans scattered completely. Qingzhou was saved.\n\nQingzhou was settled. Zou Jing prepared to march his troops back to Youzhou.\n\nWhen Liu Bei took his leave, he raised another matter.\n\n\"I've heard that the general Lu Zhi is at Guangzong, facing Zhang Jiao's main force. I studied under him once. I'd like to go and lend a hand.\"\n\nZou Jing nodded and led his troops home.\n\nLiu Bei, Guan Yu, and Zhang Fei took their five hundred men and headed for Guangzong.\n\nAfter a few days on the road, they reached Lu Zhi's camp.\n\nTents stretched in long rows. Fifty thousand government troops sat outside Guangzong, and across from them — Zhang Jiao's hundred and fifty thousand. Both sides held. Neither moved.\n\nLiu Bei entered the command tent, bowed, and gave his name and purpose.\n\nA man sat at the head of the tent — hair half white, posture straight, eyes sharp as blades.\n\nLu Zhi.\n\nHe looked at Liu Bei — the face first, then the twin swords, then the red face with the long beard and the leopard eyes next to him. He paused.\n\n\"You — Xuande?\"\n\n\"Teacher.\"\n\nLu Zhi stood, walked up to Liu Bei, and clapped him on the shoulder. He did not say much. Two words:\n\n\"You're here. Good.\"\n\nLiu Bei, Guan Yu, and Zhang Fei were assigned to the command tent, awaiting orders.\n\nBut Lu Zhi's position was not easy. A hundred and fifty thousand Yellow Turbans pressed against Guangzong, and his fifty thousand could only hold. He told Liu Bei: Zhang Jiao's brothers Zhang Liang and Zhang Bao led another force at Yingchuan, facing Huangfu Song and Zhu Jun.\n\n\"Take your five hundred men. I'll give you another thousand government troops. Go to Yingchuan, scout the situation, and coordinate the attack.\"\n\nLiu Bei took the order.\n\nThat night, the three brothers left the Guangzong camp with fifteen hundred men and marched toward Yingchuan.\n\nDark road, long night. Five hundred men from Zhuo County — from the peach orchard to Daxing Mountain, from Daxing Mountain to Qingzhou, from Qingzhou to here.",
-            "paragraph_offset": 24,
+            "text": "But good news lasted only two days.\n\nAn urgent dispatch arrived at the governor's mansion — Gong Jing, governor of Qingzhou, begging for help. Yellow Turbans had surrounded the city, and the walls were about to fall.\n\nLiu Yan called Liu Bei in and showed him the message.\n\nLiu Bei read it and said four words: \"I will go.\"\n\nLiu Yan nodded. He sent Zou Jing with five thousand soldiers to join the three brothers and march on Qingzhou.\n\nWhen they reached Qingzhou, fire flickered on the city walls from a distance. The rebel camps spread around the city, tents packed so tight there was no end in sight.\n\nZou Jing ordered an assault.\n\nThe first charge told them everything they needed to know. Too many rebels. Five thousand men surged in, and the enemy swell swallowed them whole. After a hard fight, Liu Bei told Zou Jing to pull back. They fell back thirty li and made camp.\n\nThat night, a single oil lamp burned in the command tent.\n\nGuan Yu and Zhang Fei sat to the side, silent. Waiting for Liu Bei to think it through.\n\nLiu Bei stared at the map for a long time. He traced two lines with his finger.\n\n\"We're outnumbered. A straight fight won't work. We need surprise.\"\n\nHe looked up at Guan Yu. \"Tomorrow, you take a thousand men and hide on the left side of the hills.\"\n\nThen at Zhang Fei. \"You take a thousand and hide on the right.\"\n\n\"Zou Jing and I push from the front and draw them out. When they chase us past the ridge, I sound the gong — and you both hit them from the sides.\"\n\nGuan Yu nodded. Zhang Fei cracked a grin.\n\nThe next day.\n\nLiu Bei and Zou Jing led their troops forward, drums beating, straight toward the Qingzhou walls. The rebels came out to fight. Liu Bei engaged for a stretch, then turned and ran.\n\nThe rebels chased.\n\nThe moment they crossed the ridge, a gong rang out.\n\nGuan Yu burst from the left, the Green Dragon Crescent sweeping. Zhang Fei burst from the right, the eighteen-chi spear thrusting. Liu Bei turned and charged back in.\n\nThree forces struck at once, like three blades falling together.\n\nRebels crowded from every direction — no one knew which way to run. The formation collapsed into a rout, driven all the way back toward the city walls. Inside, Gong Jing saw the fighting and led his militia out to join the attack.\n\nThe Yellow Turbans scattered completely. Qingzhou was saved.\n\nQingzhou was settled. Zou Jing prepared to march his troops back to Youzhou.\n\nWhen Liu Bei took his leave, he raised another matter.\n\n\"I've heard that the general Lu Zhi is at Guangzong, facing Zhang Jiao's main force. I studied under him once. I'd like to go and lend a hand.\"\n\nZou Jing nodded and led his troops home.\n\nLiu Bei, Guan Yu, and Zhang Fei took their five hundred men and headed for Guangzong.\n\nAfter a few days on the road, they reached Lu Zhi's camp.\n\nTents stretched in long rows. Fifty thousand government troops sat outside Guangzong, and across from them — Zhang Jiao's hundred and fifty thousand. Both sides held. Neither moved.\n\nLiu Bei entered the command tent, bowed, and gave his name and purpose.\n\nA man sat at the head of the tent — hair half white, posture straight, eyes sharp as blades.\n\nLu Zhi.\n\nHe looked at Liu Bei — the face first, then the twin swords, then the red face with the long beard and the leopard eyes next to him. He paused.\n\n\"You — Xuande?\"\n\n\"Teacher.\"\n\nLu Zhi stood, walked up to Liu Bei, and clapped him on the shoulder. He did not say much. Two words:\n\n\"You're here. Good.\"\n\nLiu Bei, Guan Yu, and Zhang Fei were assigned to the command tent, awaiting orders.\n\nBut Lu Zhi's position was not easy. A hundred and fifty thousand Yellow Turbans pressed against Guangzong, and his fifty thousand could only hold. He told Liu Bei: Zhang Jiao's brothers Zhang Liang and Zhang Bao led another force at Yingchuan, facing Huangfu Song and Zhu Jun.\n\n\"Take your five hundred men. I'll give you another thousand government troops. Go to Yingchuan, scout the situation, and coordinate the attack.\"\n\nLiu Bei took the order.\n\nThat night, the three brothers left the Guangzong camp with fifteen hundred men and marched toward Yingchuan.\n\nDark road, long night. Five hundred men from Zhuo County — from the peach orchard to Daxing Mountain, from Daxing Mountain to Qingzhou, from Qingzhou to here.",
+            "paragraph_offset": 29,
             "paragraphs": [
-              "Their leader was dead. Their lieutenant was dead. A few seconds of silence, and then the retreat began — one man, two men, then a whole wave, then everyone running. Weapons scattered across the ground, yellow headcloths littered the road.",
-              "Liu Bei raised his sword and surged forward.",
-              "Five hundred men charged after them. They chased for miles. The number of surrenders was beyond counting.",
-              "Back in Youzhou City, Governor Liu Yan came out to meet them in person.",
-              "Wine, meat, silver — all given. Five hundred recruits, their first victory, every face bright.",
               "But good news lasted only two days.",
               "An urgent dispatch arrived at the governor's mansion — Gong Jing, governor of Qingzhou, begging for help. Yellow Turbans had surrounded the city, and the walls were about to fall.",
               "Liu Yan called Liu Bei in and showed him the message.",
@@ -1552,7 +1552,7 @@
             ],
             "comic_placements": [
               {
-                "after_paragraph": 19,
+                "after_paragraph": 14,
                 "frames": [
                   {
                     "frame_id": "f3",
@@ -1561,9 +1561,9 @@
                     "items": [
                       {
                         "id": "f3_t1",
-                        "kind": "speech",
-                        "speaker": "liu_bei",
-                        "text": "Hide on the flanks — I'll lure them in, and when the gong sounds, we strike from three sides.",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "At Qingzhou, Liu Bei chose a trap. Guan Yu and Zhang Fei hid on the flanks while he drew the enemy in.",
                         "lang": "en"
                       }
                     ],
@@ -1577,7 +1577,7 @@
                 ]
               },
               {
-                "after_paragraph": 28,
+                "after_paragraph": 23,
                 "frames": [
                   {
                     "frame_id": "f4",
@@ -1610,9 +1610,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "liu_bei",
-                    "text": "Hide on the flanks — I'll lure them in, and when the gong sounds, we strike from three sides.",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "At Qingzhou, Liu Bei chose a trap. Guan Yu and Zhang Fei hid on the flanks while he drew the enemy in.",
                     "lang": "en"
                   }
                 ],
@@ -1666,9 +1666,9 @@
                     "items": [
                       {
                         "id": "f5_t1",
-                        "kind": "speech",
-                        "speaker": "lu_zhi",
-                        "text": "You're here. Good.",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "At Guangzong, Liu Bei finally stood before his old teacher.",
                         "lang": "en"
                       },
                       {
@@ -1697,9 +1697,9 @@
                 "items": [
                   {
                     "id": "f5_t1",
-                    "kind": "speech",
-                    "speaker": "lu_zhi",
-                    "text": "You're here. Good.",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "At Guangzong, Liu Bei finally stood before his old teacher.",
                     "lang": "en"
                   },
                   {

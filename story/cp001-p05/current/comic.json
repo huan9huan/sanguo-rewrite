@@ -98,16 +98,16 @@
         "items": [
           {
             "id": "f4_t1",
-            "kind": "speech",
-            "speaker": "zhang_fei",
-            "text": "待我杀了这些人，救出老师！",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "张飞怒到拔刀，要劫车救出卢植。",
             "lang": "zh-CN"
           },
           {
             "id": "f4_t2",
-            "kind": "speech",
-            "speaker": "liu_bei",
-            "text": "不可造次。朝廷自有公论。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "刘备拦住了他。老师被押走，三兄弟只能看着。",
             "lang": "zh-CN"
           }
         ]
@@ -132,9 +132,9 @@
         "items": [
           {
             "id": "f5_t1",
-            "kind": "speech",
-            "speaker": "guan_yu",
-            "text": "卢中郎已去，别人领兵我们无所依，不如先回涿郡。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "卢植已去，广宗无处可依。三兄弟转身回涿郡，路上又遇见战火。",
             "lang": "zh-CN"
           }
         ]

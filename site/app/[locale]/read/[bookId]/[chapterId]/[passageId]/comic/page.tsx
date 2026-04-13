@@ -5,7 +5,8 @@ import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { getDictionary } from "@/i18n";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
-import { buildBookHref, buildChapterHref, buildPassageHref } from "@/lib/paths";
+import { resolveLocalizedPassage } from "@/lib/locale";
+import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -60,7 +61,14 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
     notFound();
   }
 
+  const chapterPassages = Array.isArray(chapter.passages) ? chapter.passages : [];
+  const currentIndex = chapterPassages.findIndex((item) => item.passage_id === passage.passage_id);
+  const previousPassage = currentIndex > 0 ? chapterPassages[currentIndex - 1] : null;
+  const nextPassage = currentIndex >= 0 && currentIndex < chapterPassages.length - 1 ? chapterPassages[currentIndex + 1] : null;
+
   const isEn = safeLocale === "en";
+  const localized = resolveLocalizedPassage(passage, safeLocale);
+  const comicFrames = localized?.reading?.comic?.layout?.frames;
   const bookTitle = isEn && book.title_en ? book.title_en : book.title;
   const chapterLabel = isEn && chapter.display_title_en ? chapter.display_title_en : (chapter.adapted_title_cn || chapter.source_title);
 
@@ -79,28 +87,38 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
       <section className="section">
         <div className="container passage-single-column">
           <article className="passage-main reader-card">
-            <p className="eyebrow">{bookTitle}</p>
-            <h1 className="section-title passage-page-title">{passage.title}</h1>
-            <p className="section-copy">
-              {t.comic.description}
-            </p>
-            <div className="reader-card-actions">
-              <Link className="button-link" href={buildPassageHref({ bookId, chapterId, passageId }, safeLocale)}>
-                {t.common.backToText}
-              </Link>
-              <Link className="button-link button-link-accent" href={buildChapterHref(bookId, chapterId, safeLocale)}>
-                {t.common.backToChapter}
-              </Link>
-            </div>
-
             <ComicImageBlock
               passage={passage}
+              frames={comicFrames}
               passageHref={buildPassageHref({ bookId, chapterId, passageId }, safeLocale)}
               locale={safeLocale === "en" ? "en" : "zh-CN"}
               routeParams={{ bookId, chapterId, passageId }}
             />
 
             <PassageFeedback mode="comic" passagePath={{ bookId, chapterId, passageId }} locale={safeLocale} />
+
+            <div className="passage-footer-nav">
+              {previousPassage ? (
+                <Link
+                  className="text-nav-link"
+                  href={buildComicHref({ bookId, chapterId, passageId: previousPassage.passage_id }, safeLocale)}
+                >
+                  {t.common.previous}
+                </Link>
+              ) : (
+                <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId, safeLocale)}>
+                  {t.common.backToChapter}
+                </Link>
+              )}
+              {nextPassage ? (
+                <Link
+                  className="button-link button-link-accent"
+                  href={buildComicHref({ bookId, chapterId, passageId: nextPassage.passage_id }, safeLocale)}
+                >
+                  {t.common.next}
+                </Link>
+              ) : null}
+            </div>
           </article>
         </div>
       </section>

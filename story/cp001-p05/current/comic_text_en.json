@@ -49,15 +49,15 @@
       "items": [
         {
           "id": "f4_t1",
-          "kind": "speech",
-          "speaker": "zhang_fei",
-          "text": "Let me cut them down and free the teacher!"
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Zhang Fei drew his blade, ready to break Lu Zhi out of the prison cart."
         },
         {
           "id": "f4_t2",
-          "kind": "speech",
-          "speaker": "liu_bei",
-          "text": "No. The court will sort this out."
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Liu Bei stopped him. Their teacher was taken away while they watched."
         }
       ]
     },
@@ -68,9 +68,9 @@
       "items": [
         {
           "id": "f5_t1",
-          "kind": "speech",
-          "speaker": "guan_yu",
-          "text": "General Lu is gone. There's nothing for us here — we should go home."
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "With Lu Zhi gone, Guangzong offered them no foothold. The brothers turned back toward Zhuo."
         }
       ]
     }
