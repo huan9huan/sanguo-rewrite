@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { cache } from "react";
 import type { BookManifest, BookMeta, ChapterManifest, Passage, SiteData } from "@/lib/types";
 import {
@@ -21,7 +22,28 @@ type ContentManifest = {
 };
 
 const LOCAL_CONTENT_DIR = path.join(process.cwd(), "public", "content");
-const CONTENT_BASE_URL = process.env.CONTENT_BASE_URL?.replace(/\/$/, "") ?? null;
+const DEFAULT_REMOTE_CONTENT_BASE_URL = "https://storage.googleapis.com/zh-books";
+
+function getContentBaseUrl(): string | null {
+  const processValue = process.env.CONTENT_BASE_URL?.replace(/\/$/, "");
+  if (processValue) {
+    return processValue;
+  }
+
+  try {
+    const { env } = getCloudflareContext();
+    const cloudflareEnv = env as Record<string, unknown>;
+    const cloudflareValue =
+      typeof cloudflareEnv.CONTENT_BASE_URL === "string" ? cloudflareEnv.CONTENT_BASE_URL.replace(/\/$/, "") : "";
+    if (cloudflareValue) {
+      return cloudflareValue;
+    }
+  } catch {
+    // Cloudflare vars are not always exposed through process.env in the Worker bundle.
+  }
+
+  return process.env.NODE_ENV === "development" ? null : DEFAULT_REMOTE_CONTENT_BASE_URL;
+}
 
 async function fileExists(filePath: string): Promise<boolean> {
   try {
@@ -37,12 +59,16 @@ async function readLocalJson<T>(filePath: string): Promise<T> {
 }
 
 async function readRemoteJson<T>(relativePath: string): Promise<T> {
-  if (!CONTENT_BASE_URL) {
+  const contentBaseUrl = getContentBaseUrl();
+  if (!contentBaseUrl) {
     throw new Error("CONTENT_BASE_URL is not configured");
   }
 
-  const response = await fetch(`${CONTENT_BASE_URL}/${relativePath}`, {
-    next: { revalidate: 60 },
+  const url = new URL(`${contentBaseUrl}/${relativePath}`);
+  url.searchParams.set("v", Date.now().toString());
+
+  const response = await fetch(url, {
+    cache: "no-store",
   });
 
   if (!response.ok) {
@@ -54,11 +80,22 @@ async function readRemoteJson<T>(relativePath: string): Promise<T> {
 
 async function readExportJson<T>(relativePath: string): Promise<T | null> {
   const filePath = path.join(LOCAL_CONTENT_DIR, ...relativePath.split("/"));
+  if (getContentBaseUrl()) {
+    try {
+      return await readRemoteJson<T>(relativePath);
+    } catch {
+      if (await fileExists(filePath)) {
+        return readLocalJson<T>(filePath);
+      }
+      return null;
+    }
+  }
+
   if (await fileExists(filePath)) {
     return readLocalJson<T>(filePath);
   }
 
-  if (CONTENT_BASE_URL) {
+  if (getContentBaseUrl()) {
     return readRemoteJson<T>(relativePath);
   }
 
@@ -66,8 +103,9 @@ async function readExportJson<T>(relativePath: string): Promise<T | null> {
 }
 
 function resolveContentAssetUrl(relativePath: string): string {
-  if (CONTENT_BASE_URL) {
-    return `${CONTENT_BASE_URL}/${relativePath}`;
+  const contentBaseUrl = getContentBaseUrl();
+  if (contentBaseUrl) {
+    return `${contentBaseUrl}/${relativePath}`;
   }
   return `/content/${relativePath}`;
 }

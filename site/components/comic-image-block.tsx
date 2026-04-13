@@ -89,13 +89,8 @@ function formatComicText(frame: ComicFrame, locale?: string): string {
   }
   return items
     .map((item) => (item.kind === "speech" ? `“${item.text}”` : item.text))
-    .map((text) =>
-      text
-        .replace(/([。！？!?][”"」』）】]*)/g, "$1\n")
-        .replace(/\n{2,}/g, "\n")
-        .trim()
-    )
-    .join("\n")
+    .map((text) => text.replace(/\s+/g, " ").trim())
+    .join(" ")
     .trim();
 }
 

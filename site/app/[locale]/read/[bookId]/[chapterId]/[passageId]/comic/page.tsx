@@ -11,6 +11,8 @@ import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
 
+export const dynamic = "force-dynamic";
+
 type LocaleComicPageProps = {
   params: Promise<{
     locale: string;

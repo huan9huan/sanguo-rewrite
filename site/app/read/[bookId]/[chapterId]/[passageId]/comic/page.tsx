@@ -7,6 +7,8 @@ import { getDictionary } from "@/i18n";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
 
+export const dynamic = "force-dynamic";
+
 type ComicPageProps = {
   params: Promise<{
     bookId: string;
