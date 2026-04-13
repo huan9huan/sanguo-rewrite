@@ -21,6 +21,15 @@ type ContentManifest = {
   memory: SiteData["memory"];
 };
 
+export type ChapterRouteParam = {
+  bookId: string;
+  chapterId: string;
+};
+
+export type PassageRouteParam = ChapterRouteParam & {
+  passageId: string;
+};
+
 const LOCAL_CONTENT_DIR = path.join(process.cwd(), "public", "content");
 const DEFAULT_REMOTE_CONTENT_BASE_URL = "https://storage.googleapis.com/zh-books";
 
@@ -216,6 +225,58 @@ export const getChapterById = cache(async function getChapterById(bookId: string
   }
 
   return getRepoChapterById(bookId, chapterId);
+});
+
+export const getStaticChapterRouteParams = cache(async function getStaticChapterRouteParams(): Promise<ChapterRouteParam[]> {
+  const books = await getAllBooks();
+  const params = await Promise.all(
+    books.map(async (book) => {
+      const manifest = await getExportedBook(book.id);
+      if (manifest) {
+        return manifest.chapters.map((chapter) => ({
+          bookId: book.id,
+          chapterId: chapter.id,
+        }));
+      }
+
+      const repoBook = await getRepoBookById(book.id);
+      return (repoBook?.chapters ?? []).map((chapter) => ({
+        bookId: book.id,
+        chapterId: chapter.id,
+      }));
+    })
+  );
+
+  return params.flat();
+});
+
+export const getStaticPassageRouteParams = cache(async function getStaticPassageRouteParams(): Promise<PassageRouteParam[]> {
+  const books = await getAllBooks();
+  const params = await Promise.all(
+    books.map(async (book) => {
+      const manifest = await getExportedBook(book.id);
+      if (manifest) {
+        return manifest.chapters.flatMap((chapter) =>
+          chapter.passage_ids.map((passageId) => ({
+            bookId: book.id,
+            chapterId: chapter.id,
+            passageId: passageId.split("-").pop() ?? passageId,
+          }))
+        );
+      }
+
+      const repoBook = await getRepoBookById(book.id);
+      return (repoBook?.chapters ?? []).flatMap((chapter) =>
+        chapter.passage_ids.map((passageId) => ({
+          bookId: book.id,
+          chapterId: chapter.id,
+          passageId: passageId.split("-").pop() ?? passageId,
+        }))
+      );
+    })
+  );
+
+  return params.flat();
 });
 
 export const getAllPassages = cache(async function getAllPassages(): Promise<Passage[]> {
