@@ -4,7 +4,7 @@ import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { getDictionary } from "@/i18n";
-import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
+import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
 
 export const dynamic = "force-dynamic";
@@ -16,29 +16,6 @@ type ComicPageProps = {
     passageId: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  const books = await getAllBooks();
-  const params = await Promise.all(
-    books.map(async (book) => {
-      const manifest = await getBookById(book.id);
-      const chapterParams = await Promise.all(
-        (manifest?.chapters ?? []).map(async (chapter) => {
-          const chapterManifest = await getChapterById(book.id, chapter.id);
-          return (chapterManifest?.passages ?? []).map((passage) => ({
-            bookId: book.id,
-            chapterId: chapter.id,
-            passageId: passage.passage_id,
-          }));
-        })
-      );
-
-      return chapterParams.flat();
-    })
-  );
-
-  return params.flat();
-}
 
 export default async function PassageComicPage({ params }: ComicPageProps) {
   const { bookId, chapterId, passageId } = await params;

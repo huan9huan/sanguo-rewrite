@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ModeHeader } from "@/components/mode-header";
 import { getDictionary } from "@/i18n";
 import { formatChapterTitle } from "@/lib/chapter-title";
-import { getAllBooks, getBookById, getChapterById } from "@/lib/content";
+import { getBookById, getChapterById } from "@/lib/content";
 import { buildComicHref, buildPassageHref } from "@/lib/paths";
 import type { Locale } from "@/lib/types";
 
@@ -16,24 +16,6 @@ type LocaleChapterPageProps = {
     chapterId: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  const books = await getAllBooks();
-  const params = await Promise.all(
-    books.map(async (book) => {
-      const manifest = await getBookById(book.id);
-      return (manifest?.chapters ?? []).flatMap((chapter) =>
-        VALID_LOCALES.map((locale) => ({
-          locale,
-          bookId: book.id,
-          chapterId: chapter.id,
-        }))
-      );
-    })
-  );
-
-  return params.flat();
-}
 
 export default async function LocaleChapterPage({ params }: LocaleChapterPageProps) {
   const { locale, bookId, chapterId } = await params;

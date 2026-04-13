@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import { ModeHeader } from "@/components/mode-header";
 import { getDictionary } from "@/i18n";
 import { formatChapterTitle } from "@/lib/chapter-title";
-import { getAllBooks, getBookById, getChapterById } from "@/lib/content";
+import { getBookById, getChapterById } from "@/lib/content";
 import { buildComicHref, buildPassageHref } from "@/lib/paths";
 
 type ChapterPageProps = {
@@ -12,21 +12,6 @@ type ChapterPageProps = {
     chapterId: string;
   }>;
 };
-
-export async function generateStaticParams() {
-  const books = await getAllBooks();
-  const params = await Promise.all(
-    books.map(async (book) => {
-      const manifest = await getBookById(book.id);
-      return (manifest?.chapters ?? []).map((chapter) => ({
-        bookId: book.id,
-        chapterId: chapter.id,
-      }));
-    })
-  );
-
-  return params.flat();
-}
 
 export default async function ChapterPage({ params }: ChapterPageProps) {
   const { bookId, chapterId } = await params;
