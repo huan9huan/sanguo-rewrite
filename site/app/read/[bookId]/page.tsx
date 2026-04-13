@@ -9,11 +9,6 @@ type BookPageProps = {
   }>;
 };
 
-export async function generateStaticParams() {
-  const books = await getAllBooks();
-  return books.map((book) => ({ bookId: book.id }));
-}
-
 export default async function BookPage({ params }: BookPageProps) {
   const { bookId } = await params;
   const book = await getBookById(bookId);

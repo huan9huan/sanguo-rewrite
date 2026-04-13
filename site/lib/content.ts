@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { cache } from "react";
 import type { BookManifest, BookMeta, ChapterManifest, Passage, SiteData } from "@/lib/types";
 import {
@@ -21,7 +22,36 @@ type ContentManifest = {
 };
 
 const LOCAL_CONTENT_DIR = path.join(process.cwd(), "public", "content");
-const CONTENT_BASE_URL = process.env.CONTENT_BASE_URL?.replace(/\/$/, "") ?? null;
+const DEFAULT_REMOTE_CONTENT_BASE_URL = "https://storage.googleapis.com/zh-books";
+
+function shouldAllowRepoFallback(): boolean {
+  return process.env.NODE_ENV === "development";
+}
+
+function assertExportedContentAvailable(): never {
+  throw new Error("Exported content is unavailable in production");
+}
+
+function getContentBaseUrl(): string | null {
+  const processValue = process.env.CONTENT_BASE_URL?.replace(/\/$/, "");
+  if (processValue) {
+    return processValue;
+  }
+
+  try {
+    const { env } = getCloudflareContext();
+    const cloudflareEnv = env as Record<string, unknown>;
+    const cloudflareValue =
+      typeof cloudflareEnv.CONTENT_BASE_URL === "string" ? cloudflareEnv.CONTENT_BASE_URL.replace(/\/$/, "") : "";
+    if (cloudflareValue) {
+      return cloudflareValue;
+    }
+  } catch {
+    // Cloudflare vars are not always exposed through process.env in the Worker bundle.
+  }
+
+  return process.env.NODE_ENV === "development" ? null : DEFAULT_REMOTE_CONTENT_BASE_URL;
+}
 
 async function fileExists(filePath: string): Promise<boolean> {
   try {
@@ -37,12 +67,16 @@ async function readLocalJson<T>(filePath: string): Promise<T> {
 }
 
 async function readRemoteJson<T>(relativePath: string): Promise<T> {
-  if (!CONTENT_BASE_URL) {
+  const contentBaseUrl = getContentBaseUrl();
+  if (!contentBaseUrl) {
     throw new Error("CONTENT_BASE_URL is not configured");
   }
 
-  const response = await fetch(`${CONTENT_BASE_URL}/${relativePath}`, {
-    next: { revalidate: 60 },
+  const url = new URL(`${contentBaseUrl}/${relativePath}`);
+  url.searchParams.set("v", Date.now().toString());
+
+  const response = await fetch(url, {
+    cache: "no-store",
   });
 
   if (!response.ok) {
@@ -54,11 +88,22 @@ async function readRemoteJson<T>(relativePath: string): Promise<T> {
 
 async function readExportJson<T>(relativePath: string): Promise<T | null> {
   const filePath = path.join(LOCAL_CONTENT_DIR, ...relativePath.split("/"));
+  if (getContentBaseUrl()) {
+    try {
+      return await readRemoteJson<T>(relativePath);
+    } catch {
+      if (await fileExists(filePath)) {
+        return readLocalJson<T>(filePath);
+      }
+      return null;
+    }
+  }
+
   if (await fileExists(filePath)) {
     return readLocalJson<T>(filePath);
   }
 
-  if (CONTENT_BASE_URL) {
+  if (getContentBaseUrl()) {
     return readRemoteJson<T>(relativePath);
   }
 
@@ -66,8 +111,9 @@ async function readExportJson<T>(relativePath: string): Promise<T | null> {
 }
 
 function resolveContentAssetUrl(relativePath: string): string {
-  if (CONTENT_BASE_URL) {
-    return `${CONTENT_BASE_URL}/${relativePath}`;
+  const contentBaseUrl = getContentBaseUrl();
+  if (contentBaseUrl) {
+    return `${contentBaseUrl}/${relativePath}`;
   }
   return `/content/${relativePath}`;
 }
@@ -114,6 +160,9 @@ async function getExportedPassage(bookId: string, chapterId: string, passageId: 
 export const getSiteData = cache(async function getSiteData(): Promise<SiteData> {
   const manifest = await getExportManifest();
   if (!manifest) {
+    if (!shouldAllowRepoFallback()) {
+      return assertExportedContentAvailable();
+    }
     return getRepoSiteData();
   }
 
@@ -156,6 +205,9 @@ export const getSiteData = cache(async function getSiteData(): Promise<SiteData>
 export const getAllBooks = cache(async function getAllBooks(): Promise<BookMeta[]> {
   const manifest = await getExportManifest();
   if (!manifest) {
+    if (!shouldAllowRepoFallback()) {
+      return assertExportedContentAvailable();
+    }
     return getRepoAllBooks();
   }
 
@@ -168,6 +220,10 @@ export const getBookById = cache(async function getBookById(bookId: string): Pro
     return exported;
   }
 
+  if (!shouldAllowRepoFallback()) {
+    return null;
+  }
+
   return getRepoBookById(bookId);
 });
 
@@ -175,6 +231,10 @@ export const getChapterById = cache(async function getChapterById(bookId: string
   const exported = await getExportedChapter(bookId, chapterId);
   if (exported) {
     return exported;
+  }
+
+  if (!shouldAllowRepoFallback()) {
+    return null;
   }
 
   return getRepoChapterById(bookId, chapterId);
@@ -192,6 +252,10 @@ export const getPassageById = cache(async function getPassageById(passageId: str
     return passage;
   }
 
+  if (!shouldAllowRepoFallback()) {
+    return null;
+  }
+
   return getRepoPassageById(passageId);
 });
 
@@ -200,6 +264,10 @@ export const getPassageBySlugs = cache(
     const exported = await getExportedPassage(bookId, chapterId, passageId);
     if (exported) {
       return exported;
+    }
+
+    if (!shouldAllowRepoFallback()) {
+      return null;
     }
 
     return getRepoPassageBySlugs(bookId, chapterId, passageId);
