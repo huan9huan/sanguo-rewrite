@@ -85,7 +85,7 @@
                 "id": "f1_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "赵弘复夺宛城，朱儁退后十里扎营。一时拿他没办法。",
+                "text": "宛城又被黄巾军夺回。官军退后十里扎营，一时攻不进去。",
                 "lang": "zh-CN"
               }
             ],
@@ -105,7 +105,7 @@
                 "id": "f2_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "正东方向来了一彪人马。打头的——宽额阔面，虎背熊腰，吴郡富春人，姓孙名坚字文台。",
+                "text": "正东方向来了一彪人马。打头的是孙坚，宽额阔面，虎背熊腰。",
                 "lang": "zh-CN"
               },
               {
@@ -132,14 +132,14 @@
                 "id": "f3_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "孙坚第一个登上城头，斩贼二十余人。",
+                "text": "孙坚第一个登上城头，连斩黄巾军二十余人。",
                 "lang": "zh-CN"
               },
               {
                 "id": "f3_t2",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "赵弘飞马突槊直取孙坚。孙坚侧身，一把攥住槊杆——拽下来，调个头，反手一刺。赵弘倒地。",
+                "text": "敌将挺槊冲来。孙坚侧身攥杆，拽人下马，调头反刺，一气呵成。",
                 "lang": "zh-CN"
               }
             ],
@@ -159,14 +159,14 @@
                 "id": "f4_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "孙坚翻身上了赵弘的马，在贼兵中间来回冲杀。",
+                "text": "孙坚翻身夺马，在贼兵中间来回冲杀。",
                 "lang": "zh-CN"
               },
               {
                 "id": "f4_t2",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "北门方向，孙仲突出城门正遇刘备——一箭正中，翻身落马。朱儁大军掩杀，斩首数万。南阳十余郡，一路平定。",
+                "text": "北门又有败将突围，正遇刘备一箭射落。官军随后掩杀，南阳十余郡一路平定。",
                 "lang": "zh-CN"
               }
             ],
@@ -214,7 +214,7 @@
         ],
         "comic_placements": [
           {
-            "after_paragraph": 20,
+            "after_paragraph": 1,
             "frames": [
               {
                 "frame_id": "f1",
@@ -225,7 +225,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "赵弘复夺宛城，朱儁退后十里扎营。一时拿他没办法。",
+                    "text": "宛城又被黄巾军夺回。官军退后十里扎营，一时攻不进去。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -249,7 +249,7 @@
                 "id": "f1_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "赵弘复夺宛城，朱儁退后十里扎营。一时拿他没办法。",
+                "text": "宛城又被黄巾军夺回。官军退后十里扎营，一时攻不进去。",
                 "lang": "zh-CN"
               }
             ],
@@ -285,7 +285,7 @@
         ],
         "comic_placements": [
           {
-            "after_paragraph": 2,
+            "after_paragraph": 0,
             "frames": [
               {
                 "frame_id": "f2",
@@ -296,7 +296,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "正东方向来了一彪人马。打头的——宽额阔面，虎背熊腰，吴郡富春人，姓孙名坚字文台。",
+                    "text": "正东方向来了一彪人马。打头的是孙坚，宽额阔面，虎背熊腰。",
                     "lang": "zh-CN"
                   },
                   {
@@ -327,7 +327,7 @@
                 "id": "f2_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "正东方向来了一彪人马。打头的——宽额阔面，虎背熊腰，吴郡富春人，姓孙名坚字文台。",
+                "text": "正东方向来了一彪人马。打头的是孙坚，宽额阔面，虎背熊腰。",
                 "lang": "zh-CN"
               },
               {
@@ -372,7 +372,7 @@
         ],
         "comic_placements": [
           {
-            "after_paragraph": 7,
+            "after_paragraph": 1,
             "frames": [
               {
                 "frame_id": "f3",
@@ -383,14 +383,14 @@
                     "id": "f3_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "孙坚第一个登上城头，斩贼二十余人。",
+                    "text": "孙坚第一个登上城头，连斩黄巾军二十余人。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f3_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "赵弘飞马突槊直取孙坚。孙坚侧身，一把攥住槊杆——拽下来，调个头，反手一刺。赵弘倒地。",
+                    "text": "敌将挺槊冲来。孙坚侧身攥杆，拽人下马，调头反刺，一气呵成。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -415,14 +415,14 @@
                     "id": "f4_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "孙坚翻身上了赵弘的马，在贼兵中间来回冲杀。",
+                    "text": "孙坚翻身夺马，在贼兵中间来回冲杀。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f4_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "北门方向，孙仲突出城门正遇刘备——一箭正中，翻身落马。朱儁大军掩杀，斩首数万。南阳十余郡，一路平定。",
+                    "text": "北门又有败将突围，正遇刘备一箭射落。官军随后掩杀，南阳十余郡一路平定。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -446,14 +446,14 @@
                 "id": "f3_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "孙坚第一个登上城头，斩贼二十余人。",
+                "text": "孙坚第一个登上城头，连斩黄巾军二十余人。",
                 "lang": "zh-CN"
               },
               {
                 "id": "f3_t2",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "赵弘飞马突槊直取孙坚。孙坚侧身，一把攥住槊杆——拽下来，调个头，反手一刺。赵弘倒地。",
+                "text": "敌将挺槊冲来。孙坚侧身攥杆，拽人下马，调头反刺，一气呵成。",
                 "lang": "zh-CN"
               }
             ],
@@ -473,14 +473,14 @@
                 "id": "f4_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "孙坚翻身上了赵弘的马，在贼兵中间来回冲杀。",
+                "text": "孙坚翻身夺马，在贼兵中间来回冲杀。",
                 "lang": "zh-CN"
               },
               {
                 "id": "f4_t2",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "北门方向，孙仲突出城门正遇刘备——一箭正中，翻身落马。朱儁大军掩杀，斩首数万。南阳十余郡，一路平定。",
+                "text": "北门又有败将突围，正遇刘备一箭射落。官军随后掩杀，南阳十余郡一路平定。",
                 "lang": "zh-CN"
               }
             ],
@@ -529,7 +529,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "赵弘复夺宛城，朱儁退后十里扎营。一时拿他没办法。",
+                    "text": "宛城又被黄巾军夺回。官军退后十里扎营，一时攻不进去。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -549,7 +549,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "正东方向来了一彪人马。打头的——宽额阔面，虎背熊腰，吴郡富春人，姓孙名坚字文台。",
+                    "text": "正东方向来了一彪人马。打头的是孙坚，宽额阔面，虎背熊腰。",
                     "lang": "zh-CN"
                   },
                   {
@@ -576,14 +576,14 @@
                     "id": "f3_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "孙坚第一个登上城头，斩贼二十余人。",
+                    "text": "孙坚第一个登上城头，连斩黄巾军二十余人。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f3_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "赵弘飞马突槊直取孙坚。孙坚侧身，一把攥住槊杆——拽下来，调个头，反手一刺。赵弘倒地。",
+                    "text": "敌将挺槊冲来。孙坚侧身攥杆，拽人下马，调头反刺，一气呵成。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -603,14 +603,14 @@
                     "id": "f4_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "孙坚翻身上了赵弘的马，在贼兵中间来回冲杀。",
+                    "text": "孙坚翻身夺马，在贼兵中间来回冲杀。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f4_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "北门方向，孙仲突出城门正遇刘备——一箭正中，翻身落马。朱儁大军掩杀，斩首数万。南阳十余郡，一路平定。",
+                    "text": "北门又有败将突围，正遇刘备一箭射落。官军随后掩杀，南阳十余郡一路平定。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -658,7 +658,7 @@
             ],
             "comic_placements": [
               {
-                "after_paragraph": 20,
+                "after_paragraph": 1,
                 "frames": [
                   {
                     "frame_id": "f1",
@@ -669,7 +669,7 @@
                         "id": "f1_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "赵弘复夺宛城，朱儁退后十里扎营。一时拿他没办法。",
+                        "text": "宛城又被黄巾军夺回。官军退后十里扎营，一时攻不进去。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -693,7 +693,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "赵弘复夺宛城，朱儁退后十里扎营。一时拿他没办法。",
+                    "text": "宛城又被黄巾军夺回。官军退后十里扎营，一时攻不进去。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -729,7 +729,7 @@
             ],
             "comic_placements": [
               {
-                "after_paragraph": 2,
+                "after_paragraph": 0,
                 "frames": [
                   {
                     "frame_id": "f2",
@@ -740,7 +740,7 @@
                         "id": "f2_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "正东方向来了一彪人马。打头的——宽额阔面，虎背熊腰，吴郡富春人，姓孙名坚字文台。",
+                        "text": "正东方向来了一彪人马。打头的是孙坚，宽额阔面，虎背熊腰。",
                         "lang": "zh-CN"
                       },
                       {
@@ -771,7 +771,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "正东方向来了一彪人马。打头的——宽额阔面，虎背熊腰，吴郡富春人，姓孙名坚字文台。",
+                    "text": "正东方向来了一彪人马。打头的是孙坚，宽额阔面，虎背熊腰。",
                     "lang": "zh-CN"
                   },
                   {
@@ -816,7 +816,7 @@
             ],
             "comic_placements": [
               {
-                "after_paragraph": 7,
+                "after_paragraph": 1,
                 "frames": [
                   {
                     "frame_id": "f3",
@@ -827,14 +827,14 @@
                         "id": "f3_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "孙坚第一个登上城头，斩贼二十余人。",
+                        "text": "孙坚第一个登上城头，连斩黄巾军二十余人。",
                         "lang": "zh-CN"
                       },
                       {
                         "id": "f3_t2",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "赵弘飞马突槊直取孙坚。孙坚侧身，一把攥住槊杆——拽下来，调个头，反手一刺。赵弘倒地。",
+                        "text": "敌将挺槊冲来。孙坚侧身攥杆，拽人下马，调头反刺，一气呵成。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -859,14 +859,14 @@
                         "id": "f4_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "孙坚翻身上了赵弘的马，在贼兵中间来回冲杀。",
+                        "text": "孙坚翻身夺马，在贼兵中间来回冲杀。",
                         "lang": "zh-CN"
                       },
                       {
                         "id": "f4_t2",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "北门方向，孙仲突出城门正遇刘备——一箭正中，翻身落马。朱儁大军掩杀，斩首数万。南阳十余郡，一路平定。",
+                        "text": "北门又有败将突围，正遇刘备一箭射落。官军随后掩杀，南阳十余郡一路平定。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -890,14 +890,14 @@
                     "id": "f3_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "孙坚第一个登上城头，斩贼二十余人。",
+                    "text": "孙坚第一个登上城头，连斩黄巾军二十余人。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f3_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "赵弘飞马突槊直取孙坚。孙坚侧身，一把攥住槊杆——拽下来，调个头，反手一刺。赵弘倒地。",
+                    "text": "敌将挺槊冲来。孙坚侧身攥杆，拽人下马，调头反刺，一气呵成。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -917,14 +917,14 @@
                     "id": "f4_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "孙坚翻身上了赵弘的马，在贼兵中间来回冲杀。",
+                    "text": "孙坚翻身夺马，在贼兵中间来回冲杀。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f4_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "北门方向，孙仲突出城门正遇刘备——一箭正中，翻身落马。朱儁大军掩杀，斩首数万。南阳十余郡，一路平定。",
+                    "text": "北门又有败将突围，正遇刘备一箭射落。官军随后掩杀，南阳十余郡一路平定。",
                     "lang": "zh-CN"
                   }
                 ],

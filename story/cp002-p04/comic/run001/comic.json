@@ -19,7 +19,7 @@
             "id": "f1_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "赵忠封了车骑将军，张让等十三人封了列侯。功臣被罢了官，各地叛乱四起，奏报全被十常侍扣下——皇帝一份也没看到。",
+            "text": "宦官集团升官封侯，真正打仗的人却被罢官。各地叛乱四起，奏报全被扣下。",
             "lang": "zh-CN"
           }
         ]
@@ -40,20 +40,20 @@
         "crop_mode": "contain"
       },
       "text_block": {
-        "title": "刘陶恸哭",
+        "title": "忠臣恸哭",
         "items": [
           {
             "id": "f2_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "刘陶闯进后花园痛哭。他把天下危局，全指向十常侍。",
+            "text": "一个忠臣闯进后花园痛哭。他把天下危局，全指向宦官集团。",
             "lang": "zh-CN"
           },
           {
             "id": "f2_t2",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "谏议大夫刘陶径到帝前大恸。他说四方盗贼并起，皆由十常侍卖官害民。",
+            "text": "他说四方盗贼并起，根子就在卖官害民。",
             "lang": "zh-CN"
           }
         ]
@@ -80,14 +80,14 @@
             "id": "f3_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "十常侍跪地假哭，把忠臣的直谏变成了自己的委屈。",
+            "text": "宦官们跪地假哭，把忠臣的直谏变成了自己的委屈。",
             "lang": "zh-CN"
           },
           {
             "id": "f3_t2",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "灵帝看着跪了一地的太监，对刘陶说：你家也有伺候你的人，怎么容不下朕的？推出斩了。",
+            "text": "皇帝听信哭声，下令把忠臣推出去斩了。",
             "lang": "zh-CN"
           }
         ]
@@ -114,14 +114,14 @@
             "id": "f4_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "刘陶宁死也要说完真话。陈耽也撞阶进谏，和他一同下狱。",
+            "text": "忠臣宁死也要说完真话。另一个大臣撞阶进谏，也被一同下狱。",
             "lang": "zh-CN"
           },
           {
             "id": "f4_t2",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "陈耽拦刑入谏，以头撞阶，与刘陶同下狱。当夜，十常侍于狱中谋杀二人。远在北方，刘备正重新上马。",
+            "text": "当夜，两人死在狱中。远在北方，刘备正重新上马。",
             "lang": "zh-CN"
           }
         ]

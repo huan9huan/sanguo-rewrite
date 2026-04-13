@@ -8,7 +8,7 @@
     "dev:next": "next dev",
     "build": "next build",
     "build:content": "npm run content:export && npm run build",
-    "content:release": "npm run content:export && proxy_on && gsutil -m rsync -r -d public/content gs://zh-books/sanguo",
+    "content:release": "npm run content:export && gsutil -m rsync -r -d public/content gs://zh-books",
     "start": "next start",
     "lint": "next lint",
     "preview": "sh -ac 'set -a; [ -f ./.env.prod ] && . ./.env.prod; set +a; opennextjs-cloudflare build && opennextjs-cloudflare preview'",

@@ -137,7 +137,8 @@ Each panel/frame must include:
 - use `speaker: "narrator"` only
 - do not include dialogue-style speech lines
 - do not write captions as quoted dialogue
-- use names only for viewpoint anchors or characters the reader must remember long-term
+- use names only for viewpoint anchors or characters already present in `memory/character_memory.json` or `memory/character_visuals.json`
+- if a character should be named in captions but is missing from memory, stop and hand off to Canon Keeper or Character Visual Keeper before comic adaptation
 - when a character is not meant to be remembered, use a functional phrase such as `黄巾先锋`, `押车军士`, `朝廷使者`, or `旧日老师`
 - do not make minor, one-off, or non-core characters the caption subject
 - do not name minor commanders, messengers, officials, merchants, guards, or temporary allies in captions unless the page's core story depends on that name

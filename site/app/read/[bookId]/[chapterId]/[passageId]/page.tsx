@@ -74,7 +74,7 @@ export default async function PassagePage({ params }: PassagePageProps) {
         passageLabel={passage.title}
         compactTitle={passage.title}
         primaryLink={{ label: book.title, href: buildBookHref(book.id) }}
-        actionLink={{ label: t.common.comic, href: buildComicHref({ bookId, chapterId, passageId }) }}
+        actionLink={{ label: t.common.comic, href: buildComicHref({ bookId, chapterId, passageId }), prefetch: false }}
         secondaryLink={{ label: chapter.adapted_title_cn || chapter.source_title, href: buildChapterHref(book.id, chapter.id) }}
       />
 
@@ -135,11 +135,12 @@ export default async function PassagePage({ params }: PassagePageProps) {
                 <Link
                   className="text-nav-link"
                   href={buildPassageHref({ bookId, chapterId, passageId: previousPassage.passage_id })}
+                  prefetch={false}
                 >
                   {t.common.previous}
                 </Link>
               ) : (
-                <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId)}>
+                <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId)} prefetch={false}>
                   {t.common.backToChapter}
                 </Link>
               )}
@@ -147,6 +148,7 @@ export default async function PassagePage({ params }: PassagePageProps) {
                 <Link
                   className="button-link button-link-accent"
                   href={buildPassageHref({ bookId, chapterId, passageId: nextPassage.passage_id })}
+                  prefetch={false}
                 >
                   {t.common.next}
                 </Link>

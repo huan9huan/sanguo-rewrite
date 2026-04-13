@@ -66,7 +66,8 @@
 - frame 下方文字只使用 narrator caption
 - 不使用 dialogue-style `speech`
 - 不把非主要 / 一次性人物放进旁白 speaker 或主语
-- 默认只命名视角锚点或读者必须长期记住的人
+- 默认只命名视角锚点或已进入 `memory/character_memory.json` / `memory/character_visuals.json` 的人物
+- 如果某人值得在 comic caption 中命名但还没有进入 memory，应先补 memory，而不是直接把名字写进 caption
 - 其余人物用功能称呼或故事结果替代，例如“黄巾先锋”“押车军士”“旧日老师”
 - 用旁白讲清 setup、pressure、turn、closure / hook
 - comic image + captions 应能独立讲清本 passage 的核心故事

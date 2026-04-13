@@ -102,11 +102,12 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
                 <Link
                   className="text-nav-link"
                   href={buildComicHref({ bookId, chapterId, passageId: previousPassage.passage_id }, safeLocale)}
+                  prefetch={false}
                 >
                   {t.common.previous}
                 </Link>
               ) : (
-                <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId, safeLocale)}>
+                <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId, safeLocale)} prefetch={false}>
                   {t.common.backToChapter}
                 </Link>
               )}
@@ -114,6 +115,7 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
                 <Link
                   className="button-link button-link-accent"
                   href={buildComicHref({ bookId, chapterId, passageId: nextPassage.passage_id }, safeLocale)}
+                  prefetch={false}
                 >
                   {t.common.next}
                 </Link>

@@ -105,6 +105,7 @@ export function BookChapterBrowser({ bookId, chapters, locale = "zh" }: BookChap
                     chapterId: bookmarkLabel.chapter.id,
                     passageId: bookmarkLabel.passage.passage_id,
                   }, locale as "zh" | "en")}
+                  prefetch={false}
                 >
                   {t.bookmark.continue}
                 </Link>
@@ -157,12 +158,14 @@ export function BookChapterBrowser({ bookId, chapters, locale = "zh" }: BookChap
                               <Link
                                 className="button-link button-link-secondary"
                                 href={buildPassageHref({ bookId, chapterId: chapter.id, passageId: passage.passage_id }, locale as "zh" | "en")}
+                                prefetch={false}
                               >
                                 {t.common.text}
                               </Link>
                               <Link
                                 className="button-link button-link-secondary"
                                 href={buildComicHref({ bookId, chapterId: chapter.id, passageId: passage.passage_id }, locale as "zh" | "en")}
+                                prefetch={false}
                               >
                                 {t.common.comic}
                               </Link>

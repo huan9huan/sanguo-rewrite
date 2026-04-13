@@ -275,7 +275,7 @@
 - frame text 是否全部为 `kind: "caption"` 且 `speaker: "narrator"`
 - 是否没有对白式 speech line
 - 是否没有把非主要 / 一次性人物写成旁白主语或 speaker
-- 是否避免在 captions 中命名不需要长期记忆的边缘人物
+- 是否避免在 captions 中命名不在 `memory/character_memory.json` 或 `memory/character_visuals.json` 的边缘人物
 - 边缘人物是否被压缩成功能称呼或故事结果
 - 只读 comic image + captions，是否能理解 setup、pressure、turn、closure / hook
 - captions 是否讲清核心因果，而不是只重复画面

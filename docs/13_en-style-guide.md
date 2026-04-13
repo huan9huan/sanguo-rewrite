@@ -88,7 +88,8 @@ Comic text is adapted **per frame**, not extracted from the English prose draft.
 - Current comic text uses narrator-only captions.
 - Do not restore dialogue from the prose.
 - Do not make minor or one-off characters the subject of the caption.
-- Name only viewpoint anchors or characters the reader must remember long-term.
+- Name only viewpoint anchors or characters already present in character memory / visual memory.
+- If a character deserves to be named in comic captions but is not in memory yet, treat that as an upstream canon gap.
 - For edge characters, use their function or the result of their action instead of their name.
 - Compress minor-character actions into story results when possible.
 - Image plus captions should read as a self-contained mini comic page.

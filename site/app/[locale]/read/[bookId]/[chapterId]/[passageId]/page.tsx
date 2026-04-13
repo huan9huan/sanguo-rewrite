@@ -85,7 +85,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
             <article className="passage-main reader-card">
               <h1 className="section-title passage-page-title">{passage.title}</h1>
               <p className="body-copy">{t.locale.passageUnavailable.replace("{locale}", safeLocale === "en" ? "English" : "中文")}</p>
-              <Link className="button-link button-link-accent" href={buildPassageHref({ bookId, chapterId, passageId }, "zh")}>
+              <Link className="button-link button-link-accent" href={buildPassageHref({ bookId, chapterId, passageId }, "zh")} prefetch={false}>
                 {t.locale.readInOther}
               </Link>
             </article>
@@ -115,7 +115,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
         passageLabel={localized.title}
         compactTitle={localized.title}
         primaryLink={{ label: bookTitle, href: buildBookHref(book.id, safeLocale) }}
-        actionLink={{ label: t.common.comic, href: buildComicHref(routeParams, safeLocale) }}
+        actionLink={{ label: t.common.comic, href: buildComicHref(routeParams, safeLocale), prefetch: false }}
         secondaryLink={{ label: chapterLabel, href: buildChapterHref(book.id, chapter.id, safeLocale) }}
       />
 
@@ -184,11 +184,12 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
                 <Link
                   className="text-nav-link"
                   href={buildPassageHref({ bookId, chapterId, passageId: previousPassage.passage_id }, safeLocale)}
+                  prefetch={false}
                 >
                   {t.common.previous}
                 </Link>
               ) : (
-                <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId, safeLocale)}>
+                <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId, safeLocale)} prefetch={false}>
                   {t.common.backToChapter}
                 </Link>
               )}
@@ -196,6 +197,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
                 <Link
                   className="button-link button-link-accent"
                   href={buildPassageHref({ bookId, chapterId, passageId: nextPassage.passage_id }, safeLocale)}
+                  prefetch={false}
                 >
                   {t.common.next}
                 </Link>

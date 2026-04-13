@@ -84,11 +84,12 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
                 <Link
                   className="text-nav-link"
                   href={buildComicHref({ bookId, chapterId, passageId: previousPassage.passage_id })}
+                  prefetch={false}
                 >
                   {t.common.previous}
                 </Link>
               ) : (
-                <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId)}>
+                <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId)} prefetch={false}>
                   {t.common.backToChapter}
                 </Link>
               )}
@@ -96,6 +97,7 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
                 <Link
                   className="button-link button-link-accent"
                   href={buildComicHref({ bookId, chapterId, passageId: nextPassage.passage_id })}
+                  prefetch={false}
                 >
                   {t.common.next}
                 </Link>

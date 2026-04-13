@@ -82,12 +82,14 @@ export default async function LocaleChapterPage({ params }: LocaleChapterPagePro
                   <Link
                     className="button-link button-link-accent"
                     href={buildPassageHref({ bookId, chapterId, passageId: passage.passage_id }, safeLocale)}
+                    prefetch={false}
                   >
                     {t.common.text}
                   </Link>
                   <Link
                     className="button-link button-link-secondary"
                     href={buildComicHref({ bookId, chapterId, passageId: passage.passage_id }, safeLocale)}
+                    prefetch={false}
                   >
                     {t.common.comic}
                   </Link>

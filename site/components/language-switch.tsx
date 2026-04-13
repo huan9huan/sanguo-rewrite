@@ -42,6 +42,7 @@ export function LanguageSwitch({ currentLocale, availableLocales, localeHrefs }:
             key={locale}
             className="language-switch-item language-switch-link"
             href={localeHrefs[locale]}
+            prefetch={false}
             lang={locale}
           >
             {localeLabels[locale]}

@@ -13,7 +13,7 @@
     }
   ],
   "vars": {
-    "CONTENT_BASE_URL": "https://storage.googleapis.com/zh-books/sanguo"
+    "CONTENT_BASE_URL": "https://storage.googleapis.com/zh-books"
   },
   "assets": {
     "binding": "ASSETS",

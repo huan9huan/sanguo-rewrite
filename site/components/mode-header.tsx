@@ -68,6 +68,7 @@ type ModeHeaderProps = {
   actionLink?: {
     label: string;
     href: string;
+    prefetch?: boolean;
   };
   locale?: Locale;
 };
@@ -116,14 +117,14 @@ export function ModeHeader({
           {!isCompressed ? (
             <>
               <div>
-                <Link href={primaryLink?.href || "/"} className="header-subtitle-link">
+                <Link href={primaryLink?.href || "/"} prefetch={false} className="header-subtitle-link">
                   {bookLabel || primaryLink?.label || "三国演义"}
                 </Link>
               </div>
               {chapterLabel ? (
                 <div>
                   {secondaryLink ? (
-                    <Link href={secondaryLink.href} className="site-title">
+                    <Link href={secondaryLink.href} prefetch={false} className="site-title">
                       {chapterLabel}
                     </Link>
                   ) : (
@@ -138,7 +139,7 @@ export function ModeHeader({
               ) : null}
             </>
           ) : (
-            <Link href={secondaryLink?.href || primaryLink?.href || "/"} className="sticky-passage-title">
+            <Link href={secondaryLink?.href || primaryLink?.href || "/"} prefetch={false} className="sticky-passage-title">
               {title}
             </Link>
           )}
@@ -149,25 +150,26 @@ export function ModeHeader({
             <Link
               className="mode-link mode-link-icon"
               href={actionLink.href}
+              prefetch={actionLink.prefetch}
               title={actionLink.label}
             >
               {actionLink.label === t.common.comic ? <ComicIcon /> : <TextIcon />}
             </Link>
           ) : secondaryLink ? (
-            <Link className="mode-link" href={secondaryLink.href}>
+            <Link className="mode-link" href={secondaryLink.href} prefetch={false}>
               {secondaryLink.label}
             </Link>
           ) : !isCompressed ? (
             <>
-              <Link className="mode-link" href="/">
+              <Link className="mode-link" href="/" prefetch={false}>
                 {t.common.home}
               </Link>
-              <Link className="mode-link" href="/read">
+              <Link className="mode-link" href="/read" prefetch={false}>
                 {t.common.library}
               </Link>
             </>
           ) : (
-            <Link className="mode-link" href="/read">
+            <Link className="mode-link" href="/read" prefetch={false}>
               {t.common.allBooks}
             </Link>
           )}
