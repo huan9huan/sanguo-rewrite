@@ -33,6 +33,14 @@ export type PassageRouteParam = ChapterRouteParam & {
 const LOCAL_CONTENT_DIR = path.join(process.cwd(), "public", "content");
 const DEFAULT_REMOTE_CONTENT_BASE_URL = "https://storage.googleapis.com/zh-books";
 
+function shouldAllowRepoFallback(): boolean {
+  return process.env.NODE_ENV === "development";
+}
+
+function assertExportedContentAvailable(): never {
+  throw new Error("Exported content is unavailable in production");
+}
+
 function getContentBaseUrl(): string | null {
   const processValue = process.env.CONTENT_BASE_URL?.replace(/\/$/, "");
   if (processValue) {
@@ -161,6 +169,9 @@ async function getExportedPassage(bookId: string, chapterId: string, passageId: 
 export const getSiteData = cache(async function getSiteData(): Promise<SiteData> {
   const manifest = await getExportManifest();
   if (!manifest) {
+    if (!shouldAllowRepoFallback()) {
+      return assertExportedContentAvailable();
+    }
     return getRepoSiteData();
   }
 
@@ -203,6 +214,9 @@ export const getSiteData = cache(async function getSiteData(): Promise<SiteData>
 export const getAllBooks = cache(async function getAllBooks(): Promise<BookMeta[]> {
   const manifest = await getExportManifest();
   if (!manifest) {
+    if (!shouldAllowRepoFallback()) {
+      return assertExportedContentAvailable();
+    }
     return getRepoAllBooks();
   }
 
@@ -215,6 +229,10 @@ export const getBookById = cache(async function getBookById(bookId: string): Pro
     return exported;
   }
 
+  if (!shouldAllowRepoFallback()) {
+    return null;
+  }
+
   return getRepoBookById(bookId);
 });
 
@@ -222,6 +240,10 @@ export const getChapterById = cache(async function getChapterById(bookId: string
   const exported = await getExportedChapter(bookId, chapterId);
   if (exported) {
     return exported;
+  }
+
+  if (!shouldAllowRepoFallback()) {
+    return null;
   }
 
   return getRepoChapterById(bookId, chapterId);
@@ -237,6 +259,10 @@ export const getStaticChapterRouteParams = cache(async function getStaticChapter
           bookId: book.id,
           chapterId: chapter.id,
         }));
+      }
+
+      if (!shouldAllowRepoFallback()) {
+        return [];
       }
 
       const repoBook = await getRepoBookById(book.id);
@@ -265,6 +291,10 @@ export const getStaticPassageRouteParams = cache(async function getStaticPassage
         );
       }
 
+      if (!shouldAllowRepoFallback()) {
+        return [];
+      }
+
       const repoBook = await getRepoBookById(book.id);
       return (repoBook?.chapters ?? []).flatMap((chapter) =>
         chapter.passage_ids.map((passageId) => ({
@@ -291,6 +321,10 @@ export const getPassageById = cache(async function getPassageById(passageId: str
     return passage;
   }
 
+  if (!shouldAllowRepoFallback()) {
+    return null;
+  }
+
   return getRepoPassageById(passageId);
 });
 
@@ -299,6 +333,10 @@ export const getPassageBySlugs = cache(
     const exported = await getExportedPassage(bookId, chapterId, passageId);
     if (exported) {
       return exported;
+    }
+
+    if (!shouldAllowRepoFallback()) {
+      return null;
     }
 
     return getRepoPassageBySlugs(bookId, chapterId, passageId);
