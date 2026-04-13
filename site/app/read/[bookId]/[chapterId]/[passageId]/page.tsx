@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ComicImageBlock } from "@/components/comic-image-block";
+import { FollowSubscribeForm } from "@/components/follow-subscribe-form";
 import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { PassageSceneFocus } from "@/components/passage-scene-focus";
@@ -37,6 +38,14 @@ export default async function PassagePage({ params }: PassagePageProps) {
   const currentIndex = chapterPassages.findIndex((item) => item.passage_id === passage.passage_id);
   const previousPassage = currentIndex > 0 ? chapterPassages[currentIndex - 1] : null;
   const nextPassage = currentIndex >= 0 && currentIndex < chapterPassages.length - 1 ? chapterPassages[currentIndex + 1] : null;
+  const bookChapters = Array.isArray(book.chapters) ? book.chapters : [];
+  const chapterIndex = bookChapters.findIndex((item) => item.id === chapterId);
+  const nextChapter = chapterIndex >= 0 && chapterIndex < bookChapters.length - 1 ? bookChapters[chapterIndex + 1] : null;
+  const shouldShowFollowSubscribe =
+    !nextPassage &&
+    !nextChapter &&
+    typeof book.total_chapter_count === "number" &&
+    book.available_chapter_count < book.total_chapter_count;
 
   return (
     <main className="page-shell passage-page">
@@ -106,6 +115,15 @@ export default async function PassagePage({ params }: PassagePageProps) {
             </div>
 
             <PassageFeedback mode="text" passagePath={{ bookId, chapterId, passageId }} locale="zh" />
+            {shouldShowFollowSubscribe ? (
+              <FollowSubscribeForm
+                bookId={bookId}
+                chapterId={chapterId}
+                passageId={passageId}
+                trigger="next_chapter_unavailable"
+                locale="zh"
+              />
+            ) : null}
 
             <div className="passage-footer-nav">
               {previousPassage ? (
