@@ -654,6 +654,103 @@ div {
   margin: 10px 0 0;
 }
 
+.follow-subscribe-card {
+  margin-top: 28px;
+  display: grid;
+  gap: 18px;
+  padding: 22px 24px;
+  border-radius: var(--radius-md);
+  background:
+    linear-gradient(180deg, rgba(255, 252, 245, 0.96), rgba(247, 241, 232, 0.92)),
+    var(--surface);
+  border-color: rgba(201, 100, 66, 0.16);
+}
+
+.follow-subscribe-copy {
+  display: grid;
+  gap: 10px;
+}
+
+.follow-subscribe-copy .eyebrow {
+  margin-bottom: 0;
+}
+
+.follow-subscribe-form {
+  display: grid;
+  gap: 12px;
+}
+
+.follow-subscribe-prompt {
+  margin: 0;
+  color: var(--ink-soft);
+  font-family: "SF Pro Text", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
+  font-size: 0.92rem;
+}
+
+.follow-subscribe-email-row {
+  display: flex;
+  gap: 10px;
+}
+
+.follow-subscribe-email-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface-strong);
+  color: var(--ink);
+  font-family: "SF Pro Text", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
+  font-size: 0.92rem;
+  outline: none;
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.follow-subscribe-email-input::placeholder {
+  color: var(--ink-muted);
+}
+
+.follow-subscribe-email-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(201, 100, 66, 0.08);
+}
+
+.follow-subscribe-submit {
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+.follow-subscribe-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.follow-subscribe-error,
+.follow-subscribe-privacy,
+.follow-subscribe-success-text {
+  margin: 0;
+  font-family: "SF Pro Text", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+
+.follow-subscribe-error {
+  color: var(--accent);
+  font-size: 0.84rem;
+}
+
+.follow-subscribe-privacy {
+  color: var(--ink-muted);
+  font-size: 0.8rem;
+}
+
+.follow-subscribe-success {
+  place-items: center;
+  text-align: center;
+}
+
+.follow-subscribe-success-text {
+  color: var(--ink-soft);
+  font-size: 1rem;
+}
+
 .passage-image-shell-actionable {
   cursor: zoom-in;
 }
@@ -713,6 +810,15 @@ div {
     border-radius: 16px;
     margin-left: -2px;
     margin-right: -2px;
+  }
+
+  .follow-subscribe-email-row {
+    flex-direction: column;
+  }
+
+  .follow-subscribe-submit {
+    width: 100%;
+    justify-content: center;
   }
 }
 

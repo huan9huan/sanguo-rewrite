@@ -28,8 +28,11 @@ export default async function LocaleBookPage({ params }: LocaleBookPageProps) {
     await Promise.all(chapterSummaries.map((chapter) => getChapterById(book.id, chapter.id)))
   ).filter((chapter): chapter is NonNullable<Awaited<ReturnType<typeof getChapterById>>> => Boolean(chapter));
   const isEn = safeLocale === "en";
+  const visibleChapters = isEn
+    ? chapters.filter((chapter) => chapter.passages.some((passage) => passage.available_locales?.includes("en")))
+    : chapters;
 
-  const readerChapters: ReaderChapter[] = chapters.map((chapter) => ({
+  const readerChapters: ReaderChapter[] = visibleChapters.map((chapter) => ({
     id: chapter.id,
     source_title: chapter.source_title,
     display_title_en: chapter.display_title_en,
