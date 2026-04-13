@@ -78,11 +78,15 @@ export function BookChapterBrowser({ bookId, chapters, locale = "zh" }: BookChap
       return null;
     }
 
+    if (isEn && !passage.available_locales?.includes("en")) {
+      return null;
+    }
+
     return {
       chapter,
       passage,
     };
-  }, [bookmark, chapters]);
+  }, [bookmark, chapters, isEn]);
 
   return (
     <>

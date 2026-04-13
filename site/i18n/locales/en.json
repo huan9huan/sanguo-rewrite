@@ -88,6 +88,8 @@
     "networkError": "Network error. Please try again later."
   },
   "locale": {
+    "chapterUnavailableTitle": "This chapter is not in English yet.",
+    "chapterUnavailable": "English reading currently covers only chapters that already have approved English passages. You can read it in Chinese for now.",
     "passageUnavailable": "This passage is not yet available in {locale}.",
     "readInOther": "Read in Chinese"
   }
