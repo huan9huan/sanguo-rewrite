@@ -9,7 +9,6 @@ export function buildAboutHref(locale?: Locale): string {
   const prefix = locale ? `/${locale}` : "";
   return `${prefix}/about`;
 }
-
 export function buildBookHref(bookId: string, locale?: Locale): string {
   const prefix = locale ? `/${locale}` : "";
   return `${prefix}/read/${bookId}`;

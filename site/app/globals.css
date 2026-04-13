@@ -1166,6 +1166,56 @@ div {
   color: var(--ink);
 }
 
+.site-mark-symbol {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.site-mark-background {
+  fill: #f6f0e4;
+}
+
+.site-mark-bamboo-light {
+  fill: #d2b48b;
+}
+
+.site-mark-bamboo-mid {
+  fill: #c49a6c;
+}
+
+.site-mark-bamboo-dark {
+  fill: #b88958;
+}
+
+.site-mark-grooves {
+  opacity: 0.88;
+  stroke: #f6f0e4;
+  stroke-width: 3;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.site-mark-cores {
+  opacity: 0.78;
+  stroke: #8e6a47;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.site-mark-bridge {
+  stroke: var(--accent);
+  stroke-width: 3.6;
+  stroke-linecap: round;
+  fill: none;
+}
+
+.home-site-mark {
+  width: clamp(92px, 12vw, 132px);
+  color: var(--ink);
+}
+
 .home-hero-kicker {
   margin: 0;
   color: var(--ink-muted);
@@ -1555,6 +1605,17 @@ div {
 
 .about-cta-card .button-link {
   margin-inline: auto;
+}
+
+.site-footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.site-footer-mark {
+  width: 30px;
+  flex: 0 0 auto;
 }
 
 .reader-context-line {
