@@ -5,7 +5,7 @@ import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { getDictionary } from "@/i18n";
 import { getAllBooks, getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
-import { buildBookHref, buildChapterHref, buildPassageHref } from "@/lib/paths";
+import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
 
 type ComicPageProps = {
   params: Promise<{
@@ -51,6 +51,11 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
     notFound();
   }
 
+  const chapterPassages = Array.isArray(chapter.passages) ? chapter.passages : [];
+  const currentIndex = chapterPassages.findIndex((item) => item.passage_id === passage.passage_id);
+  const previousPassage = currentIndex > 0 ? chapterPassages[currentIndex - 1] : null;
+  const nextPassage = currentIndex >= 0 && currentIndex < chapterPassages.length - 1 ? chapterPassages[currentIndex + 1] : null;
+
   return (
     <main className="page-shell passage-page">
       <ModeHeader
@@ -66,20 +71,6 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
       <section className="section">
         <div className="container passage-single-column">
           <article className="passage-main reader-card">
-            <p className="eyebrow">{book.title}</p>
-            <h1 className="section-title passage-page-title">{passage.title}</h1>
-            <p className="section-copy">
-              {t.comic.description}
-            </p>
-            <div className="reader-card-actions">
-              <Link className="button-link" href={buildPassageHref({ bookId, chapterId, passageId })}>
-                {t.common.backToText}
-              </Link>
-              <Link className="button-link button-link-accent" href={buildChapterHref(bookId, chapterId)}>
-                {t.common.backToChapter}
-              </Link>
-            </div>
-
             <ComicImageBlock
               passage={passage}
               passageHref={buildPassageHref({ bookId, chapterId, passageId })}
@@ -87,6 +78,29 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
             />
 
             <PassageFeedback mode="comic" passagePath={{ bookId, chapterId, passageId }} locale="zh" />
+
+            <div className="passage-footer-nav">
+              {previousPassage ? (
+                <Link
+                  className="text-nav-link"
+                  href={buildComicHref({ bookId, chapterId, passageId: previousPassage.passage_id })}
+                >
+                  {t.common.previous}
+                </Link>
+              ) : (
+                <Link className="text-nav-link" href={buildChapterHref(bookId, chapterId)}>
+                  {t.common.backToChapter}
+                </Link>
+              )}
+              {nextPassage ? (
+                <Link
+                  className="button-link button-link-accent"
+                  href={buildComicHref({ bookId, chapterId, passageId: nextPassage.passage_id })}
+                >
+                  {t.common.next}
+                </Link>
+              ) : null}
+            </div>
           </article>
         </div>
       </section>

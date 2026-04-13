@@ -108,9 +108,9 @@
             "items": [
               {
                 "id": "f2_t1",
-                "kind": "speech",
-                "speaker": "liu_tao",
-                "text": "天下危在旦夕——陛下尚与阗宦共饮耶！",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "刘陶闯进后花园痛哭。他把天下危局，全指向十常侍。",
                 "lang": "zh-CN"
               },
               {
@@ -135,9 +135,9 @@
             "items": [
               {
                 "id": "f3_t1",
-                "kind": "speech",
-                "speaker": "shi_chang_shi",
-                "text": "大臣不容臣等，臣等不能活了！只求保住一条命回家种田！",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "十常侍跪地假哭，把忠臣的直谏变成了自己的委屈。",
                 "lang": "zh-CN"
               },
               {
@@ -162,9 +162,9 @@
             "items": [
               {
                 "id": "f4_t1",
-                "kind": "speech",
-                "speaker": "liu_tao",
-                "text": "臣死不惜！可怜汉室天下，四百余年，到此一旦休矣！",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "刘陶宁死也要说完真话。陈耽也撞阶进谏，和他一同下狱。",
                 "lang": "zh-CN"
               },
               {
@@ -321,7 +321,7 @@
         ],
         "comic_placements": [
           {
-            "after_paragraph": 3,
+            "after_paragraph": 6,
             "frames": [
               {
                 "frame_id": "f2",
@@ -330,9 +330,9 @@
                 "items": [
                   {
                     "id": "f2_t1",
-                    "kind": "speech",
-                    "speaker": "liu_tao",
-                    "text": "天下危在旦夕——陛下尚与阗宦共饮耶！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "刘陶闯进后花园痛哭。他把天下危局，全指向十常侍。",
                     "lang": "zh-CN"
                   },
                   {
@@ -353,7 +353,7 @@
             ]
           },
           {
-            "after_paragraph": 10,
+            "after_paragraph": 14,
             "frames": [
               {
                 "frame_id": "f3",
@@ -362,9 +362,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "shi_chang_shi",
-                    "text": "大臣不容臣等，臣等不能活了！只求保住一条命回家种田！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "十常侍跪地假哭，把忠臣的直谏变成了自己的委屈。",
                     "lang": "zh-CN"
                   },
                   {
@@ -394,9 +394,9 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "liu_tao",
-                    "text": "臣死不惜！可怜汉室天下，四百余年，到此一旦休矣！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "刘陶宁死也要说完真话。陈耽也撞阶进谏，和他一同下狱。",
                     "lang": "zh-CN"
                   },
                   {
@@ -425,9 +425,9 @@
             "items": [
               {
                 "id": "f2_t1",
-                "kind": "speech",
-                "speaker": "liu_tao",
-                "text": "天下危在旦夕——陛下尚与阗宦共饮耶！",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "刘陶闯进后花园痛哭。他把天下危局，全指向十常侍。",
                 "lang": "zh-CN"
               },
               {
@@ -452,9 +452,9 @@
             "items": [
               {
                 "id": "f3_t1",
-                "kind": "speech",
-                "speaker": "shi_chang_shi",
-                "text": "大臣不容臣等，臣等不能活了！只求保住一条命回家种田！",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "十常侍跪地假哭，把忠臣的直谏变成了自己的委屈。",
                 "lang": "zh-CN"
               },
               {
@@ -479,9 +479,9 @@
             "items": [
               {
                 "id": "f4_t1",
-                "kind": "speech",
-                "speaker": "liu_tao",
-                "text": "臣死不惜！可怜汉室天下，四百余年，到此一旦休矣！",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "刘陶宁死也要说完真话。陈耽也撞阶进谏，和他一同下狱。",
                 "lang": "zh-CN"
               },
               {
@@ -600,9 +600,9 @@
                 "items": [
                   {
                     "id": "f2_t1",
-                    "kind": "speech",
-                    "speaker": "liu_tao",
-                    "text": "天下危在旦夕——陛下尚与阗宦共饮耶！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "刘陶闯进后花园痛哭。他把天下危局，全指向十常侍。",
                     "lang": "zh-CN"
                   },
                   {
@@ -627,9 +627,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "shi_chang_shi",
-                    "text": "大臣不容臣等，臣等不能活了！只求保住一条命回家种田！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "十常侍跪地假哭，把忠臣的直谏变成了自己的委屈。",
                     "lang": "zh-CN"
                   },
                   {
@@ -654,9 +654,9 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "liu_tao",
-                    "text": "臣死不惜！可怜汉室天下，四百余年，到此一旦休矣！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "刘陶宁死也要说完真话。陈耽也撞阶进谏，和他一同下狱。",
                     "lang": "zh-CN"
                   },
                   {
@@ -813,7 +813,7 @@
             ],
             "comic_placements": [
               {
-                "after_paragraph": 3,
+                "after_paragraph": 6,
                 "frames": [
                   {
                     "frame_id": "f2",
@@ -822,9 +822,9 @@
                     "items": [
                       {
                         "id": "f2_t1",
-                        "kind": "speech",
-                        "speaker": "liu_tao",
-                        "text": "天下危在旦夕——陛下尚与阗宦共饮耶！",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "刘陶闯进后花园痛哭。他把天下危局，全指向十常侍。",
                         "lang": "zh-CN"
                       },
                       {
@@ -845,7 +845,7 @@
                 ]
               },
               {
-                "after_paragraph": 10,
+                "after_paragraph": 14,
                 "frames": [
                   {
                     "frame_id": "f3",
@@ -854,9 +854,9 @@
                     "items": [
                       {
                         "id": "f3_t1",
-                        "kind": "speech",
-                        "speaker": "shi_chang_shi",
-                        "text": "大臣不容臣等，臣等不能活了！只求保住一条命回家种田！",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "十常侍跪地假哭，把忠臣的直谏变成了自己的委屈。",
                         "lang": "zh-CN"
                       },
                       {
@@ -886,9 +886,9 @@
                     "items": [
                       {
                         "id": "f4_t1",
-                        "kind": "speech",
-                        "speaker": "liu_tao",
-                        "text": "臣死不惜！可怜汉室天下，四百余年，到此一旦休矣！",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "刘陶宁死也要说完真话。陈耽也撞阶进谏，和他一同下狱。",
                         "lang": "zh-CN"
                       },
                       {
@@ -917,9 +917,9 @@
                 "items": [
                   {
                     "id": "f2_t1",
-                    "kind": "speech",
-                    "speaker": "liu_tao",
-                    "text": "天下危在旦夕——陛下尚与阗宦共饮耶！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "刘陶闯进后花园痛哭。他把天下危局，全指向十常侍。",
                     "lang": "zh-CN"
                   },
                   {
@@ -944,9 +944,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "shi_chang_shi",
-                    "text": "大臣不容臣等，臣等不能活了！只求保住一条命回家种田！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "十常侍跪地假哭，把忠臣的直谏变成了自己的委屈。",
                     "lang": "zh-CN"
                   },
                   {
@@ -971,9 +971,9 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "liu_tao",
-                    "text": "臣死不惜！可怜汉室天下，四百余年，到此一旦休矣！",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "刘陶宁死也要说完真话。陈耽也撞阶进谏，和他一同下狱。",
                     "lang": "zh-CN"
                   },
                   {

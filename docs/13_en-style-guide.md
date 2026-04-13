@@ -80,12 +80,18 @@ Comic text is adapted **per frame**, not extracted from the English prose draft.
 - Evocative, not descriptive. "A Snake on the Throne" not "Emperor Sees Snake."
 - Capitalize like a headline.
 
-### 3.2 Captions and Dialogue
+### 3.2 Captions
 
 - 1-2 short sentences per text block.
 - Each frame has one job: setup, action, emotion, turn, or hook. The English text preserves that function, not the exact words.
 - Narrator captions use the same voice as prose but compressed.
-- Dialogue stays in character and must work visually alongside the image.
+- Current comic text uses narrator-only captions.
+- Do not restore dialogue from the prose.
+- Do not make minor or one-off characters the subject of the caption.
+- Name only viewpoint anchors or characters the reader must remember long-term.
+- For edge characters, use their function or the result of their action instead of their name.
+- Compress minor-character actions into story results when possible.
+- Image plus captions should read as a self-contained mini comic page.
 
 ### 3.3 Length Guidance
 
@@ -93,7 +99,6 @@ Comic text is adapted **per frame**, not extracted from the English prose draft.
 |---------|-----|
 | Frame title | 6 words |
 | Caption block | 2 sentences |
-| Speech line | 1 sentence |
 
 ### 3.4 No Image Regeneration
 
@@ -104,7 +109,7 @@ Current comic policy keeps text outside the image. English text replaces Chinese
 English comic text must be stored as a language overlay, not embedded into the base comic layout.
 
 - `current/comic.json` is the canonical visual/layout file and Chinese baseline.
-- `current/comic_text_en.json` is the English source of truth for frame titles, captions, and dialogue.
+- `current/comic_text_en.json` is the English source of truth for frame titles and captions.
 - Do not add `title_en` or English `items` directly to `current/comic.json`.
 - Content export merges `current/comic.json` with `current/comic_text_en.json` into the localized English comic layout.
 - Keep `page_id`, `frame_id`, and `scene_id` stable so the overlay can merge cleanly.
@@ -137,6 +142,7 @@ Before any English passage is promoted to `approved_en.md`, verify:
 - [ ] Opening poem follows section 2.6
 - [ ] Comic frame titles are ≤6 words
 - [ ] Comic captions are ≤2 sentences
+- [ ] English comic text uses narrator-only captions
 - [ ] English comic text lives in `current/comic_text_en.json` or a draft overlay, not inside base `comic.json`
 - [ ] English metadata lives in locale overlay files, not inside canonical Chinese metadata files
 - [ ] No sentence reads like a translation ("was known as," "is referred to")

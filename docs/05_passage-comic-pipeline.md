@@ -61,6 +61,16 @@
 这是“语义合同”。
 它定义 page 的叙事结构，但还不是最终前端布局。
 
+当前 comic text 的推荐合同是“纯旁白、自包含”：
+
+- frame 下方文字只使用 narrator caption
+- 不使用 dialogue-style `speech`
+- 不把非主要 / 一次性人物放进旁白 speaker 或主语
+- 默认只命名视角锚点或读者必须长期记住的人
+- 其余人物用功能称呼或故事结果替代，例如“黄巾先锋”“押车军士”“旧日老师”
+- 用旁白讲清 setup、pressure、turn、closure / hook
+- comic image + captions 应能独立讲清本 passage 的核心故事
+
 ### 3. Base Reader Layout
 
 由 comic spec 派生：
@@ -73,6 +83,8 @@
 - 每个 `frame` 对应什么 `scene_id`
 - 每个 `frame` 下方显示什么 `text_block`
 - 前端按什么阅读顺序渲染
+
+`text_block` 是 comic 的阅读层，不是正文对白摘录。它应优先服务 comic-only 阅读，并保持 frame ids / scene ids 稳定，方便多语言 overlay 合并。
 
 这一步的 `comic_reader_layout` 可以先没有 `panel_box`。
 

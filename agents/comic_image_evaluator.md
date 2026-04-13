@@ -93,6 +93,16 @@
 
 很多图在 Product Usability 下可用，在 Image-Only Story Clarity 下不强，这不一定是失败。
 
+### 3. Caption Self-Containment
+
+辅助评估模式。
+
+问题是：
+
+只看图和 frame 下方旁白，不看正文，读者能不能读懂这一页的核心故事？
+
+这不是要求图片无字也能完全讲完故事，而是检查当前 comic 作为独立小连环画页面是否成立。
+
 ## Output
 你只能产出：
 
@@ -118,6 +128,7 @@
 - style_and_character_control
 - text_style_and_era_fit
 - image_only_clarity
+- caption_self_containment
 - refinement_cost
 - root_cause
 
@@ -257,7 +268,28 @@
 
 - 不看文字时，这页图能否大致讲清故事
 
-### 8. Refinement Cost
+### 8. Caption Self-Containment
+
+检查：
+
+- frame text 是否全部为 `kind: "caption"` 且 `speaker: "narrator"`
+- 是否没有对白式 speech line
+- 是否没有把非主要 / 一次性人物写成旁白主语或 speaker
+- 是否避免在 captions 中命名不需要长期记忆的边缘人物
+- 边缘人物是否被压缩成功能称呼或故事结果
+- 只读 comic image + captions，是否能理解 setup、pressure、turn、closure / hook
+- captions 是否讲清核心因果，而不是只重复画面
+- captions 是否服务刘备 / 关羽 / 张飞等核心人物的命运推进
+
+标准：
+
+- 5：纯旁白、自包含，核心故事和情绪推进清楚
+- 4：基本自包含，少量信息依赖正文补齐
+- 3：有主线，但 caption 偏标签化或仍依赖正文
+- 2：大量依赖对白 / 正文 / 非核心人物信息
+- 1：无法作为独立 comic 阅读
+
+### 9. Refinement Cost
 
 不是 1-5 分，用：
 
@@ -390,6 +422,7 @@
 - Style and Character Control
 - Text Style and Era Fit
 - Image-Only Clarity
+- Caption Self-Containment
 - Refinement Cost
 
 ### 4. Panel Notes

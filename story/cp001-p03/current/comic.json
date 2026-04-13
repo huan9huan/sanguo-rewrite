@@ -17,16 +17,16 @@
         "items": [
           {
             "id": "f1_t1",
-            "kind": "speech",
-            "speaker": "guan_yu",
-            "text": "快上一碗酒，我还得进城投军。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "关羽走进村店，也要去投军打贼。",
             "lang": "zh-CN"
           },
           {
             "id": "f1_t2",
-            "kind": "speech",
-            "speaker": "liu_bei",
-            "text": "壮士，不嫌弃的话，坐下一起喝一杯？",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "刘备和张飞知道，眼前又多了一个敢赴乱世的人。",
             "lang": "zh-CN"
           }
         ]
@@ -53,14 +53,14 @@
             "id": "f2_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "我三人今日结为兄弟。",
+            "text": "桃花下，刘备、关羽、张飞祭告天地。",
             "lang": "zh-CN"
           },
           {
             "id": "f2_t2",
-            "kind": "speech",
-            "speaker": "all",
-            "text": "不求同生，但求同死。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "从这一天起，三人成了兄弟。",
             "lang": "zh-CN"
           }
         ]
@@ -85,9 +85,9 @@
         "items": [
           {
             "id": "f3_t1",
-            "kind": "speech",
-            "speaker": "merchant",
-            "text": "良马五十匹，金银五百两，镔铁一千斤，都送你们。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "马、钱和铁都到了。三兄弟终于有了起兵的本钱。",
             "lang": "zh-CN"
           }
         ]
@@ -114,7 +114,7 @@
             "id": "f4_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "从此，三兄弟带着队伍上路了。",
+            "text": "五百乡勇跟着三兄弟上路。他们走进幽州城，命运也跟着改了方向。",
             "lang": "zh-CN"
           }
         ]

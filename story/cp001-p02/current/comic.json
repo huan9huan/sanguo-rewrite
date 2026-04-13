@@ -19,7 +19,7 @@
             "id": "f1_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "刘备虽是中山靖王之后，却家贫贩屦织席。",
+            "text": "刘备出身汉室，却靠草鞋和草席养家。楼桑树下，旧梦还没有熄。",
             "lang": "zh-CN"
           }
         ]
@@ -46,7 +46,7 @@
             "id": "f2_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "他叹的不是怕死，是恨自己有志无力。",
+            "text": "招兵榜贴出来了。他想破贼安民，却没有钱、没有人、没有兵。",
             "lang": "zh-CN"
           }
         ]
@@ -71,9 +71,9 @@
         "items": [
           {
             "id": "f3_t1",
-            "kind": "speech",
-            "speaker": "zhang_fei",
-            "text": "大丈夫不与国家出力，何故长叹？",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "张飞一声喝问，把刘备从叹息里拉了出来。",
             "lang": "zh-CN"
           }
         ]
@@ -98,16 +98,16 @@
         "items": [
           {
             "id": "f4_t1",
-            "kind": "speech",
-            "speaker": "zhang_fei",
-            "text": "我颇有资财，当招募乡勇，与公同举大事。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "张飞愿意出钱招人。刘备眼里有了光，两人转身进店。",
             "lang": "zh-CN"
           },
           {
             "id": "f4_t2",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "酒还没上来，门口的影子先动了。",
+            "text": "酒还没上来，门口又来了新的影子。",
             "lang": "zh-CN"
           }
         ]

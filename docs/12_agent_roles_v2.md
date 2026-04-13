@@ -241,7 +241,7 @@ comic promote 必须先完成：
 
 - `cd site && npm run content:export`
 - `cd site && npm run build`
-- `gsutil -m rsync -r -d site/public/content gs://<content-bucket>/<prefix>`
+- `gsutil -m rsync -r -d site/public/content gs://zh-books/sanguo`
 - `cd site && npm run deploy`
 
 规则：

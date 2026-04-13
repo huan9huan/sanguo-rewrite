@@ -78,7 +78,7 @@
                 "id": "f1_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "刘备虽是中山靖王之后，却家贫贩屦织席。",
+                "text": "刘备出身汉室，却靠草鞋和草席养家。楼桑树下，旧梦还没有熄。",
                 "lang": "zh-CN"
               }
             ],
@@ -98,7 +98,7 @@
                 "id": "f2_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "他叹的不是怕死，是恨自己有志无力。",
+                "text": "招兵榜贴出来了。他想破贼安民，却没有钱、没有人、没有兵。",
                 "lang": "zh-CN"
               }
             ],
@@ -116,9 +116,9 @@
             "items": [
               {
                 "id": "f3_t1",
-                "kind": "speech",
-                "speaker": "zhang_fei",
-                "text": "大丈夫不与国家出力，何故长叹？",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "张飞一声喝问，把刘备从叹息里拉了出来。",
                 "lang": "zh-CN"
               }
             ],
@@ -136,16 +136,16 @@
             "items": [
               {
                 "id": "f4_t1",
-                "kind": "speech",
-                "speaker": "zhang_fei",
-                "text": "我颇有资财，当招募乡勇，与公同举大事。",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "张飞愿意出钱招人。刘备眼里有了光，两人转身进店。",
                 "lang": "zh-CN"
               },
               {
                 "id": "f4_t2",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "酒还没上来，门口的影子先动了。",
+                "text": "酒还没上来，门口又来了新的影子。",
                 "lang": "zh-CN"
               }
             ],
@@ -242,7 +242,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "刘备虽是中山靖王之后，却家贫贩屦织席。",
+                    "text": "刘备出身汉室，却靠草鞋和草席养家。楼桑树下，旧梦还没有熄。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -266,7 +266,7 @@
                 "id": "f1_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "刘备虽是中山靖王之后，却家贫贩屦织席。",
+                "text": "刘备出身汉室，却靠草鞋和草席养家。楼桑树下，旧梦还没有熄。",
                 "lang": "zh-CN"
               }
             ],
@@ -316,7 +316,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "他叹的不是怕死，是恨自己有志无力。",
+                    "text": "招兵榜贴出来了。他想破贼安民，却没有钱、没有人、没有兵。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -340,7 +340,7 @@
                 "id": "f2_t1",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "他叹的不是怕死，是恨自己有志无力。",
+                "text": "招兵榜贴出来了。他想破贼安民，却没有钱、没有人、没有兵。",
                 "lang": "zh-CN"
               }
             ],
@@ -384,9 +384,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "大丈夫不与国家出力，何故长叹？",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "张飞一声喝问，把刘备从叹息里拉了出来。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -409,16 +409,16 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "我颇有资财，当招募乡勇，与公同举大事。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "张飞愿意出钱招人。刘备眼里有了光，两人转身进店。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f4_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "酒还没上来，门口的影子先动了。",
+                    "text": "酒还没上来，门口又来了新的影子。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -440,9 +440,9 @@
             "items": [
               {
                 "id": "f3_t1",
-                "kind": "speech",
-                "speaker": "zhang_fei",
-                "text": "大丈夫不与国家出力，何故长叹？",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "张飞一声喝问，把刘备从叹息里拉了出来。",
                 "lang": "zh-CN"
               }
             ],
@@ -460,16 +460,16 @@
             "items": [
               {
                 "id": "f4_t1",
-                "kind": "speech",
-                "speaker": "zhang_fei",
-                "text": "我颇有资财，当招募乡勇，与公同举大事。",
+                "kind": "caption",
+                "speaker": "narrator",
+                "text": "张飞愿意出钱招人。刘备眼里有了光，两人转身进店。",
                 "lang": "zh-CN"
               },
               {
                 "id": "f4_t2",
                 "kind": "caption",
                 "speaker": "narrator",
-                "text": "酒还没上来，门口的影子先动了。",
+                "text": "酒还没上来，门口又来了新的影子。",
                 "lang": "zh-CN"
               }
             ],
@@ -519,7 +519,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "刘备虽是中山靖王之后，却家贫贩屦织席。",
+                    "text": "刘备出身汉室，却靠草鞋和草席养家。楼桑树下，旧梦还没有熄。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -539,7 +539,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "他叹的不是怕死，是恨自己有志无力。",
+                    "text": "招兵榜贴出来了。他想破贼安民，却没有钱、没有人、没有兵。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -557,9 +557,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "大丈夫不与国家出力，何故长叹？",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "张飞一声喝问，把刘备从叹息里拉了出来。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -577,16 +577,16 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "我颇有资财，当招募乡勇，与公同举大事。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "张飞愿意出钱招人。刘备眼里有了光，两人转身进店。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f4_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "酒还没上来，门口的影子先动了。",
+                    "text": "酒还没上来，门口又来了新的影子。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -683,7 +683,7 @@
                         "id": "f1_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "刘备虽是中山靖王之后，却家贫贩屦织席。",
+                        "text": "刘备出身汉室，却靠草鞋和草席养家。楼桑树下，旧梦还没有熄。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -707,7 +707,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "刘备虽是中山靖王之后，却家贫贩屦织席。",
+                    "text": "刘备出身汉室，却靠草鞋和草席养家。楼桑树下，旧梦还没有熄。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -757,7 +757,7 @@
                         "id": "f2_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "他叹的不是怕死，是恨自己有志无力。",
+                        "text": "招兵榜贴出来了。他想破贼安民，却没有钱、没有人、没有兵。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -781,7 +781,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "他叹的不是怕死，是恨自己有志无力。",
+                    "text": "招兵榜贴出来了。他想破贼安民，却没有钱、没有人、没有兵。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -825,9 +825,9 @@
                     "items": [
                       {
                         "id": "f3_t1",
-                        "kind": "speech",
-                        "speaker": "zhang_fei",
-                        "text": "大丈夫不与国家出力，何故长叹？",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "张飞一声喝问，把刘备从叹息里拉了出来。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -850,16 +850,16 @@
                     "items": [
                       {
                         "id": "f4_t1",
-                        "kind": "speech",
-                        "speaker": "zhang_fei",
-                        "text": "我颇有资财，当招募乡勇，与公同举大事。",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "张飞愿意出钱招人。刘备眼里有了光，两人转身进店。",
                         "lang": "zh-CN"
                       },
                       {
                         "id": "f4_t2",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "酒还没上来，门口的影子先动了。",
+                        "text": "酒还没上来，门口又来了新的影子。",
                         "lang": "zh-CN"
                       }
                     ],
@@ -881,9 +881,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "大丈夫不与国家出力，何故长叹？",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "张飞一声喝问，把刘备从叹息里拉了出来。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -901,16 +901,16 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "我颇有资财，当招募乡勇，与公同举大事。",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "张飞愿意出钱招人。刘备眼里有了光，两人转身进店。",
                     "lang": "zh-CN"
                   },
                   {
                     "id": "f4_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "酒还没上来，门口的影子先动了。",
+                    "text": "酒还没上来，门口又来了新的影子。",
                     "lang": "zh-CN"
                   }
                 ],
@@ -956,7 +956,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "Imperial blood ran in his veins. Straw sandals wove through his fingers.",
+                    "text": "Liu Bei carried imperial blood, but he fed his family by weaving mats and sandals.",
                     "lang": "en"
                   }
                 ],
@@ -976,7 +976,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "He did not sigh from fear. The fire was there — he just had nothing to burn it on.",
+                    "text": "The recruitment notice was up. He wanted to fight the rebels, but he had no money, no men, and no army.",
                     "lang": "en"
                   }
                 ],
@@ -994,9 +994,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "If you're a real man, fight for your country — why stand here sighing!",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "Zhang Fei's thunderous challenge pulled Liu Bei out of his sigh.",
                     "lang": "en"
                   }
                 ],
@@ -1014,16 +1014,16 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "I'll fund it — we recruit men and fight together.",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "Zhang Fei had money and men could be gathered. Liu Bei's eyes lit up.",
                     "lang": "en"
                   },
                   {
                     "id": "f4_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "The wine hadn't arrived, but the shadow at the door moved first.",
+                    "text": "Before the wine arrived, a new shadow moved at the door.",
                     "lang": "en"
                   }
                 ],
@@ -1093,14 +1093,20 @@
             "scene_id": "cp001_p02_s1",
             "scene_title": "用紧凑笔法交代刘备的核心信息：皇族后裔→父亲早丧→家贫织席→楼桑大树的贵气预言→童年'我为天子'的豪言→十五岁游学师从卢植。读者应同时感受到'这个人不凡'和'这个人很苦'两层",
             "scene_type": "setup",
-            "text": "The day the recruitment notice reached Zhuo County, a man stood reading it against the wall.",
+            "text": "The day the recruitment notice reached Zhuo County, a man stood reading it against the wall.\n\nHe read it from top to bottom, then bottom to top. When he finished, he sighed.\n\nAround him, people sold vegetables, hauled loads, led donkeys. Nobody looked twice.\n\nHis name was Liu Bei. Courtesy name, Xuande.\n\nTrace his bloodline and you could count all the way back to Emperor Jing of Han — his ancestor was Liu Sheng, Prince Jing of Zhongshan. But trace it that far, and there was nothing left but the counting. The family had lost its title generations ago. His father died young. It was just him and his mother.\n\nHe wove straw mats and sandals, took them to the market, traded them for coins. Every evening he brought his mother a bowl of hot soup. That was the life.\n\nBut everyone in Lousang Village knew there was something strange about the big mulberry tree outside the Liu family home.",
             "paragraph_offset": 0,
             "paragraphs": [
-              "The day the recruitment notice reached Zhuo County, a man stood reading it against the wall."
+              "The day the recruitment notice reached Zhuo County, a man stood reading it against the wall.",
+              "He read it from top to bottom, then bottom to top. When he finished, he sighed.",
+              "Around him, people sold vegetables, hauled loads, led donkeys. Nobody looked twice.",
+              "His name was Liu Bei. Courtesy name, Xuande.",
+              "Trace his bloodline and you could count all the way back to Emperor Jing of Han — his ancestor was Liu Sheng, Prince Jing of Zhongshan. But trace it that far, and there was nothing left but the counting. The family had lost its title generations ago. His father died young. It was just him and his mother.",
+              "He wove straw mats and sandals, took them to the market, traded them for coins. Every evening he brought his mother a bowl of hot soup. That was the life.",
+              "But everyone in Lousang Village knew there was something strange about the big mulberry tree outside the Liu family home."
             ],
             "comic_placements": [
               {
-                "after_paragraph": 0,
+                "after_paragraph": 6,
                 "frames": [
                   {
                     "frame_id": "f1",
@@ -1111,7 +1117,7 @@
                         "id": "f1_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "Imperial blood ran in his veins. Straw sandals wove through his fingers.",
+                        "text": "Liu Bei carried imperial blood, but he fed his family by weaving mats and sandals.",
                         "lang": "en"
                       }
                     ],
@@ -1135,7 +1141,7 @@
                     "id": "f1_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "Imperial blood ran in his veins. Straw sandals wove through his fingers.",
+                    "text": "Liu Bei carried imperial blood, but he fed his family by weaving mats and sandals.",
                     "lang": "en"
                   }
                 ],
@@ -1153,15 +1159,9 @@
             "scene_id": "cp001_p02_s2",
             "scene_title": "二十八岁的刘备站在榜文前叹息。这一叹要承载二十八年的压抑：皇族血统、天子之志、名师之教，却只换来贩屦织席。黄巾之乱给了机会，但他没有兵、没有钱、没有人。叹息是他此刻唯一能做的事——但也是引出张飞的触发器",
             "scene_type": "pressure",
-            "text": "He read it from top to bottom, then bottom to top. When he finished, he sighed.\n\nAround him, people sold vegetables, hauled loads, led donkeys. Nobody looked twice.\n\nHis name was Liu Bei. Courtesy name, Xuande.\n\nTrace his bloodline and you could count all the way back to Emperor Jing of Han — his ancestor was Liu Sheng, Prince Jing of Zhongshan. But trace it that far, and there was nothing left but the counting. The family had lost its title generations ago. His father died young. It was just him and his mother.\n\nHe wove straw mats and sandals, took them to the market, traded them for coins. Every evening he brought his mother a bowl of hot soup. That was the life.\n\nBut everyone in Lousang Village knew there was something strange about the big mulberry tree outside the Liu family home.\n\nIt was too tall. Five zhang and more. From a distance, its canopy spread wide like an umbrella — not like a tree, like the canopy of an imperial carriage. A traveler once stopped, looked up at it for a long time, and said, \"This house will produce a great man.\"\n\nWhen Liu Bei was a boy, he played under that tree with the village children. While the others ran wild, he stood in its shade, pointed at the canopy, and said:\n\n\"Someday I'll be emperor, and I'll use this tree as my carriage canopy.\"\n\nHis uncle Liu Yuanqi heard him. After that, he started sending grain and cloth to the Liu household every few weeks. Someone asked him why. He said, \"This boy is no ordinary child.\"\n\nAt fifteen, his mother scraped together what she could and sent him away to study. He studied under Zheng Xuan, then Lu Zhi, and sat in the same room as Gongsun Zan. The masters taught. He did not take to it.\n\nThen he came back to Lousang Village and went on weaving sandals.\n\nMore than ten years passed. Governor Liu Yan posted the recruitment notice.\n\nLiu Bei, now twenty-eight, stood in front of it and read every word. He was tall — seven chi and five cun, with ears that hung to his shoulders, arms so long his hands reached past his knees, and a pale, clean face that looked out of place among the farmers. But right now, he could do nothing.\n\nHe read it. Sighed.\n\nNot from fear. Not from doubt. From a fire in his chest with nothing to burn it on.\n\nBehind him a voice exploded:",
-            "paragraph_offset": 1,
+            "text": "It was too tall. Five zhang and more. From a distance, its canopy spread wide like an umbrella — not like a tree, like the canopy of an imperial carriage. A traveler once stopped, looked up at it for a long time, and said, \"This house will produce a great man.\"\n\nWhen Liu Bei was a boy, he played under that tree with the village children. While the others ran wild, he stood in its shade, pointed at the canopy, and said:\n\n\"Someday I'll be emperor, and I'll use this tree as my carriage canopy.\"\n\nHis uncle Liu Yuanqi heard him. After that, he started sending grain and cloth to the Liu household every few weeks. Someone asked him why. He said, \"This boy is no ordinary child.\"\n\nAt fifteen, his mother scraped together what she could and sent him away to study. He studied under Zheng Xuan, then Lu Zhi, and sat in the same room as Gongsun Zan. The masters taught. He did not take to it.\n\nThen he came back to Lousang Village and went on weaving sandals.\n\nMore than ten years passed. Governor Liu Yan posted the recruitment notice.\n\nLiu Bei, now twenty-eight, stood in front of it and read every word. He was tall — seven chi and five cun, with ears that hung to his shoulders, arms so long his hands reached past his knees, and a pale, clean face that looked out of place among the farmers. But right now, he could do nothing.\n\nHe read it. Sighed.\n\nNot from fear. Not from doubt. From a fire in his chest with nothing to burn it on.\n\nBehind him a voice exploded:",
+            "paragraph_offset": 7,
             "paragraphs": [
-              "He read it from top to bottom, then bottom to top. When he finished, he sighed.",
-              "Around him, people sold vegetables, hauled loads, led donkeys. Nobody looked twice.",
-              "His name was Liu Bei. Courtesy name, Xuande.",
-              "Trace his bloodline and you could count all the way back to Emperor Jing of Han — his ancestor was Liu Sheng, Prince Jing of Zhongshan. But trace it that far, and there was nothing left but the counting. The family had lost its title generations ago. His father died young. It was just him and his mother.",
-              "He wove straw mats and sandals, took them to the market, traded them for coins. Every evening he brought his mother a bowl of hot soup. That was the life.",
-              "But everyone in Lousang Village knew there was something strange about the big mulberry tree outside the Liu family home.",
               "It was too tall. Five zhang and more. From a distance, its canopy spread wide like an umbrella — not like a tree, like the canopy of an imperial carriage. A traveler once stopped, looked up at it for a long time, and said, \"This house will produce a great man.\"",
               "When Liu Bei was a boy, he played under that tree with the village children. While the others ran wild, he stood in its shade, pointed at the canopy, and said:",
               "\"Someday I'll be emperor, and I'll use this tree as my carriage canopy.\"",
@@ -1176,7 +1176,7 @@
             ],
             "comic_placements": [
               {
-                "after_paragraph": 15,
+                "after_paragraph": 9,
                 "frames": [
                   {
                     "frame_id": "f2",
@@ -1187,7 +1187,7 @@
                         "id": "f2_t1",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "He did not sigh from fear. The fire was there — he just had nothing to burn it on.",
+                        "text": "The recruitment notice was up. He wanted to fight the rebels, but he had no money, no men, and no army.",
                         "lang": "en"
                       }
                     ],
@@ -1211,7 +1211,7 @@
                     "id": "f2_t1",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "He did not sigh from fear. The fire was there — he just had nothing to burn it on.",
+                    "text": "The recruitment notice was up. He wanted to fight the rebels, but he had no money, no men, and no army.",
                     "lang": "en"
                   }
                 ],
@@ -1262,9 +1262,9 @@
                     "items": [
                       {
                         "id": "f3_t1",
-                        "kind": "speech",
-                        "speaker": "zhang_fei",
-                        "text": "If you're a real man, fight for your country — why stand here sighing!",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "Zhang Fei's thunderous challenge pulled Liu Bei out of his sigh.",
                         "lang": "en"
                       }
                     ],
@@ -1287,16 +1287,16 @@
                     "items": [
                       {
                         "id": "f4_t1",
-                        "kind": "speech",
-                        "speaker": "zhang_fei",
-                        "text": "I'll fund it — we recruit men and fight together.",
+                        "kind": "caption",
+                        "speaker": "narrator",
+                        "text": "Zhang Fei had money and men could be gathered. Liu Bei's eyes lit up.",
                         "lang": "en"
                       },
                       {
                         "id": "f4_t2",
                         "kind": "caption",
                         "speaker": "narrator",
-                        "text": "The wine hadn't arrived, but the shadow at the door moved first.",
+                        "text": "Before the wine arrived, a new shadow moved at the door.",
                         "lang": "en"
                       }
                     ],
@@ -1318,9 +1318,9 @@
                 "items": [
                   {
                     "id": "f3_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "If you're a real man, fight for your country — why stand here sighing!",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "Zhang Fei's thunderous challenge pulled Liu Bei out of his sigh.",
                     "lang": "en"
                   }
                 ],
@@ -1338,16 +1338,16 @@
                 "items": [
                   {
                     "id": "f4_t1",
-                    "kind": "speech",
-                    "speaker": "zhang_fei",
-                    "text": "I'll fund it — we recruit men and fight together.",
+                    "kind": "caption",
+                    "speaker": "narrator",
+                    "text": "Zhang Fei had money and men could be gathered. Liu Bei's eyes lit up.",
                     "lang": "en"
                   },
                   {
                     "id": "f4_t2",
                     "kind": "caption",
                     "speaker": "narrator",
-                    "text": "The wine hadn't arrived, but the shadow at the door moved first.",
+                    "text": "Before the wine arrived, a new shadow moved at the door.",
                     "lang": "en"
                   }
                 ],
