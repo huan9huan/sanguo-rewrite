@@ -10,7 +10,6 @@ import type {
   ComicLayout,
   ComicPassageAlignment,
   Passage,
-  PassageImage,
   PassagePreview,
   Review,
   Scene,
@@ -29,7 +28,6 @@ const CURRENT_FILES = {
   approved: "approved_cn.md",
   comicLayout: "comic.json",
   comicAlignment: "comic_alignment.json",
-  comicImage: "comic.png",
 } as const;
 
 type FrontmatterValue = string | string[];
@@ -149,60 +147,6 @@ function getPassageTeaser(text: string): string {
 
 async function loadBooksConfig(): Promise<BookConfig[]> {
   return readJson<BookConfig[]>(BOOKS_FILE);
-}
-
-async function readImageMetadata(filePath: string): Promise<{ width: number | null; height: number | null }> {
-  const buffer = await fs.readFile(filePath);
-  const pngSignature = "89504e470d0a1a0a";
-  if (buffer.length >= 24 && buffer.subarray(0, 8).toString("hex") === pngSignature) {
-    return {
-      width: buffer.readUInt32BE(16),
-      height: buffer.readUInt32BE(20),
-    };
-  }
-  if (buffer.length >= 4 && buffer[0] === 0xff && buffer[1] === 0xd8) {
-    let offset = 2;
-    while (offset + 9 < buffer.length) {
-      if (buffer[offset] !== 0xff) {
-        offset += 1;
-        continue;
-      }
-
-      const marker = buffer[offset + 1];
-      offset += 2;
-
-      if (marker === 0xd8 || marker === 0xd9 || (marker >= 0xd0 && marker <= 0xd7)) {
-        continue;
-      }
-
-      if (offset + 2 > buffer.length) {
-        break;
-      }
-
-      const segmentLength = buffer.readUInt16BE(offset);
-      if (segmentLength < 2 || offset + segmentLength > buffer.length) {
-        break;
-      }
-
-      if (
-        (marker >= 0xc0 && marker <= 0xc3) ||
-        (marker >= 0xc5 && marker <= 0xc7) ||
-        (marker >= 0xc9 && marker <= 0xcb) ||
-        (marker >= 0xcd && marker <= 0xcf)
-      ) {
-        if (segmentLength >= 7) {
-          return {
-            height: buffer.readUInt16BE(offset + 3),
-            width: buffer.readUInt16BE(offset + 5),
-          };
-        }
-        break;
-      }
-
-      offset += segmentLength;
-    }
-  }
-  return { width: null, height: null };
 }
 
 function parseFrontmatterMarkdown(text: string): ParsedFrontmatterMarkdown {
@@ -422,10 +366,6 @@ async function loadPassage(passageDir: string, bookId: string): Promise<Passage>
     path.join(currentDir, CURRENT_FILES.approved),
     (await latestVersionFile(passageDir, /^cp.*_cn_v\d+\.md$/)) ?? "",
   ]);
-  const imagePath = await firstExistingPath([
-    path.join(currentDir, CURRENT_FILES.comicImage),
-    (await latestVersionFile(passageDir, /^image\.(png|jpg|jpeg|webp)$/i)) ?? "",
-  ]);
   const comicLayoutPath = await firstExistingPath([
     path.join(currentDir, CURRENT_FILES.comicLayout),
     (await latestVersionFile(passageDir, /^comic_reader_layout_v\d+\.json$/)) ?? "",
@@ -445,25 +385,15 @@ async function loadPassage(passageDir: string, bookId: string): Promise<Passage>
   const passageId = frontmatterString(frontmatter, "id") || path.basename(passageDir);
   const title = frontmatterString(frontmatter, "title") || spec.title_cn || path.basename(passageDir);
   const shortTitle = frontmatterString(frontmatter, "short_title") || title;
-  const imageMetadata = imagePath ? await readImageMetadata(imagePath) : { width: null, height: null };
   const draftText = latestDraftPath ? await readText(latestDraftPath) : "";
   const approvedText = latestApprovedPath ? await readText(latestApprovedPath) : "";
   const scenes = await loadSceneSpecs(passageDir);
   const comicLayout = await loadComicLayout(comicLayoutPath);
   const comicAlignment = await loadComicAlignment(comicAlignmentPath);
-  const image: PassageImage | null = imagePath
-    ? {
-        path: path.relative(passageDir, imagePath),
-        url: `/api/story-image/${passageId}`,
-        alt: `${title} image`,
-        width: imageMetadata.width,
-        height: imageMetadata.height,
-      }
-    : null;
   const reading = buildPassageReadingModel({
     draftText,
     approvedText,
-    image,
+    image: null,
     comicLayout,
     comicAlignment,
     passageId,
