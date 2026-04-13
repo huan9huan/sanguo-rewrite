@@ -4,7 +4,7 @@ import { ModeHeader } from "@/components/mode-header";
 import { getDictionary } from "@/i18n";
 import { formatChapterTitle } from "@/lib/chapter-title";
 import { getBookById, getChapterById } from "@/lib/content";
-import { buildComicHref, buildPassageHref } from "@/lib/paths";
+import { buildBookHref, buildComicHref, buildPassageHref } from "@/lib/paths";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -32,6 +32,42 @@ export default async function LocaleChapterPage({ params }: LocaleChapterPagePro
   const chapterTitle = formatChapterTitle(chapter, safeLocale);
   const isEn = safeLocale === "en";
   const bookTitle = isEn && book.title_en ? book.title_en : book.title;
+  const visiblePassages = isEn
+    ? passages.filter((passage) => passage.available_locales?.includes("en"))
+    : passages;
+
+  if (isEn && visiblePassages.length === 0) {
+    return (
+      <main className="page-shell reader-page">
+        <ModeHeader chapterLabel={chapterTitle} compactTitle={chapterTitle} />
+
+        <section className="section">
+          <div className="container section-head">
+            <div>
+              <p className="eyebrow">{bookTitle}</p>
+              <h1 className="section-title">{chapterTitle}</h1>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container reader-stack">
+            <article className="reader-card">
+              <h2 className="passage-title">{t.locale.chapterUnavailableTitle}</h2>
+              <p className="body-copy">{t.locale.chapterUnavailable}</p>
+              <Link
+                className="button-link button-link-accent"
+                href={buildBookHref(bookId, "zh")}
+                prefetch={false}
+              >
+                {t.locale.readInOther}
+              </Link>
+            </article>
+          </div>
+        </section>
+      </main>
+    );
+  }
 
   return (
     <main className="page-shell reader-page">
@@ -48,7 +84,7 @@ export default async function LocaleChapterPage({ params }: LocaleChapterPagePro
 
       <section className="section">
         <div className="container reader-stack">
-          {passages.map((passage) => {
+          {visiblePassages.map((passage) => {
             const hasCurrentLocale = passage.available_locales?.includes(safeLocale);
 
             return (

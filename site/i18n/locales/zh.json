@@ -70,7 +70,21 @@
       "jinpingmei": "金瓶梅"
     }
   },
+  "followSubscription": {
+    "eyebrow": "追更通知",
+    "title": "想继续读这一版《三国》？",
+    "description": "这一章已经读到头了。下一章一上线，我们就通知你。",
+    "prompt": "留个邮箱，下一章可读时通知我",
+    "notify": "下一章通知我",
+    "privacy": "我们只会在《三国》下一章可读时通知你。",
+    "success": "收到了！下一章可读时我们会通知你。",
+    "invalidEmail": "请输入有效的邮箱地址。",
+    "submitError": "提交失败，请稍后再试。",
+    "networkError": "网络错误，请稍后再试。"
+  },
   "locale": {
+    "chapterUnavailableTitle": "这一回还没有英文版。",
+    "chapterUnavailable": "当前英文阅读只覆盖已完成英文改写的章节。你可以先读中文版。",
     "passageUnavailable": "这段内容暂无{locale}版本。",
     "readInOther": "阅读中文版"
   }

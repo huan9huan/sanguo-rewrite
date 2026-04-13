@@ -75,7 +75,21 @@
       "jinpingmei": "Jin Ping Mei"
     }
   },
+  "followSubscription": {
+    "eyebrow": "Follow updates",
+    "title": "Want the next chapter?",
+    "description": "You've reached the end of what's live. We'll let you know when the next chapter is ready to read.",
+    "prompt": "Leave your email and we'll notify you when the next chapter goes live.",
+    "notify": "Notify me",
+    "privacy": "We'll only email you when the next chapter of this book is ready.",
+    "success": "You're on the list. We'll let you know when the next chapter is ready.",
+    "invalidEmail": "Please enter a valid email address.",
+    "submitError": "Submission failed. Please try again later.",
+    "networkError": "Network error. Please try again later."
+  },
   "locale": {
+    "chapterUnavailableTitle": "This chapter is not in English yet.",
+    "chapterUnavailable": "English reading currently covers only chapters that already have approved English passages. You can read it in Chinese for now.",
     "passageUnavailable": "This passage is not yet available in {locale}.",
     "readInOther": "Read in Chinese"
   }

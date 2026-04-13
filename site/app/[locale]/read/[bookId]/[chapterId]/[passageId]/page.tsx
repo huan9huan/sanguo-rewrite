@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
 import { ComicImageBlock } from "@/components/comic-image-block";
+import { FollowSubscribeForm } from "@/components/follow-subscribe-form";
 import { LanguageSwitch } from "@/components/language-switch";
 import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
@@ -73,6 +74,21 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
   const currentIndex = chapterPassages.findIndex((item) => item.passage_id === passage.passage_id);
   const previousPassage = currentIndex > 0 ? chapterPassages[currentIndex - 1] : null;
   const nextPassage = currentIndex >= 0 && currentIndex < chapterPassages.length - 1 ? chapterPassages[currentIndex + 1] : null;
+  const nextReadablePassage = safeLocale === "en"
+    ? (nextPassage?.available_locales?.includes("en") ? nextPassage : null)
+    : nextPassage;
+  const bookChapters = Array.isArray(book.chapters) ? book.chapters : [];
+  const chapterIndex = bookChapters.findIndex((item) => item.id === chapterId);
+  const nextChapterSummary = chapterIndex >= 0 && chapterIndex < bookChapters.length - 1 ? bookChapters[chapterIndex + 1] : null;
+  const nextChapter = nextChapterSummary ? await getChapterById(bookId, nextChapterSummary.id) : null;
+  const nextReadableChapter = safeLocale === "en"
+    ? (nextChapter && Array.isArray(nextChapter.passages) && nextChapter.passages.some((item) => item.available_locales?.includes("en")) ? nextChapter : null)
+    : nextChapter;
+  const shouldShowFollowSubscribe =
+    !nextReadablePassage &&
+    !nextReadableChapter &&
+    typeof book.total_chapter_count === "number" &&
+    book.available_chapter_count < book.total_chapter_count;
 
   const routeParams: PassageRouteParams = { bookId, chapterId, passageId };
 
@@ -152,6 +168,15 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
             </div>
 
             <PassageFeedback mode="text" passagePath={{ bookId, chapterId, passageId }} locale={safeLocale} />
+            {shouldShowFollowSubscribe ? (
+              <FollowSubscribeForm
+                bookId={bookId}
+                chapterId={chapterId}
+                passageId={passageId}
+                trigger="next_chapter_unavailable"
+                locale={safeLocale}
+              />
+            ) : null}
 
             <div className="passage-footer-nav">
               {previousPassage ? (
@@ -167,10 +192,10 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
                   {t.common.backToChapter}
                 </Link>
               )}
-              {nextPassage ? (
+              {nextReadablePassage ? (
                 <Link
                   className="button-link button-link-accent"
-                  href={buildPassageHref({ bookId, chapterId, passageId: nextPassage.passage_id }, safeLocale)}
+                  href={buildPassageHref({ bookId, chapterId, passageId: nextReadablePassage.passage_id }, safeLocale)}
                   prefetch={false}
                 >
                   {t.common.next}
