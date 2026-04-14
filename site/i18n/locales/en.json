@@ -1,6 +1,7 @@
 {
   "common": {
     "home": "Home",
+    "about": "About",
     "library": "Library",
     "allBooks": "All Books",
     "text": "Text",
@@ -93,6 +94,47 @@
   "read": {
     "pageTitle": "Read Chinese Classics",
     "openBook": "Open this book"
+  },
+  "about": {
+    "pageTitle": "About",
+    "eyebrow": "About the project",
+    "heroTitle": "A reading project for Chinese classics, starting with Romance of the Three Kingdoms.",
+    "heroCopy": "Read Chinese Classics is built for general readers who want the story before the lecture. The aim is not to flatten these books into summaries. The aim is to make them readable enough that a new reader can actually stay with them.",
+    "whyTitle": "Why this exists",
+    "whyCopy": "Many readers meet Chinese classics through fragments, quotes, school explanations, or intimidating translations. This project tries a simpler doorway: keep the narrative moving, lower the cultural barrier, and let the reader form attachments to the characters first.",
+    "whySanguoTitle": "Why start with Three Kingdoms",
+    "whySanguoCopy": "Romance of the Three Kingdoms has strong momentum, memorable entrances, and a cast that can carry long-form reading. Liu Bei, Guan Yu, and Zhang Fei give the story an emotional center while the wider world keeps opening around them.",
+    "processEyebrow": "How it works",
+    "processTitle": "The text moves through an editorial pipeline, not a single prompt.",
+    "processSteps": [
+      {
+        "title": "Plan the chapter and passage",
+        "copy": "Each chapter is broken into passages with a micro-goal, a conflict, a turn, and a reading hook."
+      },
+      {
+        "title": "Draft and review the Chinese text",
+        "copy": "The Chinese draft is checked for clarity, story drive, character consistency, and readiness for adaptation."
+      },
+      {
+        "title": "Adapt for English and comics",
+        "copy": "Only approved Chinese text moves forward into English prose, comic text, and the website reading flow."
+      }
+    ],
+    "standardsTitle": "What the project optimizes for",
+    "standards": [
+      "Story first, not culture lecture first",
+      "Strong character attachment and clear scene movement",
+      "Low cultural barrier unless a tiny note is necessary",
+      "Shorter, cleaner prose that keeps the page turning"
+    ],
+    "aiTitle": "Where AI fits",
+    "aiCopy": "AI is part of the production workflow, but not the whole workflow. Planning, drafting, review, revision, adaptation, and presentation are treated as separate steps. The intended standard is AI-assisted production with human-directed editorial judgment.",
+    "statusTitle": "Current status",
+    "statusCopy": "The project is still moving chapter by chapter and passage by passage. The first live book is Romance of the Three Kingdoms, and the larger shelf is meant to grow from there.",
+    "ctaEyebrow": "Start reading",
+    "ctaTitle": "The best way to judge the project is still to read it.",
+    "ctaCopy": "Start with the first chapter of Romance of the Three Kingdoms and see whether the story pulls you forward.",
+    "ctaButton": "Go to the library"
   },
   "bookmark": {
     "label": "Reading Bookmark",

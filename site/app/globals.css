@@ -1447,9 +1447,114 @@ div {
   gap: 12px;
 }
 
+.site-footer-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
 .site-footer-mark {
   width: 30px;
   flex: 0 0 auto;
+}
+
+.site-footer-link {
+  color: var(--ink-soft);
+  font-family: "SF Pro Text", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
+  font-size: 0.92rem;
+}
+
+.site-footer-link:hover {
+  color: var(--ink);
+}
+
+.about-hero-section {
+  padding-bottom: 20px;
+}
+
+.about-hero-grid,
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.about-page-title {
+  max-width: 14ch;
+}
+
+.about-hero-copy {
+  margin: 0;
+}
+
+.about-card,
+.about-cta-card,
+.about-process-shell {
+  padding: 24px;
+}
+
+.about-card-title {
+  margin: 0 0 12px;
+  font-size: 1.08rem;
+}
+
+.about-card-subtitle {
+  margin-top: 26px;
+}
+
+.about-process-shell {
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  background: var(--surface);
+  box-shadow: var(--shadow-ring), var(--shadow-soft);
+}
+
+.about-section-title {
+  max-width: 16ch;
+}
+
+.about-process-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+}
+
+.about-process-list li {
+  border: 1px solid var(--border-soft);
+  border-radius: 8px;
+  padding: 18px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.about-process-list h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  line-height: 1.3;
+}
+
+.about-process-list p,
+.about-bullet-list li {
+  color: var(--ink-soft);
+  font-family: "SF Pro Text", "PingFang SC", "Noto Sans CJK SC", system-ui, sans-serif;
+}
+
+.about-bullet-list {
+  display: grid;
+  gap: 10px;
+  margin: 0;
+  padding-left: 18px;
+}
+
+.about-cta-card {
+  text-align: center;
+}
+
+.about-cta-card .button-link {
+  margin-inline: auto;
 }
 
 .reader-context-line {
@@ -1920,7 +2025,10 @@ div {
   .home-hero-inner,
   .home-section-grid,
   .home-process-grid,
-  .home-current-reading {
+  .home-current-reading,
+  .about-hero-grid,
+  .about-grid,
+  .about-process-list {
     grid-template-columns: 1fr;
   }
 
@@ -2239,6 +2347,17 @@ div {
 
   .home-library-grid {
     grid-template-columns: 1fr;
+  }
+
+  .site-footer-meta {
+    gap: 10px;
+  }
+
+  .about-card,
+  .about-cta-card,
+  .about-process-shell,
+  .about-process-list li {
+    padding: 20px;
   }
 
 }
