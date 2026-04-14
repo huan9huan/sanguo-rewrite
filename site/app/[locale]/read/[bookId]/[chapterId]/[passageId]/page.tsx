@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import { AnalyticsLink } from "@/components/analytics-link";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { FollowSubscribeForm } from "@/components/follow-subscribe-form";
 import { LanguageSwitch } from "@/components/language-switch";
@@ -195,13 +196,22 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
                 </Link>
               )}
               {nextReadablePassage ? (
-                <Link
+                <AnalyticsLink
                   className="button-link button-link-accent"
                   href={buildPassageHref({ bookId, chapterId, passageId: nextReadablePassage.passage_id }, safeLocale)}
                   prefetch={false}
+                  eventName="next_passage_click"
+                  eventParams={{
+                    locale: safeLocale,
+                    book_id: bookId,
+                    chapter_id: chapterId,
+                    passage_id: passageId,
+                    next_passage_id: nextReadablePassage.passage_id,
+                    mode: "text",
+                  }}
                 >
                   {t.common.next}
-                </Link>
+                </AnalyticsLink>
               ) : null}
             </div>
           </article>

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AnalyticsLink } from "@/components/analytics-link";
 import { ComicViewTracker } from "@/components/comic-view-tracker";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
@@ -91,13 +92,22 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
                 </Link>
               )}
               {nextPassage ? (
-                <Link
+                <AnalyticsLink
                   className="button-link button-link-accent"
                   href={buildComicHref({ bookId, chapterId, passageId: nextPassage.passage_id }, safeLocale)}
                   prefetch={false}
+                  eventName="next_passage_click"
+                  eventParams={{
+                    locale: safeLocale,
+                    book_id: bookId,
+                    chapter_id: chapterId,
+                    passage_id: passageId,
+                    next_passage_id: nextPassage.passage_id,
+                    mode: "comic",
+                  }}
                 >
                   {t.common.next}
-                </Link>
+                </AnalyticsLink>
               ) : null}
             </div>
           </article>
