@@ -1,8 +1,10 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BookChapterBrowser, type ReaderChapter } from "@/components/book-chapter-browser";
 import { ModeHeader } from "@/components/mode-header";
 import { getAllBooks, getBookById, getChapterById } from "@/lib/content";
 import { buildLibraryHref } from "@/lib/paths";
+import { absoluteUrl, localeAlternates } from "@/lib/seo";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -13,6 +15,39 @@ type LocaleBookPageProps = {
     bookId: string;
   }>;
 };
+
+export async function generateMetadata({ params }: LocaleBookPageProps): Promise<Metadata> {
+  const { locale, bookId } = await params;
+  const safeLocale = VALID_LOCALES.includes(locale as Locale) ? (locale as Locale) : "zh";
+  const book = await getBookById(bookId);
+
+  if (!book) {
+    return {};
+  }
+
+  const isEn = safeLocale === "en";
+  const bookTitle = isEn && book.title_en ? book.title_en : book.title;
+  const description = isEn
+    ? (book.description_en || book.description)
+    : book.description;
+
+  return {
+    title: bookTitle,
+    description,
+    alternates: {
+      canonical: absoluteUrl(`/${safeLocale}/read/${bookId}`),
+      languages: localeAlternates({ zh: `/zh/read/${bookId}`, en: `/en/read/${bookId}` }),
+    },
+    openGraph: {
+      title: bookTitle,
+      description,
+      url: absoluteUrl(`/${safeLocale}/read/${bookId}`),
+      siteName: "Read Chinese Classics",
+      locale: isEn ? "en_US" : "zh_CN",
+      type: "article",
+    },
+  };
+}
 
 export default async function LocaleBookPage({ params }: LocaleBookPageProps) {
   const { locale, bookId } = await params;

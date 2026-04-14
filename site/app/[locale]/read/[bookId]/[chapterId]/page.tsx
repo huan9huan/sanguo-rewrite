@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ModeHeader } from "@/components/mode-header";
@@ -5,6 +6,7 @@ import { getDictionary } from "@/i18n";
 import { formatChapterTitle } from "@/lib/chapter-title";
 import { getBookById, getChapterById } from "@/lib/content";
 import { buildBookHref, buildComicHref, buildLibraryHref, buildPassageHref } from "@/lib/paths";
+import { absoluteUrl, localeAlternates } from "@/lib/seo";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -16,6 +18,40 @@ type LocaleChapterPageProps = {
     chapterId: string;
   }>;
 };
+
+export async function generateMetadata({ params }: LocaleChapterPageProps): Promise<Metadata> {
+  const { locale, bookId, chapterId } = await params;
+  const safeLocale = VALID_LOCALES.includes(locale as Locale) ? (locale as Locale) : "zh";
+  const [book, chapter] = await Promise.all([getBookById(bookId), getChapterById(bookId, chapterId)]);
+
+  if (!book || !chapter) {
+    return {};
+  }
+
+  const isEn = safeLocale === "en";
+  const bookTitle = isEn && book.title_en ? book.title_en : book.title;
+  const chapterTitle = formatChapterTitle(chapter, safeLocale);
+  const description = isEn
+    ? (chapter.summary_en || `Read ${chapterTitle} from ${bookTitle}.`)
+    : `${bookTitle} ${chapterTitle}。按段落进入正文和漫画阅读。`;
+
+  return {
+    title: `${chapterTitle} | ${bookTitle}`,
+    description,
+    alternates: {
+      canonical: absoluteUrl(`/${safeLocale}/read/${bookId}/${chapterId}`),
+      languages: localeAlternates({ zh: `/zh/read/${bookId}/${chapterId}`, en: `/en/read/${bookId}/${chapterId}` }),
+    },
+    openGraph: {
+      title: `${chapterTitle} | ${bookTitle}`,
+      description,
+      url: absoluteUrl(`/${safeLocale}/read/${bookId}/${chapterId}`),
+      siteName: "Read Chinese Classics",
+      locale: isEn ? "en_US" : "zh_CN",
+      type: "article",
+    },
+  };
+}
 
 export default async function LocaleChapterPage({ params }: LocaleChapterPageProps) {
   const { locale, bookId, chapterId } = await params;
@@ -95,7 +131,9 @@ export default async function LocaleChapterPage({ params }: LocaleChapterPagePro
                     <span className="locale-badge locale-badge-unavailable">EN unavailable</span>
                   ) : null}
                 </h2>
-                {passage.catchup ? <p className="body-copy">{passage.catchup}</p> : null}
+                {(isEn && passage.catchup_en) || passage.catchup ? (
+                  <p className="body-copy">{isEn && passage.catchup_en ? passage.catchup_en : passage.catchup}</p>
+                ) : null}
                 <div className="reader-card-actions">
                   <Link
                     className="button-link button-link-accent"

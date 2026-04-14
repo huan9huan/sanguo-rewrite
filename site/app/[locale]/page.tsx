@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { SeoLandingPage } from "@/components/seo-landing-page";
+import { absoluteUrl, localeAlternates } from "@/lib/seo";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
-const SITE_URL = "https://readchineseclassics.com";
 
 type LocaleHomePageProps = {
   params: Promise<{ locale: string }>;
@@ -29,16 +29,13 @@ export async function generateMetadata({ params }: LocaleHomePageProps): Promise
     title,
     description,
     alternates: {
-      canonical: `${SITE_URL}${path}`,
-      languages: {
-        "zh-CN": `${SITE_URL}/zh`,
-        en: `${SITE_URL}/en`,
-      },
+      canonical: absoluteUrl(path),
+      languages: localeAlternates({ zh: "/zh", en: "/en" }),
     },
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}${path}`,
+      url: absoluteUrl(path),
       siteName: "Read Chinese Classics",
       locale: isEn ? "en_US" : "zh_CN",
       type: "website",

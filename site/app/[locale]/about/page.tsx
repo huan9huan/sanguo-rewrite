@@ -4,10 +4,10 @@ import { ModeHeader } from "@/components/mode-header";
 import { SiteFooter } from "@/components/site-footer";
 import { getDictionary } from "@/i18n";
 import { buildLibraryHref } from "@/lib/paths";
+import { absoluteUrl, localeAlternates } from "@/lib/seo";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
-const SITE_URL = "https://readchineseclassics.com";
 
 type LocaleAboutPageProps = {
   params: Promise<{ locale: string }>;
@@ -32,16 +32,13 @@ export async function generateMetadata({ params }: LocaleAboutPageProps): Promis
     title,
     description,
     alternates: {
-      canonical: `${SITE_URL}/${safeLocale}/about`,
-      languages: {
-        "zh-CN": `${SITE_URL}/zh/about`,
-        en: `${SITE_URL}/en/about`,
-      },
+      canonical: absoluteUrl(`/${safeLocale}/about`),
+      languages: localeAlternates({ zh: "/zh/about", en: "/en/about" }),
     },
     openGraph: {
       title,
       description,
-      url: `${SITE_URL}/${safeLocale}/about`,
+      url: absoluteUrl(`/${safeLocale}/about`),
       siteName: "Read Chinese Classics",
       locale: isEn ? "en_US" : "zh_CN",
       type: "website",

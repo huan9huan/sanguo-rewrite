@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -15,6 +16,7 @@ import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { proseToHtml } from "@/lib/format";
 import { resolveLocalizedPassage } from "@/lib/locale";
 import { buildBookHref, buildChapterHref, buildComicHref, buildLibraryHref, buildPassageHref } from "@/lib/paths";
+import { absoluteUrl, localeAlternates } from "@/lib/seo";
 import type { Locale, PassageRouteParams } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -27,6 +29,45 @@ type LocalePassagePageProps = {
     passageId: string;
   }>;
 };
+
+export async function generateMetadata({ params }: LocalePassagePageProps): Promise<Metadata> {
+  const { locale, bookId, chapterId, passageId } = await params;
+  const safeLocale = VALID_LOCALES.includes(locale as Locale) ? (locale as Locale) : "zh";
+  const [book, passage] = await Promise.all([
+    getBookById(bookId),
+    getPassageBySlugs(bookId, chapterId, passageId),
+  ]);
+
+  if (!book || !passage) {
+    return {};
+  }
+
+  const localized = resolveLocalizedPassage(passage, safeLocale);
+  const isEn = safeLocale === "en";
+  const bookTitle = isEn && book.title_en ? book.title_en : book.title;
+  const passageTitle = localized?.title || passage.title;
+  const description = localized?.catchup || passage.catchup;
+
+  return {
+    title: `${passageTitle} | ${bookTitle}`,
+    description,
+    alternates: {
+      canonical: absoluteUrl(`/${safeLocale}/read/${bookId}/${chapterId}/${passageId}`),
+      languages: localeAlternates({
+        zh: `/zh/read/${bookId}/${chapterId}/${passageId}`,
+        en: `/en/read/${bookId}/${chapterId}/${passageId}`,
+      }),
+    },
+    openGraph: {
+      title: `${passageTitle} | ${bookTitle}`,
+      description,
+      url: absoluteUrl(`/${safeLocale}/read/${bookId}/${chapterId}/${passageId}`),
+      siteName: "Read Chinese Classics",
+      locale: isEn ? "en_US" : "zh_CN",
+      type: "article",
+    },
+  };
+}
 
 export default async function LocalePassagePage({ params }: LocalePassagePageProps) {
   const { locale, bookId, chapterId, passageId } = await params;
