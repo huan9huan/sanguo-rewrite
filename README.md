@@ -95,8 +95,19 @@ The website supports a small GA4 layer for funnel validation.
 - When the variable is unset, analytics code stays inert and the site should behave normally.
 - Current tracked events:
   - `page_view`
+  - `landing_view`
   - `landing_cta_click`
+  - `start_reading_click`
+  - `book_open`
+  - `chapter_open`
+  - `passage_open`
   - `read_start`
+  - `reading_30s`
+  - `reading_90s`
+  - `passage_scroll_50`
+  - `passage_scroll_90`
+  - `next_passage_click`
+  - `comic_open`
   - `comic_view`
   - `language_switch`
   - `passage_feedback_submit`
@@ -104,3 +115,5 @@ The website supports a small GA4 layer for funnel validation.
   - `future_book_interest_submit`
 - Common params include `locale`, `book_id`, `chapter_id`, `passage_id`, `mode`, `trigger`, `target_locale`, and `feedback_kind` where relevant.
 - Validate locally with GA4 DebugView after setting the measurement ID and navigating through landing, reader, comic, feedback, and email capture flows.
+- See [docs/14_seo_mvp_analytics.md](docs/14_seo_mvp_analytics.md) for the first-20-users funnel review.
+- See [docs/15_paid_acquisition_readiness.md](docs/15_paid_acquisition_readiness.md) for the paid acquisition readiness checklist.

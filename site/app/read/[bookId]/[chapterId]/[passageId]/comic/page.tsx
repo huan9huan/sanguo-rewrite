@@ -6,7 +6,7 @@ import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { getDictionary } from "@/i18n";
 import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
-import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
+import { buildBookHref, buildChapterHref, buildComicHref, buildLibraryHref, buildPassageHref } from "@/lib/paths";
 
 export const dynamic = "force-dynamic";
 
@@ -40,6 +40,7 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
     <main className="page-shell passage-page">
       <ComicViewTracker bookId={bookId} chapterId={chapterId} passageId={passageId} locale="zh" />
       <ModeHeader
+        logoHref={buildLibraryHref()}
         bookLabel={book.title}
         chapterLabel={chapter.adapted_title_cn || chapter.source_title}
         passageLabel={passage.title}

@@ -23,6 +23,10 @@ export function LandingCtaLink({ href, className, locale, children }: LandingCta
           locale,
           destination: href,
         });
+        trackEvent("start_reading_click", {
+          locale,
+          destination: href,
+        });
       }}
     >
       {children}

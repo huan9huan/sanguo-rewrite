@@ -18,13 +18,16 @@ export function ComicViewTracker({
   locale,
 }: ComicViewTrackerProps) {
   useEffect(() => {
-    trackEvent("comic_view", {
+    const params = {
       locale,
       book_id: bookId,
       chapter_id: chapterId,
       passage_id: passageId,
       mode: "comic",
-    });
+    };
+
+    trackEvent("comic_view", params);
+    trackEvent("comic_open", params);
   }, [bookId, chapterId, passageId, locale]);
 
   return null;

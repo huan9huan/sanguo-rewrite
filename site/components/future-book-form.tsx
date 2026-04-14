@@ -1,38 +1,20 @@
 "use client";
 
-import { useState, useEffect, type FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 import { getDictionary } from "@/i18n";
 import { trackEvent } from "@/lib/client/analytics";
 import type { Locale } from "@/lib/types";
-
-const CACHE_KEY = "future-books-submitted";
-const CACHE_MS = 7 * 24 * 60 * 60 * 1000; // 7 days
 
 const BOOK_IDS = ["xiyouji", "shuihu", "hongloumeng", "jinpingmei"] as const;
 
 type Status = "idle" | "submitting" | "success" | "error";
 
-function isCached(): boolean {
-  try {
-    const raw = localStorage.getItem(CACHE_KEY);
-    if (!raw) return false;
-    return Date.now() < Number(raw);
-  } catch {
-    return false;
-  }
-}
-
 export function FutureBookForm({ locale = "zh" }: { locale?: Locale }) {
   const t = getDictionary(locale);
-  const [visible, setVisible] = useState(false);
   const [selectedBook, setSelectedBook] = useState("");
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-
-  useEffect(() => {
-    if (!isCached()) setVisible(true);
-  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -68,31 +50,17 @@ export function FutureBookForm({ locale = "zh" }: { locale?: Locale }) {
         return;
       }
 
-      try {
-        localStorage.setItem(CACHE_KEY, String(Date.now() + CACHE_MS));
-      } catch {}
-
       trackEvent("future_book_interest_submit", {
         locale,
         book_id: selectedBook,
       });
+      setSelectedBook("");
+      setEmail("");
       setStatus("success");
     } catch {
       setErrorMessage(t.futureBooks.networkError);
       setStatus("error");
     }
-  }
-
-  if (!visible && status !== "success") return null;
-
-  if (status === "success") {
-    return (
-      <article className="reader-card future-books-card">
-        <p className="future-books-success-text">
-          {t.futureBooks.success}
-        </p>
-      </article>
-    );
   }
 
   return (
@@ -155,6 +123,12 @@ export function FutureBookForm({ locale = "zh" }: { locale?: Locale }) {
         {errorMessage && (
           <p className="future-books-error">{errorMessage}</p>
         )}
+
+        {status === "success" && !errorMessage ? (
+          <p className="future-books-success-text">
+            {t.futureBooks.success}
+          </p>
+        ) : null}
 
         <p className="future-books-privacy">
           {t.futureBooks.privacy}

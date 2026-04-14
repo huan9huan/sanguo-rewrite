@@ -1,25 +1,29 @@
-import { LandingCtaLink } from "@/components/landing-cta-link";
-import { SiteFooter } from "@/components/site-footer";
-import { getDictionary } from "@/i18n";
+import type { Metadata } from "next";
+import { headers } from "next/headers";
+import { SeoLandingPage } from "@/components/seo-landing-page";
+import type { Locale } from "@/lib/types";
 
-export default async function HomePage() {
-  const t = getDictionary("zh");
+export const metadata: Metadata = {
+  title: "Read Chinese Classics",
+  description: "A story-first reading project for Chinese classics, starting with Romance of the Three Kingdoms.",
+};
 
-  return (
-    <div className="page-shell home-hero-page">
-      <main>
-        <section className="home-hero">
-          <div className="container home-hero-inner">
-            <h1 className="home-hero-title">{t.landing.heroTitle}</h1>
-            <div className="home-hero-actions">
-              <LandingCtaLink className="button-link button-link-accent home-hero-cta" href="/read" locale="zh">
-                {t.landing.cta}
-              </LandingCtaLink>
-            </div>
-          </div>
-        </section>
-      </main>
-      <SiteFooter locale="zh" />
-    </div>
-  );
+type HomePageProps = {
+  searchParams: Promise<{ lang?: string }>;
+};
+
+function pickLocale(langParam: string | undefined, acceptLanguage: string): Locale {
+  if (langParam === "zh" || langParam === "en") {
+    return langParam;
+  }
+
+  return /\bzh\b|zh-cn|zh-tw|zh-hk|zh-mo|zh-sg/i.test(acceptLanguage) ? "zh" : "en";
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const params = await searchParams;
+  const headerStore = await headers();
+  const locale = pickLocale(params.lang, headerStore.get("accept-language") ?? "");
+
+  return <SeoLandingPage locale={locale} preserveHomepagePath />;
 }

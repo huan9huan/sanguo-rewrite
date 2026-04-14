@@ -4,7 +4,7 @@ import { ModeHeader } from "@/components/mode-header";
 import { getDictionary } from "@/i18n";
 import { formatChapterTitle } from "@/lib/chapter-title";
 import { getBookById, getChapterById } from "@/lib/content";
-import { buildComicHref, buildPassageHref } from "@/lib/paths";
+import { buildComicHref, buildLibraryHref, buildPassageHref } from "@/lib/paths";
 
 type ChapterPageProps = {
   params: Promise<{
@@ -27,7 +27,7 @@ export default async function ChapterPage({ params }: ChapterPageProps) {
 
   return (
     <main className="page-shell reader-page">
-      <ModeHeader chapterLabel={chapterTitle} compactTitle={chapterTitle} />
+      <ModeHeader chapterLabel={chapterTitle} compactTitle={chapterTitle} logoHref={buildLibraryHref()} />
 
       <section className="section">
         <div className="container section-head">

@@ -1,5 +1,7 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { AnalyticsLink } from "@/components/analytics-link";
 import { ComicViewTracker } from "@/components/comic-view-tracker";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { ModeHeader } from "@/components/mode-header";
@@ -7,7 +9,8 @@ import { PassageFeedback } from "@/components/passage-feedback";
 import { getDictionary } from "@/i18n";
 import { getBookById, getChapterById, getPassageBySlugs } from "@/lib/content";
 import { resolveLocalizedPassage } from "@/lib/locale";
-import { buildBookHref, buildChapterHref, buildComicHref, buildPassageHref } from "@/lib/paths";
+import { buildBookHref, buildChapterHref, buildComicHref, buildLibraryHref, buildPassageHref } from "@/lib/paths";
+import { absoluteUrl, localeAlternates } from "@/lib/seo";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
@@ -22,6 +25,51 @@ type LocaleComicPageProps = {
     passageId: string;
   }>;
 };
+
+export async function generateMetadata({ params }: LocaleComicPageProps): Promise<Metadata> {
+  const { locale, bookId, chapterId, passageId } = await params;
+  const safeLocale = VALID_LOCALES.includes(locale as Locale) ? (locale as Locale) : "zh";
+  const [book, passage] = await Promise.all([
+    getBookById(bookId),
+    getPassageBySlugs(bookId, chapterId, passageId),
+  ]);
+
+  if (!book || !passage) {
+    return {};
+  }
+
+  const localized = resolveLocalizedPassage(passage, safeLocale);
+  const isEn = safeLocale === "en";
+  const bookTitle = isEn && book.title_en ? book.title_en : book.title;
+  const passageTitle = localized?.title || passage.title;
+  const description = isEn
+    ? `Comic mode for ${passageTitle} from ${bookTitle}.`
+    : `${bookTitle}${passageTitle}的漫画阅读模式。`;
+
+  return {
+    title: `${passageTitle} Comic | ${bookTitle}`,
+    description,
+    alternates: {
+      canonical: absoluteUrl(`/${safeLocale}/read/${bookId}/${chapterId}/${passageId}`),
+      languages: localeAlternates({
+        zh: `/zh/read/${bookId}/${chapterId}/${passageId}`,
+        en: `/en/read/${bookId}/${chapterId}/${passageId}`,
+      }),
+    },
+    robots: {
+      index: false,
+      follow: true,
+    },
+    openGraph: {
+      title: `${passageTitle} Comic | ${bookTitle}`,
+      description,
+      url: absoluteUrl(`/${safeLocale}/read/${bookId}/${chapterId}/${passageId}/comic`),
+      siteName: "Read Chinese Classics",
+      locale: isEn ? "en_US" : "zh_CN",
+      type: "article",
+    },
+  };
+}
 
 export default async function LocaleComicPage({ params }: LocaleComicPageProps) {
   const { locale, bookId, chapterId, passageId } = await params;
@@ -53,6 +101,7 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
     <main className="page-shell passage-page">
       <ComicViewTracker bookId={bookId} chapterId={chapterId} passageId={passageId} locale={safeLocale} />
       <ModeHeader
+        logoHref={buildLibraryHref(safeLocale)}
         bookLabel={bookTitle}
         chapterLabel={chapterLabel}
         passageLabel={passage.title}
@@ -90,13 +139,22 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
                 </Link>
               )}
               {nextPassage ? (
-                <Link
+                <AnalyticsLink
                   className="button-link button-link-accent"
                   href={buildComicHref({ bookId, chapterId, passageId: nextPassage.passage_id }, safeLocale)}
                   prefetch={false}
+                  eventName="next_passage_click"
+                  eventParams={{
+                    locale: safeLocale,
+                    book_id: bookId,
+                    chapter_id: chapterId,
+                    passage_id: passageId,
+                    next_passage_id: nextPassage.passage_id,
+                    mode: "comic",
+                  }}
                 >
                   {t.common.next}
-                </Link>
+                </AnalyticsLink>
               ) : null}
             </div>
           </article>
