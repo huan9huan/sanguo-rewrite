@@ -1,9 +1,9 @@
-import { LandingCtaLink } from "@/components/landing-cta-link";
-import { SiteFooter } from "@/components/site-footer";
-import { getDictionary } from "@/i18n";
+import type { Metadata } from "next";
+import { SeoLandingPage } from "@/components/seo-landing-page";
 import type { Locale } from "@/lib/types";
 
 const VALID_LOCALES: Locale[] = ["zh", "en"];
+const SITE_URL = "https://readchineseclassics.com";
 
 type LocaleHomePageProps = {
   params: Promise<{ locale: string }>;
@@ -13,30 +13,42 @@ export async function generateStaticParams() {
   return VALID_LOCALES.map((locale) => ({ locale }));
 }
 
+export async function generateMetadata({ params }: LocaleHomePageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const safeLocale = VALID_LOCALES.includes(locale as Locale) ? (locale as Locale) : "zh";
+  const isEn = safeLocale === "en";
+  const title = isEn
+    ? "Read Romance of the Three Kingdoms | Story-First Chinese Classics"
+    : "阅读三国演义 | 更好读的中国经典";
+  const description = isEn
+    ? "Read Romance of the Three Kingdoms as a story-first Chinese classic, rewritten passage by passage with text, comics, and English adaptation."
+    : "阅读更好读的《三国演义》：按段落打磨的中国经典重写，有正文、漫画和英文版本。";
+  const path = `/${safeLocale}`;
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `${SITE_URL}${path}`,
+      languages: {
+        "zh-CN": `${SITE_URL}/zh`,
+        en: `${SITE_URL}/en`,
+      },
+    },
+    openGraph: {
+      title,
+      description,
+      url: `${SITE_URL}${path}`,
+      siteName: "Read Chinese Classics",
+      locale: isEn ? "en_US" : "zh_CN",
+      type: "website",
+    },
+  };
+}
+
 export default async function LocaleHomePage({ params }: LocaleHomePageProps) {
   const { locale } = await params;
   const safeLocale = VALID_LOCALES.includes(locale as Locale) ? (locale as Locale) : "zh";
-  const t = getDictionary(safeLocale);
 
-  return (
-    <div className="page-shell home-hero-page">
-      <main>
-        <section className="home-hero">
-          <div className="container home-hero-inner">
-            <h1 className="home-hero-title">{t.landing.heroTitle}</h1>
-            <div className="home-hero-actions">
-              <LandingCtaLink
-                className="button-link button-link-accent home-hero-cta"
-                href={`/${safeLocale}/read`}
-                locale={safeLocale}
-              >
-                {t.landing.cta}
-              </LandingCtaLink>
-            </div>
-          </div>
-        </section>
-      </main>
-      <SiteFooter locale={safeLocale} />
-    </div>
-  );
+  return <SeoLandingPage locale={safeLocale} />;
 }

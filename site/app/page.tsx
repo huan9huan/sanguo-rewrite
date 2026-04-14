@@ -1,27 +1,28 @@
-import { LandingCtaLink } from "@/components/landing-cta-link";
-import { SiteMark } from "@/components/site-mark";
-import { SiteFooter } from "@/components/site-footer";
-import { getDictionary } from "@/i18n";
+import type { Metadata } from "next";
+import { SeoLandingPage } from "@/components/seo-landing-page";
+
+const SITE_URL = "https://readchineseclassics.com";
+
+export const metadata: Metadata = {
+  title: "阅读三国演义 | 更好读的中国经典",
+  description: "阅读更好读的《三国演义》：按段落打磨的中国经典重写，有正文、漫画和英文版本。",
+  alternates: {
+    canonical: `${SITE_URL}/zh`,
+    languages: {
+      "zh-CN": `${SITE_URL}/zh`,
+      en: `${SITE_URL}/en`,
+    },
+  },
+  openGraph: {
+    title: "阅读三国演义 | 更好读的中国经典",
+    description: "阅读更好读的《三国演义》：按段落打磨的中国经典重写，有正文、漫画和英文版本。",
+    url: `${SITE_URL}/zh`,
+    siteName: "Read Chinese Classics",
+    locale: "zh_CN",
+    type: "website",
+  },
+};
 
 export default async function HomePage() {
-  const t = getDictionary("zh");
-
-  return (
-    <div className="page-shell home-hero-page">
-      <main>
-        <section className="home-hero">
-          <div className="container home-hero-inner">
-            <SiteMark className="home-site-mark" label="Read Chinese Classics" />
-            <h1 className="home-hero-title">{t.landing.heroTitle}</h1>
-            <div className="home-hero-actions">
-              <LandingCtaLink className="button-link button-link-accent home-hero-cta" href="/read" locale="zh">
-                {t.landing.cta}
-              </LandingCtaLink>
-            </div>
-          </div>
-        </section>
-      </main>
-      <SiteFooter locale="zh" />
-    </div>
-  );
+  return <SeoLandingPage locale="zh" />;
 }

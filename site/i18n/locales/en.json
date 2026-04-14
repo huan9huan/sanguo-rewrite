@@ -13,8 +13,82 @@
     "noContent": "No content yet."
   },
   "landing": {
-    "heroTitle": "Bringing Chinese Classics to Life",
-    "cta": "Start Reading Romance of the Three Kingdoms"
+    "heroKicker": "Read Chinese Classics",
+    "heroTitle": "Chinese classics, rewritten as stories you can actually follow.",
+    "heroSubtitle": "A story-first reading project for classic Chinese novels. Start with Romance of the Three Kingdoms, where Liu Bei, Guan Yu, and Zhang Fei enter a broken empire.",
+    "cta": "Start with Three Kingdoms",
+    "browseCta": "Browse the book",
+    "visualLabel": "Now reading",
+    "featuredBookFallback": "Romance of the Three Kingdoms",
+    "promiseEyebrow": "Why this exists",
+    "promiseTitle": "A lower doorway into a great story.",
+    "promiseCopy": "Classic Chinese novels are full of loyalty, ambition, jokes, grudges, and impossible choices. This edition keeps the drive of the story close to the surface, so a new reader can follow the people before studying the world around them.",
+    "promiseItems": [
+      {
+        "title": "Story first",
+        "copy": "Every passage has a goal, a conflict, a turn, and a reason to keep going."
+      },
+      {
+        "title": "Characters you can hold onto",
+        "copy": "Liu Bei, Guan Yu, and Zhang Fei stay at the center, so the politics never float away from human stakes."
+      },
+      {
+        "title": "Text and comics together",
+        "copy": "Read the prose, open the comic view, and move through the chapter without losing your place."
+      }
+    ],
+    "currentEyebrow": "Start here",
+    "currentTitle": "Read Romance of the Three Kingdoms from the first chapter.",
+    "currentCopy": "The live edition begins with the empire in disorder, a recruitment notice in Zhuo County, and three men who are about to bind their lives together.",
+    "currentPassageSummary": "The empire is breaking. Yellow Turban rebels are rising. A notice in Zhuo County is about to push Liu Bei toward his first choice.",
+    "startPassageCta": "Read the first passage",
+    "comicCta": "Open comic mode",
+    "libraryEyebrow": "The wider shelf",
+    "libraryTitle": "Starting with Three Kingdoms, built for more Chinese classics.",
+    "libraryCopy": "The first live book is Romance of the Three Kingdoms. The long-term direction is a reading shelf for the major Chinese classics, made with the same simple rule: let the story carry the reader in.",
+    "libraryItems": [
+      {
+        "status": "now",
+        "statusLabel": "Now reading",
+        "title": "Romance of the Three Kingdoms",
+        "copy": "War, loyalty, ambition, and three sworn brothers trying to matter in a collapsing world."
+      },
+      {
+        "status": "planned",
+        "statusLabel": "Planned",
+        "title": "Journey to the West",
+        "copy": "A pilgrimage, a monkey who will not behave, and a road full of tests."
+      },
+      {
+        "status": "planned",
+        "statusLabel": "Planned",
+        "title": "Water Margin",
+        "copy": "Outlaws, injustice, brotherhood, and the dangerous pull of a rebel camp."
+      },
+      {
+        "status": "planned",
+        "statusLabel": "Planned",
+        "title": "Dream of the Red Chamber",
+        "copy": "Family, desire, decline, and a household where tenderness and ruin live together."
+      }
+    ],
+    "processEyebrow": "How it is made",
+    "processTitle": "Built passage by passage, not sprayed out in one draft.",
+    "processCopy": "Each section moves through planning, Chinese drafting, review, approved Chinese text, English adaptation, and comic integration. The point is not to explain everything. The point is to make the story readable.",
+    "processSteps": [
+      {
+        "title": "Plan the scene",
+        "copy": "A chapter is split into passages with a clear reader promise."
+      },
+      {
+        "title": "Write and review",
+        "copy": "The Chinese draft is checked for clarity, drive, character consistency, and translation readiness."
+      },
+      {
+        "title": "Adapt for reading",
+        "copy": "Approved text becomes English prose and comic reading assets for the website."
+      }
+    ]
   },
   "read": {
     "pageTitle": "Read Chinese Classics",
