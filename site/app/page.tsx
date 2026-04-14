@@ -1,28 +1,29 @@
 import type { Metadata } from "next";
+import { headers } from "next/headers";
 import { SeoLandingPage } from "@/components/seo-landing-page";
-
-const SITE_URL = "https://readchineseclassics.com";
+import type { Locale } from "@/lib/types";
 
 export const metadata: Metadata = {
-  title: "阅读三国演义 | 更好读的中国经典",
-  description: "阅读更好读的《三国演义》：按段落打磨的中国经典重写，有正文、漫画和英文版本。",
-  alternates: {
-    canonical: `${SITE_URL}/zh`,
-    languages: {
-      "zh-CN": `${SITE_URL}/zh`,
-      en: `${SITE_URL}/en`,
-    },
-  },
-  openGraph: {
-    title: "阅读三国演义 | 更好读的中国经典",
-    description: "阅读更好读的《三国演义》：按段落打磨的中国经典重写，有正文、漫画和英文版本。",
-    url: `${SITE_URL}/zh`,
-    siteName: "Read Chinese Classics",
-    locale: "zh_CN",
-    type: "website",
-  },
+  title: "Read Chinese Classics",
+  description: "A story-first reading project for Chinese classics, starting with Romance of the Three Kingdoms.",
 };
 
-export default async function HomePage() {
-  return <SeoLandingPage locale="zh" />;
+type HomePageProps = {
+  searchParams: Promise<{ lang?: string }>;
+};
+
+function pickLocale(langParam: string | undefined, acceptLanguage: string): Locale {
+  if (langParam === "zh" || langParam === "en") {
+    return langParam;
+  }
+
+  return /\bzh\b|zh-cn|zh-tw|zh-hk|zh-mo|zh-sg/i.test(acceptLanguage) ? "zh" : "en";
+}
+
+export default async function HomePage({ searchParams }: HomePageProps) {
+  const params = await searchParams;
+  const headerStore = await headers();
+  const locale = pickLocale(params.lang, headerStore.get("accept-language") ?? "");
+
+  return <SeoLandingPage locale={locale} preserveHomepagePath />;
 }

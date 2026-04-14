@@ -8,6 +8,7 @@ export function middleware(request: NextRequest) {
 
   // Skip static files, API routes, and internal Next.js paths
   if (
+    pathname === "/" ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/content") ||

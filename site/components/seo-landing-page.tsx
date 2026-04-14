@@ -10,6 +10,7 @@ import type { Locale, PassagePreview } from "@/lib/types";
 
 type SeoLandingPageProps = {
   locale: Locale;
+  preserveHomepagePath?: boolean;
 };
 
 const FEATURED_BOOK_ID = "sanguo";
@@ -33,7 +34,7 @@ function getLocalizedPassageCatchup(passage: PassagePreview, locale: Locale) {
   return locale === "en" && passage.catchup_en ? passage.catchup_en : passage.catchup;
 }
 
-export async function SeoLandingPage({ locale }: SeoLandingPageProps) {
+export async function SeoLandingPage({ locale, preserveHomepagePath = false }: SeoLandingPageProps) {
   const t = getDictionary(locale);
   const isEn = locale === "en";
   const [book, chapter, startPassage, visualPassage] = await Promise.all([
@@ -190,7 +191,7 @@ export async function SeoLandingPage({ locale }: SeoLandingPageProps) {
           </div>
         </section>
       </main>
-      <SiteFooter locale={locale} />
+      <SiteFooter locale={locale} preserveHomepagePath={preserveHomepagePath} />
     </div>
   );
 }

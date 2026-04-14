@@ -4,9 +4,14 @@ import type { Locale } from "@/lib/types";
 
 type SiteFooterProps = {
   locale?: Locale;
+  preserveHomepagePath?: boolean;
 };
 
-export function SiteFooter({ locale = "zh" }: SiteFooterProps) {
+export function SiteFooter({ locale = "zh", preserveHomepagePath = false }: SiteFooterProps) {
+  const localeHrefs = preserveHomepagePath
+    ? { zh: "/?lang=zh", en: "/?lang=en" }
+    : { zh: locale === "zh" ? "/" : "/zh", en: locale === "en" ? "/" : "/en" };
+
   return (
     <footer className="site-footer">
       <div className="container site-footer-inner">
@@ -19,7 +24,7 @@ export function SiteFooter({ locale = "zh" }: SiteFooterProps) {
         <LanguageSwitch
           currentLocale={locale}
           availableLocales={["zh", "en"]}
-          localeHrefs={{ zh: locale === "zh" ? "/" : "/zh", en: locale === "en" ? "/" : "/en" }}
+          localeHrefs={localeHrefs}
         />
       </div>
     </footer>
