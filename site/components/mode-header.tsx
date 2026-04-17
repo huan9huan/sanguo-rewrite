@@ -41,10 +41,9 @@ function ComicIcon({ className }: { className?: string }) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <rect x="3" y="3" width="7" height="7" rx="1" />
-      <rect x="14" y="3" width="7" height="7" rx="1" />
-      <rect x="14" y="14" width="7" height="7" rx="1" />
+      <rect x="3" y="3" width="18" height="7" rx="1" />
       <rect x="3" y="14" width="7" height="7" rx="1" />
+      <rect x="14" y="14" width="7" height="7" rx="1" />
     </svg>
   );
 }
@@ -71,6 +70,7 @@ type ModeHeaderProps = {
     label: string;
     href: string;
     prefetch?: boolean;
+    icon?: "comic" | "text";
   };
   locale?: Locale;
 };
@@ -195,7 +195,7 @@ export function ModeHeader({
               prefetch={actionLink.prefetch}
               title={actionLink.label}
             >
-              {actionLink.label === t.common.comic ? <ComicIcon /> : <TextIcon />}
+              {actionLink.icon === "comic" ? <ComicIcon /> : <TextIcon />}
             </Link>
           ) : secondaryLink ? (
             <Link className="mode-link" href={secondaryLink.href} prefetch={false}>

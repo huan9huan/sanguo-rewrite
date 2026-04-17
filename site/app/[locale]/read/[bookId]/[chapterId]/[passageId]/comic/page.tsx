@@ -107,7 +107,7 @@ export default async function LocaleComicPage({ params }: LocaleComicPageProps) 
         passageLabel={passage.title}
         compactTitle={passage.title}
         primaryLink={{ label: bookTitle, href: buildBookHref(book.id, safeLocale) }}
-        actionLink={{ label: t.common.text, href: buildPassageHref({ bookId, chapterId, passageId }, safeLocale) }}
+        actionLink={{ label: t.common.text, href: buildPassageHref({ bookId, chapterId, passageId }, safeLocale), icon: "text" }}
         secondaryLink={{ label: chapterLabel, href: buildChapterHref(book.id, chapter.id, safeLocale) }}
       />
 

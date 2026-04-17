@@ -46,7 +46,7 @@ export default async function PassageComicPage({ params }: ComicPageProps) {
         passageLabel={passage.title}
         compactTitle={passage.title}
         primaryLink={{ label: book.title, href: buildBookHref(book.id) }}
-        actionLink={{ label: t.common.text, href: buildPassageHref({ bookId, chapterId, passageId }) }}
+        actionLink={{ label: t.common.text, href: buildPassageHref({ bookId, chapterId, passageId }), icon: "text" }}
         secondaryLink={{ label: chapter.adapted_title_cn || chapter.source_title, href: buildChapterHref(book.id, chapter.id) }}
       />
 

@@ -5,7 +5,6 @@ import { Suspense } from "react";
 import { AnalyticsLink } from "@/components/analytics-link";
 import { ComicImageBlock } from "@/components/comic-image-block";
 import { FollowSubscribeForm } from "@/components/follow-subscribe-form";
-import { LanguageSwitch } from "@/components/language-switch";
 import { ModeHeader } from "@/components/mode-header";
 import { PassageFeedback } from "@/components/passage-feedback";
 import { PassageSceneFocus } from "@/components/passage-scene-focus";
@@ -149,7 +148,7 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
         passageLabel={localized.title}
         compactTitle={localized.title}
         primaryLink={{ label: bookTitle, href: buildBookHref(book.id, safeLocale) }}
-        actionLink={{ label: t.common.comic, href: buildComicHref(routeParams, safeLocale), prefetch: false }}
+        actionLink={{ label: t.common.comic, href: buildComicHref(routeParams, safeLocale), prefetch: false, icon: "comic" }}
         secondaryLink={{ label: chapterLabel, href: buildChapterHref(book.id, chapter.id, safeLocale) }}
       />
 
@@ -158,11 +157,6 @@ export default async function LocalePassagePage({ params }: LocalePassagePagePro
           <article className="passage-main reader-card">
             <div className="passage-page-header-row">
               <h1 className="section-title passage-page-title">{localized.title}</h1>
-              <LanguageSwitch
-                currentLocale={safeLocale}
-                availableLocales={passage.available_locales}
-                localeHrefs={{ zh: buildPassageHref(routeParams, "zh"), en: buildPassageHref(routeParams, "en") }}
-              />
             </div>
 
             <div className="scene-reading-flow">

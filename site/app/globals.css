@@ -19,6 +19,7 @@
   --radius-md: 18px;
   --radius-lg: 28px;
   --container: 1180px;
+  --font-reading-en: "Iowan Old Style", "Palatino Linotype", Georgia, serif;
 }
 
 * {
@@ -495,11 +496,6 @@ div {
   gap: 14px;
   margin-bottom: 28px;
   flex-wrap: wrap;
-}
-
-.passage-page-header-row .language-switch {
-  flex-shrink: 0;
-  align-self: center;
 }
 
 .passage-aside {
@@ -1830,6 +1826,14 @@ div {
   font-size: clamp(1.16rem, 1rem + 0.45vw, 1.42rem);
   line-height: 1.95;
   letter-spacing: 0.01em;
+}
+
+[lang="en"] .reading-body,
+[lang="en"] .source-body {
+  font-family: var(--font-reading-en), Georgia, serif;
+  font-size: clamp(1.18rem, 1.02rem + 0.42vw, 1.46rem);
+  line-height: 1.82;
+  letter-spacing: 0.002em;
 }
 
 .reading-body p,
