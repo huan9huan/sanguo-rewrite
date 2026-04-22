@@ -1,8 +1,9 @@
 {
   "page_id": "cp001-p02-page-01",
-  "version": 8,
+  "version": 9,
   "viewport_mode": "mobile_vertical",
   "frame_aspect_ratio": "4:3",
+  "layout_pattern": "top-wide / upper-two / lower-two / bottom-wide",
   "frames": [
     {
       "frame_id": "f1",
@@ -13,13 +14,20 @@
         "crop_mode": "contain"
       },
       "text_block": {
-        "title": "楼桑树下",
+        "title": "楼桑树下的种子",
         "items": [
           {
             "id": "f1_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "刘备出身汉室，却靠草鞋和草席养家。楼桑树下，旧梦还没有熄。",
+            "text": "楼桑村的人都记得，刘家门前那棵大桑树高得像一把撑开的车盖。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f1_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "少年刘备常站在树下抬头看它，像在看一件本不该属于穷人的东西。",
             "lang": "zh-CN"
           }
         ]
@@ -27,15 +35,42 @@
       "panel_box": {
         "x": 0.0,
         "y": 0.0,
-        "w": 0.5105,
-        "h": 0.4072
+        "w": 1.0,
+        "h": 0.2635
       }
     },
     {
       "frame_id": "f2",
-      "scene_id": "cp001_p02_s2",
+      "scene_id": "cp001_p02_s1",
       "image_slot": {
         "asset_key": "cp001-p02-page-01-f2",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "贵种压在穷日子里",
+        "items": [
+          {
+            "id": "f2_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "可长大以后，他还是靠编草鞋、织草席过日子，先顾得上母亲的一碗热汤。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.0,
+        "y": 0.2635,
+        "w": 0.5054,
+        "h": 0.2398
+      }
+    },
+    {
+      "frame_id": "f3",
+      "scene_id": "cp001_p02_s2",
+      "image_slot": {
+        "asset_key": "cp001-p02-page-01-f3",
         "aspect_ratio": "4:3",
         "crop_mode": "contain"
       },
@@ -43,46 +78,26 @@
         "title": "榜前长叹",
         "items": [
           {
-            "id": "f2_t1",
-            "kind": "caption",
-            "speaker": "narrator",
-            "text": "招兵榜贴出来了。他想破贼安民，却没有钱、没有人、没有兵。",
-            "lang": "zh-CN"
-          }
-        ]
-      },
-      "panel_box": {
-        "x": 0.5105,
-        "y": 0.0,
-        "w": 0.4895,
-        "h": 0.4072
-      }
-    },
-    {
-      "frame_id": "f3",
-      "scene_id": "cp001_p02_s3",
-      "image_slot": {
-        "asset_key": "cp001-p02-page-01-f3",
-        "aspect_ratio": "4:3",
-        "crop_mode": "contain"
-      },
-      "text_block": {
-        "title": "厉声一喝",
-        "items": [
-          {
             "id": "f3_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "张飞一声喝问，把刘备从叹息里拉了出来。",
+            "text": "招兵榜贴出来时，刘备一个字一个字看完，最后只剩下一声长叹。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f3_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "他叹的不是怕死，是胸中有志，手上却没有钱、没有人、没有兵。",
             "lang": "zh-CN"
           }
         ]
       },
       "panel_box": {
-        "x": 0.0,
-        "y": 0.4072,
-        "w": 1.0,
-        "h": 0.2695
+        "x": 0.5054,
+        "y": 0.2635,
+        "w": 0.4946,
+        "h": 0.2398
       }
     },
     {
@@ -94,35 +109,96 @@
         "crop_mode": "contain"
       },
       "text_block": {
-        "title": "行动开始",
+        "title": "张飞一脚踏进来",
         "items": [
           {
             "id": "f4_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "张飞愿意出钱招人。刘备眼里有了光，两人转身进店。",
-            "lang": "zh-CN"
-          },
-          {
-            "id": "f4_t2",
-            "kind": "caption",
-            "speaker": "narrator",
-            "text": "酒还没上来，门口又来了新的影子。",
+            "text": "身后忽然炸开一声厉喝。这个黑脸大汉不像路人，像一脚踏进来的雷。",
             "lang": "zh-CN"
           }
         ]
       },
       "panel_box": {
         "x": 0.0,
-        "y": 0.6768,
+        "y": 0.5033,
+        "w": 0.5043,
+        "h": 0.2303
+      }
+    },
+    {
+      "frame_id": "f5",
+      "scene_id": "cp001_p02_s3",
+      "image_slot": {
+        "asset_key": "cp001-p02-page-01-f5",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "一人有志，一人有财",
+        "items": [
+          {
+            "id": "f5_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "刘备没有绕弯，只说自己想去破贼，可惜力不能及。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f5_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "张飞一听就亮了眼：志气你有，钱我来出，咱们现在就能动手。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.5043,
+        "y": 0.5033,
+        "w": 0.4957,
+        "h": 0.2303
+      }
+    },
+    {
+      "frame_id": "f6",
+      "scene_id": "cp001_p02_s3",
+      "image_slot": {
+        "asset_key": "cp001-p02-page-01-f6",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "第三个人快到了",
+        "items": [
+          {
+            "id": "f6_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "两个人一拍即合，转身就进了村店。刘备忽然觉得，今天这口气叹得值。",
+            "lang": "zh-CN"
+          },
+          {
+            "id": "f6_t2",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "酒还没上来，门口先落下一道新的影子。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.0,
+        "y": 0.7335,
         "w": 1.0,
-        "h": 0.3232
+        "h": 0.2665
       }
     }
   ],
   "panel_detection": {
     "source": "comic.png",
-    "frame_count": 4,
-    "detected_count": 4
+    "frame_count": 6,
+    "detected_count": 6
   }
 }

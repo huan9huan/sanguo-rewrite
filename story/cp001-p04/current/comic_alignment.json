@@ -1,8 +1,8 @@
 {
   "passage_id": "cp001-p04",
-  "based_on_text": "current/draft_cn.md",
+  "based_on_text": "current/approved_cn.md",
   "based_on_comic": "current/comic.json",
-  "version_note": "alignment v1",
+  "version_note": "alignment v2 for 8-frame long-page comic",
   "policy": {
     "goal": "story_first_inline_alignment",
     "unit": "paragraph_after",
@@ -12,51 +12,71 @@
     {
       "frame_id": "f1",
       "scene_id": "cp001_p04_s1",
-      "after_paragraph_index": 4,
-      "anchor_quote": "五百对五万。 / 邹靖没说话，领了令。刘备、关羽、张飞也没说话，领了兵。",
+      "after_paragraph_index": 5,
+      "anchor_quote": "邹靖没说话，领了令。刘备、关羽、张飞也没说话，领了兵。",
       "confidence": 0.96,
-      "reason": "这格的力量就在这句极简的悬殊对比和三人无声领兵。等数字和反应都出现之后再插，最能把大战前的硬气压出来。",
-      "notes": "不拖到大兴山交锋之后，避免失去战前压强。"
+      "reason": "这一格的核心是受命出征和五百对五万的压强，放在三人正式领兵之后最稳。"
     },
     {
       "frame_id": "f2",
       "scene_id": "cp001_p04_s1",
-      "after_paragraph_index": 20,
-      "anchor_quote": "一刀两段。",
-      "confidence": 0.97,
-      "reason": "这一格是整场初战最直接的武力爆点。张飞刺邓茂和关羽斩程远志都在这里完成，放在这句短促收刀之后最干脆。",
-      "notes": "不放在张飞刺邓茂之后，因为 frame 明确同时承载‘一矛一刀’。"
+      "after_paragraph_index": 10,
+      "anchor_quote": "刘备骑在马上，左边关羽，右边张飞。五百人在身后，排成不齐整的一列。",
+      "confidence": 0.95,
+      "reason": "这一格对应大兴山下照面的整体态势，等双方阵势和三兄弟位置都出现后再插最清楚。"
     },
     {
       "frame_id": "f3",
-      "scene_id": "cp001_p04_s2",
-      "after_paragraph_index": 43,
-      "anchor_quote": "我和邹靖从正面进，引他们追过来。等他们过了山岭，我鸣金，你们两边一起杀出来。",
-      "confidence": 0.95,
-      "reason": "这格就是帐中定计。要等刘备把三路分工说完整，再插画面，读者才能一眼明白后面那场伏击是怎么来的。",
-      "notes": "不只锚在‘得用奇兵’，因为 frame 需要完整战术而不是抽象判断。"
+      "scene_id": "cp001_p04_s1",
+      "after_paragraph_index": 17,
+      "anchor_quote": "黑马冲出去，丈八矛往前一送——快得像一条蛇从草丛里弹出来。",
+      "confidence": 0.97,
+      "reason": "这一格专门给张飞第一次杀敌，必须贴着邓茂被刺中的瞬间。"
     },
     {
       "frame_id": "f4",
-      "scene_id": "cp001_p04_s2",
-      "after_paragraph_index": 52,
-      "anchor_quote": "黄巾军彻底散了。青州解了围。",
+      "scene_id": "cp001_p04_s1",
+      "after_paragraph_index": 25,
+      "anchor_quote": "对面五万人愣住了。",
       "confidence": 0.96,
-      "reason": "这格承担的是夹击成功后的总体效果，不只是两边杀出。等散围和解围都落定之后再插，才有完整的胜利感。",
-      "notes": "如果提前放在‘三路人马像三把刀同时劈下去’之后，会少掉青州解围的结果。"
+      "reason": "这一格不只是关羽挥刀，还要带出程远志坠马后整片前军发懵的后果，所以放在这里最完整。"
     },
     {
       "frame_id": "f5",
+      "scene_id": "cp001_p04_s2",
+      "after_paragraph_index": 39,
+      "anchor_quote": "一冲上去就知道不对。贼兵太多了，五千人冲进去，对面的人浪一卷，就没了声势。",
+      "confidence": 0.95,
+      "reason": "这一格承担青州受挫与转入夜谋的双重工作，放在首战不利之后才能成立。"
+    },
+    {
+      "frame_id": "f6",
+      "scene_id": "cp001_p04_s2",
+      "after_paragraph_index": 46,
+      "anchor_quote": "我和邹靖从正面进，引他们追过来。等他们过了山岭，我鸣金，你们两边一起杀出来。",
+      "confidence": 0.97,
+      "reason": "这一格就是刘备定计，必须等三路部署完整说清之后再插。"
+    },
+    {
+      "frame_id": "f7",
+      "scene_id": "cp001_p04_s2",
+      "after_paragraph_index": 55,
+      "anchor_quote": "黄巾军彻底散了。青州解了围。",
+      "confidence": 0.96,
+      "reason": "这格承担的是三路夹攻成功和解围结果，不宜早于胜负落定。"
+    },
+    {
+      "frame_id": "f8",
       "scene_id": "cp001_p04_s3",
-      "after_paragraph_index": 74,
+      "after_paragraph_index": 78,
       "anchor_quote": "刀还没冷，仗还没打完。",
       "confidence": 0.95,
-      "reason": "这格不是单纯复现卢植那句‘来了就好’，而是把师生重逢和继续上路的战事感收在一起。放在最后一句后面，尾钩最稳。",
-      "notes": "前面已经让卢植出场与相认成立，因此这里更适合作为 passage 收束而不是中途插图。"
+      "reason": "最后一格既要服务卢植相认，也要服务 passage 的局面升级，压在结尾后最稳。"
     }
   ],
   "notes": [
-    "scene 1 用两个 frame 拉开：f1 是出征压强，f2 是斩将爆点，不能压在同一处。",
-    "f5 选择 paragraph 74 而不是 67，是为了让画面同时服务‘重逢’和‘仗还没完’的 passage 终点。"
+    "scene 1 被拆成四格：受命、对阵、张飞首杀、关羽斩将，不能再压成旧版两格。",
+    "scene 2 被拆成三格：受挫转谋、帐中定计、三路夹攻，重点是刘备开始像真正的将领。",
+    "f8 选择放在 passage 最后一句之后，是为了保住‘局面刚变大，仗还没完’的收束力度。"
   ]
 }

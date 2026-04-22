@@ -6,71 +6,110 @@
     {
       "frame_id": "f1",
       "scene_id": "cp001_p04_s1",
-      "title": "Five Hundred Against Fifty Thousand",
+      "title": "Five Hundred Take the Order",
       "items": [
         {
           "id": "f1_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Five hundred against fifty thousand. Liu Bei, Guan Yu, and Zhang Fei did not step back."
+          "text": "Cheng Yuanzhi was marching on Zhuo with fifty thousand men. Liu Yan could send only Zou Jing, Liu Bei, Guan Yu, Zhang Fei, and five hundred local fighters to meet him."
         }
       ]
     },
     {
       "frame_id": "f2",
       "scene_id": "cp001_p04_s1",
-      "title": "Spear and Blade",
+      "title": "They Meet at Daxing Mountain",
       "items": [
         {
           "id": "f2_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "The Yellow Turban vanguard charged. Zhang Fei and Guan Yu broke it almost before the battle began."
+          "text": "At Daxing Mountain, the two sides finally faced each other. Five hundred men stood before a flood of Yellow Turbans."
         }
       ]
     },
     {
       "frame_id": "f3",
-      "scene_id": "cp001_p04_s2",
-      "title": "A Plan by Lamplight",
+      "scene_id": "cp001_p04_s1",
+      "title": "Zhang Fei Draws First Blood",
       "items": [
         {
           "id": "f3_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "At Qingzhou, Liu Bei chose a trap. Guan Yu and Zhang Fei hid on the flanks while he drew the enemy in."
+          "text": "Deputy commander Deng Mao charged first. Liu Bei gave Zhang Fei the smallest nod, and the spear struck before the man could raise his weapon."
         }
       ]
     },
     {
       "frame_id": "f4",
-      "scene_id": "cp001_p04_s2",
-      "title": "The Trap Closes",
+      "scene_id": "cp001_p04_s1",
+      "title": "Guan Yu Breaks the Center",
       "items": [
         {
           "id": "f4_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Three forces fell like three blades. The Yellow Turbans shattered."
+          "text": "Cheng Yuanzhi came roaring forward, and Guan Yu's blade swept across him. When both leaders fell, fifty thousand Yellow Turbans froze."
         }
       ]
     },
     {
       "frame_id": "f5",
-      "scene_id": "cp001_p04_s3",
-      "title": "You're Here",
+      "scene_id": "cp001_p04_s2",
+      "title": "Qingzhou Cannot Be Taken Head-On",
       "items": [
         {
           "id": "f5_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "At Guangzong, Liu Bei finally stood before his old teacher."
+          "text": "Qingzhou was harder than Daxing Mountain. The first assault failed, and Liu Bei had no choice but to pull back thirty li and make camp."
         },
         {
           "id": "f5_t2",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Their blades were not yet cold. The fighting was not yet done."
+          "text": "That night, one lamp burned over a single map. He knew the next battle could not be fought by force alone."
+        }
+      ]
+    },
+    {
+      "frame_id": "f6",
+      "scene_id": "cp001_p04_s2",
+      "title": "Liu Bei Starts to Use His Head",
+      "items": [
+        {
+          "id": "f6_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Liu Bei laid his finger on the map: Guan Yu on the left ridge, Zhang Fei on the right, while he and Zou Jing would draw the enemy forward."
+        }
+      ]
+    },
+    {
+      "frame_id": "f7",
+      "scene_id": "cp001_p04_s2",
+      "title": "The Three Blades Close",
+      "items": [
+        {
+          "id": "f7_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "The enemy crossed the ridge, and all three forces fell at once. That was how Liu Bei pried Qingzhou open."
+        }
+      ]
+    },
+    {
+      "frame_id": "f8",
+      "scene_id": "cp001_p04_s3",
+      "title": "The Brothers Step into the Larger War",
+      "items": [
+        {
+          "id": "f8_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "After Qingzhou was saved, Liu Bei went to join his old teacher Lu Zhi. From Daxing Mountain to Guangzong, the three brothers had stepped into a much larger war."
         }
       ]
     }

@@ -1,8 +1,9 @@
 {
   "page_id": "cp001-p04-page-01",
-  "version": 1,
+  "version": 2,
   "viewport_mode": "mobile_vertical",
   "frame_aspect_ratio": "4:3",
+  "layout_pattern": "top-wide / upper-two / center-wide / lower-two / lower-wide / bottom-wide",
   "frames": [
     {
       "frame_id": "f1",
@@ -13,22 +14,22 @@
         "crop_mode": "contain"
       },
       "text_block": {
-        "title": "五百对五万",
+        "title": "五百人先领了命",
         "items": [
           {
             "id": "f1_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "五百对五万。邹靖没说话，领了令。刘备、关羽、张飞也没说话，领了兵。",
+            "text": "黄巾贼将程远志带五万人直奔涿郡。刘焉只得派邹靖领刘备三兄弟和五百乡勇去迎敌。",
             "lang": "zh-CN"
           }
         ]
       },
       "panel_box": {
-        "x": 0.0364,
-        "y": 0.0225,
-        "w": 0.9258,
-        "h": 0.3125
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 0.1653
       }
     },
     {
@@ -40,116 +41,197 @@
         "crop_mode": "contain"
       },
       "text_block": {
-        "title": "一矛一刀",
+        "title": "大兴山下照了面",
         "items": [
           {
             "id": "f2_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "张飞一矛刺中邓茂心窝。程远志冲过来，关羽一刀劈成两段。快得像闪电。",
+            "text": "大兴山下，两军第一次照了面。五百人像一把小刀，对面却是漫山的黄巾潮水。",
             "lang": "zh-CN"
           }
         ]
       },
       "panel_box": {
-        "x": 0.0364,
-        "y": 0.335,
-        "w": 0.4622,
-        "h": 0.3281
+        "x": 0.0,
+        "y": 0.1653,
+        "w": 0.4461,
+        "h": 0.1745
       }
     },
     {
       "frame_id": "f3",
-      "scene_id": "cp001_p04_s2",
+      "scene_id": "cp001_p04_s1",
       "image_slot": {
         "asset_key": "cp001-p04-page-01-f3",
         "aspect_ratio": "4:3",
         "crop_mode": "contain"
       },
       "text_block": {
-        "title": "油灯下的计策",
+        "title": "张飞先开了杀戒",
         "items": [
           {
             "id": "f3_t1",
-            "kind": "speech",
-            "speaker": "liu_bei",
-            "text": "贼众我寡，硬打不行。云长埋伏山左，翼德埋伏山右。我诱敌过来，鸣金为号，三路齐出。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "副将邓茂先冲了出来。刘备只朝张飞轻轻一点头，丈八矛就先把人钉下了马。",
             "lang": "zh-CN"
           }
         ]
       },
       "panel_box": {
-        "x": 0.4985,
-        "y": 0.335,
-        "w": 0.4636,
-        "h": 0.3281
+        "x": 0.4461,
+        "y": 0.1653,
+        "w": 0.5539,
+        "h": 0.1745
       }
     },
     {
       "frame_id": "f4",
-      "scene_id": "cp001_p04_s2",
+      "scene_id": "cp001_p04_s1",
       "image_slot": {
         "asset_key": "cp001-p04-page-01-f4",
         "aspect_ratio": "4:3",
         "crop_mode": "contain"
       },
       "text_block": {
-        "title": "三路夹攻",
+        "title": "关羽一刀打穿阵心",
         "items": [
           {
             "id": "f4_t1",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "三路人马像三把刀同时劈下去。黄巾军彻底散了。",
+            "text": "程远志刚冲上来，关羽的青龙刀已横扫过去。主将和副将都倒下后，五万黄巾先愣住了。",
             "lang": "zh-CN"
           }
         ]
       },
       "panel_box": {
-        "x": 0.0364,
-        "y": 0.6631,
-        "w": 0.4622,
-        "h": 0.3037
+        "x": 0.0,
+        "y": 0.3398,
+        "w": 1.0,
+        "h": 0.1611
       }
     },
     {
       "frame_id": "f5",
-      "scene_id": "cp001_p04_s3",
+      "scene_id": "cp001_p04_s2",
       "image_slot": {
         "asset_key": "cp001-p04-page-01-f5",
         "aspect_ratio": "4:3",
         "crop_mode": "contain"
       },
       "text_block": {
-        "title": "来了就好",
+        "title": "青州这回不能硬打",
         "items": [
           {
             "id": "f5_t1",
-            "kind": "speech",
-            "speaker": "lu_zhi",
-            "text": "来了就好。",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "青州之围比大兴山更难。第一次硬冲没有打穿，刘备只能先退三十里下寨。",
             "lang": "zh-CN"
           },
           {
             "id": "f5_t2",
             "kind": "caption",
             "speaker": "narrator",
-            "text": "刀还没冷，仗还没打完。",
+            "text": "夜里油灯只照着一张地图。他知道，下一仗不能再硬碰。",
             "lang": "zh-CN"
           }
         ]
       },
       "panel_box": {
-        "x": 0.4985,
-        "y": 0.6631,
-        "w": 0.4636,
-        "h": 0.3037
+        "x": 0.0,
+        "y": 0.5009,
+        "w": 0.4655,
+        "h": 0.1565
+      }
+    },
+    {
+      "frame_id": "f6",
+      "scene_id": "cp001_p04_s2",
+      "image_slot": {
+        "asset_key": "cp001-p04-page-01-f6",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "刘备开始用脑子打仗",
+        "items": [
+          {
+            "id": "f6_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "刘备把手指按在图上：关羽伏山左，张飞伏山右，他和邹靖从正面引敌，鸣金为号。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.4655,
+        "y": 0.5009,
+        "w": 0.5345,
+        "h": 0.1565
+      }
+    },
+    {
+      "frame_id": "f7",
+      "scene_id": "cp001_p04_s2",
+      "image_slot": {
+        "asset_key": "cp001-p04-page-01-f7",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "三路一合，青州开了",
+        "items": [
+          {
+            "id": "f7_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "贼兵追过山岭的一刻，三路伏兵同时压下去。青州之围，就这样被刘备用脑子撬开了。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.0,
+        "y": 0.6575,
+        "w": 1.0,
+        "h": 0.1496
+      }
+    },
+    {
+      "frame_id": "f8",
+      "scene_id": "cp001_p04_s3",
+      "image_slot": {
+        "asset_key": "cp001-p04-page-01-f8",
+        "aspect_ratio": "4:3",
+        "crop_mode": "contain"
+      },
+      "text_block": {
+        "title": "三兄弟走进大局",
+        "items": [
+          {
+            "id": "f8_t1",
+            "kind": "caption",
+            "speaker": "narrator",
+            "text": "青州解围后，刘备转去投奔恩师卢植。三兄弟从大兴山走到广宗，也第一次站进了更大的战局。",
+            "lang": "zh-CN"
+          }
+        ]
+      },
+      "panel_box": {
+        "x": 0.0,
+        "y": 0.8071,
+        "w": 1.0,
+        "h": 0.1929
       }
     }
   ],
   "panel_detection": {
     "source": "comic.png",
-    "frame_count": 5,
-    "detected_count": 5
+    "frame_count": 8,
+    "detected_count": 8
   }
 }

@@ -6,71 +6,110 @@
     {
       "frame_id": "f1",
       "scene_id": "cp001_p05_s1",
-      "title": "Fire Over Yingchuan",
+      "title": "The Fire Had Already Burned Out",
       "items": [
         {
           "id": "f1_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "By the time they arrived, the battle was over. A cavalry colonel named Cao Cao had already cut down ten thousand."
+          "text": "By the time the brothers reached Yingchuan, half the sky had already burned red. The great battle was over. Only blackened camps and bodies remained."
         }
       ]
     },
     {
       "frame_id": "f2",
       "scene_id": "cp001_p05_s1",
-      "title": "Crossing Paths",
+      "title": "Another Hero Had Arrived First",
       "items": [
         {
           "id": "f2_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Cao Cao barely glanced at them. Go back, said Huangfu Song — your teacher needs you."
+          "text": "The routed rebels had not even finished running when a red-banner force cut across them. The man leading it was Cao Cao, the sort of man who seemed born to close off a battlefield."
         }
       ]
     },
     {
       "frame_id": "f3",
-      "scene_id": "cp001_p05_s2",
-      "title": "The Prison Cart",
+      "scene_id": "cp001_p05_s1",
+      "title": "Sent Back to Guangzong",
       "items": [
         {
           "id": "f3_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "A wooden cart on the road. Inside it — Lu Zhi, in chains."
+          "text": "Huangfu Song gave them only one order: Zhang Liang and Zhang Bao would likely flee to Guangzong. Go back at once and help Lu Zhi."
         }
       ]
     },
     {
       "frame_id": "f4",
       "scene_id": "cp001_p05_s2",
-      "title": "Blade Drawn",
+      "title": "Lu Zhi in a Prison Cart",
       "items": [
         {
           "id": "f4_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Zhang Fei drew his blade, ready to break Lu Zhi out of the prison cart."
-        },
-        {
-          "id": "f4_t2",
-          "kind": "caption",
-          "speaker": "narrator",
-          "text": "Liu Bei stopped him. Their teacher was taken away while they watched."
+          "text": "On the road back, a prison cart came toward them. Inside it sat Lu Zhi."
         }
       ]
     },
     {
       "frame_id": "f5",
       "scene_id": "cp001_p05_s2",
-      "title": "Back to Zhuo",
+      "title": "Zhang Fei Wants to Cut This Rage Loose",
       "items": [
         {
           "id": "f5_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "With Lu Zhi gone, Guangzong offered them no foothold. The brothers turned back toward Zhuo."
+          "text": "Lu Zhi explained everything calmly. Zhang Fei reached for his blade at once, but Liu Bei forced that rage back down."
+        }
+      ]
+    },
+    {
+      "frame_id": "f6",
+      "scene_id": "cp001_p05_s3",
+      "title": "They Had Barely Swallowed It When Another Defeat Appeared",
+      "items": [
+        {
+          "id": "f6_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Less than two days later, another disaster broke out behind the hills. From the ridge, the brothers saw Yellow Turban pursuers flooding over a beaten Han force."
+        }
+      ]
+    },
+    {
+      "frame_id": "f7",
+      "scene_id": "cp001_p05_s3",
+      "title": "Liu Bei Reads the Field Before He Moves",
+      "items": [
+        {
+          "id": "f7_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Liu Bei did not waste words. He read the direction of pursuit and retreat in a glance, and Guan Yu and Zhang Fei understood the plan from that alone."
+        }
+      ]
+    },
+    {
+      "frame_id": "f8",
+      "scene_id": "cp001_p05_s3",
+      "title": "The Brothers Split Open the Collapse",
+      "items": [
+        {
+          "id": "f8_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "The three brothers struck like three blades and carved a path through the rout."
+        },
+        {
+          "id": "f8_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Their ability was visible at last. The road ahead, though, was no less dark."
         }
       ]
     }

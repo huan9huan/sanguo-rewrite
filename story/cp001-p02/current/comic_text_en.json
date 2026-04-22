@@ -6,58 +6,102 @@
     {
       "frame_id": "f1",
       "scene_id": "cp001_p02_s1",
-      "title": "The Mulberry's Shadow",
+      "title": "A Seed Beneath the Mulberry",
       "items": [
         {
           "id": "f1_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Liu Bei carried imperial blood, but he fed his family by weaving mats and sandals."
+          "text": "Everyone in Lou Sang remembered the huge mulberry tree in front of Liu Bei's home."
+        },
+        {
+          "id": "f1_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "As a boy, Liu Bei would stand beneath it and look up, as if it belonged to some future not meant for the poor."
         }
       ]
     },
     {
       "frame_id": "f2",
-      "scene_id": "cp001_p02_s2",
-      "title": "The Sigh",
+      "scene_id": "cp001_p02_s1",
+      "title": "Noble Blood, Poor Days",
       "items": [
         {
           "id": "f2_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "The recruitment notice was up. He wanted to fight the rebels, but he had no money, no men, and no army."
+          "text": "But when he grew up, he still lived by weaving sandals and mats, making sure his mother at least had hot soup."
         }
       ]
     },
     {
       "frame_id": "f3",
-      "scene_id": "cp001_p02_s3",
-      "title": "A Voice Like Thunder",
+      "scene_id": "cp001_p02_s2",
+      "title": "The Sigh at the Notice",
       "items": [
         {
           "id": "f3_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Zhang Fei's thunderous challenge pulled Liu Bei out of his sigh."
+          "text": "When the recruitment notice went up, Liu Bei read every word and ended with a long sigh."
+        },
+        {
+          "id": "f3_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "It was not fear. He had ambition, but no money, no men, and no army."
         }
       ]
     },
     {
       "frame_id": "f4",
       "scene_id": "cp001_p02_s3",
-      "title": "The Offer",
+      "title": "Zhang Fei Steps In",
       "items": [
         {
           "id": "f4_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Zhang Fei had money and men could be gathered. Liu Bei's eyes lit up."
-        },
+          "text": "Then a shout burst open behind him. This black-faced giant did not enter like a passerby. He entered like thunder."
+        }
+      ]
+    },
+    {
+      "frame_id": "f5",
+      "scene_id": "cp001_p02_s3",
+      "title": "One Had Resolve, One Had Means",
+      "items": [
         {
-          "id": "f4_t2",
+          "id": "f5_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Before the wine arrived, a new shadow moved at the door."
+          "text": "Liu Bei spoke plainly: he wanted to fight the rebels, but he did not have the strength to begin."
+        },
+        {
+          "id": "f5_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Zhang Fei's eyes lit up at once. You have the will, he meant. I have the money. We can move now."
+        }
+      ]
+    },
+    {
+      "frame_id": "f6",
+      "scene_id": "cp001_p02_s3",
+      "title": "The Third Man Is Near",
+      "items": [
+        {
+          "id": "f6_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "The two men agreed at once and turned into the village tavern. For the first time that day, Liu Bei felt his sigh had been worth it."
+        },
+        {
+          "id": "f6_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Before the wine arrived, a new shadow fell across the doorway."
         }
       ]
     }
