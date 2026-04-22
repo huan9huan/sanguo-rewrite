@@ -1,0 +1,7 @@
+{
+  "run_id": "run003",
+  "passage_id": "cp001-p03",
+  "role": "comic_adapter",
+  "status": "planning_only",
+  "notes": "Seven-panel reprompt focused on story clarity for readers with no Three Kingdoms background. Keeps image-without-text and multilingual caption separation."
+}

@@ -1,6 +1,6 @@
 {
   "page_id": "cp001-p03-page-01",
-  "version": 15,
+  "version": 1,
   "viewport_mode": "mobile_vertical",
   "frame_aspect_ratio": "4:3",
   "layout_pattern": "top-wide / upper-two / center-wide / lower-two / bottom-wide",
@@ -31,12 +31,6 @@
             "lang": "zh-CN"
           }
         ]
-      },
-      "panel_box": {
-        "x": 0.0,
-        "y": 0.0,
-        "w": 1.0,
-        "h": 0.2204
       }
     },
     {
@@ -65,12 +59,6 @@
             "lang": "zh-CN"
           }
         ]
-      },
-      "panel_box": {
-        "x": 0.0,
-        "y": 0.2204,
-        "w": 0.4973,
-        "h": 0.186
       }
     },
     {
@@ -99,12 +87,6 @@
             "lang": "zh-CN"
           }
         ]
-      },
-      "panel_box": {
-        "x": 0.4973,
-        "y": 0.2204,
-        "w": 0.5027,
-        "h": 0.186
       }
     },
     {
@@ -133,12 +115,6 @@
             "lang": "zh-CN"
           }
         ]
-      },
-      "panel_box": {
-        "x": 0.0,
-        "y": 0.4064,
-        "w": 1.0,
-        "h": 0.1842
       }
     },
     {
@@ -167,12 +143,6 @@
             "lang": "zh-CN"
           }
         ]
-      },
-      "panel_box": {
-        "x": 0.0,
-        "y": 0.5906,
-        "w": 0.4909,
-        "h": 0.1794
       }
     },
     {
@@ -201,12 +171,6 @@
             "lang": "zh-CN"
           }
         ]
-      },
-      "panel_box": {
-        "x": 0.4909,
-        "y": 0.5906,
-        "w": 0.5091,
-        "h": 0.1794
       }
     },
     {
@@ -235,18 +199,7 @@
             "lang": "zh-CN"
           }
         ]
-      },
-      "panel_box": {
-        "x": 0.0,
-        "y": 0.7701,
-        "w": 1.0,
-        "h": 0.2299
       }
     }
-  ],
-  "panel_detection": {
-    "source": "comic.png",
-    "frame_count": 7,
-    "detected_count": 7
-  }
+  ]
 }

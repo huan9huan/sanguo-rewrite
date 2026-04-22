@@ -6,64 +6,133 @@
     {
       "frame_id": "f1",
       "scene_id": "cp001_p03_s1",
-      "title": "A Stranger Walks In",
+      "title": "Guan Yu Arrives",
       "items": [
         {
           "id": "f1_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Guan Yu walked into the village tavern, bound for the same war."
+          "text": "A huge man pushed a handcart into the village tavern. He wanted one bowl of wine before he marched off to join the fighting."
         },
         {
           "id": "f1_t2",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Liu Bei and Zhang Fei saw another man willing to face the chaos."
+          "text": "Liu Bei saw at once that this was no passerby. This was a man who could stand in chaos."
         }
       ]
     },
     {
       "frame_id": "f2",
-      "scene_id": "cp001_p03_s2",
-      "title": "The Peach Garden Oath",
+      "scene_id": "cp001_p03_s1",
+      "title": "They Know the Type",
       "items": [
         {
           "id": "f2_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Three men knelt before heaven and earth. They became brothers."
+          "text": "Guan Yu said little. He came from Hedong, had killed a local bully, and had spent years on the run."
         },
         {
           "id": "f2_t2",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "From that day on, Liu Bei, Guan Yu, and Zhang Fei stood as one."
+          "text": "When Liu Bei spoke of fighting rebels and saving the people, all three men knew they were headed down the same road."
         }
       ]
     },
     {
       "frame_id": "f3",
-      "scene_id": "cp001_p03_s3",
-      "title": "The Merchants' Gift",
+      "scene_id": "cp001_p03_s2",
+      "title": "Zhang Fei Proposes",
       "items": [
         {
           "id": "f3_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Horses, silver, and iron arrived. The brothers finally had the means to raise an army."
+          "text": "Zhang Fei took them to the peach garden behind his estate. For once, the jokes stopped."
+        },
+        {
+          "id": "f3_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "He proposed that they swear brotherhood before heaven and bind their lives together first."
         }
       ]
     },
     {
       "frame_id": "f4",
-      "scene_id": "cp001_p03_s3",
-      "title": "The Road Begins",
+      "scene_id": "cp001_p03_s2",
+      "title": "Oath in the Garden",
       "items": [
         {
           "id": "f4_t1",
           "kind": "caption",
           "speaker": "narrator",
-          "text": "Five hundred men followed the three brothers into Youzhou. Their fate turned with the road."
+          "text": "The next day they knelt beneath the peach blossoms. Liu Bei became the elder brother, Guan Yu the second, and Zhang Fei the third."
+        },
+        {
+          "id": "f4_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "They swore to fight with one heart, help the people in danger, and die together if they had to."
+        }
+      ]
+    },
+    {
+      "frame_id": "f5",
+      "scene_id": "cp001_p03_s3",
+      "title": "The Means to Fight",
+      "items": [
+        {
+          "id": "f5_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Brotherhood alone was not enough. They had no horses, and no money or iron to arm a force."
+        },
+        {
+          "id": "f5_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Then two northern horse merchants turned back past the estate and, moved by Liu Bei's purpose, left them horses, silver, and iron."
+        }
+      ]
+    },
+    {
+      "frame_id": "f6",
+      "scene_id": "cp001_p03_s3",
+      "title": "An Army Takes Shape",
+      "items": [
+        {
+          "id": "f6_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "With horses and iron in hand, the three brothers armed themselves, put on armor, and gathered more than five hundred local volunteers."
+        },
+        {
+          "id": "f6_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Liu Bei took twin swords, Guan Yu raised his great blade, and Zhang Fei leveled his long spear. At last they looked like men setting out to war."
+        }
+      ]
+    },
+    {
+      "frame_id": "f7",
+      "scene_id": "cp001_p03_s3",
+      "title": "Into Youzhou",
+      "items": [
+        {
+          "id": "f7_t1",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "They entered Youzhou with a real force behind them. After an introduction from Zou Jing, Governor Liu Yan recognized Liu Bei as kin of the Han house."
+        },
+        {
+          "id": "f7_t2",
+          "kind": "caption",
+          "speaker": "narrator",
+          "text": "Three unknown men had walked out of a peach garden and into the machinery of the age."
         }
       ]
     }

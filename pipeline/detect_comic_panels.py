@@ -86,6 +86,192 @@ def contiguous_ranges(mask: np.ndarray) -> list[tuple[int, int]]:
     return ranges
 
 
+def smooth_signal(values: np.ndarray, window: int) -> np.ndarray:
+    if window <= 1:
+        return values.astype(np.float32)
+    kernel = np.ones(window, dtype=np.float32) / float(window)
+    return np.convolve(values.astype(np.float32), kernel, mode="same")
+
+
+def detect_content_ranges_from_whitespace(
+    white_ratio: np.ndarray,
+    threshold: float,
+    min_separator: int,
+    min_content: int,
+) -> list[tuple[int, int]]:
+    whitespace = white_ratio >= threshold
+    separators = [
+        (start, end)
+        for start, end in contiguous_ranges(whitespace)
+        if end - start >= min_separator
+    ]
+
+    content_ranges: list[tuple[int, int]] = []
+    cursor = 0
+    for start, end in separators:
+        if start - cursor >= min_content:
+            content_ranges.append((cursor, start))
+        cursor = end
+    if len(white_ratio) - cursor >= min_content:
+        content_ranges.append((cursor, len(white_ratio)))
+    return content_ranges
+
+
+def expand_to_nonwhite_bounds(
+    gray: np.ndarray,
+    top: int,
+    bottom: int,
+    left: int,
+    right: int,
+    white_threshold: int,
+) -> tuple[int, int, int, int]:
+    region = gray[top:bottom, left:right]
+    if region.size == 0:
+        return left, right, top, bottom
+
+    content_mask = region < white_threshold
+    coords = np.argwhere(content_mask)
+    if coords.size == 0:
+        return left, right, top, bottom
+
+    y1, x1 = coords.min(axis=0)
+    y2, x2 = coords.max(axis=0)
+    return left + int(x1), left + int(x2) + 1, top + int(y1), top + int(y2) + 1
+
+
+def detect_whitespace_split_boxes(gray: np.ndarray, expected_count: int) -> list[PixelBox]:
+    height, width = gray.shape
+    white_bar_size = 5
+    white_threshold = 245
+    min_row_content = max(24, int(height * 0.045))
+    min_col_content = max(24, int(width * 0.18))
+
+    white_mask = (gray >= white_threshold).astype(np.uint8)
+
+    row_white_ratio = smooth_signal(white_mask.mean(axis=1), white_bar_size)
+    row_ranges = detect_content_ranges_from_whitespace(
+        row_white_ratio,
+        threshold=0.985,
+        min_separator=white_bar_size,
+        min_content=min_row_content,
+    )
+
+    boxes: list[PixelBox] = []
+    for row_start, row_end in row_ranges:
+        row_mask = white_mask[row_start:row_end, :]
+        col_white_ratio = smooth_signal(row_mask.mean(axis=0), white_bar_size)
+        col_ranges = detect_content_ranges_from_whitespace(
+            col_white_ratio,
+            threshold=0.985,
+            min_separator=white_bar_size,
+            min_content=min_col_content,
+        )
+
+        if len(col_ranges) <= 1:
+            left, right, top, bottom = expand_to_nonwhite_bounds(
+                gray,
+                row_start,
+                row_end,
+                0,
+                width,
+                white_threshold=white_threshold,
+            )
+            boxes.append(PixelBox(x=left, y=top, w=right - left, h=bottom - top))
+            continue
+
+        for col_start, col_end in col_ranges:
+            left, right, top, bottom = expand_to_nonwhite_bounds(
+                gray,
+                row_start,
+                row_end,
+                col_start,
+                col_end,
+                white_threshold=white_threshold,
+            )
+            boxes.append(PixelBox(x=left, y=top, w=right - left, h=bottom - top))
+
+    boxes = [box for box in boxes if box.w >= min_col_content * 0.6 and box.h >= min_row_content * 0.6]
+    return sorted(boxes, key=row_key) if len(boxes) == expected_count else []
+
+
+def row_structure_from_layout(layout: dict[str, Any], expected_count: int) -> list[int]:
+    pattern = str(layout.get("layout_pattern", "")).strip().lower()
+    if not pattern:
+        return []
+
+    row_structure: list[int] = []
+    for part in [item.strip() for item in pattern.split("/") if item.strip()]:
+        if "three" in part:
+            row_structure.append(3)
+        elif "two" in part:
+            row_structure.append(2)
+        else:
+            row_structure.append(1)
+
+    return row_structure if sum(row_structure) == expected_count else []
+
+
+def detect_guided_whitespace_boxes(gray: np.ndarray, row_structure: list[int]) -> list[PixelBox]:
+    if not row_structure:
+        return []
+
+    height, width = gray.shape
+    row_band = smooth_signal(gray.mean(axis=1), 5)
+    row_count = len(row_structure)
+    search_margin_y = max(20, int(height * 0.06))
+
+    horizontal_boundaries: list[int] = []
+    for index in range(1, row_count):
+        expected = int(round(height * index / row_count))
+        boundary = fit_whitespace_boundary(
+            lambda y: float(row_band[y]),
+            expected,
+            clamp(expected - search_margin_y, 0, height - 1),
+            clamp(expected + search_margin_y, 0, height - 1),
+        )
+        horizontal_boundaries.append(boundary)
+
+    row_ranges: list[tuple[int, int]] = []
+    previous = 0
+    for boundary in horizontal_boundaries:
+        row_ranges.append((previous, boundary))
+        previous = boundary
+    row_ranges.append((previous, height))
+
+    boxes: list[PixelBox] = []
+    for row_index, column_count in enumerate(row_structure):
+        top, bottom = row_ranges[row_index]
+        if bottom <= top + 8:
+            return []
+
+        if column_count == 1:
+            boxes.append(PixelBox(x=0, y=top, w=width, h=bottom - top))
+            continue
+
+        col_band = smooth_signal(gray[top:bottom, :].mean(axis=0), 5)
+        search_margin_x = max(20, int(width * 0.12))
+        vertical_boundaries: list[int] = []
+        for column_index in range(1, column_count):
+            expected = int(round(width * column_index / column_count))
+            boundary = fit_whitespace_boundary(
+                lambda x: float(col_band[x]),
+                expected,
+                clamp(expected - search_margin_x, 0, width - 1),
+                clamp(expected + search_margin_x, 0, width - 1),
+            )
+            vertical_boundaries.append(boundary)
+
+        previous_x = 0
+        for boundary in vertical_boundaries:
+            if boundary <= previous_x + 8:
+                return []
+            boxes.append(PixelBox(x=previous_x, y=top, w=boundary - previous_x, h=bottom - top))
+            previous_x = boundary
+        boxes.append(PixelBox(x=previous_x, y=top, w=width - previous_x, h=bottom - top))
+
+    return sorted(boxes, key=row_key)
+
+
 def merge_segments(segments: list[tuple[int, int]], target_count: int) -> list[tuple[int, int]]:
     merged = list(segments)
     while len(merged) > target_count and len(merged) > 1:
@@ -436,6 +622,106 @@ def normalize_panel_boxes(boxes: list[PanelBox]) -> list[PanelBox]:
     return [box for row in normalized_rows for box in row]
 
 
+def whitespace_row_score(gray: np.ndarray, y: int, left: int, right: int, band_size: int = 5) -> float:
+    half = band_size // 2
+    band = gray[max(0, y - half):min(gray.shape[0], y + half + 1), left:right]
+    return float(band.mean()) if band.size else 0.0
+
+
+def whitespace_col_score(gray: np.ndarray, x: int, top: int, bottom: int, band_size: int = 5) -> float:
+    half = band_size // 2
+    band = gray[top:bottom, max(0, x - half):min(gray.shape[1], x + half + 1)]
+    return float(band.mean()) if band.size else 0.0
+
+
+def fit_whitespace_boundary(score_fn, expected: int, search_start: int, search_end: int) -> int:
+    best_index = expected
+    best_score = float("-inf")
+    for index in range(search_start, search_end + 1):
+        score = score_fn(index) - abs(index - expected) * 0.35
+        if score > best_score:
+            best_score = score
+            best_index = index
+    return best_index
+
+
+def fit_boxes_to_whitespace_template(gray: np.ndarray, template_boxes: list[PanelBox]) -> list[PanelBox]:
+    if not template_boxes:
+        return []
+
+    height, width = gray.shape
+    rows = group_panel_boxes_by_row(template_boxes)
+    pixel_rows: list[list[PixelBox]] = []
+    for row in rows:
+        pixel_rows.append([pixel_box_from_panel(box, width, height) for box in row])
+
+    horizontal_boundaries: list[int] = []
+    search_margin_y = max(8, int(height * 0.05))
+    for index in range(len(pixel_rows) - 1):
+        upper_bottom = max(box.y + box.h for box in pixel_rows[index])
+        lower_top = min(box.y for box in pixel_rows[index + 1])
+        expected = (upper_bottom + lower_top) // 2
+        boundary = fit_whitespace_boundary(
+            lambda y: whitespace_row_score(gray, y, 0, width),
+            expected,
+            clamp(expected - search_margin_y, 0, height - 1),
+            clamp(expected + search_margin_y, 0, height - 1),
+        )
+        horizontal_boundaries.append(boundary)
+
+    row_ranges: list[tuple[int, int]] = []
+    previous = 0
+    for boundary in horizontal_boundaries:
+        row_ranges.append((previous, boundary))
+        previous = boundary
+    row_ranges.append((previous, height))
+
+    fitted: list[PanelBox] = []
+    search_margin_x = max(8, int(width * 0.05))
+    for row_index, template_row in enumerate(pixel_rows):
+        top, bottom = row_ranges[row_index]
+        top = clamp(top, 0, height - 1)
+        bottom = clamp(bottom, top + 1, height)
+
+        if len(template_row) == 1:
+            fitted.append(panel_box_from_pixel(PixelBox(x=0, y=top, w=width, h=bottom - top), width, height))
+            continue
+
+        vertical_boundaries: list[int] = []
+        ordered = sorted(template_row, key=lambda box: box.x)
+        for column_index in range(len(ordered) - 1):
+            left_right = ordered[column_index].x + ordered[column_index].w
+            right_left = ordered[column_index + 1].x
+            expected = (left_right + right_left) // 2
+            boundary = fit_whitespace_boundary(
+                lambda x: whitespace_col_score(gray, x, top, bottom),
+                expected,
+                clamp(expected - search_margin_x, 0, width - 1),
+                clamp(expected + search_margin_x, 0, width - 1),
+            )
+            vertical_boundaries.append(boundary)
+
+        previous_x = 0
+        for boundary in vertical_boundaries:
+            fitted.append(
+                panel_box_from_pixel(
+                    PixelBox(x=previous_x, y=top, w=boundary - previous_x, h=bottom - top),
+                    width,
+                    height,
+                )
+            )
+            previous_x = boundary
+        fitted.append(
+            panel_box_from_pixel(
+                PixelBox(x=previous_x, y=top, w=width - previous_x, h=bottom - top),
+                width,
+                height,
+            )
+        )
+
+    return normalize_panel_boxes(fitted)
+
+
 def adjust_box_count(boxes: list[PixelBox], expected_count: int, gray: np.ndarray) -> list[PixelBox]:
     adjusted = list(boxes)
     while len(adjusted) > expected_count:
@@ -488,8 +774,40 @@ def detect_panel_boxes(
 
     layout = layout_or_expected_count if isinstance(layout_or_expected_count, dict) else {}
     count = expected_count if expected_count is not None else int(layout_or_expected_count)
+    row_structure = row_structure_from_layout(layout, count)
+    if row_structure:
+        guided_boxes = detect_guided_whitespace_boxes(gray, row_structure)
+        if len(guided_boxes) == count:
+            boxes = [
+                PanelBox(
+                    x=box.x / width,
+                    y=box.y / height,
+                    w=box.w / width,
+                    h=box.h / height,
+                )
+                for box in guided_boxes
+            ]
+            return normalize_panel_boxes(boxes), image
+
+    whitespace_boxes = detect_whitespace_split_boxes(gray, count)
+    if len(whitespace_boxes) == count:
+        boxes = [
+            PanelBox(
+                x=box.x / width,
+                y=box.y / height,
+                w=box.w / width,
+                h=box.h / height,
+            )
+            for box in whitespace_boxes
+        ]
+        return normalize_panel_boxes(boxes), image
+
     template_boxes = template_boxes_from_layout(layout)
     if len(template_boxes) == count:
+        whitespace_fitted = fit_boxes_to_whitespace_template(gray, template_boxes)
+        if len(whitespace_fitted) == count:
+            return whitespace_fitted, image
+
         fitted_boxes = normalize_panel_boxes([fit_box_to_template(gray, box) for box in template_boxes])
         if validate_template_pattern(fitted_boxes, str(layout.get("layout_pattern", ""))):
             return fitted_boxes, image

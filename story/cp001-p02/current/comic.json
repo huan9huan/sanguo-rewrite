@@ -1,6 +1,6 @@
 {
   "page_id": "cp001-p02-page-01",
-  "version": 1,
+  "version": 8,
   "viewport_mode": "mobile_vertical",
   "frame_aspect_ratio": "4:3",
   "frames": [
@@ -26,9 +26,9 @@
       },
       "panel_box": {
         "x": 0.0,
-        "y": 0.0039,
-        "w": 0.5114,
-        "h": 0.4038
+        "y": 0.0,
+        "w": 0.5105,
+        "h": 0.4072
       }
     },
     {
@@ -52,10 +52,10 @@
         ]
       },
       "panel_box": {
-        "x": 0.5114,
-        "y": 0.0039,
-        "w": 0.4886,
-        "h": 0.4038
+        "x": 0.5105,
+        "y": 0.0,
+        "w": 0.4895,
+        "h": 0.4072
       }
     },
     {
@@ -80,7 +80,7 @@
       },
       "panel_box": {
         "x": 0.0,
-        "y": 0.4077,
+        "y": 0.4072,
         "w": 1.0,
         "h": 0.2695
       }
@@ -114,14 +114,14 @@
       },
       "panel_box": {
         "x": 0.0,
-        "y": 0.6772,
+        "y": 0.6768,
         "w": 1.0,
-        "h": 0.3208
+        "h": 0.3232
       }
     }
   ],
   "panel_detection": {
-    "source": "image.jpg",
+    "source": "comic.png",
     "frame_count": 4,
     "detected_count": 4
   }
