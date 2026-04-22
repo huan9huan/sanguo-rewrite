@@ -1,6 +1,6 @@
 {
   "page_id": "cp001-p01-page-01",
-  "version": 3,
+  "version": 6,
   "source_prompt_version": "passage_comic_v3_generated/page_prompt.txt",
   "viewport_mode": "mobile_vertical",
   "frame_aspect_ratio": "4:3",
@@ -27,10 +27,10 @@
         ]
       },
       "panel_box": {
-        "x": 0.0092,
-        "y": 0.0078,
-        "w": 0.983,
-        "h": 0.2881
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 0.3048
       }
     },
     {
@@ -54,10 +54,10 @@
         ]
       },
       "panel_box": {
-        "x": 0.0092,
-        "y": 0.2959,
-        "w": 0.4915,
-        "h": 0.3901
+        "x": 0.0,
+        "y": 0.3048,
+        "w": 0.4734,
+        "h": 0.3504
       }
     },
     {
@@ -81,10 +81,10 @@
         ]
       },
       "panel_box": {
-        "x": 0.5007,
-        "y": 0.2959,
-        "w": 0.4915,
-        "h": 0.3901
+        "x": 0.4734,
+        "y": 0.3048,
+        "w": 0.5266,
+        "h": 0.3504
       }
     },
     {
@@ -115,15 +115,15 @@
         ]
       },
       "panel_box": {
-        "x": 0.0105,
-        "y": 0.686,
-        "w": 0.9804,
-        "h": 0.2856
+        "x": 0.0,
+        "y": 0.6551,
+        "w": 1.0,
+        "h": 0.3449
       }
     }
   ],
   "panel_detection": {
-    "source": "image.jpg",
+    "source": "comic.png",
     "frame_count": 4,
     "detected_count": 4
   }
