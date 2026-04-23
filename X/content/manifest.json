@@ -1,0 +1,16 @@
+{
+  "project": "X",
+  "description": "Managed X posts for promoting the Romance Rewrite project.",
+  "default_locale": "en",
+  "posts": [
+    {
+      "id": "2026-04-23-001",
+      "slug": "project-purpose",
+      "path": "posts/2026-04-23-001-project-purpose.md",
+      "language": "en",
+      "status": "published",
+      "platform": "x",
+      "published_url": "https://x.com/copythen/status/2047230359025361202"
+    }
+  ]
+}
