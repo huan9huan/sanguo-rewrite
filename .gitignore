@@ -7,6 +7,9 @@ __pycache__/
 output/
 site/.next/
 
+# Local credentials
+config/gcp/*.json
+
 # Passage workspace scratch areas
 story/*/comic/run*/
 story/*/draft/v*/

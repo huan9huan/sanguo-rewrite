@@ -1,6 +1,6 @@
 {
   "role": "video_operator",
-  "status": "render_plan_ready_zh",
+  "status": "render_plan_ready_zh_google_natural_timing",
   "video_id": "cp001-p03-short-run001-zh",
   "input": {
     "shot_plan": "story/cp001-p03/video/run001/shot_plan.json",
@@ -11,14 +11,14 @@
   "output": {
     "video": "story/cp001-p03/video/run001/output/video_zh.mp4",
     "cover": "story/cp001-p03/video/run001/output/cover_zh.png",
-    "audio_mix": "story/cp001-p03/video/run001/audio_zh/final_mix.wav",
+    "audio_mix": "story/cp001-p03/video/run001/audio_zh_google/final_mix_natural.wav",
     "manifest": "story/cp001-p03/video/run001/video_manifest_zh.json"
   },
   "render_settings": {
     "width": 1080,
     "height": 1920,
     "fps": 30,
-    "duration_seconds": 15,
+    "duration_seconds": 26.76,
     "background_color": "#f4f1e8",
     "subtitle_style": {
       "font": "PingFang SC",
@@ -30,9 +30,9 @@
     }
   },
   "audio_policy": {
-    "engine": "macos_say",
+    "engine": "google_cloud_tts",
     "format": "wav",
-    "timing": "fit_each_tts_segment_to_shot_duration",
+    "timing": "preserve_tts_speed_and_fit_shots_to_audio",
     "music": "none",
     "sfx": "none_for_mvp"
   },

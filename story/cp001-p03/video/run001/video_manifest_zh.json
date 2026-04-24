@@ -1,8 +1,8 @@
 {
   "role": "video_operator",
-  "status": "mvp_rendered_zh",
+  "status": "mvp_rendered_zh_google_tts_natural_timing",
   "video_id": "cp001-p03-short-run001-zh",
-  "duration_seconds": 15,
+  "duration_seconds": 26.76,
   "fps": 30,
   "resolution": {
     "width": 1080,
@@ -11,16 +11,18 @@
   "outputs": {
     "video": "story/cp001-p03/video/run001/output/video_zh.mp4",
     "cover": "story/cp001-p03/video/run001/output/cover_zh.png",
-    "audio_mix": "story/cp001-p03/video/run001/audio_zh/final_mix.wav"
+    "audio_mix": "story/cp001-p03/video/run001/audio_zh_google/final_mix_natural.wav"
   },
   "inputs": {
     "shot_plan": "story/cp001-p03/video/run001/shot_plan.json",
     "script": "story/cp001-p03/video/run001/script_zh.md",
-    "subtitles": "story/cp001-p03/video/run001/subtitle_zh.srt",
-    "audio_manifest": "story/cp001-p03/video/run001/audio_manifest_zh.json"
+    "subtitles": "story/cp001-p03/video/run001/subtitle_zh_natural.srt",
+    "audio_manifest": "story/cp001-p03/video/run001/audio_manifest_zh_natural.json",
+    "tts_script": "tools/google_tts.py"
   },
+  "timing_policy": "voice_first_under_30_seconds",
   "notes": [
-    "Chinese MVP render uses burned-in subtitles and macOS Tingting TTS.",
-    "Same visual timeline as English MVP."
+    "Chinese render preserves Google TTS speed and lets shot lengths follow audio.",
+    "Total duration stays under 30 seconds."
   ]
 }

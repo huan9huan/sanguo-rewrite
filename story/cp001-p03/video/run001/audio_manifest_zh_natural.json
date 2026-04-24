@@ -1,0 +1,68 @@
+{
+  "role": "video_operator",
+  "status": "audio_ready_zh_google_natural_timing",
+  "engine": "google_cloud_tts",
+  "voice": "cmn-CN-Wavenet-A",
+  "language_code": "cmn-CN",
+  "timing_policy": "preserve_tts_speed_no_atempo",
+  "segments": [
+    {
+      "id": "s01",
+      "text": "三国故事开始前，三个无名之人，先立下一个誓言。",
+      "source_wav": "story/cp001-p03/video/run001/audio_zh_google/s01.wav",
+      "start": 0.0,
+      "end": 5.568,
+      "duration_seconds": 5.568
+    },
+    {
+      "id": "s02",
+      "text": "关羽来投军。刘备和张飞看出，他和他们走的是同一条路。",
+      "source_wav": "story/cp001-p03/video/run001/audio_zh_google/s02.wav",
+      "start": 5.568,
+      "end": 11.712,
+      "duration_seconds": 6.144
+    },
+    {
+      "id": "s03",
+      "text": "桃园之中，",
+      "source_wav": "story/cp001-p03/video/run001/audio_zh_google/s03.wav",
+      "start": 11.712,
+      "end": 13.008,
+      "duration_seconds": 1.296
+    },
+    {
+      "id": "s04a",
+      "text": "三人对天地结为兄弟。",
+      "source_wav": "story/cp001-p03/video/run001/audio_zh_google/s04a.wav",
+      "start": 13.008,
+      "end": 15.552,
+      "duration_seconds": 2.544
+    },
+    {
+      "id": "s04b",
+      "text": "不求同生，但求同死。",
+      "source_wav": "story/cp001-p03/video/run001/audio_zh_google/s04b.wav",
+      "start": 15.552,
+      "end": 18.48,
+      "duration_seconds": 2.928
+    },
+    {
+      "id": "s05",
+      "text": "有了马、铁和五百乡勇，誓言变成了一支队伍。",
+      "source_wav": "story/cp001-p03/video/run001/audio_zh_google/s05.wav",
+      "start": 18.48,
+      "end": 23.64,
+      "duration_seconds": 5.16
+    },
+    {
+      "id": "s06",
+      "text": "从这一刻起，他们走进了历史。",
+      "source_wav": "story/cp001-p03/video/run001/audio_zh_google/s06.wav",
+      "start": 23.64,
+      "end": 26.76,
+      "duration_seconds": 3.12
+    }
+  ],
+  "final_mix": "story/cp001-p03/video/run001/audio_zh_google/final_mix_natural.wav",
+  "final_duration_seconds": 26.76
+}

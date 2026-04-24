@@ -51,6 +51,7 @@ There are 4 core role layers:
 
 There is also 1 downstream layer:
 - Adaptation: derives new reading forms from approved current assets, such as other languages
+- Short Video / Motion Comic: derives video-native reading assets from approved current text and current comic assets
 
 Core rule:
 - Planning roles define structure
@@ -58,6 +59,7 @@ Core rule:
 - Gatekeepers judge readiness
 - IT support roles operate the pipeline surfaces but do not redefine content contracts
 - Adaptation roles consume approved assets and must not rewrite upstream contracts
+- Short video roles consume approved/current assets and must not rewrite upstream prose, comic semantics, or canon
 
 ## Role Registry
 
@@ -142,6 +144,14 @@ Detailed execution rules live in the role files under `agents/`.
   File: `agents/translator.md`
   Required guide for English: `docs/13_en-style-guide.md`
 
+### Short Video / Motion Comic
+- Comic Video Builder
+  中文常用名: `漫画视频`
+  Position: approved current text + current comic assets -> vertical motion comic short package
+  Owns: short video brief, narrator script, comic-frame crops, motion storyboard, TTS audio, subtitles, render plan, final 9:16 video package
+  File: `agents/build-comic-video.md`
+  Default timing policy: voice-first, natural TTS speed, under 30 seconds unless the user requests a stricter duration
+
 ## Common Task Routing
 
 Use these examples to locate the right role quickly.
@@ -171,6 +181,10 @@ Use these examples to locate the right role quickly.
 - “把项目/书籍/章节元数据本地化成英文 overlay” -> `外语改写` / Language Adapter, Metadata Mode
 - “检查英文正文和 comic text 是否符合风格指南” -> `外语改写` / Language Adapter self-check, using `docs/13_en-style-guide.md`
 - “promote 英文 draft 到 current/approved_en.md” -> `工作区运维` / Workspace Operator
+- “把这个 passage 做成漫画短视频 / motion comic short” -> `漫画视频` / Comic Video Builder
+- “用 current comic 做一个 9:16 视频” -> `漫画视频` / Comic Video Builder
+- “用 Google TTS 重新做中文版视频，语速自然优先” -> `漫画视频` / Comic Video Builder
+- “把小人书 frame 裁出来做短视频分镜” -> `漫画视频` / Comic Video Builder
 
 ## Review Gates
 A CN draft should be reviewed for:
@@ -193,6 +207,8 @@ A CN draft should be reviewed for:
 - English comic frame text is adapted per frame and must not be mechanically extracted from English prose
 - Character Visual Keeper must run before Comic Adapter when a passage may introduce a new core character
 - Comic Adapter must not invent visuals for core characters missing from `memory/character_visuals.json`
+- Comic Video Builder works on current assets only and must not rewrite approved prose, comic frame semantics, or canon
+- Comic Video Builder should prefer natural TTS timing under 30 seconds unless the user explicitly asks for fixed 15 seconds
 - Reading Integrator works on current assets only
 - Workspace Operator is responsible for promote into `current/`
 - Workspace Operator owns language promote from reviewed language drafts into `current/`
