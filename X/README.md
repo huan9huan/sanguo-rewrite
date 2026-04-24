@@ -17,6 +17,8 @@ X/
     manifest.json
   posts/
     2026-04-23-001-project-purpose.md
+  threads/
+    cp001-p01-thread-v1.md
 ```
 
 ## Post Rules
@@ -26,6 +28,13 @@ X/
 - keep the final post text in a `Post` section
 - keep link and hashtag inside the post text if they are required for publishing
 - use `status` in front matter to mark draft or approved
+
+## Thread Rules
+
+- one thread per passage
+- default source is `story/<passage>/current/approved_en.md` plus current comic assets
+- one thread post maps to one scene image
+- keep `frame_id` and source image path for each post so publishing can stay aligned with comic assets
 
 ## Current Direction
 

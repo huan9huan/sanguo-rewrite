@@ -2,6 +2,16 @@
   "project": "X",
   "description": "Managed X posts for promoting the Romance Rewrite project.",
   "default_locale": "en",
+  "threads": [
+    {
+      "id": "cp001-p01-thread-v1",
+      "passage": "cp001-p01",
+      "path": "threads/cp001-p01-thread-v1.md",
+      "language": "en",
+      "status": "draft",
+      "platform": "x"
+    }
+  ],
   "posts": [
     {
       "id": "2026-04-23-001",
