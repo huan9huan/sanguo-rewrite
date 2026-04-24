@@ -1,0 +1,79 @@
+{
+  "role": "video_operator",
+  "status": "audio_ready_zh",
+  "engine": "macos_say",
+  "segments": [
+    {
+      "id": "s01",
+      "source": "story/cp001-p03/video/run001/audio_zh/s01.aiff",
+      "output": "story/cp001-p03/video/run001/audio_zh/s01_fit.wav",
+      "raw_duration_seconds": 4.914,
+      "target_duration_seconds": 2.6,
+      "fit_duration_seconds": 2.6,
+      "tempo_factor": 1.89,
+      "text": "三国故事开始前，三个无名之人，先立下一个誓言。"
+    },
+    {
+      "id": "s02",
+      "source": "story/cp001-p03/video/run001/audio_zh/s02.aiff",
+      "output": "story/cp001-p03/video/run001/audio_zh/s02_fit.wav",
+      "raw_duration_seconds": 5.33,
+      "target_duration_seconds": 3.2,
+      "fit_duration_seconds": 3.2,
+      "tempo_factor": 1.666,
+      "text": "关羽来投军。刘备和张飞看出，他和他们走的是同一条路。"
+    },
+    {
+      "id": "s03",
+      "source": "story/cp001-p03/video/run001/audio_zh/s03.aiff",
+      "output": "story/cp001-p03/video/run001/audio_zh/s03_fit.wav",
+      "raw_duration_seconds": 0.933,
+      "target_duration_seconds": 1.4,
+      "fit_duration_seconds": 1.4,
+      "tempo_factor": 0.667,
+      "text": "桃园之中，"
+    },
+    {
+      "id": "s04a",
+      "source": "story/cp001-p03/video/run001/audio_zh/s04a.aiff",
+      "output": "story/cp001-p03/video/run001/audio_zh/s04a_fit.wav",
+      "raw_duration_seconds": 1.989,
+      "target_duration_seconds": 2.0,
+      "fit_duration_seconds": 2.0,
+      "tempo_factor": 0.994,
+      "text": "三人对天地结为兄弟。"
+    },
+    {
+      "id": "s04b",
+      "source": "story/cp001-p03/video/run001/audio_zh/s04b.aiff",
+      "output": "story/cp001-p03/video/run001/audio_zh/s04b_fit.wav",
+      "raw_duration_seconds": 2.438,
+      "target_duration_seconds": 1.6,
+      "fit_duration_seconds": 1.6,
+      "tempo_factor": 1.524,
+      "text": "不求同生，但求同死。"
+    },
+    {
+      "id": "s05",
+      "source": "story/cp001-p03/video/run001/audio_zh/s05.aiff",
+      "output": "story/cp001-p03/video/run001/audio_zh/s05_fit.wav",
+      "raw_duration_seconds": 4.301,
+      "target_duration_seconds": 2.6,
+      "fit_duration_seconds": 2.6,
+      "tempo_factor": 1.654,
+      "text": "有了马、铁和五百乡勇，誓言变成了一支队伍。"
+    },
+    {
+      "id": "s06",
+      "source": "story/cp001-p03/video/run001/audio_zh/s06.aiff",
+      "output": "story/cp001-p03/video/run001/audio_zh/s06_fit.wav",
+      "raw_duration_seconds": 2.737,
+      "target_duration_seconds": 1.6,
+      "fit_duration_seconds": 1.6,
+      "tempo_factor": 1.711,
+      "text": "从这一刻起，他们走进了历史。"
+    }
+  ],
+  "final_mix": "story/cp001-p03/video/run001/audio_zh/final_mix.wav",
+  "final_duration_seconds": 15.0
+}

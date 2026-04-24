@@ -1,0 +1,27 @@
+{
+  "role": "video_operator",
+  "status": "mvp_voice_cast",
+  "tts_engine": "macos_say",
+  "voices": [
+    {
+      "voice_id": "narrator",
+      "display_name": "History Narrator",
+      "macos_voice": "Daniel",
+      "locale": "en_GB",
+      "rate": 190,
+      "direction": "Calm, clear, measured historical narration. No hype."
+    },
+    {
+      "voice_id": "oath",
+      "display_name": "Oath Line",
+      "macos_voice": "Daniel",
+      "locale": "en_GB",
+      "rate": 170,
+      "direction": "Solemn and plain. Treat this as a vow, not a battle shout."
+    }
+  ],
+  "notes": [
+    "MVP uses built-in macOS TTS for repeatability.",
+    "Future versions can replace these audio files without changing the visual timeline."
+  ]
+}

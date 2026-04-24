@@ -1,0 +1,79 @@
+{
+  "role": "video_operator",
+  "status": "audio_ready",
+  "engine": "macos_say",
+  "segments": [
+    {
+      "id": "s01",
+      "source": "story/cp001-p03/video/run001/audio/s01.aiff",
+      "output": "story/cp001-p03/video/run001/audio/s01_fit.wav",
+      "raw_duration_seconds": 3.254,
+      "target_duration_seconds": 2.6,
+      "fit_duration_seconds": 2.6,
+      "tempo_factor": 1.252,
+      "text": "Before the Three Kingdoms, three unknown men made one oath."
+    },
+    {
+      "id": "s02",
+      "source": "story/cp001-p03/video/run001/audio/s02.aiff",
+      "output": "story/cp001-p03/video/run001/audio/s02_fit.wav",
+      "raw_duration_seconds": 4.345,
+      "target_duration_seconds": 3.2,
+      "fit_duration_seconds": 3.2,
+      "tempo_factor": 1.358,
+      "text": "Guan Yu came to enlist. Liu Bei and Zhang Fei saw the same road ahead."
+    },
+    {
+      "id": "s03",
+      "source": "story/cp001-p03/video/run001/audio/s03.aiff",
+      "output": "story/cp001-p03/video/run001/audio/s03_fit.wav",
+      "raw_duration_seconds": 1.002,
+      "target_duration_seconds": 1.4,
+      "fit_duration_seconds": 1.4,
+      "tempo_factor": 0.716,
+      "text": "In a peach garden,"
+    },
+    {
+      "id": "s04a",
+      "source": "story/cp001-p03/video/run001/audio/s04a.aiff",
+      "output": "story/cp001-p03/video/run001/audio/s04a_fit.wav",
+      "raw_duration_seconds": 2.019,
+      "target_duration_seconds": 2.0,
+      "fit_duration_seconds": 2.0,
+      "tempo_factor": 1.01,
+      "text": "they swore brotherhood before heaven and earth."
+    },
+    {
+      "id": "s04b",
+      "source": "story/cp001-p03/video/run001/audio/s04b.aiff",
+      "output": "story/cp001-p03/video/run001/audio/s04b_fit.wav",
+      "raw_duration_seconds": 1.384,
+      "target_duration_seconds": 1.6,
+      "fit_duration_seconds": 1.6,
+      "tempo_factor": 0.865,
+      "text": "We swear to die together."
+    },
+    {
+      "id": "s05",
+      "source": "story/cp001-p03/video/run001/audio/s05.aiff",
+      "output": "story/cp001-p03/video/run001/audio/s05_fit.wav",
+      "raw_duration_seconds": 4.705,
+      "target_duration_seconds": 2.6,
+      "fit_duration_seconds": 2.6,
+      "tempo_factor": 1.81,
+      "text": "With horses, iron, and five hundred volunteers, the oath became an army."
+    },
+    {
+      "id": "s06",
+      "source": "story/cp001-p03/video/run001/audio/s06.aiff",
+      "output": "story/cp001-p03/video/run001/audio/s06_fit.wav",
+      "raw_duration_seconds": 1.827,
+      "target_duration_seconds": 1.6,
+      "fit_duration_seconds": 1.6,
+      "tempo_factor": 1.142,
+      "text": "And the three men walked into history."
+    }
+  ],
+  "final_mix": "story/cp001-p03/video/run001/audio/final_mix.wav",
+  "final_duration_seconds": 15.0
+}

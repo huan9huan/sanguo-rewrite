@@ -1,0 +1,45 @@
+{
+  "role": "video_operator",
+  "status": "render_plan_ready",
+  "video_id": "cp001-p03-short-run001",
+  "input": {
+    "shot_plan": "story/cp001-p03/video/run001/shot_plan.json",
+    "voice_cast": "story/cp001-p03/video/run001/voice_cast.json",
+    "subtitles": "story/cp001-p03/video/run001/subtitle_en.srt",
+    "frames_dir": "story/cp001-p03/video/run001/frames"
+  },
+  "output": {
+    "video": "story/cp001-p03/video/run001/output/video.mp4",
+    "cover": "story/cp001-p03/video/run001/output/cover.png",
+    "audio_mix": "story/cp001-p03/video/run001/audio/final_mix.wav",
+    "manifest": "story/cp001-p03/video/run001/video_manifest.json"
+  },
+  "render_settings": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "duration_seconds": 15,
+    "background_color": "#f4f1e8",
+    "subtitle_style": {
+      "font": "Arial",
+      "font_size": 54,
+      "primary_color": "white",
+      "outline_color": "black",
+      "outline_width": 3,
+      "margin_v": 170
+    }
+  },
+  "audio_policy": {
+    "engine": "macos_say",
+    "format": "wav",
+    "timing": "fit_each_tts_segment_to_shot_duration",
+    "music": "none",
+    "sfx": "none_for_mvp"
+  },
+  "visual_policy": {
+    "mode": "motion_comic",
+    "synthetic_character_animation": false,
+    "colorization": false,
+    "subtitle_burn_in": true
+  }
+}

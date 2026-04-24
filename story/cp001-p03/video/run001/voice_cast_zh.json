@@ -1,0 +1,27 @@
+{
+  "role": "video_operator",
+  "status": "mvp_voice_cast_zh",
+  "tts_engine": "macos_say",
+  "voices": [
+    {
+      "voice_id": "narrator_zh",
+      "display_name": "中文历史叙述者",
+      "macos_voice": "Tingting",
+      "locale": "zh_CN",
+      "rate": 190,
+      "direction": "清楚、平稳、有历史叙述感，不要夸张。"
+    },
+    {
+      "voice_id": "oath_zh",
+      "display_name": "中文誓言",
+      "macos_voice": "Tingting",
+      "locale": "zh_CN",
+      "rate": 165,
+      "direction": "郑重，短暂停顿，像誓言，不像口号。"
+    }
+  ],
+  "notes": [
+    "中文版复用同一套画面和镜头，只替换音频与字幕。",
+    "MVP 使用 macOS 内置中文 TTS，后续可替换为更自然的商业 TTS。"
+  ]
+}

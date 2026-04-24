@@ -1,0 +1,26 @@
+{
+  "role": "video_operator",
+  "status": "mvp_rendered",
+  "video_id": "cp001-p03-short-run001",
+  "duration_seconds": 15,
+  "fps": 30,
+  "resolution": {
+    "width": 1080,
+    "height": 1920
+  },
+  "outputs": {
+    "video": "story/cp001-p03/video/run001/output/video.mp4",
+    "cover": "story/cp001-p03/video/run001/output/cover.png",
+    "audio_mix": "story/cp001-p03/video/run001/audio/final_mix.wav"
+  },
+  "inputs": {
+    "shot_plan": "story/cp001-p03/video/run001/shot_plan.json",
+    "script": "story/cp001-p03/video/run001/script_en.md",
+    "subtitles": "story/cp001-p03/video/run001/subtitle_en.srt",
+    "audio_manifest": "story/cp001-p03/video/run001/audio_manifest.json"
+  },
+  "notes": [
+    "MVP render uses burned-in subtitles and macOS say TTS.",
+    "No music or SFX in this render."
+  ]
+}

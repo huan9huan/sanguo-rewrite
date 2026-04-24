@@ -1,0 +1,269 @@
+{
+  "role": "motion_comic_director",
+  "status": "shot_plan_ready",
+  "video_id": "cp001-p03-short-run001",
+  "source": {
+    "passage": "story/cp001-p03",
+    "comic_image": "story/cp001-p03/current/comic.png",
+    "comic_layout": "story/cp001-p03/current/comic.json",
+    "script": "story/cp001-p03/video/run001/script_en.md"
+  },
+  "target": {
+    "canvas": {
+      "width": 1080,
+      "height": 1920,
+      "aspect_ratio": "9:16"
+    },
+    "duration_seconds": 15,
+    "frame_rate": 30,
+    "style": "black_and_white_motion_comic"
+  },
+  "frames": [
+    {
+      "frame_id": "f1",
+      "source_crop": "story/cp001-p03/video/run001/frames/f1.png",
+      "source_size": {
+        "width": 935,
+        "height": 370
+      },
+      "source_panel_box": {
+        "x": 0.0,
+        "y": 0.0,
+        "w": 1.0,
+        "h": 0.2204
+      }
+    },
+    {
+      "frame_id": "f2",
+      "source_crop": "story/cp001-p03/video/run001/frames/f2.png",
+      "source_size": {
+        "width": 464,
+        "height": 313
+      },
+      "source_panel_box": {
+        "x": 0.0,
+        "y": 0.2204,
+        "w": 0.4973,
+        "h": 0.186
+      }
+    },
+    {
+      "frame_id": "f3",
+      "source_crop": "story/cp001-p03/video/run001/frames/f3.png",
+      "source_size": {
+        "width": 470,
+        "height": 313
+      },
+      "source_panel_box": {
+        "x": 0.4973,
+        "y": 0.2204,
+        "w": 0.5027,
+        "h": 0.186
+      }
+    },
+    {
+      "frame_id": "f4",
+      "source_crop": "story/cp001-p03/video/run001/frames/f4.png",
+      "source_size": {
+        "width": 935,
+        "height": 310
+      },
+      "source_panel_box": {
+        "x": 0.0,
+        "y": 0.4064,
+        "w": 1.0,
+        "h": 0.1842
+      }
+    },
+    {
+      "frame_id": "f6",
+      "source_crop": "story/cp001-p03/video/run001/frames/f6.png",
+      "source_size": {
+        "width": 476,
+        "height": 301
+      },
+      "source_panel_box": {
+        "x": 0.4909,
+        "y": 0.5906,
+        "w": 0.5091,
+        "h": 0.1794
+      }
+    },
+    {
+      "frame_id": "f7",
+      "source_crop": "story/cp001-p03/video/run001/frames/f7.png",
+      "source_size": {
+        "width": 935,
+        "height": 386
+      },
+      "source_panel_box": {
+        "x": 0.0,
+        "y": 0.7701,
+        "w": 1.0,
+        "h": 0.2299
+      }
+    }
+  ],
+  "shots": [
+    {
+      "shot_id": "s01",
+      "time": {
+        "start": 0.0,
+        "end": 2.6
+      },
+      "frame_id": "f1",
+      "voice": "narrator",
+      "text": "Before the Three Kingdoms, three unknown men made one oath.",
+      "motion": {
+        "type": "slow_push_in",
+        "start_scale": 1.0,
+        "end_scale": 1.18,
+        "anchor": "center",
+        "easing": "ease_in_out"
+      },
+      "transition_in": "cut",
+      "transition_out": "cut",
+      "subtitle": {
+        "placement": "bottom_center",
+        "max_lines": 2
+      }
+    },
+    {
+      "shot_id": "s02",
+      "time": {
+        "start": 2.6,
+        "end": 5.8
+      },
+      "frame_id": "f2",
+      "voice": "narrator",
+      "text": "Guan Yu came to enlist. Liu Bei and Zhang Fei saw the same road ahead.",
+      "motion": {
+        "type": "pan_left_to_right",
+        "start_scale": 1.12,
+        "end_scale": 1.2,
+        "anchor_start": "left_center",
+        "anchor_end": "right_center",
+        "easing": "linear"
+      },
+      "transition_in": "cut",
+      "transition_out": "soft_cut",
+      "subtitle": {
+        "placement": "bottom_center",
+        "max_lines": 2
+      }
+    },
+    {
+      "shot_id": "s03",
+      "time": {
+        "start": 5.8,
+        "end": 7.2
+      },
+      "frame_id": "f3",
+      "voice": "narrator",
+      "text": "In a peach garden,",
+      "motion": {
+        "type": "short_push_in",
+        "start_scale": 1.0,
+        "end_scale": 1.14,
+        "anchor": "center",
+        "easing": "ease_out"
+      },
+      "transition_in": "soft_cut",
+      "transition_out": "cut",
+      "subtitle": {
+        "placement": "bottom_center",
+        "max_lines": 1
+      }
+    },
+    {
+      "shot_id": "s04",
+      "time": {
+        "start": 7.2,
+        "end": 10.8
+      },
+      "frame_id": "f4",
+      "voice": "narrator_then_oath",
+      "text": "they swore brotherhood before heaven and earth. \"We swear to die together.\"",
+      "motion": {
+        "type": "solemn_push_then_hold",
+        "start_scale": 1.0,
+        "end_scale": 1.16,
+        "hold_from": 9.2,
+        "anchor": "center",
+        "easing": "ease_in_out"
+      },
+      "transition_in": "cut",
+      "transition_out": "cut",
+      "subtitle": {
+        "placement": "bottom_center",
+        "max_lines": 2,
+        "oath_line_emphasis": true
+      }
+    },
+    {
+      "shot_id": "s05",
+      "time": {
+        "start": 10.8,
+        "end": 13.4
+      },
+      "frame_id": "f6",
+      "voice": "narrator",
+      "text": "With horses, iron, and five hundred volunteers, the oath became an army.",
+      "motion": {
+        "type": "push_and_pan",
+        "start_scale": 1.08,
+        "end_scale": 1.24,
+        "anchor_start": "left_center",
+        "anchor_end": "right_center",
+        "easing": "ease_in_out"
+      },
+      "transition_in": "cut",
+      "transition_out": "cut",
+      "subtitle": {
+        "placement": "bottom_center",
+        "max_lines": 2
+      }
+    },
+    {
+      "shot_id": "s06",
+      "time": {
+        "start": 13.4,
+        "end": 15.0
+      },
+      "frame_id": "f7",
+      "voice": "narrator",
+      "text": "And the three men walked into history.",
+      "motion": {
+        "type": "slow_pull_back",
+        "start_scale": 1.16,
+        "end_scale": 1.0,
+        "anchor": "center",
+        "end_hold_seconds": 0.3,
+        "easing": "ease_out"
+      },
+      "transition_in": "cut",
+      "transition_out": "fade_out",
+      "subtitle": {
+        "placement": "bottom_center",
+        "max_lines": 1
+      }
+    }
+  ],
+  "director_notes": [
+    "Use f5 only if the video operator needs a resource shot, but the MVP plan intentionally compresses merchants and supplies into the f6 army shot.",
+    "Keep the oath line visually still and emotionally plain.",
+    "Do not add synthetic character animation in this run.",
+    "Preserve the black-and-white comic texture."
+  ],
+  "handoff_to_next_role": {
+    "next_role": "video_operator",
+    "needed_next_outputs": [
+      "voice_cast.json",
+      "audio_manifest.json",
+      "subtitle_en.srt",
+      "render_plan.json",
+      "output/video.mp4",
+      "output/cover.png"
+    ]
+  }
+}

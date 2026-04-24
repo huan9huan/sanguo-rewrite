@@ -1,0 +1,74 @@
+{
+  "source_image": "story/cp001-p03/current/comic.png",
+  "source_layout": "story/cp001-p03/current/comic.json",
+  "method": "cropped_from_current_panel_box",
+  "source_image_size": {
+    "width": 935,
+    "height": 1683
+  },
+  "frames": [
+    {
+      "frame_id": "f1",
+      "path": "story/cp001-p03/video/run001/frames/f1.png",
+      "size": {
+        "width": 935,
+        "height": 370
+      },
+      "used_in_mvp": true
+    },
+    {
+      "frame_id": "f2",
+      "path": "story/cp001-p03/video/run001/frames/f2.png",
+      "size": {
+        "width": 464,
+        "height": 313
+      },
+      "used_in_mvp": true
+    },
+    {
+      "frame_id": "f3",
+      "path": "story/cp001-p03/video/run001/frames/f3.png",
+      "size": {
+        "width": 470,
+        "height": 313
+      },
+      "used_in_mvp": true
+    },
+    {
+      "frame_id": "f4",
+      "path": "story/cp001-p03/video/run001/frames/f4.png",
+      "size": {
+        "width": 935,
+        "height": 310
+      },
+      "used_in_mvp": true
+    },
+    {
+      "frame_id": "f5",
+      "path": "story/cp001-p03/video/run001/frames/f5.png",
+      "size": {
+        "width": 458,
+        "height": 301
+      },
+      "used_in_mvp": false
+    },
+    {
+      "frame_id": "f6",
+      "path": "story/cp001-p03/video/run001/frames/f6.png",
+      "size": {
+        "width": 476,
+        "height": 301
+      },
+      "used_in_mvp": true
+    },
+    {
+      "frame_id": "f7",
+      "path": "story/cp001-p03/video/run001/frames/f7.png",
+      "size": {
+        "width": 935,
+        "height": 386
+      },
+      "used_in_mvp": true
+    }
+  ]
+}

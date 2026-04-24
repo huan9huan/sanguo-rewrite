@@ -1,0 +1,58 @@
+{
+  "video_id": "cp001-p03-short-run001",
+  "role": "short_video_editor",
+  "status": "editorial_brief_ready",
+  "source": {
+    "passage": "story/cp001-p03",
+    "approved_cn": "story/cp001-p03/current/approved_cn.md",
+    "approved_en": "story/cp001-p03/current/approved_en.md",
+    "comic": "story/cp001-p03/current/comic.png",
+    "comic_layout": "story/cp001-p03/current/comic.json",
+    "comic_text_en": "story/cp001-p03/current/comic_text_en.json"
+  },
+  "target": {
+    "platforms": ["youtube_shorts", "tiktok", "instagram_reels"],
+    "duration_seconds": 15,
+    "aspect_ratio": "9:16",
+    "language": "en",
+    "format": "motion_comic"
+  },
+  "editorial": {
+    "core_hook": "Before the Three Kingdoms, three unknown men made one oath.",
+    "viewer_promise": "A foreign general viewer understands that the Peach Garden Oath turns private brotherhood into the first step toward war and history.",
+    "tone": ["clear", "dramatic", "history_narrator", "not_hype"],
+    "required_search_terms": ["Three Kingdoms", "Peach Garden Oath"],
+    "avoid": ["long cultural explanation", "too many names", "dynasty lecture", "full passage summary"]
+  },
+  "recommended_frames": [
+    {
+      "frame_id": "f1",
+      "purpose": "Guan Yu enters the story"
+    },
+    {
+      "frame_id": "f3",
+      "purpose": "Zhang Fei proposes brotherhood"
+    },
+    {
+      "frame_id": "f4",
+      "purpose": "Peach Garden Oath"
+    },
+    {
+      "frame_id": "f6",
+      "purpose": "weapons and volunteers make the oath practical"
+    },
+    {
+      "frame_id": "f7",
+      "purpose": "the brothers enter Youzhou and history"
+    }
+  ],
+  "script_files": {
+    "brief": "video_brief.md",
+    "script_en": "script_en.md",
+    "publish_copy": "publish_copy.md"
+  },
+  "handoff_to_next_role": {
+    "next_role": "motion_comic_director",
+    "needed_next_outputs": ["storyboard.md", "shot_plan.json", "frames/"]
+  }
+}
