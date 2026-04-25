@@ -1,0 +1,11 @@
+{
+  "language": "en-US",
+  "source_timeline": "story/cp001-p01/podcast/run002/timeline_en.json",
+  "source_audio": "story/cp001-p01/podcast/run002/output/episode_en.mp3",
+  "source_comic": "story/cp001-p01/current/comic.png",
+  "frames_manifest": "story/cp001-p01/podcast/run002/video/frames/frames_manifest.json",
+  "shot_plan": "story/cp001-p01/podcast/run002/video/shot_plan_en.json",
+  "render_plan": "story/cp001-p01/podcast/run002/video/render_plan_en.json",
+  "output": "story/cp001-p01/podcast/run002/video/output/podcast_motion_en.mp4",
+  "cover": "story/cp001-p01/podcast/run002/video/output/cover_en.png"
+}

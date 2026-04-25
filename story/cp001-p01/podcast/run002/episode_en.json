@@ -1,0 +1,495 @@
+{
+  "episode_id": "cp001_p01_en",
+  "source_passage": "story/cp001-p01",
+  "language": "en-US",
+  "mode": "comic_synced_podcast",
+  "title": "The Notice at the Gate",
+  "target_audience": "foreign beginners who know little about Three Kingdoms",
+  "tone": "cinematic two-host historical podcast",
+  "voices": {
+    "narrator": {
+      "voice": "en-US-Chirp3-HD-Kore",
+      "rate": 1.08,
+      "language_code": "en-US"
+    },
+    "listener": {
+      "voice": "en-US-Chirp3-HD-Iapetus",
+      "rate": 1.06,
+      "language_code": "en-US"
+    }
+  },
+  "source": {
+    "approved_cn": {
+      "path": "story/cp001-p01/current/approved_cn.md",
+      "sha256": "dc510aae559e55d678796a3769b1681be8056a12ee026d88ae82320406544f71"
+    },
+    "approved_en": {
+      "path": "story/cp001-p01/current/approved_en.md",
+      "sha256": "7e44b0835c2c007b06efc18b19bfa71d0f988548f3fc5c8431a4970e7cff1e28"
+    },
+    "comic_json": {
+      "path": "story/cp001-p01/current/comic.json",
+      "sha256": "dc217082e31547faf672618caade7ba44aa17b25004a06e5c7b0289a3295f947"
+    },
+    "comic_alignment": {
+      "path": "story/cp001-p01/current/comic_alignment.json",
+      "sha256": "abe2c6c1616f5fbbde0d999c60e67122c27e3b41557bf575f54de30957fed005"
+    }
+  },
+  "lines": [
+    {
+      "id": "cp001_p01_en_l001",
+      "speaker": "narrator",
+      "text": "Empires rarely break all at once.",
+      "function": "hook",
+      "delivery": "quiet, cinematic",
+      "pause_after_ms": 220,
+      "frame_id": "f1",
+      "visual_anchor": "advance_frame"
+    },
+    {
+      "id": "cp001_p01_en_l002",
+      "speaker": "narrator",
+      "text": "At first, the sound is small.",
+      "function": "hook",
+      "delivery": "low and controlled",
+      "pause_after_ms": 180,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l003",
+      "speaker": "narrator",
+      "text": "A strange wind moves through a palace hall.",
+      "function": "story_push",
+      "delivery": "visual, steady",
+      "pause_after_ms": 220,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l004",
+      "speaker": "listener",
+      "text": "This is where Three Kingdoms begins?",
+      "function": "question",
+      "delivery": "curious, close",
+      "pause_after_ms": 160,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l005",
+      "speaker": "narrator",
+      "text": "Not with armies. Not yet.",
+      "function": "meaning",
+      "delivery": "firm, restrained",
+      "pause_after_ms": 220,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l006",
+      "speaker": "narrator",
+      "text": "It begins with Emperor Ling taking his seat.",
+      "function": "setup",
+      "delivery": "clear",
+      "pause_after_ms": 180,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l007",
+      "speaker": "narrator",
+      "text": "Then a great green snake drops from the rafters.",
+      "function": "turn",
+      "delivery": "slow into the image",
+      "pause_after_ms": 280,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l008",
+      "speaker": "narrator",
+      "text": "It coils on the dragon throne.",
+      "function": "turn",
+      "delivery": "short, cold",
+      "pause_after_ms": 260,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l009",
+      "speaker": "listener",
+      "text": "The dragon throne means the emperor's seat, right?",
+      "function": "question",
+      "delivery": "quick clarification",
+      "pause_after_ms": 150,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l010",
+      "speaker": "narrator",
+      "text": "Yes. The seat of the emperor, and the symbol of the empire.",
+      "function": "context",
+      "delivery": "brief explanation, then back to story",
+      "pause_after_ms": 200,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l011",
+      "speaker": "listener",
+      "text": "So the symbol of power becomes a warning.",
+      "function": "meaning",
+      "delivery": "realizing",
+      "pause_after_ms": 180,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l012",
+      "speaker": "narrator",
+      "text": "Exactly. And the warnings keep coming.",
+      "function": "context",
+      "delivery": "conversational, controlled",
+      "pause_after_ms": 180,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l013",
+      "speaker": "narrator",
+      "text": "Earthquakes. Flooded fields. Black vapor rising into the hall.",
+      "function": "story_push",
+      "delivery": "building pressure",
+      "pause_after_ms": 260,
+      "frame_id": "f1",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l014",
+      "speaker": "narrator",
+      "text": "A court official named Cai Yong says the rot starts with the eunuchs.",
+      "function": "context",
+      "delivery": "plain, sharp",
+      "pause_after_ms": 200,
+      "frame_id": null,
+      "visual_anchor": "hold_previous",
+      "pronunciation_note": "Cai Yong"
+    },
+    {
+      "id": "cp001_p01_en_l015",
+      "speaker": "listener",
+      "text": "Eunuchs were palace officials close to the emperor?",
+      "function": "question",
+      "delivery": "beginner clarification",
+      "pause_after_ms": 150,
+      "frame_id": null,
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l016",
+      "speaker": "narrator",
+      "text": "Yes. They controlled doors, messages, and sometimes the emperor himself.",
+      "function": "context",
+      "delivery": "simple, pointed",
+      "pause_after_ms": 220,
+      "frame_id": null,
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l017",
+      "speaker": "listener",
+      "text": "Cai Yong tells the truth. What happens to him?",
+      "function": "question",
+      "delivery": "concerned",
+      "pause_after_ms": 160,
+      "frame_id": null,
+      "visual_anchor": "hold_previous",
+      "pronunciation_note": "Cai Yong"
+    },
+    {
+      "id": "cp001_p01_en_l018",
+      "speaker": "narrator",
+      "text": "He is sent home on an invented charge.",
+      "function": "turn",
+      "delivery": "flat, bitter",
+      "pause_after_ms": 260,
+      "frame_id": null,
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l019",
+      "speaker": "narrator",
+      "text": "When a court stops listening, hungry people listen somewhere else.",
+      "function": "meaning",
+      "delivery": "bridge into rebellion",
+      "pause_after_ms": 280,
+      "frame_id": "f2",
+      "visual_anchor": "advance_frame"
+    },
+    {
+      "id": "cp001_p01_en_l020",
+      "speaker": "narrator",
+      "text": "Far from the capital, a failed scholar named Zhang Jiao gathers herbs.",
+      "function": "setup",
+      "delivery": "storytelling",
+      "pause_after_ms": 220,
+      "frame_id": "f2",
+      "visual_anchor": "hold_previous",
+      "pronunciation_note": "Zhang Jiao"
+    },
+    {
+      "id": "cp001_p01_en_l021",
+      "speaker": "narrator",
+      "text": "In the mountains, an old man gives him three scrolls.",
+      "function": "story_push",
+      "delivery": "clear, lightly mysterious",
+      "pause_after_ms": 220,
+      "frame_id": "f2",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l022",
+      "speaker": "listener",
+      "text": "So he is not a general yet.",
+      "function": "question",
+      "delivery": "clarifying",
+      "pause_after_ms": 160,
+      "frame_id": "f2",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l023",
+      "speaker": "narrator",
+      "text": "No. First, he is a healer.",
+      "function": "context",
+      "delivery": "direct answer",
+      "pause_after_ms": 180,
+      "frame_id": "f2",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l024",
+      "speaker": "narrator",
+      "text": "Plague spreads. Zhang Jiao moves from village to village.",
+      "function": "story_push",
+      "delivery": "active, forward",
+      "pause_after_ms": 200,
+      "frame_id": "f2",
+      "visual_anchor": "hold_previous",
+      "pronunciation_note": "Zhang Jiao"
+    },
+    {
+      "id": "cp001_p01_en_l025",
+      "speaker": "narrator",
+      "text": "He heals the sick and asks for nothing.",
+      "function": "character",
+      "delivery": "matter-of-fact",
+      "pause_after_ms": 220,
+      "frame_id": "f2",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l026",
+      "speaker": "narrator",
+      "text": "His followers multiply across eight provinces.",
+      "function": "turn",
+      "delivery": "widening",
+      "pause_after_ms": 260,
+      "frame_id": "f2",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l027",
+      "speaker": "listener",
+      "text": "That is no longer charity. That is power.",
+      "function": "meaning",
+      "delivery": "realizing danger",
+      "pause_after_ms": 180,
+      "frame_id": "f3",
+      "visual_anchor": "advance_frame"
+    },
+    {
+      "id": "cp001_p01_en_l028",
+      "speaker": "narrator",
+      "text": "Then a slogan begins to move through the land.",
+      "function": "story_push",
+      "delivery": "controlled tension",
+      "pause_after_ms": 220,
+      "frame_id": "f3",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l029",
+      "speaker": "narrator",
+      "text": "The Blue Heaven is dead.",
+      "function": "turn",
+      "delivery": "measured, like a chant",
+      "pause_after_ms": 200,
+      "frame_id": "f3",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l030",
+      "speaker": "narrator",
+      "text": "The Yellow Heaven rises.",
+      "function": "turn",
+      "delivery": "measured, like a chant",
+      "pause_after_ms": 220,
+      "frame_id": "f3",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l031",
+      "speaker": "listener",
+      "text": "Blue Heaven, Yellow Heaven. Is that a call for a new order?",
+      "function": "question",
+      "delivery": "curious, not academic",
+      "pause_after_ms": 160,
+      "frame_id": "f3",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l032",
+      "speaker": "narrator",
+      "text": "Yes. The old world is dead. A new one should replace it.",
+      "function": "context",
+      "delivery": "clear and compact",
+      "pause_after_ms": 260,
+      "frame_id": "f3",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l033",
+      "speaker": "narrator",
+      "text": "The plan is careful. Then a disciple betrays it.",
+      "function": "turn",
+      "delivery": "tight, sudden",
+      "pause_after_ms": 260,
+      "frame_id": "f3",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l034",
+      "speaker": "listener",
+      "text": "So Zhang Jiao has to move first.",
+      "function": "question",
+      "delivery": "urgent",
+      "pause_after_ms": 160,
+      "frame_id": "f3",
+      "visual_anchor": "hold_previous",
+      "pronunciation_note": "Zhang Jiao"
+    },
+    {
+      "id": "cp001_p01_en_l035",
+      "speaker": "narrator",
+      "text": "That night, he raises his army.",
+      "function": "story_push",
+      "delivery": "fast, clear",
+      "pause_after_ms": 200,
+      "frame_id": "f3",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l036",
+      "speaker": "narrator",
+      "text": "Hundreds of thousands wrap yellow cloth around their heads.",
+      "function": "story_push",
+      "delivery": "large scale",
+      "pause_after_ms": 220,
+      "frame_id": "f3",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l037",
+      "speaker": "narrator",
+      "text": "The Yellow Turbans rise. Government troops run.",
+      "function": "turn",
+      "delivery": "sharp, compressed",
+      "pause_after_ms": 320,
+      "frame_id": "f3",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l038",
+      "speaker": "narrator",
+      "text": "The news reaches Luoyang, the imperial capital, and the court finally panics.",
+      "function": "bridge",
+      "delivery": "transition with light context",
+      "pause_after_ms": 220,
+      "frame_id": null,
+      "visual_anchor": "hold_previous",
+      "pronunciation_note": "Luoyang"
+    },
+    {
+      "id": "cp001_p01_en_l039",
+      "speaker": "narrator",
+      "text": "Every region is told to raise troops.",
+      "function": "story_push",
+      "delivery": "setup for hook",
+      "pause_after_ms": 180,
+      "frame_id": "f4",
+      "visual_anchor": "advance_frame"
+    },
+    {
+      "id": "cp001_p01_en_l040",
+      "speaker": "narrator",
+      "text": "In Youzhou, a northern region, Governor Liu Yan posts a recruitment notice.",
+      "function": "story_push",
+      "delivery": "slow enough to land",
+      "pause_after_ms": 220,
+      "frame_id": "f4",
+      "visual_anchor": "hold_previous",
+      "pronunciation_note": "Youzhou, Liu Yan"
+    },
+    {
+      "id": "cp001_p01_en_l041",
+      "speaker": "listener",
+      "text": "One notice on a city gate. Why does it matter?",
+      "function": "question",
+      "delivery": "curious, forward pull",
+      "pause_after_ms": 180,
+      "frame_id": "f4",
+      "visual_anchor": "hold_previous"
+    },
+    {
+      "id": "cp001_p01_en_l042",
+      "speaker": "narrator",
+      "text": "Because it will bring a poor man to history's door.",
+      "function": "cliffhanger",
+      "delivery": "quiet final hook",
+      "pause_after_ms": 450,
+      "frame_id": "f4",
+      "visual_anchor": "hold_previous"
+    }
+  ],
+  "quality_checks": [
+    {
+      "id": "style_guide",
+      "passed": true,
+      "note": "Uses short English lines, active voice, and light context through listener questions."
+    },
+    {
+      "id": "beginner_clarity",
+      "passed": true,
+      "note": "Adds brief clarifications for dragon throne, eunuchs, Blue/Yellow Heaven, Luoyang, and Youzhou."
+    },
+    {
+      "id": "source_fidelity",
+      "passed": true,
+      "note": "Clarifications explain existing source elements without adding new plot facts."
+    },
+    {
+      "id": "tts_friendly",
+      "passed": true,
+      "note": "Added explanations remain short and speakable."
+    },
+    {
+      "id": "comic_sync",
+      "passed": true,
+      "note": "Main visual beats still map to f1-f4; explanation lines hold the current frame."
+    }
+  ]
+}
