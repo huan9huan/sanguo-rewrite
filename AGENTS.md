@@ -148,8 +148,12 @@ Detailed execution rules live in the role files under `agents/`.
 - Comic Video Builder
   中文常用名: `漫画视频`
   Position: approved current text + current comic assets -> vertical motion comic short package
-  Owns: short video brief, narrator script, comic-frame crops, motion storyboard, TTS audio, subtitles, render plan, final 9:16 video package
+  Owns: short video workflow coordination and handoff across editor, director, and operator roles
   File: `agents/build-comic-video.md`
+  Supporting files:
+    - `agents/comic-video-editor.md`
+    - `agents/comic-video-director.md`
+    - `agents/comic-video-operator.md`
   Default timing policy: voice-first, natural TTS speed, under 30 seconds unless the user requests a stricter duration
 
 ## Common Task Routing
