@@ -13,6 +13,15 @@ from PIL import Image, ImageDraw, ImageEnhance, ImageFilter, ImageFont
 CANVAS_W = 1080
 CANVAS_H = 1920
 FPS = 24
+F0_MAP_ZOOM_MS = 800
+SUBTITLE_BOTTOM_SAFE = 260
+SUBTITLE_SIDE_MARGIN = 70
+SUBTITLE_ACCENT_WIDTH = 8
+SUBTITLE_RADIUS = 22
+SUBTITLE_MAX_LINES = 3
+NARRATOR_ACCENT = (216, 177, 90)
+LISTENER_ACCENT = (90, 160, 210)
+SUBTITLE_BG = (18, 20, 22, 226)
 
 
 def load_font(size: int, *, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
@@ -146,6 +155,10 @@ def ease(t: float) -> float:
     return 0.5 - 0.5 * math.cos(math.pi * max(0.0, min(1.0, t)))
 
 
+def lerp(a: float, b: float, t: float) -> float:
+    return a + (b - a) * t
+
+
 def fit_image_size(image: Image.Image, max_w: int, max_h: int, scale: float) -> tuple[int, int]:
     base = min(max_w / image.width, max_h / image.height)
     factor = base * scale
@@ -170,6 +183,99 @@ def before_first_shot(shots: list[dict[str, Any]], ms: int) -> bool:
     return bool(shots) and ms < shots[0]["start_ms"]
 
 
+def load_opening_card_meta(opening_card_path: Path | None) -> dict[str, Any] | None:
+    if not opening_card_path:
+        return None
+    meta_path = opening_card_path.with_suffix(".json")
+    if not meta_path.exists():
+        return None
+    return json.loads(meta_path.read_text(encoding="utf-8"))
+
+
+def load_frame_titles(passage: Path, lang: str, frame_manifest: dict[str, dict[str, Any]]) -> dict[str, str]:
+    titles = {frame_id: item.get("title") or frame_id for frame_id, item in frame_manifest.items()}
+    if lang == "en":
+        overlay_path = passage / "current" / "comic_text_en.json"
+        if overlay_path.exists():
+            overlay = json.loads(overlay_path.read_text(encoding="utf-8"))
+            for frame in overlay.get("frames", []):
+                frame_id = frame.get("frame_id")
+                title = frame.get("title")
+                if frame_id and title:
+                    titles[frame_id] = title
+    return titles
+
+
+def f0_panel_box(
+    comic_panel_box: dict[str, float],
+    opening_card_meta: dict[str, Any] | None,
+) -> tuple[float, float, float, float] | None:
+    if not opening_card_meta:
+        return None
+    box = opening_card_meta.get("embedded_comic_box")
+    if not box:
+        return None
+    x = float(box["x"]) + float(comic_panel_box["x"]) * float(box["w"])
+    y = float(box["y"]) + float(comic_panel_box["y"]) * float(box["h"])
+    w = float(comic_panel_box["w"]) * float(box["w"])
+    h = float(comic_panel_box["h"]) * float(box["h"])
+    return x, y, w, h
+
+
+def aspect_crop_around(
+    target: tuple[float, float, float, float],
+    *,
+    source_w: int,
+    source_h: int,
+    padding: float = 1.18,
+) -> tuple[float, float, float, float]:
+    x, y, w, h = target
+    cx = x + w / 2
+    cy = y + h / 2
+    aspect = CANVAS_W / CANVAS_H
+    crop_w = max(w * padding, h * padding * aspect)
+    crop_h = crop_w / aspect
+    if crop_h < h * padding:
+        crop_h = h * padding
+        crop_w = crop_h * aspect
+    crop_w = min(crop_w, source_w)
+    crop_h = min(crop_h, source_h)
+    left = max(0.0, min(source_w - crop_w, cx - crop_w / 2))
+    top = max(0.0, min(source_h - crop_h, cy - crop_h / 2))
+    return left, top, crop_w, crop_h
+
+
+def render_f0_map_zoom(
+    opening_card: Image.Image,
+    target: tuple[float, float, float, float],
+    transition_t: float,
+) -> Image.Image:
+    source = opening_card.convert("RGB")
+    e = ease(transition_t)
+    full = (0.0, 0.0, float(source.width), float(source.height))
+    end = aspect_crop_around(target, source_w=source.width, source_h=source.height)
+    rect = tuple(lerp(full[i], end[i], e) for i in range(4))
+    left, top, width, height = rect
+    crop = source.crop((round(left), round(top), round(left + width), round(top + height)))
+    frame = crop.resize((CANVAS_W, CANVAS_H), Image.Resampling.LANCZOS).convert("RGBA")
+
+    # A subtle focus box helps the viewer see which panel the map is moving toward.
+    tx, ty, tw, th = target
+    crop_scale_x = CANVAS_W / width
+    crop_scale_y = CANVAS_H / height
+    focus = (
+        round((tx - left) * crop_scale_x),
+        round((ty - top) * crop_scale_y),
+        round((tx + tw - left) * crop_scale_x),
+        round((ty + th - top) * crop_scale_y),
+    )
+    overlay = Image.new("RGBA", frame.size, (0, 0, 0, 0))
+    od = ImageDraw.Draw(overlay)
+    od.rectangle(focus, outline=(216, 177, 90, round(130 * (1 - e))), width=4)
+    frame.alpha_composite(overlay)
+    return frame.convert("RGB")
+
+
 def draw_subtitle(
     canvas: Image.Image,
     line: dict[str, Any],
@@ -179,30 +285,23 @@ def draw_subtitle(
     body_font: ImageFont.ImageFont,
 ) -> None:
     draw = ImageDraw.Draw(canvas)
-    has_cjk = any("\u4e00" <= char <= "\u9fff" for char in line["text"])
-    if has_cjk:
-        speaker = "听者" if line["speaker"] == "listener" else "旁白"
-    else:
-        speaker = line["speaker"].upper()
     is_listener = line["speaker"] == "listener"
-    accent = (216, 177, 90) if not is_listener else (90, 160, 210)
-    panel_bg = (18, 20, 22, 226)
-    left = 70
-    right = CANVAS_W - 70
+    accent = LISTENER_ACCENT if is_listener else NARRATOR_ACCENT
+    left = SUBTITLE_SIDE_MARGIN
+    right = CANVAS_W - SUBTITLE_SIDE_MARGIN
     max_width = right - left - 44
     wrapped = wrap_text(draw, line["text"], body_font, max_width)
-    wrapped = wrapped[:3]
+    wrapped = wrapped[:SUBTITLE_MAX_LINES]
     line_h = text_size(draw, "Ag", body_font)[1] + 16
-    box_h = 42 + len(wrapped) * line_h + 46
-    box_y = CANVAS_H - box_h - 84
+    box_h = len(wrapped) * line_h + 50
+    box_y = CANVAS_H - box_h - SUBTITLE_BOTTOM_SAFE
 
     overlay = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
     od = ImageDraw.Draw(overlay)
-    od.rounded_rectangle((left, box_y, right, box_y + box_h), radius=22, fill=panel_bg)
-    od.rectangle((left, box_y, left + 8, box_y + box_h), fill=accent)
-    od.text((left + 28, box_y + 20), speaker, font=speaker_font, fill=accent)
+    od.rounded_rectangle((left, box_y, right, box_y + box_h), radius=SUBTITLE_RADIUS, fill=SUBTITLE_BG)
+    od.rectangle((left, box_y, left + SUBTITLE_ACCENT_WIDTH, box_y + box_h), fill=accent)
 
-    y = box_y + 62
+    y = box_y + 25
     for part in wrapped:
         od.text((left + 28, y), part, font=body_font, fill=(244, 240, 230))
         y += line_h
@@ -213,11 +312,13 @@ def draw_subtitle(
 def render_frame(
     frame_images: dict[str, Image.Image],
     frame_titles: dict[str, str],
+    frame_manifest: dict[str, dict[str, Any]],
     shots: list[dict[str, Any]],
     lines: list[dict[str, Any]],
     ms: int,
     *,
     opening_card: Image.Image | None,
+    opening_card_meta: dict[str, Any] | None,
     title_font: ImageFont.ImageFont,
     speaker_font: ImageFont.ImageFont,
     body_font: ImageFont.ImageFont,
@@ -228,6 +329,13 @@ def render_frame(
     line = current_line_at(lines, ms)
     shot = current_shot_at(shots, ms)
     frame_id = shot["frame_id"]
+    if opening_card is not None and opening_card_meta is not None:
+        shot_elapsed = ms - int(shot["start_ms"])
+        if 0 <= shot_elapsed < F0_MAP_ZOOM_MS:
+            target = f0_panel_box(frame_manifest[frame_id]["source_panel_box"], opening_card_meta)
+            if target is not None:
+                return render_f0_map_zoom(opening_card, target, shot_elapsed / F0_MAP_ZOOM_MS)
+
     image = frame_images[frame_id]
 
     canvas = Image.new("RGBA", (CANVAS_W, CANVAS_H), (238, 232, 220, 255))
@@ -327,9 +435,10 @@ def render(args: argparse.Namespace) -> int:
     write_storyboard(video_dir, shots, {line["id"]: line for line in lines})
 
     frame_images = {frame_id: Image.open(item["file"]).convert("RGB") for frame_id, item in frame_manifest.items()}
-    frame_titles = {frame_id: item.get("title") or frame_id for frame_id, item in frame_manifest.items()}
+    frame_titles = load_frame_titles(passage, lang, frame_manifest)
     opening_card_path = Path(args.opening_card) if args.opening_card else None
     opening_card = Image.open(opening_card_path).convert("RGB") if opening_card_path and opening_card_path.exists() else None
+    opening_card_meta = load_opening_card_meta(opening_card_path)
     title_font = load_font(46, bold=True)
     speaker_font = load_font(28, bold=True)
     body_font = load_font(46, bold=True)
@@ -376,10 +485,12 @@ def render(args: argparse.Namespace) -> int:
         frame = render_frame(
             frame_images,
             frame_titles,
+            frame_manifest,
             shots,
             lines,
             min(ms, total_ms - 1),
             opening_card=opening_card,
+            opening_card_meta=opening_card_meta,
             title_font=title_font,
             speaker_font=speaker_font,
             body_font=body_font,
