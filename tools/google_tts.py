@@ -132,10 +132,13 @@ def synthesize(
     language_code: str,
     speaking_rate: float,
     audio_encoding: str,
-    ssml: bool,
+    input_kind: str,
 ) -> bytes:
+    if input_kind not in {"text", "ssml", "markup"}:
+        raise ValueError(f"Unsupported input kind: {input_kind}")
+
     payload = {
-        "input": {"ssml" if ssml else "text": text},
+        "input": {input_kind: text},
         "voice": {"languageCode": language_code, "name": voice},
         "audioConfig": {"audioEncoding": audio_encoding, "speakingRate": speaking_rate},
     }
@@ -163,12 +166,22 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--language-code", help="Google TTS language code. Defaults from voice.")
     parser.add_argument("--rate", type=float, default=0.92, help="Speaking rate.")
     parser.add_argument(
+        "--input-kind",
+        choices=["text", "ssml", "markup"],
+        default="text",
+        help="Google TTS input field to use.",
+    )
+    parser.add_argument(
         "--encoding",
         default="MP3",
         choices=["MP3", "LINEAR16", "OGG_OPUS", "MULAW", "ALAW"],
         help="Google TTS audio encoding.",
     )
-    parser.add_argument("--ssml", action="store_true", help="Treat input as SSML.")
+    parser.add_argument(
+        "--ssml",
+        action="store_true",
+        help="Compatibility alias for --input-kind ssml.",
+    )
     return parser
 
 
@@ -179,6 +192,7 @@ def main() -> int:
     if not text:
         raise SystemExit("Input text is empty.")
 
+    input_kind = "ssml" if args.ssml else args.input_kind
     credentials = load_credentials(args.credentials)
     token = get_access_token(credentials)
     audio = synthesize(
@@ -188,7 +202,7 @@ def main() -> int:
         language_code=args.language_code or infer_language_code(args.voice),
         speaking_rate=args.rate,
         audio_encoding=args.encoding,
-        ssml=args.ssml,
+        input_kind=input_kind,
     )
     args.out.parent.mkdir(parents=True, exist_ok=True)
     args.out.write_bytes(audio)
@@ -201,6 +215,7 @@ def main() -> int:
                 "language_code": args.language_code or infer_language_code(args.voice),
                 "encoding": args.encoding,
                 "rate": args.rate,
+                "input_kind": input_kind,
             },
             ensure_ascii=False,
             indent=2,

@@ -1,0 +1,93 @@
+{
+  "role": "short_video_editor",
+  "status": "audio_focus_script_ready",
+  "video_id": "cp001-p01-natural-dialogue-audio-run005",
+  "passage": "story/cp001-p01",
+  "language": "zh",
+  "target_viewer": "中文短视频观众",
+  "narration_mode": "narrator_listener_dialogue",
+  "timing_policy": "voice_first_natural_dialogue",
+  "core_hook": "三国不是从英雄登场开始，而是从天下先乱起来开始。",
+  "emotional_promise": "让观众像听两个人自然聊故事一样进入乱世序幕。",
+  "comic_priority": "secondary",
+  "conversation_segments": [
+    {
+      "segment_id": "s01",
+      "speaker_id": "narrator",
+      "text": "三国这件事，不是从英雄登场开始的。",
+      "function": "hook",
+      "delivery_note": "自然开场，不端。",
+      "tts_hint": {"voice_id": "narrator_zh", "rate": 1.02, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s02",
+      "speaker_id": "listener",
+      "text": "嗯，是先乱起来了。",
+      "function": "reaction",
+      "delivery_note": "轻轻接住，不像提问卡片。",
+      "tts_hint": {"voice_id": "listener_zh", "rate": 1.05, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s03",
+      "speaker_id": "narrator",
+      "text": "对。汉朝四百年，到灵帝这里，宫里先坏了。太监掌权，真话被赶走。",
+      "function": "setup",
+      "delivery_note": "用“对”接住上一句，讲述但不朗读。",
+      "tts_hint": {"voice_id": "narrator_zh", "rate": 1.04, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s04",
+      "speaker_id": "listener",
+      "text": "所以百姓已经不信朝廷了。",
+      "function": "reaction",
+      "delivery_note": "像听懂后的判断。",
+      "tts_hint": {"voice_id": "listener_zh", "rate": 1.05, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s05",
+      "speaker_id": "narrator",
+      "text": "你看，怪风吹进温德殿，一条青蛇落上龙椅。皇帝都吓得被人架走。",
+      "function": "image_hook",
+      "delivery_note": "“你看”要像把画面递给听者。",
+      "tts_hint": {"voice_id": "narrator_zh", "rate": 1.02, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s06",
+      "speaker_id": "listener",
+      "text": "这一下，味道就变了。",
+      "function": "reaction",
+      "delivery_note": "自然反应，不夸张。",
+      "tts_hint": {"voice_id": "listener_zh", "rate": 1.03, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s07",
+      "speaker_id": "narrator",
+      "text": "民间也一样。张角先救病，后来聚众。黄巾一起，口号就传开了：[pause] 苍天已死，黄天当立。",
+      "function": "turn_slogan",
+      "delivery_note": "口号不换声，只放慢一点，减少撕裂。",
+      "tts_hint": {"voice_id": "slogan_zh", "rate": 0.98, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s08",
+      "speaker_id": "listener",
+      "text": "那朝廷只能招兵了。",
+      "function": "reaction",
+      "delivery_note": "自然推进到榜文。",
+      "tts_hint": {"voice_id": "listener_zh", "rate": 1.04, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s09",
+      "speaker_id": "narrator",
+      "text": "对。幽州榜文一贴，刘备、关羽、张飞，就快走到这张榜前。",
+      "function": "pull",
+      "delivery_note": "继续接住听者，最后三个人名清楚。",
+      "pronunciation_note": "刘备、关羽、张飞要清楚分开。",
+      "tts_hint": {"voice_id": "narrator_zh", "rate": 1.0, "input_kind": "markup"}
+    }
+  ],
+  "notes_for_director": [
+    "Audio-first run. Comic frames are secondary.",
+    "Listener is an audio guide, not an on-screen character.",
+    "This run prioritizes conversational continuity over dramatic voice separation."
+  ]
+}

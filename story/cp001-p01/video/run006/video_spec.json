@@ -1,0 +1,34 @@
+{
+  "role": "short_video_editor",
+  "status": "storytime_audio_script_ready",
+  "video_id": "cp001-p01-storytime-audio-run006",
+  "passage": "story/cp001-p01",
+  "language": "zh",
+  "target_viewer": "中文短视频观众",
+  "narration_mode": "storytime_single_narrator",
+  "timing_policy": "voice_first_storytime_delivery",
+  "core_hook": "三国不是从英雄登场开始，而是从一个坏掉的朝廷开始。",
+  "emotional_promise": "用一个自然讲故事的人，把观众带进乱世序幕。",
+  "comic_priority": "secondary",
+  "tts_strategy": {
+    "synthesis_shape": "single_long_segment",
+    "reason": "Reduce tearing from per-turn voice switching and preserve one continuous delivery style.",
+    "voice_id": "storyteller_zh",
+    "input_kind": "markup",
+    "rate": 1.0
+  },
+  "segments": [
+    {
+      "segment_id": "storytime_full",
+      "speaker_id": "storyteller",
+      "voice_id": "storyteller_zh",
+      "text_file": "script_zh.md",
+      "function": "full_storytime_audio",
+      "delivery_note": "One continuous storytime read with punctuation-driven pacing."
+    }
+  ],
+  "notes_for_director": [
+    "Audio-first run. Comic frames are secondary.",
+    "Use the continuous audio as the timing source if a video render is requested."
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "role": "short_video_editor",
+  "status": "audio_focus_script_ready",
+  "video_id": "cp001-p01-dialogue-audio-run003",
+  "passage": "story/cp001-p01",
+  "language": "zh",
+  "target_viewer": "中文短视频观众",
+  "narration_mode": "narrator_listener_dialogue",
+  "timing_policy": "voice_first_storyline_primary",
+  "core_hook": "汉朝不是突然崩塌的。宫里先烂，民间再乱，一张招兵榜把刘备、关羽、张飞引到故事门口。",
+  "emotional_promise": "用男女对话带观众听懂乱世开场，并在招兵榜上留下下一段故事的期待。",
+  "comic_priority": "secondary",
+  "conversation_segments": [
+    {
+      "segment_id": "s01",
+      "speaker_id": "narrator",
+      "text": "汉朝四百年，到了灵帝手里，已经撑不住了。",
+      "function": "hook",
+      "delivery_note": "稳，但不要拖。",
+      "tts_hint": {
+        "voice_id": "narrator_zh",
+        "rate": 1.0,
+        "input_kind": "markup"
+      }
+    },
+    {
+      "segment_id": "s02",
+      "speaker_id": "listener",
+      "text": "从哪儿坏的？",
+      "function": "question",
+      "delivery_note": "替观众开口，短促自然。",
+      "tts_hint": {
+        "voice_id": "listener_zh",
+        "rate": 1.08,
+        "input_kind": "markup"
+      }
+    },
+    {
+      "segment_id": "s03",
+      "speaker_id": "narrator",
+      "text": "从宫里。太监掌权，真话被封住。",
+      "function": "setup",
+      "delivery_note": "有判断力，别讲成资料。",
+      "tts_hint": {
+        "voice_id": "narrator_zh",
+        "rate": 1.0,
+        "input_kind": "markup"
+      }
+    },
+    {
+      "segment_id": "s04",
+      "speaker_id": "listener",
+      "text": "难怪天下不安。",
+      "function": "reaction",
+      "delivery_note": "轻声承接。",
+      "tts_hint": {
+        "voice_id": "listener_zh",
+        "rate": 1.05,
+        "input_kind": "markup"
+      }
+    },
+    {
+      "segment_id": "s05",
+      "speaker_id": "narrator",
+      "text": "怪风吹进大殿，一条青蛇，落上龙椅。",
+      "function": "image_hook",
+      "delivery_note": "青蛇前稍慢，画面感强。",
+      "tts_hint": {
+        "voice_id": "narrator_zh",
+        "rate": 0.96,
+        "input_kind": "markup"
+      }
+    },
+    {
+      "segment_id": "s06",
+      "speaker_id": "listener",
+      "text": "这是凶兆吧？",
+      "function": "question",
+      "delivery_note": "不是惊叫，是被带入。",
+      "tts_hint": {
+        "voice_id": "listener_zh",
+        "rate": 1.05,
+        "input_kind": "markup"
+      }
+    },
+    {
+      "segment_id": "s07",
+      "speaker_id": "narrator",
+      "text": "民间也起火。张角救病聚众，喊出：[pause] 苍天已死，黄天当立。",
+      "function": "turn_slogan",
+      "delivery_note": "前半句推进，口号前留白，口号郑重。",
+      "tts_hint": {
+        "voice_id": "oath_zh",
+        "rate": 0.92,
+        "input_kind": "markup"
+      }
+    },
+    {
+      "segment_id": "s08",
+      "speaker_id": "listener",
+      "text": "然后呢？",
+      "function": "question",
+      "delivery_note": "把观众推向下一幕。",
+      "tts_hint": {
+        "voice_id": "listener_zh",
+        "rate": 1.08,
+        "input_kind": "markup"
+      }
+    },
+    {
+      "segment_id": "s09",
+      "speaker_id": "narrator",
+      "text": "幽州贴榜招兵。榜前，很快会站来刘备、关羽、张飞。",
+      "function": "pull",
+      "delivery_note": "最后三个人名清楚，收住。",
+      "tts_hint": {
+        "voice_id": "narrator_zh",
+        "rate": 0.96,
+        "input_kind": "markup"
+      }
+    }
+  ],
+  "notes_for_director": [
+    "This run is audio-first. Use comic frames later as visual support.",
+    "Listener is an audio guide, not an on-screen character.",
+    "Script follows story line first; audio segment count is incidental."
+  ]
+}

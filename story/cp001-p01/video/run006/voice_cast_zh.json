@@ -1,0 +1,22 @@
+{
+  "role": "video_operator",
+  "status": "storytime_voice_cast_zh_chirp3",
+  "tts_engine": "google_cloud_tts",
+  "language": "zh",
+  "voices": [
+    {
+      "voice_id": "storyteller_zh",
+      "speaker_id": "storyteller",
+      "display_name": "中文 Storytime 讲述者",
+      "google_voice": "cmn-CN-Chirp3-HD-Aoede",
+      "language_code": "cmn-CN",
+      "default_rate": 1.0,
+      "input_kind": "markup",
+      "direction": "亲近、自然、有故事感。不要像新闻播报，不要像儿童故事。"
+    }
+  ],
+  "notes": [
+    "Official Storytime example is en-US-Chirp-HD-F; cmn-CN has no matching Chirp-HD-F voice in current voice list.",
+    "This run uses single-voice Chinese Chirp3 HD storytime-style delivery to reduce tearing."
+  ]
+}

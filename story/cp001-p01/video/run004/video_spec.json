@@ -1,0 +1,93 @@
+{
+  "role": "short_video_editor",
+  "status": "audio_focus_script_ready",
+  "video_id": "cp001-p01-dialogue-audio-run004",
+  "passage": "story/cp001-p01",
+  "language": "zh",
+  "target_viewer": "中文短视频观众",
+  "narration_mode": "narrator_listener_dialogue",
+  "timing_policy": "voice_first_storyline_primary",
+  "core_hook": "三国不是从英雄开始，而是从一个坏掉的朝廷开始。",
+  "emotional_promise": "通过男女对话，让观众听懂乱世序幕，并自然期待刘备、关羽、张飞入场。",
+  "comic_priority": "secondary",
+  "conversation_segments": [
+    {
+      "segment_id": "s01",
+      "speaker_id": "narrator",
+      "text": "三国不是从英雄开始，而是从一个坏掉的朝廷开始。",
+      "function": "hook",
+      "delivery_note": "开场稳，反预期，不拖。",
+      "tts_hint": {"voice_id": "narrator_zh", "rate": 1.04, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s02",
+      "speaker_id": "listener",
+      "text": "坏到什么地步？",
+      "function": "question",
+      "delivery_note": "自然追问。",
+      "tts_hint": {"voice_id": "listener_zh", "rate": 1.08, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s03",
+      "speaker_id": "narrator",
+      "text": "太监掌权，真话被赶走。龙椅上，甚至落下一条青蛇。",
+      "function": "setup_image",
+      "delivery_note": "一句说政治，一句给画面。",
+      "tts_hint": {"voice_id": "narrator_zh", "rate": 1.02, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s04",
+      "speaker_id": "listener",
+      "text": "这像天在示警。",
+      "function": "reaction",
+      "delivery_note": "轻声代入，不夸张。",
+      "tts_hint": {"voice_id": "listener_zh", "rate": 1.05, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s05",
+      "speaker_id": "narrator",
+      "text": "宫里乱，民间也乱。张角救病聚众，黄巾越滚越大。",
+      "function": "turn",
+      "delivery_note": "从宫廷转民间，节奏推进。",
+      "tts_hint": {"voice_id": "narrator_zh", "rate": 1.02, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s06",
+      "speaker_id": "listener",
+      "text": "他喊了什么？",
+      "function": "question",
+      "delivery_note": "为口号留位置。",
+      "tts_hint": {"voice_id": "listener_zh", "rate": 1.06, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s07",
+      "speaker_id": "narrator",
+      "text": "[pause] 苍天已死，黄天当立。",
+      "function": "slogan",
+      "delivery_note": "口号前留白，郑重但不喊。",
+      "tts_hint": {"voice_id": "slogan_zh", "rate": 0.94, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s08",
+      "speaker_id": "listener",
+      "text": "朝廷怎么办？",
+      "function": "question",
+      "delivery_note": "把观众推向招兵榜。",
+      "tts_hint": {"voice_id": "listener_zh", "rate": 1.06, "input_kind": "markup"}
+    },
+    {
+      "segment_id": "s09",
+      "speaker_id": "narrator",
+      "text": "幽州贴榜招兵。榜前，很快会站来刘备、关羽、张飞。",
+      "function": "pull",
+      "delivery_note": "最后三个人名清楚，收住。",
+      "pronunciation_note": "刘备、关羽、张飞要清楚分开。",
+      "tts_hint": {"voice_id": "narrator_zh", "rate": 1.0, "input_kind": "markup"}
+    }
+  ],
+  "notes_for_director": [
+    "Audio-first run. Comic frames are secondary.",
+    "Listener is an audio guide, not an on-screen character.",
+    "Use this audio to drive future shot timing if a video render is requested."
+  ]
+}

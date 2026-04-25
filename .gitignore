@@ -12,6 +12,8 @@ config/gcp/*.json
 
 # Generated shared audio assets
 assets/comic-video/audio/**/*.wav
+story/*/video/**/*.wav
+story/*/video/**/concat_list.txt
 
 # Passage workspace scratch areas
 story/*/comic/run*/

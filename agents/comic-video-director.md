@@ -49,6 +49,7 @@ Use `current/comic.json` `frames[].panel_box` as the source of truth.
 
 ## Shot Planning Rules
 - choose the fewest frames needed for the short
+- map shots to `conversation_segments` when the script uses narrator + listener dialogue
 - use `hold` for solemn oath / emotional beats
 - use slow `push_in` for recognition and vow moments
 - use `pan` for group composition or weapon/army reveal
@@ -57,6 +58,28 @@ Use `current/comic.json` `frames[].panel_box` as the source of truth.
 - preserve readability and full panel clarity before chasing full-screen impact
 - wide comic panels do not need to fill the vertical canvas
 - intentional paper-like blank space is allowed when it improves clarity
+
+## Dialogue-Aware Direction
+When `video_spec.json` uses `narration_mode: narrator_listener_dialogue`, the listener is an audio guide, not a new visual character.
+
+Do not invent a listener on screen.
+Do not add modern podcast visuals, avatars, or talking-head UI.
+
+Use listener lines to guide the viewer's eye:
+
+- a listener question can trigger a `guided_pan`
+- a listener reaction can justify a `beat_hold`
+- a listener "Wait..." line can precede a closer crop
+- a listener summary line can bridge two frames
+
+In `shot_plan.json`, each shot should record:
+
+- `speaker_id`
+- `segment_id`
+- `visual_answer_to_listener` when the shot answers a listener question
+
+The visual source remains the current comic page.
+The dialogue structure changes audio rhythm and attention flow, not upstream comic semantics.
 
 ## Motion Vocabulary
 Use motion primitives sparingly.

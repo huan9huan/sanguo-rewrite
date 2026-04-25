@@ -1,0 +1,42 @@
+{
+  "role": "video_operator",
+  "status": "storytime_tts_complete",
+  "engine": "google_cloud_tts",
+  "model_family": "Chirp3-HD",
+  "storytime_reference": {
+    "official_storytime_voice": "en-US-Chirp-HD-F",
+    "used_chinese_approximation": "cmn-CN-Chirp3-HD-Aoede",
+    "reason": "No cmn-CN Chirp-HD-F Storytime voice is available in current voice list."
+  },
+  "language_code": "cmn-CN",
+  "narration_mode": "storytime_single_narrator",
+  "timing_policy": "voice_first_storytime_delivery",
+  "pause_strategy": "single long synthesis with punctuation and one markup pause before slogan",
+  "custom_pronunciations": [],
+  "voice_cast": "story/cp001-p01/video/run006/voice_cast_zh.json",
+  "script": "story/cp001-p01/video/run006/script_zh.md",
+  "segments": [
+    {
+      "segment_id": "storytime_full",
+      "speaker_id": "storyteller",
+      "voice_id": "storyteller_zh",
+      "google_voice": "cmn-CN-Chirp3-HD-Aoede",
+      "language_code": "cmn-CN",
+      "input_kind": "markup",
+      "speaking_rate": 1.0,
+      "text": "三国这件事，不是从英雄登场开始的。\n\n它先从一个坏掉的朝廷开始。\n\n汉朝传了四百年，到灵帝这里，宫里先乱了。太监掌权，真话被赶走。你看，连温德殿里都刮起怪风，一条青蛇，落上了龙椅。\n\n皇帝吓得被人架走。可真正的大火，不在宫里，在民间。\n\n张角一开始是救病的人。后来，信他的人越来越多，黄巾也越滚越大。到最后，那句口号传遍各地：\n\n[pause] 苍天已死，黄天当立。\n\n朝廷挡不住了，只能贴榜招兵。\n\n而幽州那张榜前，很快会站来三个人。\n\n刘备，关羽，张飞。",
+      "source_mp3": "story/cp001-p01/video/run006/audio_zh_google/storytime_full.mp3",
+      "source_wav": "story/cp001-p01/video/run006/audio_zh_google/storytime_full.wav",
+      "start_seconds": 0.0,
+      "end_seconds": 54.336,
+      "duration_seconds": 54.336
+    }
+  ],
+  "final_mix": "story/cp001-p01/video/run006/audio_zh_google/storytime_full.wav",
+  "final_duration_seconds": 54.336,
+  "notes": [
+    "Audio-first run. No video render in run006.",
+    "Single long synthesis is used to reduce stitched-track artifacts.",
+    "This is a Chinese Storytime-style approximation, not the official English Storytime voice."
+  ]
+}

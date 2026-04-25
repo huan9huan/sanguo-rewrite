@@ -1,0 +1,42 @@
+{
+  "role": "video_operator",
+  "status": "natural_dialogue_voice_cast_zh_chirp3",
+  "tts_engine": "google_cloud_tts",
+  "language": "zh",
+  "voices": [
+    {
+      "voice_id": "narrator_zh",
+      "speaker_id": "narrator",
+      "display_name": "男讲述者",
+      "google_voice": "cmn-CN-Chirp3-HD-Charon",
+      "language_code": "cmn-CN",
+      "default_rate": 1.02,
+      "input_kind": "markup",
+      "direction": "像自然讲故事，接住对方的话，不要朗诵。"
+    },
+    {
+      "voice_id": "listener_zh",
+      "speaker_id": "listener",
+      "display_name": "女听者",
+      "google_voice": "cmn-CN-Chirp3-HD-Aoede",
+      "language_code": "cmn-CN",
+      "default_rate": 1.05,
+      "input_kind": "markup",
+      "direction": "自然承接，像听懂了以后轻轻补一句，不要主持人口吻。"
+    },
+    {
+      "voice_id": "slogan_zh",
+      "speaker_id": "narrator",
+      "display_name": "口号重句",
+      "google_voice": "cmn-CN-Chirp3-HD-Charon",
+      "language_code": "cmn-CN",
+      "default_rate": 0.96,
+      "input_kind": "markup",
+      "direction": "仍用讲述者声音，避免突然换低音造成撕裂；只靠停顿和语速加重。"
+    }
+  ],
+  "notes": [
+    "run005 reduces voice contrast and removes the separate Orus slogan voice to reduce tearing.",
+    "Speaker gaps should be short; dialogue continuity matters more than dramatic separation."
+  ]
+}

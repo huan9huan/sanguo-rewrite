@@ -13,8 +13,8 @@
 
 - 使用 `current` comic page 和 frame metadata
 - 裁出 comic frames
-- 写短视频 brief / script / storyboard
-- 用 TTS 生成旁白音频
+- 写短视频 brief / conversational script / storyboard
+- 用 TTS 生成旁白和听者对白音频
 - 让镜头时长跟随自然语速
 - 合成 9:16 motion comic 视频
 
@@ -34,7 +34,7 @@ Owns:
 
 - 核心钩子
 - 目标观众
-- 旁白脚本
+- 旁白 + 听者对白脚本
 - 保留哪一句人物对白或誓言
 - 发布标题、caption、hashtags
 

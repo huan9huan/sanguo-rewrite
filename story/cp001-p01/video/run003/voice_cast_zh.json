@@ -1,0 +1,42 @@
+{
+  "role": "video_operator",
+  "status": "dialogue_voice_cast_zh_chirp3",
+  "tts_engine": "google_cloud_tts",
+  "language": "zh",
+  "voices": [
+    {
+      "voice_id": "narrator_zh",
+      "speaker_id": "narrator",
+      "display_name": "男讲述者",
+      "google_voice": "cmn-CN-Chirp3-HD-Charon",
+      "language_code": "cmn-CN",
+      "default_rate": 0.93,
+      "input_kind": "markup",
+      "direction": "稳、清楚、有历史叙述感。不要喊，不要像广告。"
+    },
+    {
+      "voice_id": "listener_zh",
+      "speaker_id": "listener",
+      "display_name": "女听者",
+      "google_voice": "cmn-CN-Chirp3-HD-Aoede",
+      "language_code": "cmn-CN",
+      "default_rate": 1.0,
+      "input_kind": "markup",
+      "direction": "自然、好奇、短句承接观众心理。不要装可爱，不要夸张。"
+    },
+    {
+      "voice_id": "oath_zh",
+      "speaker_id": "narrator",
+      "display_name": "口号/重句",
+      "google_voice": "cmn-CN-Chirp3-HD-Orus",
+      "language_code": "cmn-CN",
+      "default_rate": 0.86,
+      "input_kind": "markup",
+      "direction": "低沉、郑重、有压迫感。像历史转折，不像喊口号。"
+    }
+  ],
+  "notes": [
+    "run003 tests a male narrator plus female listener dialogue structure.",
+    "Comic frame timing is intentionally secondary in this audio-first run."
+  ]
+}
