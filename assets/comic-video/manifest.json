@@ -1,0 +1,55 @@
+{
+  "asset_library_id": "comic-video-shared-assets",
+  "version": 1,
+  "description": "Shared utility assets for vertical motion comic video generation.",
+  "base_path": "assets/comic-video",
+  "audio_format_defaults": {
+    "container": "wav",
+    "codec": "pcm_s16le",
+    "sample_rate_hz": 48000,
+    "channels": 2,
+    "channel_layout": "stereo"
+  },
+  "assets": [
+    {
+      "asset_id": "silence_100ms",
+      "type": "audio_silence",
+      "path": "audio/silence/silence_100ms.wav",
+      "duration_seconds": 0.1,
+      "use": ["micro_pause", "subtitle_beat"]
+    },
+    {
+      "asset_id": "silence_200ms",
+      "type": "audio_silence",
+      "path": "audio/silence/silence_200ms.wav",
+      "duration_seconds": 0.2,
+      "use": ["beat_hold", "short_phrase_gap"]
+    },
+    {
+      "asset_id": "silence_300ms",
+      "type": "audio_silence",
+      "path": "audio/silence/silence_300ms.wav",
+      "duration_seconds": 0.3,
+      "use": ["natural_tts_gap", "shot_boundary_gap"]
+    },
+    {
+      "asset_id": "silence_500ms",
+      "type": "audio_silence",
+      "path": "audio/silence/silence_500ms.wav",
+      "duration_seconds": 0.5,
+      "use": ["emotional_pause", "section_boundary"]
+    },
+    {
+      "asset_id": "silence_1000ms",
+      "type": "audio_silence",
+      "path": "audio/silence/silence_1000ms.wav",
+      "duration_seconds": 1.0,
+      "use": ["long_pause", "end_hold"]
+    }
+  ],
+  "rules": [
+    "Prefer shared silence assets over generating duplicate per-run silence files.",
+    "Use short pauses to preserve natural TTS rhythm; do not use silence to pad weak scripts.",
+    "If a render needs a duration not listed here, add the new shared file and update this manifest."
+  ]
+}

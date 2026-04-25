@@ -136,6 +136,7 @@ Optional:
 - `story/<passage>/spec.json`
 - `story/<passage>/sNN-spec.json`
 - existing short video run assets
+- `assets/comic-video/manifest.json`
 
 ## Readiness Gate
 
@@ -189,6 +190,30 @@ story/<passage>/video/runNNN/
 ```
 
 If only one language is requested, produce only that language's files.
+
+## Shared Asset Library
+
+Before generating audio or rendering, check:
+
+- `assets/comic-video/manifest.json`
+
+This manifest defines reusable motion comic utility assets.
+
+Current shared assets include:
+
+- `assets/comic-video/audio/silence/silence_100ms.wav`
+- `assets/comic-video/audio/silence/silence_200ms.wav`
+- `assets/comic-video/audio/silence/silence_300ms.wav`
+- `assets/comic-video/audio/silence/silence_500ms.wav`
+- `assets/comic-video/audio/silence/silence_1000ms.wav`
+
+Rules:
+
+- use shared silence files for TTS gaps, beat holds, and section pauses
+- do not generate per-run silence files if the shared duration already exists
+- reference shared assets in audio manifests by `asset_id` and path when used
+- if a new common duration is needed, add it to the shared library and update the manifest
+- do not store paid or licensed third-party assets here unless license information is recorded in the manifest
 
 ## Core Workflow
 
@@ -254,6 +279,150 @@ Shot planning rules:
 - use `pan` for group composition or weapon/army reveal
 - use `pull_back` for final historical opening
 - keep the black-and-white comic texture intact
+- wide comic panels do not need to fill the vertical canvas
+- preserve readability and full panel clarity before chasing full-screen impact
+- intentional paper-like blank space is allowed when it makes the image clearer and keeps the 小人书 reading feel
+
+## Motion Vocabulary
+
+Use these motion primitives to make the video more alive while preserving the black-and-white comic style.
+
+### `focus_reveal`
+
+Purpose:
+
+- opening hook
+- object reveal
+- omen / clue / posted notice
+
+Behavior:
+
+- begin with slight blur or lower contrast
+- clear up within 0.3-0.6 seconds
+- pair with a very slow push-in
+
+Do not make the blur heavy enough to hide the drawing.
+
+### `guided_pan`
+
+Purpose:
+
+- guide attention across a busy panel
+- move from a person to an object
+- move from cause to consequence
+
+Behavior:
+
+- pan across a scaled crop
+- start on the most emotionally legible subject
+- end on the story object or action point
+
+Example:
+
+- Zhang Jue face -> heavenly book
+- recruitment notice -> watching crowd
+
+### `impact_pulse`
+
+Purpose:
+
+- slogan
+- sudden omen
+- weapon strike
+- major turn
+
+Behavior:
+
+- quick 3-6% zoom pulse
+- then hold
+- can pair with a very light micro-shake
+
+Use sparingly. One pulse per short is usually enough.
+
+### `attention_spotlight`
+
+Purpose:
+
+- keep the viewer's eye on one subject inside a dense comic panel
+- protect attention when subtitles compete with image detail
+
+Behavior:
+
+- very subtle edge darkening or local bright center
+- no colored glow
+- no obvious modern UI marker
+
+### `beat_hold`
+
+Purpose:
+
+- let an important line land
+- give viewers time to read a slogan or oath
+
+Behavior:
+
+- freeze or nearly freeze image motion for 0.2-0.5 seconds
+- can include a brief silence if the audio plan allows it
+
+### `micro_shake`
+
+Purpose:
+
+- omen impact
+- crowd eruption
+- battlefield shock
+
+Behavior:
+
+- 1-3 px jitter for less than 0.4 seconds
+- never use continuous shaking through narration
+
+## Attention Management Rules
+
+- Match motion beats to narrated keywords.
+- Use segmented subtitles for slogans, vows, and high-density lines.
+- Do not keep long subtitles on screen longer than their audio segment.
+- Prefer one clear focus point per shot.
+- If the panel is busy, use `guided_pan` or `attention_spotlight` rather than stronger zoom.
+- Avoid effects that feel like modern trailer graphics.
+
+## Wide Panel Layout Rule
+
+Many current comic pages contain wide horizontal panels.
+
+For motion comic video, do not automatically crop every wide panel into a full-height 9:16 close-up.
+
+Default rule:
+
+- show the wide panel clearly inside the vertical canvas
+- keep the full story composition visible when the panel itself is already legible
+- allow paper-like blank space above or below the panel
+- let subtitle placement use that blank space instead of covering faces, bodies, banners, or notices
+
+This is not wasted space when it improves clarity.
+
+The goal is not to imitate a full-screen action trailer.
+The goal is to preserve the black-and-white 小人书 reading feel while adding enough motion to guide attention.
+
+Use a more aggressive crop only when:
+
+- the key subject is too small to understand on mobile
+- the narrator refers to one object that must be inspected
+- the panel is visually busy and a full-panel view weakens comprehension
+
+For wide panels, preferred moves are:
+
+- `slow_push_in` while keeping most of the panel visible
+- `focus_reveal` into a readable full composition
+- `guided_pan` only when the narration moves from one subject to another
+- `beat_hold` after an important line
+
+Avoid:
+
+- cropping away important context just to fill screen height
+- zooming so far that the comic panel loses its 连环画 composition
+- covering the main action with subtitles when blank space is available
+- treating blank space as a defect
 
 Do not:
 
@@ -265,6 +434,12 @@ Do not:
 ### Step 3: Video Operator
 
 Use Google Cloud TTS when available.
+
+Read the shared asset library before building the audio timeline:
+
+- `assets/comic-video/manifest.json`
+
+Use shared silence assets for natural pauses rather than creating `silence_300ms.wav` inside each run.
 
 Preferred script:
 

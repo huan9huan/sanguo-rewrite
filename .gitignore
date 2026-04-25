@@ -10,6 +10,9 @@ site/.next/
 # Local credentials
 config/gcp/*.json
 
+# Generated shared audio assets
+assets/comic-video/audio/**/*.wav
+
 # Passage workspace scratch areas
 story/*/comic/run*/
 story/*/draft/v*/
