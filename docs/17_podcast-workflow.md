@@ -149,6 +149,30 @@ Line-level fields:
 
 `frame_id` is optional because podcast pacing should not be forced into a frame cut on every line.
 
+### `f0` / `0帧`
+
+`f0` is the opening clue frame, 中文可称 `0帧`.
+
+It is a virtual frame before the first comic frame.
+It gives the listener/viewer enough context to understand what the episode or passage is about.
+
+Typical contents:
+
+- book title
+- chapter title
+- passage title
+- current full comic image or selected current comic visual
+- one short setup line, such as `上一集说到...` or, for P01, `故事从这里开始`
+
+Rules:
+
+- `f0` is not part of `current/comic.json`.
+- `f0` must not renumber or replace `f1`.
+- `f0` can be referenced in podcast/video planning as `frame_id: "f0"` when the line belongs to the opening card.
+- Renderers should resolve `f0` from an opening-card asset, not from comic panel detection.
+- `f0` should end with a short pause before the narrator enters the story on `f1`.
+- `f0` is for orientation and curiosity, not summary-heavy explanation or spoilers.
+
 ## Mode Values
 
 Use one of:
@@ -277,12 +301,37 @@ For podcast-driven motion comic video, subtitles should distinguish speakers by 
 
 Default:
 
-- Narrator uses the main subtitle accent color.
-- Listener uses a second accent color.
+- Narrator uses white or warm white text.
+- Listener uses pale yellow text.
 - Keep the same subtitle box position and typography for both speakers.
+- Do not use border lines, side bars, or card shape changes to mark speaker role.
+- Do not render `Narrator` or `Listener` labels on screen unless explicitly requested.
 - Do not add talking-head avatars or podcast host portraits.
 
-The color distinction is enough to tell the viewer who is speaking while preserving the comic as the visual focus.
+The text color distinction is enough to tell the viewer who is speaking while preserving the comic as the visual focus.
+
+## Shorts Safe-Area Layout
+
+Podcast-driven motion comic videos exported for Shorts must account for YouTube and iPhone UI overlays.
+
+Default playback layout:
+
+- reserve the top `20%` of the 9:16 canvas as quiet vertical safe area
+- place chapter and passage identity below that safe area
+- use a global passage id in the header, such as `c1/p1`
+- show a horizontal filmstrip under the header
+- keep the active frame normal / highlighted and the inactive frames grayscale or dimmed
+- show the current comic frame in the middle as the main visual
+- place subtitles below the main frame, inside a stable bottom safe area
+
+Avoid:
+
+- title text near the top edge, because YouTube Shorts title chrome and iPhone Dynamic Island can cover it
+- large accidental blank space below the comic image
+- frame-title labels above the main panel when the header already identifies the passage
+- speaker labels or border styles for narrator / listener
+
+For `f0`, keep `Built by ReadChineseClassics.com` above the lower platform chrome; do not place the trademark only at the bottom edge.
 
 ## Upload Metadata
 
@@ -310,6 +359,58 @@ Use:
 
 The description should be post-ready and not mention internal file paths, pipeline mechanics, or draft status.
 The tweet should be ready to post and include the required campaign hashtag when one is specified.
+
+### YouTube Shorts Export Copy
+
+When exporting a podcast motion comic video for YouTube Shorts, create:
+
+```text
+story/<passage>/podcast/runNNN/video/upload_metadata_<lang>.md
+```
+
+The file must be ready to paste into YouTube Studio.
+
+For English Shorts, use this shape:
+
+```text
+Short Title:
+An Empire Is Breaking
+
+Title:
+An Empire Is Breaking | Romance of the Three Kingdoms Ep. 1 #Shorts
+
+Description:
+Episode 1 of Romance of the Three Kingdoms, retold as a motion comic for new readers.
+
+An empire is breaking. The court has lost control. A rebellion spreads. At one city gate, a notice goes up.
+
+Built by ReadChineseClassics.com
+
+#RomanceOfTheThreeKingdoms #ThreeKingdoms #ChineseClassics #MotionComic #Shorts
+
+Tweet:
+An empire is breaking. A notice goes up at the gate.
+
+Romance of the Three Kingdoms begins as a motion comic for new readers.
+
+#RomanceOfTheThreeKingdoms #MotionComic
+```
+
+Tips:
+
+- Make the title a story hook first and a series label second.
+- Let the description explain the format in one line, then return to story stakes.
+- Keep hashtags useful and limited.
+- Match the upload copy to `f0`; the video should visually deliver what the title promises.
+- Use the global passage id, such as `c1/p1`, in internal metadata or `f0` if needed, not as the public title.
+
+Pitfalls:
+
+- Avoid titles that only name the passage, such as `Prelude to Chaos`, unless the hook is also present.
+- Avoid project-process language, such as `AI rewrite`, `draft`, `pipeline`, or `render test`.
+- Avoid long cultural explanations in the description.
+- Keep `Built by ReadChineseClassics.com` visible in `f0` above bottom platform chrome, because Shorts UI can cover the lower edge.
+- Do not depend on speaker labels in subtitles; use color accents and keep subtitles inside the safe area.
 
 ## Copy Evaluation Gate
 

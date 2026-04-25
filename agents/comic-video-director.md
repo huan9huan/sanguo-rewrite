@@ -47,8 +47,17 @@ Use `current/comic.json` `frames[].panel_box` as the source of truth.
 - Write `frames_manifest.json`.
 - Record source image and source panel box for every crop.
 
+Exception:
+
+- `f0` / `0帧` is a virtual opening clue frame.
+- Do not crop `f0` from `current/comic.png`.
+- Do not add `f0` to `current/comic.json`.
+- Keep `f1` as the first real comic frame.
+- If a run uses `f0`, record its opening-card image path and timing in the shot plan or render plan.
+
 ## Shot Planning Rules
 - choose the fewest frames needed for the short
+- place `f0` before `f1` when the video needs story identity, previous context, or a clue-like opening card
 - map shots to `conversation_segments` when the script uses narrator + listener dialogue
 - use `hold` for solemn oath / emotional beats
 - use slow `push_in` for recognition and vow moments
