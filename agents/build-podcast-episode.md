@@ -278,6 +278,52 @@ The upload metadata should be ready to paste into YouTube or a similar platform.
 Do not include internal paths or pipeline notes in the public description.
 The tweet should be ready to post and include the required campaign hashtag when one is specified.
 
+For YouTube Shorts, write the title and description at export time.
+Do not leave upload copy as an afterthought.
+
+YouTube Shorts title guidance:
+
+- lead with the story hook, not the production method
+- include the series/book identity after the hook
+- include the episode number when it helps continuity
+- keep the title understandable to a cold foreign viewer
+- avoid front-loading Chinese names or lore terms unless the episode is already character-led
+- `#Shorts` may appear at the end of the title when useful
+
+Good pattern:
+
+```text
+An Empire Is Breaking | Romance of the Three Kingdoms Ep. 1 #Shorts
+```
+
+YouTube Shorts description guidance:
+
+- first line: identify the series and format
+- second paragraph: one clear story promise or setup
+- include `Built by ReadChineseClassics.com`
+- include a small hashtag set
+- do not mention local files, run directories, draft status, render internals, or agent names
+- do not over-explain culture; make the stakes clear
+
+Good pattern:
+
+```text
+Episode 1 of Romance of the Three Kingdoms, retold as a motion comic for new readers.
+
+An empire is breaking. The court has lost control. A rebellion spreads. At one city gate, a notice goes up.
+
+Built by ReadChineseClassics.com
+
+#RomanceOfTheThreeKingdoms #ThreeKingdoms #ChineseClassics #MotionComic #Shorts
+```
+
+Pitfalls:
+
+- Do not title the upload with only a passage name if cold viewers will not know why it matters.
+- Do not bury the story hook under project/process language.
+- Do not put important maker marks only at the very bottom of `f0`; Shorts UI may cover it.
+- Do not let `Title` and `Description` spoil future turns that the video itself withholds.
+
 ## Copy Evaluation Gate
 
 Before English podcast/video copy is treated as publish-ready, run:

@@ -335,6 +335,58 @@ Use:
 The description should be post-ready and not mention internal file paths, pipeline mechanics, or draft status.
 The tweet should be ready to post and include the required campaign hashtag when one is specified.
 
+### YouTube Shorts Export Copy
+
+When exporting a podcast motion comic video for YouTube Shorts, create:
+
+```text
+story/<passage>/podcast/runNNN/video/upload_metadata_<lang>.md
+```
+
+The file must be ready to paste into YouTube Studio.
+
+For English Shorts, use this shape:
+
+```text
+Short Title:
+An Empire Is Breaking
+
+Title:
+An Empire Is Breaking | Romance of the Three Kingdoms Ep. 1 #Shorts
+
+Description:
+Episode 1 of Romance of the Three Kingdoms, retold as a motion comic for new readers.
+
+An empire is breaking. The court has lost control. A rebellion spreads. At one city gate, a notice goes up.
+
+Built by ReadChineseClassics.com
+
+#RomanceOfTheThreeKingdoms #ThreeKingdoms #ChineseClassics #MotionComic #Shorts
+
+Tweet:
+An empire is breaking. A notice goes up at the gate.
+
+Romance of the Three Kingdoms begins as a motion comic for new readers.
+
+#RomanceOfTheThreeKingdoms #MotionComic
+```
+
+Tips:
+
+- Make the title a story hook first and a series label second.
+- Let the description explain the format in one line, then return to story stakes.
+- Keep hashtags useful and limited.
+- Match the upload copy to `f0`; the video should visually deliver what the title promises.
+- Use the global passage id, such as `c1/p1`, in internal metadata or `f0` if needed, not as the public title.
+
+Pitfalls:
+
+- Avoid titles that only name the passage, such as `Prelude to Chaos`, unless the hook is also present.
+- Avoid project-process language, such as `AI rewrite`, `draft`, `pipeline`, or `render test`.
+- Avoid long cultural explanations in the description.
+- Keep `Built by ReadChineseClassics.com` visible in `f0` above bottom platform chrome, because Shorts UI can cover the lower edge.
+- Do not depend on speaker labels in subtitles; use color accents and keep subtitles inside the safe area.
+
 ## Copy Evaluation Gate
 
 English podcast/video copy must pass a cross-cultural clarity review before it is considered publish-ready.

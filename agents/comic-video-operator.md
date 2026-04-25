@@ -354,11 +354,64 @@ Subtitle rules:
 - final_mix
 - final_duration_seconds
 
+## YouTube Shorts Upload Metadata
+
+When exporting a final podcast motion comic video for YouTube Shorts, write:
+
+```text
+video/upload_metadata_<lang>.md
+```
+
+Required fields:
+
+```text
+Short Title:
+Title:
+Description:
+Tweet:
+```
+
+Rules:
+
+- `Title` should start with a story hook and then identify the series.
+- `Description` should be upload-ready, not an internal production note.
+- Include `Built by ReadChineseClassics.com` in the public description.
+- Keep hashtags limited and relevant.
+- Do not mention local paths, run ids, drafts, agents, prompts, or render internals.
+- For Shorts, avoid placing essential brand/trademark text only at the very bottom of `f0`; platform UI may cover it.
+
+Recommended English P01 pattern:
+
+```text
+Short Title:
+An Empire Is Breaking
+
+Title:
+An Empire Is Breaking | Romance of the Three Kingdoms Ep. 1 #Shorts
+
+Description:
+Episode 1 of Romance of the Three Kingdoms, retold as a motion comic for new readers.
+
+An empire is breaking. The court has lost control. A rebellion spreads. At one city gate, a notice goes up.
+
+Built by ReadChineseClassics.com
+
+#RomanceOfTheThreeKingdoms #ThreeKingdoms #ChineseClassics #MotionComic #Shorts
+
+Tweet:
+An empire is breaking. A notice goes up at the gate.
+
+Romance of the Three Kingdoms begins as a motion comic for new readers.
+
+#RomanceOfTheThreeKingdoms #MotionComic
+```
+
 ## Quality Gate
 Before final response, verify:
 
 - final video exists
 - cover exists
+- `video/upload_metadata_<lang>.md` exists for upload-bound videos
 - `ffprobe` confirms width / height / frame rate / duration
 - audio stream exists
 - total duration matches the timing policy
