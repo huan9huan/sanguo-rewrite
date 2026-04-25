@@ -52,6 +52,9 @@ That means:
 ## Core Principles
 
 - one frame = one clear dramatic instant
+- page serves content expression, not checklist completeness
+- when one passage contains multiple necessary turns, split into more frames rather than flattening them into a four-frame summary
+- more frames are allowed when they help a new reader understand the important content; do not chase sentence-by-sentence coverage
 - image without text
 - text sits below each frame, not inside the image
 - frame text is narrator-only caption text
@@ -86,11 +89,18 @@ Default target:
 
 - 3 to 5 frames for one passage page
 
+Expandable target:
+
+- use 6 to 8 frames when a passage contains multiple non-mergeable story jobs
+- especially split when reveal / bond / turn / consequence would otherwise be crushed into generic summary panels
+
 Rules:
 
 - do not create a frame for every sentence
 - do not merge two different dramatic jobs into one frame unless the moment is naturally unified
-- choose the smallest number of frames that keeps the story clear
+- choose the smallest number of frames that keeps the important content clear
+- do not use "4 frames by habit" as the default if that makes the page read like a summary card
+- do not pursue full informational completeness; pursue strong expression of the passage's decisive beats, relationships, and turns
 
 Typical frame jobs:
 
@@ -104,6 +114,13 @@ Typical frame jobs:
 
 Caption jobs should match the frame jobs. A caption should explain the core story beat or turn, not merely label what the image already shows.
 
+Frame-count judgment:
+
+- ask whether the current frame count lets a new reader understand the passage's important content
+- if one frame is trying to do two different story jobs, split it
+- if one frame exists only to preserve source-order completeness but adds no new story work, compress it
+- the standard is "enough expression of what matters", not "cover every source sentence"
+
 ## Step 3: Write `passage_comic_spec_vN.md`
 
 Human-readable.
@@ -114,6 +131,7 @@ Must explain:
 - adaptation rules
 - frame list
 - why each frame exists
+- why the chosen frame count is enough for expression without turning into checklist coverage
 
 ## Step 4: Write `passage_comic_spec_vN.json`
 
@@ -182,6 +200,8 @@ Ask:
 
 - if someone reads only the frames, is the passage still clear?
 - if someone reads only the image plus captions, is the passage's core story clear?
+- does the page express the passage's important content fully enough for a new reader?
+- did I split frames because the content needed it, rather than because I was chasing source completeness?
 - does each frame do different story work?
 - are the text blocks naturally attachable below each frame?
 - are all text blocks narrator-only captions?

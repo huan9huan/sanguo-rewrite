@@ -123,6 +123,7 @@
 
 - passage_goal_match
 - panel_story_fidelity
+- expressive_coverage
 - comic_usability
 - visual_specificity
 - style_and_character_control
@@ -207,6 +208,24 @@
 - 3：能用但拖累阅读
 - 2：勉强可切，不稳
 - 1：不适合
+
+### 3.5. Expressive Coverage
+
+检查：
+
+- 当前 comic 是否把这个 passage 的重要内容表达够了
+- 读者是否能看懂关键关系变化、关键转折、关键结果
+- 多格拆分是否真的帮助了内容表达
+- 是否存在“为了省格数，把多个重要瞬间压成一个摘要图”
+- 是否存在“为了追求完整性，把一堆次要信息塞进页面，反而削弱主要内容”
+
+标准：
+
+- 5：重要内容表达充分，取舍明确，不空也不挤
+- 4：主要内容表达到了，少量次要连接仍依赖正文
+- 3：主线在，但关键表达被压扁或遗漏一部分
+- 2：页面更像摘要卡，重要内容没有真正展开
+- 1：既没有表达清主要内容，也没有形成有效取舍
 
 ### 4. Visual Specificity
 
@@ -299,6 +318,27 @@
 
 判断这张图如果人工去 chatbot 里 refine，要花多少力气。
 
+## Completeness vs Expression
+
+这里要特别区分两件事：
+
+- `信息完整覆盖`
+- `重要内容表达充分`
+
+Comic QA 默认站在第二个标准上。
+
+也就是说：
+
+- 不是要求 comic 机械覆盖 passage 的每个信息点
+- 而是要求 comic 把最重要的内容、关系和转折表达够
+- 如果四格导致 passage 被压成摘要卡，应明确指出是 `comic spec` 的表达覆盖不足
+- 如果多格已经足够表达主要内容，不要因为没覆盖每一条细节就误判失败
+
+判断时优先问：
+
+- 新读者看完这一页，是否真的懂了这段 passage 最重要的东西？
+- 当前页的取舍，是在服务表达，还是在服务 checklist completeness？
+
 ## Root Cause Framework
 打完分之后，再判断根因。
 
@@ -309,6 +349,8 @@
 - 一页承担太多信息
 - comic spec 既要求无字，又要求图像承担大量文字语义
 - comic spec 没有明确区分“古代语感可见字样”与“应避免的现代可读文本”
+- comic spec 为了省 frame，把多个关键内容压进同一格，导致表达覆盖不足
+- comic spec 为了追求完整性堆太多次要信息，导致重点不清
 - `moment_cn` 不够可视化
 - `must_show` 太多且优先级不清
 - hook 在文字里成立，在画面里不成立
