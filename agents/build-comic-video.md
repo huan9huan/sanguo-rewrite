@@ -61,6 +61,10 @@ Owns:
 - motion vocabulary
 - wide panel readability
 
+Vocabulary:
+
+- `f0` / `0帧`: opening clue frame before the first comic frame. It is a virtual story-context frame, usually built from title metadata plus current comic imagery. It is not cropped from `current/comic.json` and must not renumber `f1`.
+
 Outputs:
 
 - `frames/fN.png`

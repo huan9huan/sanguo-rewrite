@@ -306,6 +306,15 @@ Recommended visual style:
 - subtle push / pan / hold
 - readable subtitle block
 
+Opening clue frame:
+
+- `f0` / `0帧` is the optional opening card before `f1`.
+- Render `f0` from an explicit opening-card asset, not from `current/comic.json`.
+- `f0` may also become `output/cover_<lang>.png`.
+- Keep `f0` visually stable; it should orient the viewer before motion begins.
+- Add a short audio/visual pause between `f0` and `f1` when the narrator enters the story.
+- Do not burn long explanatory text into `f0`; use one short setup line.
+
 Subtitle rules:
 
 - keep inside safe area

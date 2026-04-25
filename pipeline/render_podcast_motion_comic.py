@@ -17,6 +17,9 @@ FPS = 24
 
 def load_font(size: int, *, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
     candidates = [
+        "/System/Library/Fonts/PingFang.ttc",
+        "/System/Library/Fonts/STHeiti Light.ttc",
+        "/System/Library/Fonts/Supplemental/Songti.ttc",
         "/System/Library/Fonts/Supplemental/Arial Bold.ttf" if bold else "/System/Library/Fonts/Supplemental/Arial.ttf",
         "/System/Library/Fonts/Supplemental/Helvetica Bold.ttf" if bold else "/System/Library/Fonts/Supplemental/Helvetica.ttf",
         "/Library/Fonts/Arial Bold.ttf" if bold else "/Library/Fonts/Arial.ttf",
@@ -90,7 +93,9 @@ def resolve_effective_frames(lines: list[dict[str, Any]]) -> list[dict[str, Any]
     for line in lines:
         frame_id = line.get("frame_id")
         anchor = line.get("visual_anchor", "none")
-        if frame_id:
+        if frame_id == "f0":
+            frame_id = None
+        elif frame_id:
             current_frame = frame_id
         elif anchor == "hold_previous" and current_frame:
             frame_id = current_frame
@@ -161,6 +166,10 @@ def current_shot_at(shots: list[dict[str, Any]], ms: int) -> dict[str, Any]:
     return shots[-1]
 
 
+def before_first_shot(shots: list[dict[str, Any]], ms: int) -> bool:
+    return bool(shots) and ms < shots[0]["start_ms"]
+
+
 def draw_subtitle(
     canvas: Image.Image,
     line: dict[str, Any],
@@ -170,7 +179,11 @@ def draw_subtitle(
     body_font: ImageFont.ImageFont,
 ) -> None:
     draw = ImageDraw.Draw(canvas)
-    speaker = line["speaker"].upper()
+    has_cjk = any("\u4e00" <= char <= "\u9fff" for char in line["text"])
+    if has_cjk:
+        speaker = "听者" if line["speaker"] == "listener" else "旁白"
+    else:
+        speaker = line["speaker"].upper()
     is_listener = line["speaker"] == "listener"
     accent = (216, 177, 90) if not is_listener else (90, 160, 210)
     panel_bg = (18, 20, 22, 226)
@@ -199,14 +212,19 @@ def draw_subtitle(
 
 def render_frame(
     frame_images: dict[str, Image.Image],
+    frame_titles: dict[str, str],
     shots: list[dict[str, Any]],
     lines: list[dict[str, Any]],
     ms: int,
     *,
+    opening_card: Image.Image | None,
     title_font: ImageFont.ImageFont,
     speaker_font: ImageFont.ImageFont,
     body_font: ImageFont.ImageFont,
 ) -> Image.Image:
+    if opening_card is not None and before_first_shot(shots, ms):
+        return opening_card.resize((CANVAS_W, CANVAS_H), Image.Resampling.LANCZOS).convert("RGB")
+
     line = current_line_at(lines, ms)
     shot = current_shot_at(shots, ms)
     frame_id = shot["frame_id"]
@@ -255,12 +273,7 @@ def render_frame(
     canvas.alpha_composite(resized, (x, y))
 
     draw = ImageDraw.Draw(canvas)
-    title = {
-        "f1": "A Snake on the Throne",
-        "f2": "The Healer Gathers Followers",
-        "f3": "The Yellow Turbans Rise",
-        "f4": "The Notice at the Gate",
-    }.get(frame_id, frame_id)
+    title = frame_titles.get(frame_id, frame_id)
     tw, _ = text_size(draw, title, title_font)
     draw.text(((CANVAS_W - tw) // 2, 92), title, font=title_font, fill=(38, 35, 30))
 
@@ -314,6 +327,9 @@ def render(args: argparse.Namespace) -> int:
     write_storyboard(video_dir, shots, {line["id"]: line for line in lines})
 
     frame_images = {frame_id: Image.open(item["file"]).convert("RGB") for frame_id, item in frame_manifest.items()}
+    frame_titles = {frame_id: item.get("title") or frame_id for frame_id, item in frame_manifest.items()}
+    opening_card_path = Path(args.opening_card) if args.opening_card else None
+    opening_card = Image.open(opening_card_path).convert("RGB") if opening_card_path and opening_card_path.exists() else None
     title_font = load_font(46, bold=True)
     speaker_font = load_font(28, bold=True)
     body_font = load_font(46, bold=True)
@@ -359,9 +375,11 @@ def render(args: argparse.Namespace) -> int:
         ms = round(frame_index * 1000 / FPS)
         frame = render_frame(
             frame_images,
+            frame_titles,
             shots,
             lines,
             min(ms, total_ms - 1),
+            opening_card=opening_card,
             title_font=title_font,
             speaker_font=speaker_font,
             body_font=body_font,
@@ -408,6 +426,7 @@ def render(args: argparse.Namespace) -> int:
         "audio": audio_path.as_posix(),
         "output": out_video.as_posix(),
         "cover": cover.as_posix(),
+        "opening_card": opening_card_path.as_posix() if opening_card_path else None,
         "duration_ms": total_ms,
     }
     (video_dir / f"render_plan_{lang}.json").write_text(json.dumps(render_plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
@@ -439,6 +458,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("passage", help="Passage path, such as story/cp001-p01.")
     parser.add_argument("--run", required=True, help="Podcast run directory.")
     parser.add_argument("--lang", default="en", choices=["en", "zh"], help="Language suffix.")
+    parser.add_argument("--opening-card", help="Optional 9:16 opening card image shown before the first framed line.")
     return parser
 
 

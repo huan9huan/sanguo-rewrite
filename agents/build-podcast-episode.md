@@ -207,11 +207,37 @@ Every line needs:
 
 `frame_id` is optional:
 
+- use `f0` only for the opening clue frame / 0帧, before the first comic frame
 - use a concrete frame id for lines that map to a visual beat
 - use `null` for explanation or bridge lines
 - use `visual_anchor: "hold_previous"` when the player should keep the current frame
 
 Do not force every spoken line onto a comic frame.
+
+## Podcast / Video Term: `f0` / `0帧`
+
+`f0` means the opening clue frame, 中文可称 `0帧`.
+
+It is a story-context frame before `f1`.
+It tells the viewer what this episode or passage is about before the main comic flow begins.
+
+Use `f0` for:
+
+- book / chapter / passage identity
+- a clue-like setup image
+- a short `previously` or `story starts here` line
+- a small promise of the episode's immediate question
+
+Rules:
+
+- `f0` is not a normal comic panel.
+- `f0` must not be added to `current/comic.json`.
+- `f0` does not come from `current/comic.json` `frames[]`.
+- `f0` should be recorded in podcast/video manifests as an opening card or context frame.
+- `f0` should usually hold for 1.5-3 seconds, then pause briefly before `f1`.
+- `f0` must not spoil future turns; it should create orientation and curiosity.
+- For P01, use `story starts here` instead of `previously`.
+- For later passages, `f0` may use the previous passage catchup.
 
 ## Workflow
 

@@ -149,6 +149,30 @@ Line-level fields:
 
 `frame_id` is optional because podcast pacing should not be forced into a frame cut on every line.
 
+### `f0` / `0帧`
+
+`f0` is the opening clue frame, 中文可称 `0帧`.
+
+It is a virtual frame before the first comic frame.
+It gives the listener/viewer enough context to understand what the episode or passage is about.
+
+Typical contents:
+
+- book title
+- chapter title
+- passage title
+- current full comic image or selected current comic visual
+- one short setup line, such as `上一集说到...` or, for P01, `故事从这里开始`
+
+Rules:
+
+- `f0` is not part of `current/comic.json`.
+- `f0` must not renumber or replace `f1`.
+- `f0` can be referenced in podcast/video planning as `frame_id: "f0"` when the line belongs to the opening card.
+- Renderers should resolve `f0` from an opening-card asset, not from comic panel detection.
+- `f0` should end with a short pause before the narrator enters the story on `f1`.
+- `f0` is for orientation and curiosity, not summary-heavy explanation or spoilers.
+
 ## Mode Values
 
 Use one of:
