@@ -14,14 +14,24 @@ CANVAS_W = 1080
 CANVAS_H = 1920
 FPS = 24
 F0_MAP_ZOOM_MS = 800
-SUBTITLE_BOTTOM_SAFE = 260
+TOP_SAFE_RESERVED = 384
+HEADER_Y = 396
+FILMSTRIP_Y = 484
+FILMSTRIP_H = 132
+MAIN_FRAME_Y = 666
+MAIN_FRAME_H = 514
+CAPTION_Y = 1262
+CAPTION_H_ONE_LINE = 162
+CAPTION_H_MULTI_LINE = 224
+CAPTION_BOTTOM_SAFE = 210
 SUBTITLE_SIDE_MARGIN = 70
-SUBTITLE_ACCENT_WIDTH = 8
 SUBTITLE_RADIUS = 22
-SUBTITLE_MAX_LINES = 3
-NARRATOR_ACCENT = (216, 177, 90)
-LISTENER_ACCENT = (90, 160, 210)
+SUBTITLE_MAX_LINES = 2
+GOLD = (216, 177, 90)
+NARRATOR_TEXT = (250, 246, 236)
+LISTENER_TEXT = (232, 205, 132)
 SUBTITLE_BG = (18, 20, 22, 226)
+PAGE_BG = (230, 226, 214, 255)
 
 
 def load_font(size: int, *, bold: bool = False) -> ImageFont.FreeTypeFont | ImageFont.ImageFont:
@@ -206,6 +216,56 @@ def load_frame_titles(passage: Path, lang: str, frame_manifest: dict[str, dict[s
     return titles
 
 
+def parse_passage_ids(passage: Path) -> tuple[str, str, str, str]:
+    name = passage.name
+    chapter_raw = "001"
+    passage_raw = "01"
+    if "-p" in name and name.startswith("cp"):
+        chapter_part, passage_part = name.split("-p", 1)
+        chapter_raw = chapter_part.removeprefix("cp")
+        passage_raw = passage_part
+    chapter_no = str(int(chapter_raw)) if chapter_raw.isdigit() else chapter_raw
+    passage_no = str(int(passage_raw)) if passage_raw.isdigit() else passage_raw
+    chapter_id = f"cp{int(chapter_raw):03d}" if chapter_raw.isdigit() else f"cp{chapter_raw}"
+    passage_id = f"p{int(passage_raw):02d}" if passage_raw.isdigit() else f"p{passage_raw}"
+    return chapter_id, passage_id, chapter_no, passage_no
+
+
+def load_playing_labels(passage: Path, lang: str) -> dict[str, str]:
+    chapter_id, passage_id, chapter_no, passage_no = parse_passage_ids(passage)
+    story_dir = passage.parent
+    chapter_title = chapter_id
+    passage_title = passage.name
+
+    chapter_overlay = story_dir / f"{chapter_id}.{lang}.json"
+    chapter_base = story_dir / f"{chapter_id}.json"
+    if chapter_overlay.exists():
+        data = json.loads(chapter_overlay.read_text(encoding="utf-8"))
+        chapter_title = data.get("display_title") or data.get("title") or chapter_title
+    elif chapter_base.exists():
+        data = json.loads(chapter_base.read_text(encoding="utf-8"))
+        chapter_title = data.get(f"display_title_{lang}") or data.get("adapted_title_cn") or data.get("source_title") or chapter_title
+
+    manifest = Path("site/public/content/books/sanguo/chapters") / chapter_id / "manifest.json"
+    if manifest.exists():
+        data = json.loads(manifest.read_text(encoding="utf-8"))
+        for item in data.get("passages", []):
+            if item.get("id") == passage.name or item.get("passage_id") == passage_id:
+                passage_title = item.get(f"title_{lang}") or item.get("title") or passage_title
+                break
+
+    global_id = f"c{chapter_no}/p{passage_no}"
+    if lang == "en":
+        return {
+            "chapter": f"Chapter {chapter_no} - {chapter_title}",
+            "passage": f"{global_id}: {passage_title}",
+        }
+    return {
+        "chapter": f"第{chapter_no}章 - {chapter_title}",
+        "passage": f"{global_id}: {passage_title}",
+    }
+
+
 def f0_panel_box(
     comic_panel_box: dict[str, float],
     opening_card_meta: dict[str, Any] | None,
@@ -280,39 +340,180 @@ def draw_subtitle(
     canvas: Image.Image,
     line: dict[str, Any],
     *,
-    title_font: ImageFont.ImageFont,
-    speaker_font: ImageFont.ImageFont,
     body_font: ImageFont.ImageFont,
 ) -> None:
     draw = ImageDraw.Draw(canvas)
+    wrapped, box_y, box_h = measure_subtitle_box(draw, line["text"], body_font)
     is_listener = line["speaker"] == "listener"
-    accent = LISTENER_ACCENT if is_listener else NARRATOR_ACCENT
+    text_fill = LISTENER_TEXT if is_listener else NARRATOR_TEXT
     left = SUBTITLE_SIDE_MARGIN
     right = CANVAS_W - SUBTITLE_SIDE_MARGIN
-    max_width = right - left - 44
-    wrapped = wrap_text(draw, line["text"], body_font, max_width)
-    wrapped = wrapped[:SUBTITLE_MAX_LINES]
     line_h = text_size(draw, "Ag", body_font)[1] + 16
-    box_h = len(wrapped) * line_h + 50
-    box_y = CANVAS_H - box_h - SUBTITLE_BOTTOM_SAFE
 
     overlay = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
     od = ImageDraw.Draw(overlay)
     od.rounded_rectangle((left, box_y, right, box_y + box_h), radius=SUBTITLE_RADIUS, fill=SUBTITLE_BG)
-    od.rectangle((left, box_y, left + SUBTITLE_ACCENT_WIDTH, box_y + box_h), fill=accent)
 
-    y = box_y + 25
+    text_block_h = len(wrapped) * line_h - 16
+    y = box_y + (box_h - text_block_h) // 2 - 4
     for part in wrapped:
-        od.text((left + 28, y), part, font=body_font, fill=(244, 240, 230))
+        od.text((left + 28, y), part, font=body_font, fill=text_fill)
         y += line_h
 
     canvas.alpha_composite(overlay)
+
+
+def measure_subtitle_box(
+    draw: ImageDraw.ImageDraw,
+    text: str,
+    body_font: ImageFont.ImageFont,
+) -> tuple[list[str], int, int]:
+    max_width = CANVAS_W - SUBTITLE_SIDE_MARGIN * 2 - 44
+    wrapped = wrap_text(draw, text, body_font, max_width)[:SUBTITLE_MAX_LINES]
+    box_h = CAPTION_H_ONE_LINE if len(wrapped) <= 1 else CAPTION_H_MULTI_LINE
+    box_y = min(CAPTION_Y, CANVAS_H - box_h - CAPTION_BOTTOM_SAFE)
+    return wrapped, box_y, box_h
+
+
+def fit_comic_image_for_layout(
+    image: Image.Image,
+    *,
+    max_w: int,
+    max_h: int,
+    scale: float,
+) -> tuple[int, int]:
+    draw_w, draw_h = fit_image_size(image, max_w, max_h, scale)
+    if draw_h > max_h:
+        factor = max_h / draw_h
+        draw_w = max(1, round(draw_w * factor))
+        draw_h = max_h
+    return draw_w, draw_h
+
+
+def draw_centered_text(
+    draw: ImageDraw.ImageDraw,
+    text: str,
+    y: int,
+    font: ImageFont.ImageFont,
+    fill: tuple[int, int, int],
+) -> None:
+    tw, _ = text_size(draw, text, font)
+    draw.text(((CANVAS_W - tw) // 2, y), text, font=font, fill=fill)
+
+
+def fit_into_box(image: Image.Image, box_w: int, box_h: int) -> tuple[int, int]:
+    scale = min(box_w / image.width, box_h / image.height)
+    return max(1, round(image.width * scale)), max(1, round(image.height * scale))
+
+
+def draw_header(
+    canvas: Image.Image,
+    labels: dict[str, str],
+    *,
+    header_font: ImageFont.ImageFont,
+    subheader_font: ImageFont.ImageFont,
+) -> None:
+    draw = ImageDraw.Draw(canvas)
+    draw_centered_text(draw, labels["chapter"], HEADER_Y, header_font, (31, 30, 28))
+    draw_centered_text(draw, labels["passage"], HEADER_Y + 48, subheader_font, (83, 75, 61))
+
+
+def draw_filmstrip(
+    canvas: Image.Image,
+    frame_images: dict[str, Image.Image],
+    active_frame_id: str,
+) -> None:
+    frame_ids = sorted(frame_images)
+    if not frame_ids:
+        return
+    strip_left = 46
+    strip_right = CANVAS_W - 46
+    strip_w = strip_right - strip_left
+    thumb_gap = 12
+    thumb_w = max(1, (strip_w - thumb_gap * (len(frame_ids) - 1)) // len(frame_ids))
+    thumb_h = FILMSTRIP_H - 28
+
+    overlay = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+    od = ImageDraw.Draw(overlay)
+    od.rounded_rectangle((strip_left - 12, FILMSTRIP_Y, strip_right + 12, FILMSTRIP_Y + FILMSTRIP_H), radius=18, fill=(16, 16, 16, 238))
+
+    sprocket_w = 18
+    for x in range(strip_left, strip_right, 44):
+        od.rounded_rectangle((x, FILMSTRIP_Y + 8, x + sprocket_w, FILMSTRIP_Y + 20), radius=3, fill=(232, 226, 212, 210))
+        od.rounded_rectangle((x, FILMSTRIP_Y + FILMSTRIP_H - 20, x + sprocket_w, FILMSTRIP_Y + FILMSTRIP_H - 8), radius=3, fill=(232, 226, 212, 210))
+
+    for index, frame_id in enumerate(frame_ids):
+        image = frame_images[frame_id]
+        x = strip_left + index * (thumb_w + thumb_gap)
+        y = FILMSTRIP_Y + 14
+        tw, th = fit_into_box(image, thumb_w, thumb_h)
+        thumb = image.resize((tw, th), Image.Resampling.LANCZOS).convert("RGBA")
+        if frame_id != active_frame_id:
+            thumb = ImageEnhance.Color(thumb.convert("RGB")).enhance(0.0).convert("RGBA")
+            dim = Image.new("RGBA", thumb.size, (0, 0, 0, 96))
+            thumb.alpha_composite(dim)
+        px = x + (thumb_w - tw) // 2
+        py = y + (thumb_h - th) // 2
+        od.rounded_rectangle((x, y, x + thumb_w, y + thumb_h), radius=8, fill=(36, 34, 30, 255))
+        overlay.alpha_composite(thumb, (px, py))
+        outline = GOLD + (255,) if frame_id == active_frame_id else (82, 78, 68, 255)
+        od.rounded_rectangle((x, y, x + thumb_w, y + thumb_h), radius=8, outline=outline, width=4 if frame_id == active_frame_id else 2)
+
+    canvas.alpha_composite(overlay)
+
+
+def draw_main_frame(
+    canvas: Image.Image,
+    image: Image.Image,
+    shot: dict[str, Any],
+    ms: int,
+) -> None:
+    shot_t = 0.0
+    if shot["end_ms"] > shot["start_ms"]:
+        shot_t = (ms - shot["start_ms"]) / (shot["end_ms"] - shot["start_ms"])
+    e = ease(shot_t)
+
+    scale = 1.0 + 0.04 * e
+    if shot["motion"] == "impact_push_in":
+        scale = 1.02 + 0.05 * e
+    elif shot["motion"] == "guided_pan_left_to_right":
+        scale = 1.06
+    elif shot["motion"] == "slow_push_to_notice":
+        scale = 1.0 + 0.05 * e
+
+    max_w = CANVAS_W - 64
+    max_h = MAIN_FRAME_H
+    draw_w, draw_h = fit_image_size(image, max_w, max_h, scale)
+    if draw_w > max_w:
+        factor = max_w / draw_w
+        draw_w = max_w
+        draw_h = max(1, round(draw_h * factor))
+    if draw_h > max_h:
+        factor = max_h / draw_h
+        draw_h = max_h
+        draw_w = max(1, round(draw_w * factor))
+
+    resized = image.resize((draw_w, draw_h), Image.Resampling.LANCZOS).convert("RGBA")
+    x_center = CANVAS_W // 2
+    if shot["motion"] == "guided_pan_left_to_right":
+        x_center = round(CANVAS_W * (0.48 + 0.04 * e))
+    x = x_center - draw_w // 2
+    y = MAIN_FRAME_Y + (MAIN_FRAME_H - draw_h) // 2
+
+    shadow = Image.new("RGBA", resized.size, (0, 0, 0, 0))
+    sd = ImageDraw.Draw(shadow)
+    sd.rounded_rectangle((0, 0, draw_w, draw_h), radius=16, fill=(0, 0, 0, 95))
+    canvas.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(14)), (x + 8, y + 14))
+    canvas.alpha_composite(resized, (x, y))
+    draw = ImageDraw.Draw(canvas)
+    draw.rounded_rectangle((x, y, x + draw_w, y + draw_h), radius=16, outline=(248, 244, 232, 230), width=3)
 
 
 def render_frame(
     frame_images: dict[str, Image.Image],
     frame_titles: dict[str, str],
     frame_manifest: dict[str, dict[str, Any]],
+    playing_labels: dict[str, str],
     shots: list[dict[str, Any]],
     lines: list[dict[str, Any]],
     ms: int,
@@ -320,7 +521,7 @@ def render_frame(
     opening_card: Image.Image | None,
     opening_card_meta: dict[str, Any] | None,
     title_font: ImageFont.ImageFont,
-    speaker_font: ImageFont.ImageFont,
+    subheader_font: ImageFont.ImageFont,
     body_font: ImageFont.ImageFont,
 ) -> Image.Image:
     if opening_card is not None and before_first_shot(shots, ms):
@@ -329,63 +530,24 @@ def render_frame(
     line = current_line_at(lines, ms)
     shot = current_shot_at(shots, ms)
     frame_id = shot["frame_id"]
-    if opening_card is not None and opening_card_meta is not None:
-        shot_elapsed = ms - int(shot["start_ms"])
-        if 0 <= shot_elapsed < F0_MAP_ZOOM_MS:
-            target = f0_panel_box(frame_manifest[frame_id]["source_panel_box"], opening_card_meta)
-            if target is not None:
-                return render_f0_map_zoom(opening_card, target, shot_elapsed / F0_MAP_ZOOM_MS)
-
     image = frame_images[frame_id]
 
-    canvas = Image.new("RGBA", (CANVAS_W, CANVAS_H), (238, 232, 220, 255))
+    canvas = Image.new("RGBA", (CANVAS_W, CANVAS_H), PAGE_BG)
     bg = image.resize((CANVAS_W, CANVAS_H), Image.Resampling.LANCZOS)
     bg = ImageEnhance.Contrast(bg).enhance(0.65)
     bg = ImageEnhance.Brightness(bg).enhance(1.08)
     bg = bg.filter(ImageFilter.GaussianBlur(22))
     canvas.alpha_composite(bg.convert("RGBA"))
-    wash = Image.new("RGBA", canvas.size, (238, 232, 220, 160))
+    wash = Image.new("RGBA", canvas.size, (230, 226, 214, 182))
     canvas.alpha_composite(wash)
 
-    shot_t = 0.0
-    if shot["end_ms"] > shot["start_ms"]:
-        shot_t = (ms - shot["start_ms"]) / (shot["end_ms"] - shot["start_ms"])
-    e = ease(shot_t)
+    top_safe = Image.new("RGBA", (CANVAS_W, TOP_SAFE_RESERVED), PAGE_BG)
+    canvas.alpha_composite(top_safe, (0, 0))
 
-    max_w = 980
-    max_h = 980
-    scale = 1.0 + 0.09 * e
-    if shot["motion"] == "impact_push_in":
-        scale = 1.03 + 0.11 * e
-    elif shot["motion"] == "guided_pan_left_to_right":
-        scale = 1.12
-    elif shot["motion"] == "slow_push_to_notice":
-        scale = 1.0 + 0.12 * e
-
-    draw_w, draw_h = fit_image_size(image, max_w, max_h, scale)
-    resized = image.resize((draw_w, draw_h), Image.Resampling.LANCZOS).convert("RGBA")
-
-    x_center = CANVAS_W // 2
-    if shot["motion"] == "guided_pan_left_to_right":
-        x_center = round(CANVAS_W * (0.46 + 0.08 * e))
-    y_center = 690
-    if frame_id in {"f1", "f4"}:
-        y_center = 660
-    x = x_center - draw_w // 2
-    y = y_center - draw_h // 2
-
-    shadow = Image.new("RGBA", resized.size, (0, 0, 0, 0))
-    sd = ImageDraw.Draw(shadow)
-    sd.rounded_rectangle((0, 0, draw_w, draw_h), radius=18, fill=(0, 0, 0, 90))
-    canvas.alpha_composite(shadow.filter(ImageFilter.GaussianBlur(16)), (x + 10, y + 18))
-    canvas.alpha_composite(resized, (x, y))
-
-    draw = ImageDraw.Draw(canvas)
-    title = frame_titles.get(frame_id, frame_id)
-    tw, _ = text_size(draw, title, title_font)
-    draw.text(((CANVAS_W - tw) // 2, 92), title, font=title_font, fill=(38, 35, 30))
-
-    draw_subtitle(canvas, line, title_font=title_font, speaker_font=speaker_font, body_font=body_font)
+    draw_header(canvas, playing_labels, header_font=title_font, subheader_font=subheader_font)
+    draw_filmstrip(canvas, frame_images, frame_id)
+    draw_main_frame(canvas, image, shot, ms)
+    draw_subtitle(canvas, line, body_font=body_font)
     return canvas.convert("RGB")
 
 
@@ -436,11 +598,12 @@ def render(args: argparse.Namespace) -> int:
 
     frame_images = {frame_id: Image.open(item["file"]).convert("RGB") for frame_id, item in frame_manifest.items()}
     frame_titles = load_frame_titles(passage, lang, frame_manifest)
+    playing_labels = load_playing_labels(passage, lang)
     opening_card_path = Path(args.opening_card) if args.opening_card else None
     opening_card = Image.open(opening_card_path).convert("RGB") if opening_card_path and opening_card_path.exists() else None
     opening_card_meta = load_opening_card_meta(opening_card_path)
-    title_font = load_font(46, bold=True)
-    speaker_font = load_font(28, bold=True)
+    title_font = load_font(36, bold=True)
+    subheader_font = load_font(30, bold=True)
     body_font = load_font(46, bold=True)
 
     total_ms = int(timeline["duration_ms"])
@@ -486,13 +649,14 @@ def render(args: argparse.Namespace) -> int:
             frame_images,
             frame_titles,
             frame_manifest,
+            playing_labels,
             shots,
             lines,
             min(ms, total_ms - 1),
             opening_card=opening_card,
             opening_card_meta=opening_card_meta,
             title_font=title_font,
-            speaker_font=speaker_font,
+            subheader_font=subheader_font,
             body_font=body_font,
         )
         if frame_index == 0:
@@ -538,6 +702,15 @@ def render(args: argparse.Namespace) -> int:
         "output": out_video.as_posix(),
         "cover": cover.as_posix(),
         "opening_card": opening_card_path.as_posix() if opening_card_path else None,
+        "playing_labels": playing_labels,
+        "layout": {
+            "top_safe_reserved": TOP_SAFE_RESERVED,
+            "header_y": HEADER_Y,
+            "filmstrip_y": FILMSTRIP_Y,
+            "main_frame_y": MAIN_FRAME_Y,
+            "caption_y": CAPTION_Y,
+            "speaker_role": "text_color_only",
+        },
         "duration_ms": total_ms,
     }
     (video_dir / f"render_plan_{lang}.json").write_text(json.dumps(render_plan, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")

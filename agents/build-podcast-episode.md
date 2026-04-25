@@ -239,6 +239,22 @@ Rules:
 - For P01, use `story starts here` instead of `previously`.
 - For later passages, `f0` may use the previous passage catchup.
 
+## Podcast Motion Comic Video Rules
+
+When a podcast episode is rendered as a vertical motion comic video:
+
+- reserve the top `20%` of the 9:16 canvas before placing essential title text
+- place chapter and passage identity below that safe area
+- use global passage ids in the header or `f0`, such as `c1/p1`
+- use a horizontal filmstrip to show the current comic frame in context
+- keep the current frame as the main middle visual
+- place subtitles below the main visual inside a stable bottom safe area
+- use subtitle text color, not border lines or labels, to distinguish narrator and listener
+- narrator text should be white / warm white
+- listener text should be pale yellow
+- do not render `Narrator` or `Listener` labels unless the user explicitly asks
+- keep `Built by ReadChineseClassics.com` above bottom platform chrome on `f0`
+
 ## Workflow
 
 1. Read only the current passage assets needed for this run.

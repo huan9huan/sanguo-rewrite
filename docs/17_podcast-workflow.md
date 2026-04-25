@@ -301,12 +301,37 @@ For podcast-driven motion comic video, subtitles should distinguish speakers by 
 
 Default:
 
-- Narrator uses the main subtitle accent color.
-- Listener uses a second accent color.
+- Narrator uses white or warm white text.
+- Listener uses pale yellow text.
 - Keep the same subtitle box position and typography for both speakers.
+- Do not use border lines, side bars, or card shape changes to mark speaker role.
+- Do not render `Narrator` or `Listener` labels on screen unless explicitly requested.
 - Do not add talking-head avatars or podcast host portraits.
 
-The color distinction is enough to tell the viewer who is speaking while preserving the comic as the visual focus.
+The text color distinction is enough to tell the viewer who is speaking while preserving the comic as the visual focus.
+
+## Shorts Safe-Area Layout
+
+Podcast-driven motion comic videos exported for Shorts must account for YouTube and iPhone UI overlays.
+
+Default playback layout:
+
+- reserve the top `20%` of the 9:16 canvas as quiet vertical safe area
+- place chapter and passage identity below that safe area
+- use a global passage id in the header, such as `c1/p1`
+- show a horizontal filmstrip under the header
+- keep the active frame normal / highlighted and the inactive frames grayscale or dimmed
+- show the current comic frame in the middle as the main visual
+- place subtitles below the main frame, inside a stable bottom safe area
+
+Avoid:
+
+- title text near the top edge, because YouTube Shorts title chrome and iPhone Dynamic Island can cover it
+- large accidental blank space below the comic image
+- frame-title labels above the main panel when the header already identifies the passage
+- speaker labels or border styles for narrator / listener
+
+For `f0`, keep `Built by ReadChineseClassics.com` above the lower platform chrome; do not place the trademark only at the bottom edge.
 
 ## Upload Metadata
 

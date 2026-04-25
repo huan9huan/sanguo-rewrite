@@ -178,6 +178,14 @@ If only one language is requested, produce only that language's files.
 5. Use `agents/comic-video-operator.md` for TTS, subtitles, render, manifests, and QA.
 6. Report final file paths, duration, and any verification gaps.
 
+For Shorts output, the operator must apply the vertical safe-area layout from `agents/comic-video-operator.md`:
+
+- reserve the top app-chrome area before placing header text
+- show chapter / passage identity with global id such as `c1/p1`
+- use a horizontal filmstrip to show current frame context
+- keep narrator / listener distinction as subtitle text color only
+- verify extracted frames before final handoff
+
 ## Timing Default
 Default policy:
 
