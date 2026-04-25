@@ -306,6 +306,50 @@ Recommended visual style:
 - subtle push / pan / hold
 - readable subtitle block
 
+## Shorts Layout Rules
+
+For YouTube Shorts and other vertical app feeds, reserve the platform chrome area first.
+
+Default vertical layout for podcast / motion comic playback:
+
+- top `20%` of the 9:16 canvas stays visually quiet and free of essential text
+- below that safe area, show chapter and passage identity
+- use global passage id in the passage line, such as `c1/p1`
+- show a horizontal filmstrip under the header
+- active frame is normal / highlighted; inactive frames are grayscale or dimmed
+- main comic frame sits in the middle as the primary visual
+- subtitles sit below the main frame, inside a stable bottom safe area
+
+Do not:
+
+- put title text near the top edge where the iPhone Dynamic Island or YouTube title overlay can cover it
+- leave the lower third empty by accidentally pushing the comic image too high
+- use a frame title above the main frame when chapter / passage identity is already in the header
+- use border lines, side bars, or box shape changes to indicate narrator vs listener
+- place brand / trademark text only at the bottom of `f0`
+
+Speaker role in subtitles:
+
+- narrator text uses white / warm white
+- listener text uses pale yellow
+- keep the same subtitle card, position, font size, and layout for both speakers
+- do not render `Narrator` or `Listener` labels on screen unless the user explicitly asks
+
+`f0` / opening card:
+
+- keep `Built by ReadChineseClassics.com` above bottom platform chrome
+- include global id such as `c1/p1` on `f0` when useful for workflow traceability
+- transition from `f0` into the first real frame without requiring `f0` to be treated as a normal comic panel
+
+Opening clue frame:
+
+- `f0` / `0帧` is the optional opening card before `f1`.
+- Render `f0` from an explicit opening-card asset, not from `current/comic.json`.
+- `f0` may also become `output/cover_<lang>.png`.
+- Keep `f0` visually stable; it should orient the viewer before motion begins.
+- Add a short audio/visual pause between `f0` and `f1` when the narrator enters the story.
+- Do not burn long explanatory text into `f0`; use one short setup line.
+
 Subtitle rules:
 
 - keep inside safe area
@@ -345,11 +389,64 @@ Subtitle rules:
 - final_mix
 - final_duration_seconds
 
+## YouTube Shorts Upload Metadata
+
+When exporting a final podcast motion comic video for YouTube Shorts, write:
+
+```text
+video/upload_metadata_<lang>.md
+```
+
+Required fields:
+
+```text
+Short Title:
+Title:
+Description:
+Tweet:
+```
+
+Rules:
+
+- `Title` should start with a story hook and then identify the series.
+- `Description` should be upload-ready, not an internal production note.
+- Include `Built by ReadChineseClassics.com` in the public description.
+- Keep hashtags limited and relevant.
+- Do not mention local paths, run ids, drafts, agents, prompts, or render internals.
+- For Shorts, avoid placing essential brand/trademark text only at the very bottom of `f0`; platform UI may cover it.
+
+Recommended English P01 pattern:
+
+```text
+Short Title:
+An Empire Is Breaking
+
+Title:
+An Empire Is Breaking | Romance of the Three Kingdoms Ep. 1 #Shorts
+
+Description:
+Episode 1 of Romance of the Three Kingdoms, retold as a motion comic for new readers.
+
+An empire is breaking. The court has lost control. A rebellion spreads. At one city gate, a notice goes up.
+
+Built by ReadChineseClassics.com
+
+#RomanceOfTheThreeKingdoms #ThreeKingdoms #ChineseClassics #MotionComic #Shorts
+
+Tweet:
+An empire is breaking. A notice goes up at the gate.
+
+Romance of the Three Kingdoms begins as a motion comic for new readers.
+
+#RomanceOfTheThreeKingdoms #MotionComic
+```
+
 ## Quality Gate
 Before final response, verify:
 
 - final video exists
 - cover exists
+- `video/upload_metadata_<lang>.md` exists for upload-bound videos
 - `ffprobe` confirms width / height / frame rate / duration
 - audio stream exists
 - total duration matches the timing policy
@@ -362,3 +459,4 @@ For natural timing MVP:
 - total duration should be under 30 seconds unless user says otherwise
 - TTS should not be heavily time-compressed
 - shot changes should follow sentence/phrase boundaries
+- inspect at least two extracted video frames before final handoff: one narrator line and one listener line, so safe area and role color are both checked

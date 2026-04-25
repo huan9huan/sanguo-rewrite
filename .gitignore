@@ -14,6 +14,9 @@ config/gcp/*.json
 assets/comic-video/audio/**/*.wav
 story/*/video/**/*.wav
 story/*/video/**/concat_list.txt
+story/*/podcast/**/*.mp3
+story/*/podcast/**/*.wav
+story/*/podcast/**/concat_list.txt
 
 # Passage workspace scratch areas
 story/*/comic/run*/

@@ -1,0 +1,12 @@
+{
+  "language": "en-US",
+  "canvas": {
+    "w": 1080,
+    "h": 1920,
+    "fps": 24
+  },
+  "audio": "story/cp001-p01/podcast/run002/output/episode_en.mp3",
+  "output": "story/cp001-p01/podcast/run002/video/output/podcast_motion_en.mp4",
+  "cover": "story/cp001-p01/podcast/run002/video/output/cover_en.png",
+  "duration_ms": 141574
+}

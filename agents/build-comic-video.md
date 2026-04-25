@@ -61,6 +61,10 @@ Owns:
 - motion vocabulary
 - wide panel readability
 
+Vocabulary:
+
+- `f0` / `0帧`: opening clue frame before the first comic frame. It is a virtual story-context frame, usually built from title metadata plus current comic imagery. It is not cropped from `current/comic.json` and must not renumber `f1`.
+
 Outputs:
 
 - `frames/fN.png`
@@ -173,6 +177,14 @@ If only one language is requested, produce only that language's files.
 4. Use `agents/comic-video-director.md` for crops, storyboard, and shot plan.
 5. Use `agents/comic-video-operator.md` for TTS, subtitles, render, manifests, and QA.
 6. Report final file paths, duration, and any verification gaps.
+
+For Shorts output, the operator must apply the vertical safe-area layout from `agents/comic-video-operator.md`:
+
+- reserve the top app-chrome area before placing header text
+- show chapter / passage identity with global id such as `c1/p1`
+- use a horizontal filmstrip to show current frame context
+- keep narrator / listener distinction as subtitle text color only
+- verify extracted frames before final handoff
 
 ## Timing Default
 Default policy:

@@ -52,6 +52,7 @@ There are 4 core role layers:
 There is also 1 downstream layer:
 - Adaptation: derives new reading forms from approved current assets, such as other languages
 - Short Video / Motion Comic: derives video-native reading assets from approved current text and current comic assets
+- Podcast / Audio Story: derives audio-first two-host story episodes from approved current text, with optional comic frame sync
 
 Core rule:
 - Planning roles define structure
@@ -60,6 +61,7 @@ Core rule:
 - IT support roles operate the pipeline surfaces but do not redefine content contracts
 - Adaptation roles consume approved assets and must not rewrite upstream contracts
 - Short video roles consume approved/current assets and must not rewrite upstream prose, comic semantics, or canon
+- Podcast roles consume approved/current assets and must not rewrite upstream prose, comic semantics, or canon
 
 ## Role Registry
 
@@ -156,6 +158,24 @@ Detailed execution rules live in the role files under `agents/`.
     - `agents/comic-video-operator.md`
   Default timing policy: voice-first, natural TTS speed, under 30 seconds unless the user requests a stricter duration
 
+### Podcast / Audio Story
+- Podcast Episode Builder
+  中文常用名: `播客有声故事`
+  Position: approved current assets -> two-host podcast script + audio-ready episode package
+  Owns: narrator/listener episode script, TTS-ready line structure, optional comic frame sync, source manifest, podcast self-check
+  File: `agents/build-podcast-episode.md`
+  Supporting docs:
+    - `docs/16_three_kingdoms_audio_director_spec.md`
+    - `docs/17_podcast-workflow.md`
+    - `schemas/podcast_episode.schema.json`
+  Default timing policy: audio-first, 1.5-3 minutes per passage unless the user requests another duration
+- Podcast Video Copy Evaluator
+  中文常用名: `播客视频文案评估`
+  Position: podcast/video script + metadata -> cross-cultural clarity review
+  Owns: medium-level foreign listener comprehension, cultural load flags, listener clarification suggestions, upload copy clarity
+  File: `agents/podcast-video-copy-evaluator.md`
+  Output: `copy_eval_<lang>.md`
+
 ## Common Task Routing
 
 Use these examples to locate the right role quickly.
@@ -189,6 +209,13 @@ Use these examples to locate the right role quickly.
 - “用 current comic 做一个 9:16 视频” -> `漫画视频` / Comic Video Builder
 - “用 Google TTS 重新做中文版视频，语速自然优先” -> `漫画视频` / Comic Video Builder
 - “把小人书 frame 裁出来做短视频分镜” -> `漫画视频` / Comic Video Builder
+- “把这个 passage 做成 podcast / 有声故事” -> `播客有声故事` / Podcast Episode Builder
+- “生成英文双人播客脚本” -> `播客有声故事` / Podcast Episode Builder
+- “做一个 narrator + listener 的音频 episode” -> `播客有声故事` / Podcast Episode Builder
+- “给 podcast 脚本加漫画 frame 同步” -> `播客有声故事` / Podcast Episode Builder, comic sync mode
+- “检查 podcast/video 文案外国人能不能听懂” -> `播客视频文案评估` / Podcast Video Copy Evaluator
+- “评估这个 podcast 的跨文化理解门槛” -> `播客视频文案评估` / Podcast Video Copy Evaluator
+- “审一下 YouTube title/description/tweet 对外国用户是否清楚” -> `播客视频文案评估` / Podcast Video Copy Evaluator
 
 ## Review Gates
 A CN draft should be reviewed for:
@@ -213,6 +240,12 @@ A CN draft should be reviewed for:
 - Comic Adapter must not invent visuals for core characters missing from `memory/character_visuals.json`
 - Comic Video Builder works on current assets only and must not rewrite approved prose, comic frame semantics, or canon
 - Comic Video Builder should prefer natural TTS timing under 30 seconds unless the user explicitly asks for fixed 15 seconds
+- Podcast Episode Builder works on current approved assets only and must not rewrite approved prose, comic frame semantics, or canon
+- Podcast Episode Builder must read `docs/13_en-style-guide.md` before English episode work
+- Podcast Episode Builder stores runs under `story/<passage>/podcast/runNNN/`
+- Podcast comic sync may reference `current/comic.json`, but must not edit it or embed podcast text into it
+- Podcast Video Copy Evaluator must run before treating English podcast/video copy as publish-ready
+- Podcast Video Copy Evaluator judges comprehension for a medium-level foreign listener, not for experts or fans
 - Reading Integrator works on current assets only
 - Workspace Operator is responsible for promote into `current/`
 - Workspace Operator owns language promote from reviewed language drafts into `current/`

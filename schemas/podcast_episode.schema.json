@@ -1,0 +1,210 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sanguo-rewrite.local/schemas/podcast_episode.schema.json",
+  "title": "Podcast Episode",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "episode_id",
+    "source_passage",
+    "language",
+    "mode",
+    "title",
+    "target_audience",
+    "tone",
+    "voices",
+    "source",
+    "lines",
+    "quality_checks"
+  ],
+  "properties": {
+    "episode_id": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$"
+    },
+    "source_passage": {
+      "type": "string",
+      "pattern": "^story/[^/]+$"
+    },
+    "language": {
+      "type": "string",
+      "pattern": "^[a-z]{2}(?:-[A-Z]{2})?$"
+    },
+    "mode": {
+      "type": "string",
+      "enum": [
+        "two_host_story_podcast",
+        "single_narrator",
+        "comic_synced_podcast"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target_audience": {
+      "type": "string",
+      "minLength": 1
+    },
+    "tone": {
+      "type": "string",
+      "minLength": 1
+    },
+    "voices": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["narrator", "listener"],
+      "properties": {
+        "narrator": {
+          "$ref": "#/$defs/voice"
+        },
+        "listener": {
+          "$ref": "#/$defs/voice"
+        }
+      }
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approved_cn"],
+      "properties": {
+        "approved_cn": {
+          "$ref": "#/$defs/sourceFile"
+        },
+        "approved_en": {
+          "$ref": "#/$defs/sourceFile"
+        },
+        "comic_json": {
+          "$ref": "#/$defs/sourceFile"
+        },
+        "comic_alignment": {
+          "$ref": "#/$defs/sourceFile"
+        }
+      }
+    },
+    "lines": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/line"
+      }
+    },
+    "quality_checks": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "passed", "note"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "note": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "voice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["voice", "rate"],
+      "properties": {
+        "voice": {
+          "type": "string",
+          "minLength": 1
+        },
+        "rate": {
+          "type": "number",
+          "minimum": 0.5,
+          "maximum": 2
+        },
+        "language_code": {
+          "type": "string"
+        }
+      }
+    },
+    "sourceFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "line": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "speaker",
+        "text",
+        "function",
+        "delivery",
+        "pause_after_ms"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$"
+        },
+        "speaker": {
+          "type": "string",
+          "enum": ["narrator", "listener"]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        },
+        "function": {
+          "type": "string",
+          "enum": [
+            "hook",
+            "question",
+            "setup",
+            "context",
+            "story_push",
+            "character",
+            "turn",
+            "meaning",
+            "bridge",
+            "cliffhanger",
+            "closure"
+          ]
+        },
+        "delivery": {
+          "type": "string"
+        },
+        "pause_after_ms": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 3000
+        },
+        "frame_id": {
+          "type": ["string", "null"]
+        },
+        "visual_anchor": {
+          "type": "string",
+          "enum": ["none", "hold_previous", "advance_frame"]
+        },
+        "pronunciation_note": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
