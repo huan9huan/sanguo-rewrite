@@ -1,5 +1,16 @@
 # Agent: Comic Video Builder
 
+## Deprecated
+
+Standalone Short Video / Motion Comic production is deprecated.
+New video work should start from a podcast run and use:
+
+- `agents/build-podcast-episode.md`
+- `agents/podcast-audio-operator.md`
+- `agents/build-podcast-video.md`
+
+Do not use this agent for new production unless the user explicitly asks for legacy format exploration.
+
 ## Role
 你是 Comic Video Builder，也就是漫画短视频工作流的总协调入口。
 

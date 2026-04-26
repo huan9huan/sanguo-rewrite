@@ -49,10 +49,10 @@ There are 4 core role layers:
 - Gatekeeping / Canon: decides what is good enough to pass forward and what becomes long-term truth
 - IT Support / Operations: moves assets between workspaces and current website handoff surfaces
 
-There is also 1 downstream layer:
+There are also downstream layers:
 - Adaptation: derives new reading forms from approved current assets, such as other languages
-- Short Video / Motion Comic: derives video-native reading assets from approved current text and current comic assets
 - Podcast / Audio Story: derives audio-first two-host story episodes from approved current text, with optional comic frame sync
+- Podcast Video: derives video from approved podcast runs; video is secondary to podcast audio and uses the podcast timeline
 
 Core rule:
 - Planning roles define structure
@@ -60,8 +60,8 @@ Core rule:
 - Gatekeepers judge readiness
 - IT support roles operate the pipeline surfaces but do not redefine content contracts
 - Adaptation roles consume approved assets and must not rewrite upstream contracts
-- Short video roles consume approved/current assets and must not rewrite upstream prose, comic semantics, or canon
 - Podcast roles consume approved/current assets and must not rewrite upstream prose, comic semantics, or canon
+- Podcast video roles consume podcast run assets and current comic assets; they must not create a separate short-video script track
 
 ## Role Registry
 
@@ -146,29 +146,30 @@ Detailed execution rules live in the role files under `agents/`.
   File: `agents/translator.md`
   Required guide for English: `docs/13_en-style-guide.md`
 
-### Short Video / Motion Comic
-- Comic Video Builder
-  中文常用名: `漫画视频`
-  Position: approved current text + current comic assets -> vertical motion comic short package
-  Owns: short video workflow coordination and handoff across editor, director, and operator roles
-  File: `agents/build-comic-video.md`
-  Supporting files:
-    - `agents/comic-video-editor.md`
-    - `agents/comic-video-director.md`
-    - `agents/comic-video-operator.md`
-  Default timing policy: voice-first, natural TTS speed, under 30 seconds unless the user requests a stricter duration
-
 ### Podcast / Audio Story
 - Podcast Episode Builder
   中文常用名: `播客有声故事`
-  Position: approved current assets -> two-host podcast script + audio-ready episode package
-  Owns: narrator/listener episode script, TTS-ready line structure, optional comic frame sync, source manifest, podcast self-check
+  Position: approved current assets -> reviewed two-host podcast episode script
+  Owns: narrator/listener role design, strict episode JSON, human-readable script, optional comic frame anchors, source manifest, podcast self-check
   File: `agents/build-podcast-episode.md`
   Supporting docs:
     - `docs/16_three_kingdoms_audio_director_spec.md`
     - `docs/17_podcast-workflow.md`
     - `schemas/podcast_episode.schema.json`
+  Supporting command: `python3 -m pipeline.export_podcast_script --run <podcast-run-dir> --lang <lang>`
   Default timing policy: audio-first, 1.5-3 minutes per passage unless the user requests another duration
+- Podcast Audio Operator
+  中文常用名: `播客音频运维`
+  Position: reviewed podcast episode JSON -> TTS audio + timeline + subtitles + audio manifest
+  Owns: voice cast application, per-line TTS, measured durations, pause rendering, audio manifest, timeline, subtitles
+  File: `agents/podcast-audio-operator.md`
+  Supporting command: `python3 -m pipeline.build_podcast_audio --run <podcast-run-dir> --lang <lang>`
+- Podcast Video Builder
+  中文常用名: `播客视频`
+  Position: podcast audio timeline + current comic assets -> podcast-driven vertical motion comic video package
+  Owns: podcast-first motion comic render, storyboard, Shorts safe-area layout, video manifest, upload metadata
+  File: `agents/build-podcast-video.md`
+  Supporting command: `python3 -m pipeline.render_podcast_motion_comic <passage> --run <podcast-run-dir> --lang <lang>`
 - Podcast Video Copy Evaluator
   中文常用名: `播客视频文案评估`
   Position: podcast/video script + metadata -> cross-cultural clarity review
@@ -205,14 +206,15 @@ Use these examples to locate the right role quickly.
 - “把项目/书籍/章节元数据本地化成英文 overlay” -> `外语改写` / Language Adapter, Metadata Mode
 - “检查英文正文和 comic text 是否符合风格指南” -> `外语改写` / Language Adapter self-check, using `docs/13_en-style-guide.md`
 - “promote 英文 draft 到 current/approved_en.md” -> `工作区运维` / Workspace Operator
-- “把这个 passage 做成漫画短视频 / motion comic short” -> `漫画视频` / Comic Video Builder
-- “用 current comic 做一个 9:16 视频” -> `漫画视频` / Comic Video Builder
-- “用 Google TTS 重新做中文版视频，语速自然优先” -> `漫画视频` / Comic Video Builder
-- “把小人书 frame 裁出来做短视频分镜” -> `漫画视频` / Comic Video Builder
 - “把这个 passage 做成 podcast / 有声故事” -> `播客有声故事` / Podcast Episode Builder
 - “生成英文双人播客脚本” -> `播客有声故事` / Podcast Episode Builder
-- “做一个 narrator + listener 的音频 episode” -> `播客有声故事` / Podcast Episode Builder
+- “做一个 narrator + listener 的音频 episode” -> `播客有声故事` / Podcast Episode Builder, then `播客音频运维` / Podcast Audio Operator
+- “给这个 podcast run 生成 TTS / 音频” -> `播客音频运维` / Podcast Audio Operator
+- “重新跑 podcast TTS” -> `播客音频运维` / Podcast Audio Operator
 - “给 podcast 脚本加漫画 frame 同步” -> `播客有声故事` / Podcast Episode Builder, comic sync mode
+- “把 podcast 做成视频 / podcast motion comic” -> `播客视频` / Podcast Video Builder
+- “基于播客音频生成竖屏视频” -> `播客视频` / Podcast Video Builder
+- “把这个 passage 做成视频 / 9:16 视频 / motion comic” -> first create or select a podcast run, then `播客视频` / Podcast Video Builder
 - “检查 podcast/video 文案外国人能不能听懂” -> `播客视频文案评估` / Podcast Video Copy Evaluator
 - “评估这个 podcast 的跨文化理解门槛” -> `播客视频文案评估` / Podcast Video Copy Evaluator
 - “审一下 YouTube title/description/tweet 对外国用户是否清楚” -> `播客视频文案评估` / Podcast Video Copy Evaluator
@@ -238,11 +240,13 @@ A CN draft should be reviewed for:
 - English comic frame text is adapted per frame and must not be mechanically extracted from English prose
 - Character Visual Keeper must run before Comic Adapter when a passage may introduce a new core character
 - Comic Adapter must not invent visuals for core characters missing from `memory/character_visuals.json`
-- Comic Video Builder works on current assets only and must not rewrite approved prose, comic frame semantics, or canon
-- Comic Video Builder should prefer natural TTS timing under 30 seconds unless the user explicitly asks for fixed 15 seconds
 - Podcast Episode Builder works on current approved assets only and must not rewrite approved prose, comic frame semantics, or canon
 - Podcast Episode Builder must read `docs/13_en-style-guide.md` before English episode work
 - Podcast Episode Builder stores runs under `story/<passage>/podcast/runNNN/`
+- Podcast Episode Builder must not generate per-run TTS scripts; audio production belongs to Podcast Audio Operator
+- Podcast Audio Operator must use `pipeline.build_podcast_audio` and must treat `episode_<lang>.json` as read-only source data
+- Podcast Video Builder must use `timeline_<lang>.json` and `output/episode_<lang>.mp3` from the podcast run as its primary timing source
+- Standalone short-video production is deprecated; do not create new `story/<passage>/video/runNNN/` outputs unless the user explicitly asks for legacy exploration
 - Podcast comic sync may reference `current/comic.json`, but must not edit it or embed podcast text into it
 - Podcast Video Copy Evaluator must run before treating English podcast/video copy as publish-ready
 - Podcast Video Copy Evaluator judges comprehension for a medium-level foreign listener, not for experts or fans

@@ -12,8 +12,9 @@ listener: represents a smart beginner hearing Three Kingdoms for the first time
 ```
 
 This is not a replacement for the approved prose.
-It is not a motion comic short.
 It is a companion listening edition.
+Video, when needed, is derived from the podcast run.
+The podcast remains the primary product.
 
 ## Product Position
 
@@ -54,24 +55,32 @@ Do not use draft text by default.
 Do not infer missing story facts from memory alone.
 Do not rewrite upstream approved prose.
 
-## Role
+## Roles
 
-Execution entry:
+Podcast production is split by responsibility. Do not route every task to Podcast Episode Builder.
 
 - `agents/build-podcast-episode.md`
+- `agents/podcast-audio-operator.md`
+- `agents/build-podcast-video.md`
 - `agents/podcast-video-copy-evaluator.md`
 
-Role name:
+Role names:
 
 - English: `Podcast Episode Builder`
 - 中文常用名: `播客有声故事`
+- English: `Podcast Audio Operator`
+- 中文常用名: `播客音频运维`
+- English: `Podcast Video Builder`
+- 中文常用名: `播客视频`
 - English: `Podcast Video Copy Evaluator`
 - 中文常用名: `播客视频文案评估`
 
-Position:
+Positions:
 
 ```text
-approved current assets -> two-host podcast script + audio-ready episode package
+approved current assets -> reviewed two-host podcast episode script
+reviewed podcast episode JSON -> TTS audio + timeline + subtitles + audio manifest
+podcast audio timeline + current comic assets -> podcast-driven vertical motion comic video package
 ```
 
 Evaluation position:
@@ -96,10 +105,20 @@ story/<passage>/
       audio_manifest_en.json
       timeline_en.json
       subtitles_en.json
-      audio_lines/
+      audio_lines_en/
         p001_l001.mp3
       output/
         episode_en.mp3
+      video/
+        frames/
+        shot_plan_en.json
+        storyboard_en.md
+        render_plan_en.json
+        video_manifest_en.json
+        upload_metadata_en.md
+        output/
+          podcast_motion_en.mp4
+          cover_en.png
 ```
 
 If a run is script-only, it may omit audio files and timeline files.
@@ -113,13 +132,16 @@ The first practical version should produce:
 - `script_en.md`
 - `self_check_en.md`
 
-TTS can be added after the script format survives one or two real passages.
+Audio is produced by `Podcast Audio Operator`, not by an ad hoc script inside the run directory.
 
 ## Episode JSON
 
 Use:
 
 - `schemas/podcast_episode.schema.json`
+
+`episode_<lang>.json` is the source of truth for podcast script content.
+`script_<lang>.md` is a review view derived from JSON, not a second editable source.
 
 Required top-level fields:
 
@@ -143,11 +165,68 @@ Line-level fields:
 - `function`
 - `delivery`
 - `pause_after_ms`
+- optional `tts_text`, only when the TTS engine needs a pronunciation-safe variant of `text`
 - optional `frame_id`
 - optional `visual_anchor`
 - optional `pronunciation_note`
 
 `frame_id` is optional because podcast pacing should not be forced into a frame cut on every line.
+
+### Strict Script Format
+
+Each spoken line is one JSON object. The Markdown script must be generated from the same line order and may not introduce extra spoken text.
+
+Required line contract:
+
+```json
+{
+  "id": "cp001_p01_en_l001",
+  "speaker": "narrator",
+  "text": "Empires rarely break all at once.",
+  "function": "hook",
+  "delivery": "quiet, image-first",
+  "pause_after_ms": 220,
+  "frame_id": "f1",
+  "visual_anchor": "advance_frame"
+}
+```
+
+Speaker constraints:
+
+- `narrator` carries story movement, action, stakes, and emotional landing.
+- `listener` asks beginner-facing clarification questions or short tracking responses.
+- `listener` must not take over exposition.
+- `narrator` should normally hold 65-75% of lines.
+- `listener` should normally hold 25-35% of lines.
+
+Text constraints:
+
+- one spoken line contains one beat
+- avoid multi-clause explanation blocks
+- keep long English lines under about 28 words unless the line is intentionally a flowing narration beat
+- do not put stage directions inside `text`
+- use `delivery` for performance notes
+- use `pronunciation_note` or `tts_text` for pronunciation support
+
+Markdown `script_<lang>.md` format:
+
+```text
+# <Episode Title>
+
+| id | speaker | function | frame | pause | text |
+| --- | --- | --- | --- | ---: | --- |
+| cp001_p01_en_l001 | narrator | hook | f1 | 220 | Empires rarely break all at once. |
+```
+
+Free-form script prose below the table is not allowed unless it is clearly under a non-spoken `Notes` heading.
+
+Preferred export command:
+
+```bash
+python3 -m pipeline.export_podcast_script \
+  --run story/<passage>/podcast/runNNN \
+  --lang en
+```
 
 ### `f0` / `0帧`
 
@@ -238,6 +317,41 @@ Slow rate plus repeated 600-900ms pauses makes the episode feel like each word i
 
 Actual voice names must be verified with `tools/list_google_tts_voices.py` before final audio production.
 
+## Audio Production
+
+Audio production has one shared entrypoint:
+
+```bash
+python3 -m pipeline.build_podcast_audio \
+  --run story/<passage>/podcast/runNNN \
+  --lang en
+```
+
+The script reads:
+
+- `episode_<lang>.json`
+- `voice_cast_<lang>.json` when present, otherwise `episode_<lang>.json` `voices`
+
+The script writes:
+
+- `audio_lines_<lang>/*.mp3`
+- `audio_manifest_<lang>.json`
+- `timeline_<lang>.json`
+- `subtitles_<lang>.json`
+- `output/episode_<lang>.mp3`
+- `concat_list_<lang>.txt`
+
+Rules:
+
+- do not create `story/<passage>/podcast/runNNN/build_audio.py`
+- do not let the audio script rewrite `episode_<lang>.json`
+- do not let the audio script rewrite `source_manifest.json`
+- regenerate audio with `--force` only when that is intentional
+- if the line text is wrong, revise `episode_<lang>.json` through Podcast Episode Builder first
+
+`timeline_<lang>.json` must be based on measured TTS durations from `ffprobe`.
+Estimated durations are not acceptable for final video handoff.
+
 ## Script Shape
 
 Recommended line count:
@@ -309,6 +423,65 @@ Default:
 - Do not add talking-head avatars or podcast host portraits.
 
 The text color distinction is enough to tell the viewer who is speaking while preserving the comic as the visual focus.
+
+### Subtitle Safety Constraints
+
+The render pipeline has hard limits. Lines that exceed them are silently truncated — the overflow text simply disappears from the video.
+
+Current constraints (`pipeline/render_podcast_motion_comic.py`):
+
+- Font: **30px Arial Bold** (Helvetica fallback)
+- Canvas width: **1080px** (9:16 Shorts)
+- Max lines per subtitle: **3**
+- Effective capacity: ~55 characters per line, ~**165 characters total** per subtitle box
+
+**Before any video render, verify every line fits.** Use a diagnostic check:
+
+```python
+from PIL import Image, ImageDraw, ImageFont
+font = ImageFont.truetype('/System/Library/Fonts/Supplemental/Arial Bold.ttf', 30)
+draw = ImageDraw.Draw(Image.new('RGB', (100, 100)))
+max_w = 1080 - 70 * 2 - 44  # 896px
+
+def wrap(text):
+    words = text.split()
+    lines = []
+    current = ''
+    for word in words:
+        candidate = word if not current else f'{current} {word}'
+        if draw.textbbox((0, 0), candidate, font=font)[2] <= max_w:
+            current = candidate
+        else:
+            if current:
+                lines.append(current)
+            current = word
+    if current:
+        lines.append(current)
+    return lines
+```
+
+Any line with `len(wrap(text)) > 3` **will be truncated in the video**.
+
+Fix workflow:
+
+1. Run the diagnostic on `episode_<lang>.json` before TTS.
+2. Trim overflowing lines to fit 3 subtitle lines (≤165 chars of normal text).
+3. Audio text may be slightly longer than subtitle text — this is acceptable for accessibility subtitles.
+4. If trimming is not possible, split the line into two shorter lines (requires TTS regeneration).
+
+This check is also part of the Copy Evaluation Gate (`agents/podcast-video-copy-evaluator.md`).
+
+### Opening Card Subtitle
+
+Lines placed before the first comic frame (typically `frame_id: null` or `f0` lines) render over the opening card.
+
+The render pipeline (`pipeline/render_podcast_motion_comic.py`) draws subtitles on the opening card — it no longer returns the card without text.
+
+Rules:
+
+- Always provide an opening card when the episode has lines that precede the first frame advance.
+- The opening card is a 1080×1920 PNG with book/chapter/passage identity and trademark.
+- Do not assume the opening card will hide missing subtitles.
 
 ## Shorts Safe-Area Layout
 
@@ -476,9 +649,7 @@ A podcast script is not ready until it passes:
 
 Write the result into `self_check_<lang>.md`.
 
-## Relationship To Motion Comic Short
-
-Podcast and motion comic short share some audio style rules, but they are different products.
+## Relationship To Video
 
 Podcast:
 
@@ -487,24 +658,73 @@ Podcast:
 - can be understood without video
 - may hold or ignore comic frames
 
-Motion comic short:
+Podcast-driven video:
 
-- usually under 30 seconds
-- video-first
-- line timing follows short-form visual pacing
-- every beat should map tightly to current comic assets
+- secondary to podcast
+- uses the podcast audio timeline
+- reinforces the episode with current comic frames
+- does not create a separate short-video script
 
 Use:
 
 - podcast: `story/<passage>/podcast/runNNN/`
-- motion comic short: `story/<passage>/video/runNNN/`
+- podcast-driven video: `story/<passage>/podcast/runNNN/video/`
+
+Deprecated:
+
+- standalone motion comic short production under `story/<passage>/video/runNNN/`
+- `agents/build-comic-video.md`
+- `agents/comic-video-editor.md`
+- `agents/comic-video-director.md`
+- `agents/comic-video-operator.md`
+
+Do not use the deprecated short-video path for new production unless the user explicitly asks for legacy format exploration.
+
+## Podcast Video Builder
+
+Podcast-driven video has its own entry role:
+
+- `agents/build-podcast-video.md`
+
+Use it when the request is:
+
+- "把 podcast 做成视频"
+- "基于播客音频生成竖屏视频"
+- "render podcast motion comic"
+- "用 podcast run 做 Shorts"
+
+Required command:
+
+```bash
+python3 -m pipeline.render_podcast_motion_comic \
+  story/<passage> \
+  --run story/<passage>/podcast/runNNN \
+  --lang en
+```
+
+Podcast Video Builder must:
+
+- use `timeline_<lang>.json` and `output/episode_<lang>.mp3`
+- keep audio timing as the primary timeline
+- use current comic assets only
+- write video outputs under `podcast/runNNN/video/`
+- create `video/upload_metadata_<lang>.md` as part of the video package — do not skip this step
+- create `video/opening_card_<lang>.png` (with matching `.json` metadata) when the episode has lines before the first frame advance
+- verify subtitle text fits 3 lines at 30px bold before rendering (see Subtitle Safety Constraints)
+- verify the opening card renders subtitles for pre-frame lines
+
+Podcast Video Builder must not:
+
+- edit `episode_<lang>.json`
+- rerun TTS
+- use `story/<passage>/video/runNNN/`
+- create a standalone short-video script
+- invent podcast host portraits
+- ship a video without `upload_metadata_<lang>.md`
 
 ## Future Work
 
 After MVP script runs are stable:
 
-- add a generator for per-line TTS
-- add MP3 concatenation with measured durations
-- add subtitle export
 - add frontend playback with line and optional frame sync
 - add A/B testing for narrator/listener voice pairs

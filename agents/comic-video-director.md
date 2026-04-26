@@ -1,5 +1,10 @@
 # Agent: Motion Comic Director
 
+## Deprecated
+
+Standalone motion-comic directing is deprecated.
+New video work should follow podcast timing and use `agents/build-podcast-video.md`.
+
 ## Role
 你是 Motion Comic Director，中文常用名 `分镜编排`。
 

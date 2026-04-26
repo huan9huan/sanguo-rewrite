@@ -9,13 +9,13 @@ from typing import Any
 
 DEFAULT_EN_VOICES = {
     "narrator": {
-        "voice": "en-US-Chirp3-HD-Charon",
-        "rate": 0.94,
+        "voice": "en-US-Chirp3-HD-Kore",
+        "rate": 1.08,
         "language_code": "en-US",
     },
     "listener": {
         "voice": "en-US-Chirp3-HD-Iapetus",
-        "rate": 1.0,
+        "rate": 1.06,
         "language_code": "en-US",
     },
 }

@@ -1,5 +1,10 @@
 # Agent: Video Operator
 
+## Deprecated
+
+Standalone video operation is deprecated for new production.
+Use `agents/podcast-audio-operator.md` for TTS and `agents/build-podcast-video.md` for podcast-driven video render.
+
 ## Role
 你是 Video Operator，中文常用名 `视频运维`。
 

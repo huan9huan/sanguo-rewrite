@@ -26,7 +26,7 @@ CAPTION_H_MULTI_LINE = 224
 CAPTION_BOTTOM_SAFE = 210
 SUBTITLE_SIDE_MARGIN = 70
 SUBTITLE_RADIUS = 22
-SUBTITLE_MAX_LINES = 2
+SUBTITLE_MAX_LINES = 3
 GOLD = (216, 177, 90)
 NARRATOR_TEXT = (250, 246, 236)
 LISTENER_TEXT = (232, 205, 132)
@@ -370,7 +370,9 @@ def measure_subtitle_box(
 ) -> tuple[list[str], int, int]:
     max_width = CANVAS_W - SUBTITLE_SIDE_MARGIN * 2 - 44
     wrapped = wrap_text(draw, text, body_font, max_width)[:SUBTITLE_MAX_LINES]
-    box_h = CAPTION_H_ONE_LINE if len(wrapped) <= 1 else CAPTION_H_MULTI_LINE
+    line_h = text_size(draw, "Ag", body_font)[1] + 16
+    n = max(len(wrapped), 1)
+    box_h = max(CAPTION_H_ONE_LINE, n * line_h + 56)
     box_y = min(CAPTION_Y, CANVAS_H - box_h - CAPTION_BOTTOM_SAFE)
     return wrapped, box_y, box_h
 
@@ -524,10 +526,13 @@ def render_frame(
     subheader_font: ImageFont.ImageFont,
     body_font: ImageFont.ImageFont,
 ) -> Image.Image:
-    if opening_card is not None and before_first_shot(shots, ms):
-        return opening_card.resize((CANVAS_W, CANVAS_H), Image.Resampling.LANCZOS).convert("RGB")
-
     line = current_line_at(lines, ms)
+
+    if opening_card is not None and before_first_shot(shots, ms):
+        canvas = opening_card.resize((CANVAS_W, CANVAS_H), Image.Resampling.LANCZOS).convert("RGBA")
+        draw_subtitle(canvas, line, body_font=body_font)
+        return canvas.convert("RGB")
+
     shot = current_shot_at(shots, ms)
     frame_id = shot["frame_id"]
     image = frame_images[frame_id]
@@ -551,7 +556,7 @@ def render_frame(
     return canvas.convert("RGB")
 
 
-def write_storyboard(run_dir: Path, shots: list[dict[str, Any]], lines_by_id: dict[str, dict[str, Any]]) -> None:
+def write_storyboard(run_dir: Path, lang: str, shots: list[dict[str, Any]], lines_by_id: dict[str, dict[str, Any]]) -> None:
     rows = ["# Podcast Motion Comic Storyboard", ""]
     for shot in shots:
         rows.append(f"## {shot['shot_id']} - {shot['frame_id']}")
@@ -563,7 +568,7 @@ def write_storyboard(run_dir: Path, shots: list[dict[str, Any]], lines_by_id: di
             line = lines_by_id[line_id]
             rows.append(f"  - {line['speaker']}: {line['text']}")
         rows.append("")
-    (run_dir / "storyboard_en.md").write_text("\n".join(rows), encoding="utf-8")
+    (run_dir / f"storyboard_{lang}.md").write_text("\n".join(rows), encoding="utf-8")
 
 
 def render(args: argparse.Namespace) -> int:
@@ -594,7 +599,7 @@ def render(args: argparse.Namespace) -> int:
         json.dumps({"language": timeline["language"], "shots": shots}, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
-    write_storyboard(video_dir, shots, {line["id"]: line for line in lines})
+    write_storyboard(video_dir, lang, shots, {line["id"]: line for line in lines})
 
     frame_images = {frame_id: Image.open(item["file"]).convert("RGB") for frame_id, item in frame_manifest.items()}
     frame_titles = load_frame_titles(passage, lang, frame_manifest)
@@ -604,7 +609,7 @@ def render(args: argparse.Namespace) -> int:
     opening_card_meta = load_opening_card_meta(opening_card_path)
     title_font = load_font(36, bold=True)
     subheader_font = load_font(30, bold=True)
-    body_font = load_font(46, bold=True)
+    body_font = load_font(30, bold=True)
 
     total_ms = int(timeline["duration_ms"])
     total_frames = math.ceil(total_ms / 1000 * FPS)

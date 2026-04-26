@@ -78,6 +78,7 @@ Evaluate:
 - Are explanations short enough for audio?
 - Does the upload title/description/tweet make sense to someone cold?
 - Does any copy sound like a textbook, Wikipedia, or a translated note?
+- **Subtitle fit: can each line render in ≤3 subtitle lines at 30px bold on a 1080w canvas?** Lines that overflow will be silently truncated in the video. Flag any line whose text wraps to 4+ lines under these conditions.
 
 ## Cultural Load Flags
 
@@ -92,9 +93,31 @@ Flag terms when they appear without enough context:
 - province/commandery/governor terms
 - pinyin place names such as `Luoyang`, `Youzhou`, `Julu`
 - pinyin people names when more than two new names appear close together
+- unexplained Chinese measurement units, such as `chi`, `cun`, `zhang` — these must either be converted to meters/feet or dropped entirely
+- `courtesy name` / `字` — must be briefly explained by the listener or dropped if not plot-critical
 
 Do not require a full explanation for every term.
 Ask whether the listener needs that term right now to follow the stakes.
+
+## Subtitle Safety Check
+
+The same long lines that create listening friction also break video subtitle rendering.
+
+Current render constraints (`pipeline/render_podcast_motion_comic.py`):
+
+- font: 30px Arial Bold
+- canvas width: 1080px
+- max subtitle lines: 3
+- effective max: ~55 characters per line, ~165 characters total per subtitle
+
+**Flag as P1** any line whose text wraps to 4+ subtitle lines under these conditions.
+The text will be silently truncated in the video; the last line(s) simply won't appear.
+
+Fix options for subtitle overflow (in priority order):
+
+1. Trim the `text` field to fit 3 lines while keeping the audio text unchanged (subtitles may be slightly shorter than speech — this is acceptable).
+2. Split a very long line into two shorter lines (requires TTS regeneration for that line).
+3. Reduce the line's information density.
 
 ## Recommended Fix Types
 
@@ -149,10 +172,12 @@ One short paragraph.
 
 ## Metadata Check
 
-- Short Title:
-- Title:
-- Description:
-- Tweet:
+The evaluator must verify that `video/upload_metadata_<lang>.md` exists and is complete. If it is missing, flag as **P1: Missing upload metadata** — the video package is not publish-ready without it.
+
+- Short Title: internal label; concrete + memorable
+- Title: YouTube-ready; includes series label + #Shorts
+- Description: format explanation (1 line) then story hook (2-3 lines); ends with Built by ReadChineseClassics.com + hashtags
+- Tweet: condensed story hook, 3-5 short lines, includes campaign hashtag
 
 ## Final Notes
 ```

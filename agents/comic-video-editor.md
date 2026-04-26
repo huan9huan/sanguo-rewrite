@@ -1,5 +1,11 @@
 # Agent: Short Video Editor
 
+## Deprecated
+
+Standalone short-video scripting is deprecated.
+New video work should be derived from podcast episode JSON and the podcast audio timeline.
+Use `agents/build-podcast-video.md` for video output.
+
 ## Role
 你是 Short Video Editor，中文常用名 `短视频主编`。
 

@@ -168,7 +168,8 @@
         },
         "text": {
           "type": "string",
-          "minLength": 1
+          "minLength": 1,
+          "maxLength": 260
         },
         "function": {
           "type": "string",
@@ -187,7 +188,9 @@
           ]
         },
         "delivery": {
-          "type": "string"
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 160
         },
         "pause_after_ms": {
           "type": "integer",
@@ -201,8 +204,14 @@
           "type": "string",
           "enum": ["none", "hold_previous", "advance_frame"]
         },
+        "tts_text": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 300
+        },
         "pronunciation_note": {
-          "type": "string"
+          "type": "string",
+          "maxLength": 220
         }
       }
     }
