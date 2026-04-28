@@ -1,4 +1,4 @@
 interface:
   display_name: "Azure GPT Image"
-  short_description: "Generate or edit images for this project with Azure GPT Image"
-  default_prompt: "Use $azure-gpt-image to generate an image from text or edit an existing image with a reference and mask, using this project's configured Azure deployment by default."
+  short_description: "Generate or edit images with Azure GPT Image 2"
+  default_prompt: "Use $azure-gpt-image to generate an image from a prompt or edit an existing image with this project's Azure GPT Image 2 deployment."

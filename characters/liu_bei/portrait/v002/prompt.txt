@@ -1,0 +1,24 @@
+Extract only Liu Bei from the masked region of the source comic page.
+
+Target identity:
+- Liu Bei, adult, around twenty-eight
+- long but gentle face
+- pale clean warm skin
+- long earlobes
+- calm, restrained, observant expression
+- tied black hair
+- short trimmed mustache and beard, not long, not absent
+
+Output:
+- one standalone character image
+- full upper body or near full body is acceptable
+- keep his Han-era robe and belt
+- preserve the black-and-white ink comic style from the source
+- transparent background if possible
+- if transparency is unavailable, use a clean white background
+
+Hard constraints:
+- keep only Liu Bei
+- remove Guan Yu, Zhang Fei, horses, soldiers, weapons from other people, and the whole page layout
+- do not redraw him as a different hero
+- do not make him overly young, glamorous, or theatrical

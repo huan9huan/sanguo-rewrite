@@ -1791,6 +1791,15 @@ div {
   gap: 24px;
 }
 
+.read-book-cover {
+  width: clamp(96px, 13vw, 148px);
+  aspect-ratio: 3 / 4;
+  flex: 0 0 auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: var(--shadow-ring), 0 16px 36px rgba(26, 22, 18, 0.16);
+}
+
 .read-book-side {
   display: flex;
   align-items: center;
@@ -2128,6 +2137,10 @@ div {
   .read-book-card {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .read-book-cover {
+    width: min(42vw, 148px);
   }
 
   .read-book-side {

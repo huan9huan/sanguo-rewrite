@@ -53,6 +53,7 @@ There are also downstream layers:
 - Adaptation: derives new reading forms from approved current assets, such as other languages
 - Podcast / Audio Story: derives audio-first two-host story episodes from approved current text, with optional comic frame sync
 - Podcast Video: derives video from approved podcast runs; video is secondary to podcast audio and uses the podcast timeline
+- YouTube Long Video: derives chapter-level or arc-level long video packages from multiple approved podcast runs
 
 Core rule:
 - Planning roles define structure
@@ -62,6 +63,7 @@ Core rule:
 - Adaptation roles consume approved assets and must not rewrite upstream contracts
 - Podcast roles consume approved/current assets and must not rewrite upstream prose, comic semantics, or canon
 - Podcast video roles consume podcast run assets and current comic assets; they must not create a separate short-video script track
+- YouTube long video roles consume reviewed podcast runs and must not rewrite source episode JSON, approved prose, comic semantics, or canon
 
 ## Role Registry
 
@@ -176,6 +178,16 @@ Detailed execution rules live in the role files under `agents/`.
   Owns: medium-level foreign listener comprehension, cultural load flags, listener clarification suggestions, upload copy clarity
   File: `agents/podcast-video-copy-evaluator.md`
   Output: `copy_eval_<lang>.md`
+- YouTube Long Video Assembler
+  中文常用名: `YouTube长视频组装`
+  Position: multiple reviewed podcast runs -> YouTube long video assembly package
+  Owns: multi-passage continuity, first-passage-only f0 policy, recap/opening removal plan, chapter-level assembly manifest, YouTube title/description/chapters draft
+  File: `agents/build-youtube-long-video.md`
+  Supporting command: `python3 -m pipeline.build_youtube_long_video --chapter <chapter> --passage-run <podcast-run-dir> ...`
+  Supporting render commands:
+    - `python3 -m pipeline.render_youtube_long_preview --run <youtube-run-dir>`
+    - `python3 -m pipeline.render_youtube_long_video --run <youtube-run-dir> --lang <lang>`
+  Default output: `story/<chapter>/youtube/runNNN/`
 
 ## Common Task Routing
 
@@ -215,6 +227,10 @@ Use these examples to locate the right role quickly.
 - “把 podcast 做成视频 / podcast motion comic” -> `播客视频` / Podcast Video Builder
 - “基于播客音频生成竖屏视频” -> `播客视频` / Podcast Video Builder
 - “把这个 passage 做成视频 / 9:16 视频 / motion comic” -> first create or select a podcast run, then `播客视频` / Podcast Video Builder
+- “把多个 passage 合成 YouTube 长视频” -> `YouTube长视频组装` / YouTube Long Video Assembler
+- “把一章的 podcast 合成长视频” -> `YouTube长视频组装` / YouTube Long Video Assembler
+- “长视频里去掉后续 passage 的 f0 / recap” -> `YouTube长视频组装` / YouTube Long Video Assembler
+- “生成 YouTube 长视频标题/description/章节分段” -> `YouTube长视频组装` / YouTube Long Video Assembler, then `播客视频文案评估` / Podcast Video Copy Evaluator before publish-ready
 - “检查 podcast/video 文案外国人能不能听懂” -> `播客视频文案评估` / Podcast Video Copy Evaluator
 - “评估这个 podcast 的跨文化理解门槛” -> `播客视频文案评估` / Podcast Video Copy Evaluator
 - “审一下 YouTube title/description/tweet 对外国用户是否清楚” -> `播客视频文案评估` / Podcast Video Copy Evaluator
@@ -246,6 +262,14 @@ A CN draft should be reviewed for:
 - Podcast Episode Builder must not generate per-run TTS scripts; audio production belongs to Podcast Audio Operator
 - Podcast Audio Operator must use `pipeline.build_podcast_audio` and must treat `episode_<lang>.json` as read-only source data
 - Podcast Video Builder must use `timeline_<lang>.json` and `output/episode_<lang>.mp3` from the podcast run as its primary timing source
+- YouTube Long Video Assembler works from multiple reviewed podcast runs and stores outputs under `story/<chapter>/youtube/runNNN/`
+- YouTube Long Video Assembler must preserve the first passage opening/f0 by default and remove or flag later passage f0/standalone recap material
+- YouTube Long Video Assembler must record dropped lines and reasons in the assembly plan
+- YouTube Long Video Assembler must not edit source `episode_<lang>.json`, `timeline_<lang>.json`, `current/comic.json`, approved prose, or canon
+- YouTube long video rendering must use 16:9 horizontal layout, not the Shorts 9:16 layout
+- YouTube long video rendering must not expose internal ids such as `cp001`, `p01`, `f1`, `run001`, or preview/layout instruction text
+- YouTube long video page transitions must reset selected frame state so the previous page's selected frame never carries into the next page
+- YouTube long video selected-frame borders should be subtle grey/white guides, not thick high-saturation boxes
 - Standalone short-video production is deprecated; do not create new `story/<passage>/video/runNNN/` outputs unless the user explicitly asks for legacy exploration
 - Podcast comic sync may reference `current/comic.json`, but must not edit it or embed podcast text into it
 - Podcast Video Copy Evaluator must run before treating English podcast/video copy as publish-ready

@@ -27,6 +27,9 @@ export default async function ReadIndexPage() {
           <div className="container reader-stack">
             {books.map((book) => (
               <article className="reader-card read-book-card" key={book.id}>
+                {book.cover_image ? (
+                  <img className="read-book-cover" src={book.cover_image.url} alt={book.cover_image.alt} />
+                ) : null}
                 <div>
                   <h2 className="passage-title">{book.title}</h2>
                   {book.subtitle ? <p className="body-copy">{book.subtitle}</p> : null}

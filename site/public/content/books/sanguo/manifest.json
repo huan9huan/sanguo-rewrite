@@ -3,6 +3,13 @@
   "title": "三国演义",
   "subtitle": "让三国故事更好读，更有画面",
   "description": "从章节到段落，逐步重写《三国演义》，先打磨中文故事稿，再进入后续版本。",
+  "cover_image": {
+    "path": "books/sanguo/assets/cover.webp",
+    "url": "/books/sanguo/assets/cover.webp",
+    "alt": "三国 for beginners cover poster",
+    "width": 1086,
+    "height": 1448
+  },
   "title_en": "Romance of the Three Kingdoms",
   "subtitle_en": "A great story, told so you can't put it down",
   "description_en": "The epic of war, loyalty, and ambition — chapter by chapter, passage by passage, rewritten for readers who want story over scholarship.",

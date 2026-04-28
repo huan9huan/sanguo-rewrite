@@ -2,7 +2,7 @@ import { promises as fs } from "fs";
 import path from "path";
 import { getCloudflareContext } from "@opennextjs/cloudflare";
 import { cache } from "react";
-import type { BookManifest, BookMeta, ChapterManifest, Passage, SiteData } from "@/lib/types";
+import type { BookManifest, BookMeta, ChapterManifest, Passage, PassageImage, PassagePreview, SiteData } from "@/lib/types";
 import {
   getRepoAllBooks,
   getRepoAllPassages,
@@ -118,38 +118,77 @@ function resolveContentAssetUrl(relativePath: string): string {
   return `/content/${relativePath}`;
 }
 
-function hydratePassageAssets(passage: Passage): Passage {
-  if (!passage.reading?.comic?.image?.path) {
-    return passage;
+function hydrateImageAsset(image: PassageImage | null | undefined): PassageImage | null {
+  if (!image?.path) {
+    return image ?? null;
   }
 
+  return {
+    ...image,
+    url: resolveContentAssetUrl(image.path),
+  };
+}
+
+function hydratePassagePreviewAssets(passage: PassagePreview): PassagePreview {
+  return {
+    ...passage,
+    image: hydrateImageAsset(passage.image),
+  };
+}
+
+function hydrateBookMetaAssets<T extends BookMeta>(book: T): T {
+  return {
+    ...book,
+    cover_image: hydrateImageAsset(book.cover_image),
+  };
+}
+
+function hydratePassageAssets(passage: Passage): Passage {
   return {
     ...passage,
     reading: {
       ...passage.reading,
       comic: {
         ...passage.reading.comic,
-        image: passage.reading.comic.image?.path
-          ? {
-              ...passage.reading.comic.image,
-              url: resolveContentAssetUrl(passage.reading.comic.image.path),
-            }
-          : passage.reading.comic.image,
+        image: hydrateImageAsset(passage.reading.comic.image),
       },
     },
   };
 }
 
 async function getExportManifest(): Promise<ContentManifest | null> {
-  return readExportJson<ContentManifest>("manifest.json");
+  const payload = await readExportJson<ContentManifest>("manifest.json");
+  if (!payload) {
+    return null;
+  }
+
+  return {
+    ...payload,
+    books: payload.books.map((book) => hydrateBookMetaAssets(book)),
+  };
 }
 
 async function getExportedBook(bookId: string): Promise<BookManifest | null> {
-  return readExportJson<BookManifest>(`books/${bookId}/manifest.json`);
+  const payload = await readExportJson<BookManifest>(`books/${bookId}/manifest.json`);
+  if (!payload) {
+    return null;
+  }
+
+  return {
+    ...hydrateBookMetaAssets(payload),
+  };
 }
 
 async function getExportedChapter(bookId: string, chapterId: string): Promise<ChapterManifest | null> {
-  return readExportJson<ChapterManifest>(`books/${bookId}/chapters/${chapterId}/manifest.json`);
+  const payload = await readExportJson<ChapterManifest>(`books/${bookId}/chapters/${chapterId}/manifest.json`);
+  if (!payload) {
+    return null;
+  }
+
+  return {
+    ...payload,
+    passages: payload.passages.map((passage) => hydratePassagePreviewAssets(passage)),
+  };
 }
 
 async function getExportedPassage(bookId: string, chapterId: string, passageId: string): Promise<Passage | null> {

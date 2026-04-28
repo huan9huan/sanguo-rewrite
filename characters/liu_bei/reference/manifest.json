@@ -1,0 +1,98 @@
+[
+  {
+    "source_image": "story/cp001-p02/current/comic.png",
+    "source_json": "story/cp001-p02/current/comic.json",
+    "frame_id": "f3",
+    "pixel_box": [
+      472,
+      444,
+      934,
+      848
+    ],
+    "output": "characters/liu_bei/reference/liu_bei_p02_f3_frame.png"
+  },
+  {
+    "source_image": "story/cp001-p02/current/comic.png",
+    "source_json": "story/cp001-p02/current/comic.json",
+    "frame_id": "f6",
+    "pixel_box": [
+      0,
+      1236,
+      934,
+      1685
+    ],
+    "output": "characters/liu_bei/reference/liu_bei_p02_f6_frame.png"
+  },
+  {
+    "source_image": "story/cp001-p03/current/comic.png",
+    "source_json": "story/cp001-p03/current/comic.json",
+    "frame_id": "f1",
+    "pixel_box": [
+      0,
+      0,
+      935,
+      371
+    ],
+    "output": "characters/liu_bei/reference/liu_bei_p03_f1_frame.png"
+  },
+  {
+    "source_image": "story/cp001-p03/current/comic.png",
+    "source_json": "story/cp001-p03/current/comic.json",
+    "frame_id": "f4",
+    "pixel_box": [
+      0,
+      684,
+      935,
+      994
+    ],
+    "output": "characters/liu_bei/reference/liu_bei_p03_f4_frame.png"
+  },
+  {
+    "source_image": "story/cp001-p03/current/comic.png",
+    "source_json": "story/cp001-p03/current/comic.json",
+    "frame_id": "f7",
+    "pixel_box": [
+      0,
+      1296,
+      935,
+      1683
+    ],
+    "output": "characters/liu_bei/reference/liu_bei_p03_f7_frame.png"
+  },
+  {
+    "source_image": "story/cp001-p04/current/comic.png",
+    "source_json": "story/cp001-p04/current/comic.json",
+    "frame_id": "f1",
+    "pixel_box": [
+      0,
+      0,
+      724,
+      359
+    ],
+    "output": "characters/liu_bei/reference/liu_bei_p04_f1_frame.png"
+  },
+  {
+    "source_image": "story/cp001-p05/current/comic.png",
+    "source_json": "story/cp001-p05/current/comic.json",
+    "frame_id": "f5",
+    "pixel_box": [
+      0,
+      935,
+      468,
+      1212
+    ],
+    "output": "characters/liu_bei/reference/liu_bei_p05_f5_frame.png"
+  },
+  {
+    "source_image": "story/cp001-p05/current/comic.png",
+    "source_json": "story/cp001-p05/current/comic.json",
+    "frame_id": "f7",
+    "pixel_box": [
+      0,
+      1212,
+      941,
+      1441
+    ],
+    "output": "characters/liu_bei/reference/liu_bei_p05_f7_frame.png"
+  }
+]

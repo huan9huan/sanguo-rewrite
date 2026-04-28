@@ -7,7 +7,7 @@ description: Use when working inside this project and the user wants to generate
 
 ## Overview
 
-Use this skill for the project's Azure-hosted GPT image workflows:
+Use this skill for the project's Azure GPT Image 2 workflow from `DEV.md`:
 
 - text-to-image generation
 - reference-image editing
@@ -25,38 +25,37 @@ Prefer this skill when the user wants to keep an existing comic page structure a
 
 ### 2. Use the project defaults first
 
-In this project, the Azure image config is already expected here:
+In this project, the Azure image config is expected here:
 
-- [site/.env](/Users/huanghuan/sanguo-rewrite/site/.env)
+- [/.env](/Users/huanghuan/sanguo-rewrite/.env)
 
 Relevant keys:
 
 - `AZURE_API_KEY`
-- `AZURE_OPENAI_IMAGE_ENDPOINT`
+- optional `AZURE_GPT_IMAGE_ENDPOINT` or `AZURE_OPENAI_IMAGE_ENDPOINT`
 
-The project script now auto-loads:
+The default endpoint is the `gpt-image-2` Azure endpoint documented in:
 
-- [/.env](/Users/huanghuan/sanguo-rewrite/.env)
-- [site/.env](/Users/huanghuan/sanguo-rewrite/site/.env)
+- [/Users/huanghuan/sanguo-rewrite/DEV.md](/Users/huanghuan/sanguo-rewrite/DEV.md)
 
-So in normal use, do not make the user hunt for deployment name or endpoint first. Prefer the project defaults unless they explicitly want another deployment.
+The script auto-loads project env files, so in normal use do not ask the user for the API key or endpoint first.
 
 ### 3. Use the project script
 
-This project already has the image CLI here:
+Use the dedicated Azure image CLI:
 
-- [openai_text_to_image.py](/Users/huanghuan/sanguo-rewrite/tools/openai_text_to_image.py)
+- [azure_gpt_image.py](/Users/huanghuan/sanguo-rewrite/tools/azure_gpt_image.py)
 
 Run:
 
 ```bash
-python3 /Users/huanghuan/sanguo-rewrite/tools/openai_text_to_image.py --help
+python3 /Users/huanghuan/sanguo-rewrite/tools/azure_gpt_image.py --help
 ```
 
 Fastest project-local text-to-image example:
 
 ```bash
-python3 /Users/huanghuan/sanguo-rewrite/tools/openai_text_to_image.py \
+python3 /Users/huanghuan/sanguo-rewrite/tools/azure_gpt_image.py \
   --output /absolute/path/output.png \
   --metadata \
   "A black and white comic page of three oath-bound brothers riding into chaos"
@@ -65,11 +64,10 @@ python3 /Users/huanghuan/sanguo-rewrite/tools/openai_text_to_image.py \
 Fastest project-local edit example:
 
 ```bash
-python3 /Users/huanghuan/sanguo-rewrite/tools/openai_text_to_image.py \
+python3 /Users/huanghuan/sanguo-rewrite/tools/azure_gpt_image.py \
   --image /absolute/path/reference.png \
   --mask /absolute/path/mask.png \
   --prompt-file /absolute/path/edit_prompt.txt \
-  --input-fidelity high \
   --output /absolute/path/edited.png \
   --metadata
 ```
@@ -79,7 +77,7 @@ Only pass `--endpoint` when you intentionally want to override the project's con
 Text-to-image example:
 
 ```bash
-python3 /Users/huanghuan/sanguo-rewrite/tools/openai_text_to_image.py \
+python3 /Users/huanghuan/sanguo-rewrite/tools/azure_gpt_image.py \
   --endpoint "https://<resource>.cognitiveservices.azure.com/openai/deployments/<deployment>/images/generations?api-version=2024-02-01" \
   --output /absolute/path/output.png \
   --metadata \
@@ -89,12 +87,11 @@ python3 /Users/huanghuan/sanguo-rewrite/tools/openai_text_to_image.py \
 Edit example:
 
 ```bash
-python3 /Users/huanghuan/sanguo-rewrite/tools/openai_text_to_image.py \
+python3 /Users/huanghuan/sanguo-rewrite/tools/azure_gpt_image.py \
   --endpoint "https://<resource>.cognitiveservices.azure.com/openai/deployments/<deployment>/images/generations?api-version=2024-02-01" \
   --image /absolute/path/reference.png \
   --mask /absolute/path/mask.png \
   --prompt-file /absolute/path/edit_prompt.txt \
-  --input-fidelity high \
   --output /absolute/path/edited.png \
   --metadata
 ```
@@ -102,10 +99,10 @@ python3 /Users/huanghuan/sanguo-rewrite/tools/openai_text_to_image.py \
 ## Azure-Specific Notes
 
 - For this workflow, Azure edit requests should use Bearer auth with `AZURE_API_KEY`.
-- Edit mode is more reliable with `api-version=2025-04-01-preview`.
-- The project script automatically upgrades Azure edit requests from `2024-02-01` to `2025-04-01-preview`.
+- The tool uses Bearer auth exactly as shown in `DEV.md`.
+- Default generation parameters match `DEV.md`: `size=1024x1024`, `quality=low`, `output_compression=100`, `output_format=png`, `n=1`.
 - When editing, tell the model what must stay unchanged, not only what should change.
-- In this repo, the expected endpoint should already be available through `site/.env`, so do not ask the user to find deployment details unless the configured value is actually missing.
+- In this repo, the expected endpoint is built into the tool, so do not ask the user to find deployment details unless they want a different deployment.
 
 ## Prompting Guidance
 

@@ -222,6 +222,7 @@ export type BookMeta = {
   title: string;
   subtitle: string;
   description: string;
+  cover_image?: PassageImage | null;
   title_en?: string;
   subtitle_en?: string;
   description_en?: string;

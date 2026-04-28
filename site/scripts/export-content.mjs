@@ -367,6 +367,31 @@ async function loadBooksEnOverlay() {
   return null;
 }
 
+async function exportBookCover(book) {
+  if (!book.cover_image) {
+    return null;
+  }
+
+  const sourcePath = path.join(STORY_DIR, book.cover_image);
+  if (!(await fileExists(sourcePath))) {
+    throw new Error(`Book cover not found for ${book.id}: ${sourcePath}`);
+  }
+
+  const targetRelativePath = `books/${book.id}/assets/cover.webp`;
+  const targetAbsolutePath = path.join(CONTENT_DIR, targetRelativePath);
+  await ensureDir(path.dirname(targetAbsolutePath));
+  exportWebImage(sourcePath, targetAbsolutePath);
+  const imageMetadata = await readImageMetadata(sourcePath);
+
+  return {
+    path: targetRelativePath,
+    url: `/${targetRelativePath}`,
+    alt: book.cover_alt ?? `${book.title} cover`,
+    width: imageMetadata.width,
+    height: imageMetadata.height,
+  };
+}
+
 function buildPassagePreview(payload) {
   return {
     id: payload.id,
@@ -630,6 +655,7 @@ async function main() {
   const bookExports = await Promise.all(
     books.map(async (book) => {
       const bookEn = booksEnMap[book.id] ?? null;
+      const coverImage = await exportBookCover(book);
       const chapterExports = await Promise.all(
         (book.chapter_ids ?? []).map((chapterId) => exportChapter(path.join(STORY_DIR, `${chapterId}.json`), book))
       );
@@ -641,6 +667,7 @@ async function main() {
         title: book.title,
         subtitle: book.subtitle,
         description: book.description,
+        cover_image: coverImage,
         title_en: bookEn?.title ?? "",
         subtitle_en: bookEn?.subtitle ?? "",
         description_en: bookEn?.description ?? "",
@@ -661,6 +688,7 @@ async function main() {
           title: bookManifest.title,
           subtitle: bookManifest.subtitle,
           description: bookManifest.description,
+          cover_image: bookManifest.cover_image,
           title_en: bookManifest.title_en,
           subtitle_en: bookManifest.subtitle_en,
           description_en: bookManifest.description_en,

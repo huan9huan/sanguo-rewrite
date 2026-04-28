@@ -118,6 +118,8 @@ type BookConfig = {
   title: string;
   subtitle: string;
   description: string;
+  cover_image?: string;
+  cover_alt?: string;
   total_chapter_count?: number | null;
   chapter_ids: string[];
 };
@@ -504,6 +506,20 @@ async function loadBooksEnOverlay(): Promise<BooksEnFile | null> {
   return null;
 }
 
+function getBookCoverImage(book: BookConfig) {
+  if (!book.cover_image) {
+    return null;
+  }
+
+  return {
+    path: `books/${book.id}/assets/cover.webp`,
+    url: `/content/books/${book.id}/assets/cover.webp`,
+    alt: book.cover_alt ?? `${book.title} cover`,
+    width: null,
+    height: null,
+  };
+}
+
 export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<SiteData> {
   const booksConfig = await loadBooksConfig();
   const booksEn = await loadBooksEnOverlay();
@@ -520,6 +536,7 @@ export const getRepoSiteData = cache(async function getRepoSiteData(): Promise<S
         title: book.title,
         subtitle: book.subtitle,
         description: book.description,
+        cover_image: getBookCoverImage(book),
         title_en: bookEn?.title ?? "",
         subtitle_en: bookEn?.subtitle ?? "",
         description_en: bookEn?.description ?? "",
@@ -584,6 +601,7 @@ export const getRepoAllBooks = cache(async function getRepoAllBooks(): Promise<B
     title: book.title,
     subtitle: book.subtitle,
     description: book.description,
+    cover_image: book.cover_image,
     title_en: book.title_en,
     subtitle_en: book.subtitle_en,
     description_en: book.description_en,
@@ -606,6 +624,7 @@ export const getRepoBookById = cache(async function getRepoBookById(bookId: stri
     title: book.title,
     subtitle: book.subtitle,
     description: book.description,
+    cover_image: book.cover_image,
     title_en: book.title_en,
     subtitle_en: book.subtitle_en,
     description_en: book.description_en,

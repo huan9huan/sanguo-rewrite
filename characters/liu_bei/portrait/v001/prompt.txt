@@ -1,0 +1,26 @@
+Extract Liu Bei from the source image as a standalone portrait asset.
+
+Preserve the exact identity from the source image:
+- adult Liu Bei, around twenty-eight
+- long soft face
+- pale clean warm skin
+- long earlobes
+- calm, restrained, observant eyes
+- neat tied black hair
+- short trimmed mustache and beard, not long, not absent
+
+Frame the result as a big headshot or bust portrait.
+Keep the face as the first visual anchor.
+Keep only light upper-chest clothing detail.
+Do not emphasize weapons, hands, or action pose.
+Remove all other people and the whole background.
+
+Style requirements:
+- keep the same black-and-white ink-wash comic style as the source
+- keep the same serious late Han atmosphere
+- transparent background if possible
+- if transparent background is not possible, use a clean pure white background
+
+Do not redesign him.
+Do not make him younger, prettier, or more heroic.
+Do not turn him into Guan Yu, Zhang Fei, or a generic wuxia hero.
