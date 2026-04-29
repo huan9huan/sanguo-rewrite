@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>桃园结义 场景实验</title>
+    <style>
+      :root {
+        --bg-top: #20170f;
+        --bg-bottom: #0f0b08;
+        --panel: rgba(30, 19, 11, 0.88);
+        --panel-strong: rgba(52, 33, 20, 0.94);
+        --line: rgba(245, 220, 165, 0.26);
+        --gold: #e5bd77;
+        --gold-soft: #f4ddad;
+        --text: #fff0cf;
+        --muted: #cfb78f;
+        --shadow: rgba(0, 0, 0, 0.42);
+        --ui-font: "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", system-ui, sans-serif;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        min-height: 100%;
+      }
+
+      body {
+        margin: 0;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 50% 16%, rgba(211, 138, 65, 0.18), transparent 30rem),
+          linear-gradient(180deg, var(--bg-top) 0%, #17100a 52%, var(--bg-bottom) 100%);
+        color: var(--text);
+        font-family: var(--ui-font);
+      }
+
+      button {
+        font: inherit;
+      }
+
+      .page {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: 1fr auto;
+        isolation: isolate;
+      }
+
+      .page::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+        background-size: 40px 40px;
+        mask-image: linear-gradient(to bottom, transparent 0%, #000 18%, #000 82%, transparent 100%);
+      }
+
+      .page::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        z-index: -1;
+        height: 52vh;
+        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.54));
+      }
+
+      .stage {
+        width: min(1180px, calc(100vw - 28px));
+        margin: 0 auto;
+        padding: 28px 0 14px;
+      }
+
+      .hero-stage {
+        position: relative;
+        min-height: clamp(380px, 58vh, 640px);
+        border: 1px solid rgba(255, 232, 189, 0.18);
+        background:
+          radial-gradient(circle at 50% 14%, rgba(231, 184, 100, 0.16), transparent 40%),
+          linear-gradient(180deg, rgba(92, 55, 29, 0.28), rgba(28, 18, 11, 0.14));
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+          0 28px 52px rgba(0, 0, 0, 0.24);
+        overflow: hidden;
+      }
+
+      .hero-stage::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(180deg, rgba(255, 224, 165, 0.04), rgba(0, 0, 0, 0)),
+          linear-gradient(180deg, rgba(0, 0, 0, 0) 56%, rgba(0, 0, 0, 0.52) 100%);
+        pointer-events: none;
+      }
+
+      .hero-scene {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 42%;
+        display: block;
+        filter: saturate(0.94) contrast(1.02);
+      }
+
+      .hero-copy {
+        position: absolute;
+        left: 24px;
+        top: 22px;
+        z-index: 2;
+        display: grid;
+        gap: 8px;
+      }
+
+      .hero-title {
+        margin: 0;
+        color: var(--gold-soft);
+        font-size: clamp(22px, 2.8vw, 36px);
+        font-weight: 700;
+      }
+
+      .hero-subtitle {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .hero-roster {
+        position: absolute;
+        right: 20px;
+        bottom: 18px;
+        z-index: 2;
+        display: flex;
+        gap: 10px;
+      }
+
+      .roster-pill {
+        display: inline-flex;
+        align-items: center;
+        min-height: 34px;
+        padding: 0 12px;
+        border: 1px solid rgba(245, 220, 165, 0.22);
+        background: rgba(37, 24, 15, 0.68);
+        color: rgba(255, 240, 207, 0.58);
+        font-size: 14px;
+        transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+      }
+
+      .roster-pill.active {
+        border-color: rgba(245, 220, 165, 0.54);
+        background: rgba(86, 53, 29, 0.78);
+        color: var(--gold-soft);
+      }
+
+      .dialogue-shell {
+        width: min(1180px, calc(100vw - 28px));
+        margin: 0 auto 20px;
+      }
+
+      .dialogue-box {
+        position: relative;
+        min-height: 204px;
+        padding: 18px;
+        border: 1px solid var(--line);
+        background:
+          linear-gradient(90deg, rgba(229, 189, 119, 0.11), transparent 28%, transparent 72%, rgba(229, 189, 119, 0.08)),
+          var(--panel);
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 255, 255, 0.03),
+          0 22px 48px rgba(0, 0, 0, 0.34);
+      }
+
+      .dialogue-box::before,
+      .dialogue-box::after {
+        content: "";
+        position: absolute;
+        left: 18px;
+        right: 18px;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(245, 220, 165, 0.46), transparent);
+      }
+
+      .dialogue-box::before {
+        top: 10px;
+      }
+
+      .dialogue-box::after {
+        bottom: 10px;
+      }
+
+      .dialogue-layout {
+        display: grid;
+        grid-template-columns: 180px minmax(0, 1fr);
+        gap: 18px;
+        align-items: stretch;
+      }
+
+      .box-portrait {
+        width: 100%;
+        min-height: 166px;
+        position: relative;
+        overflow: hidden;
+        border: 1px solid rgba(245, 220, 165, 0.16);
+        background:
+          radial-gradient(circle at 50% 18%, rgba(245, 220, 165, 0.14), transparent 54%),
+          linear-gradient(180deg, rgba(92, 55, 29, 0.26), rgba(28, 18, 11, 0.08));
+      }
+
+      .box-portrait::after {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 34%;
+        background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.44));
+        pointer-events: none;
+      }
+
+      .box-portrait-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center bottom;
+        display: block;
+        filter: drop-shadow(0 18px 20px rgba(0, 0, 0, 0.38));
+      }
+
+      .box-portrait.is-hidden {
+        opacity: 0.38;
+      }
+
+      .dialogue-copy {
+        min-width: 0;
+      }
+
+      .speaker-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-bottom: 14px;
+      }
+
+      .speaker-tag {
+        display: inline-flex;
+        align-items: center;
+        min-width: 126px;
+        height: 42px;
+        padding: 0 18px;
+        border: 1px solid rgba(245, 220, 165, 0.38);
+        background: linear-gradient(180deg, #6a4228, #372214);
+        color: var(--gold-soft);
+        font-size: 20px;
+        font-weight: 700;
+      }
+
+      .progress {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .line {
+        min-height: 68px;
+        margin: 0;
+        color: var(--text);
+        font-size: clamp(24px, 3vw, 36px);
+        font-weight: 650;
+        line-height: 1.5;
+        text-shadow: 0 2px 8px rgba(0, 0, 0, 0.62);
+      }
+
+      .caret {
+        display: inline-block;
+        width: 0.6em;
+        color: var(--gold-soft);
+        animation: blink 800ms steps(2, jump-none) infinite;
+      }
+
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+
+      .controls {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        margin-top: 20px;
+      }
+
+      .hint {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .next {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 110px;
+        min-height: 42px;
+        border: 1px solid rgba(245, 220, 165, 0.48);
+        background: linear-gradient(180deg, #76502e, #432a19);
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      .next:hover {
+        border-color: rgba(255, 237, 192, 0.8);
+      }
+
+      @media (max-width: 960px) {
+        body {
+          overflow-y: auto;
+        }
+
+        .page {
+          min-height: 100svh;
+        }
+
+        .stage {
+          padding-top: 18px;
+        }
+
+        .hero-stage {
+          min-height: 320px;
+        }
+
+        .hero-roster {
+          left: 16px;
+          right: 16px;
+          justify-content: space-between;
+          gap: 8px;
+        }
+
+        .dialogue-box {
+          min-height: 236px;
+          padding: 16px;
+        }
+
+        .line {
+          font-size: 22px;
+        }
+
+        .dialogue-layout {
+          grid-template-columns: 104px minmax(0, 1fr);
+          gap: 12px;
+        }
+
+        .box-portrait {
+          min-height: 150px;
+        }
+
+        .speaker-tag {
+          min-width: 104px;
+          height: 38px;
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page" aria-label="桃园结义场景实验">
+      <section class="stage">
+        <article class="hero-stage">
+          <img class="hero-scene" src="oath_group_v2.png" alt="桃园结义场景" />
+          <div class="hero-copy">
+            <p class="hero-title">桃园结义</p>
+            <p class="hero-subtitle">乱世初起，三人同心立誓</p>
+          </div>
+          <div class="hero-roster">
+            <div class="roster-pill active" data-pill="liubei">刘备</div>
+            <div class="roster-pill" data-pill="guanyu">关羽</div>
+            <div class="roster-pill" data-pill="zhangfei">张飞</div>
+          </div>
+        </article>
+      </section>
+
+      <section class="dialogue-shell">
+        <div class="dialogue-box">
+          <div class="dialogue-layout">
+            <div id="box-portrait" class="box-portrait">
+              <img
+                id="box-portrait-image"
+                class="box-portrait-image"
+                src="liubei_talk_v2.png"
+                alt="当前说话人物头像"
+              />
+            </div>
+            <div class="dialogue-copy">
+              <div class="speaker-row">
+                <div id="speaker" class="speaker-tag">刘备</div>
+                <div id="progress" class="progress">1 / 5</div>
+              </div>
+              <p id="line" class="line"></p>
+              <div class="controls">
+                <div class="hint">空格 / 回车推进</div>
+                <button id="next" class="next" type="button">下一句</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const actorAssets = {
+        liubei: {
+          idle: "liubei_idle_v2.png",
+          talk: "liubei_talk_v2.png"
+        },
+        guanyu: {
+          idle: "guanyu_idle_v2.png",
+          talk: "guanyu_talk_v2.png"
+        },
+        zhangfei: {
+          idle: "zhangfei_idle_v2.png",
+          talk: "zhangfei_talk_v2.png"
+        }
+      };
+
+      const beats = [
+        {
+          speaker: "刘备",
+          actor: "liubei",
+          line: "今日乱世未平。若只顾自己活命，终究救不了天下受苦的人。"
+        },
+        {
+          speaker: "张飞",
+          actor: "zhangfei",
+          line: "我张飞不怕死。只要大哥一句话，这条命就跟你走。"
+        },
+        {
+          speaker: "关羽",
+          actor: "guanyu",
+          line: "我愿同行。富贵不足论，只求此心不改。"
+        },
+        {
+          speaker: "刘备",
+          actor: "liubei",
+          line: "不求同年同月同日生，但愿同年同月同日死。"
+        },
+        {
+          speaker: "旁白",
+          actor: "all",
+          line: "三人向天举香，誓言既成。从这一刻起，他们便成了生死与共的兄弟。"
+        }
+      ];
+
+      const rosterPills = [...document.querySelectorAll(".roster-pill")];
+      const speakerEl = document.querySelector("#speaker");
+      const lineEl = document.querySelector("#line");
+      const progressEl = document.querySelector("#progress");
+      const nextButton = document.querySelector("#next");
+      const boxPortraitEl = document.querySelector("#box-portrait");
+      const boxPortraitImageEl = document.querySelector("#box-portrait-image");
+
+      let beatIndex = 0;
+      let charIndex = 0;
+      let timer = 0;
+      let isTyping = false;
+
+      function syncVisuals(activeActor) {
+        for (const pill of rosterPills) {
+          pill.classList.toggle("active", activeActor === pill.dataset.pill);
+        }
+
+        if (activeActor === "all") {
+          boxPortraitEl.classList.add("is-hidden");
+          return;
+        }
+
+        const asset = actorAssets[activeActor];
+        boxPortraitImageEl.src = asset.talk;
+        boxPortraitEl.classList.remove("is-hidden");
+      }
+
+      function renderHeader() {
+        const beat = beats[beatIndex];
+        speakerEl.textContent = beat.speaker;
+        progressEl.textContent = `${beatIndex + 1} / ${beats.length}`;
+        syncVisuals(beat.actor);
+      }
+
+      function finishBeat() {
+        window.clearTimeout(timer);
+        const beat = beats[beatIndex];
+        charIndex = beat.line.length;
+        lineEl.innerHTML = `${beat.line}<span class="caret">▸</span>`;
+        isTyping = false;
+      }
+
+      function typeBeat() {
+        const beat = beats[beatIndex];
+        renderHeader();
+        isTyping = true;
+
+        if (charIndex <= beat.line.length) {
+          lineEl.innerHTML = `${beat.line.slice(0, charIndex)}<span class="caret">▸</span>`;
+          charIndex += 1;
+          timer = window.setTimeout(typeBeat, 44);
+          return;
+        }
+
+        isTyping = false;
+      }
+
+      function advance() {
+        if (isTyping) {
+          finishBeat();
+          return;
+        }
+
+        beatIndex = (beatIndex + 1) % beats.length;
+        charIndex = 0;
+        lineEl.textContent = "";
+        typeBeat();
+      }
+
+      nextButton.addEventListener("click", advance);
+      document.addEventListener("keydown", (event) => {
+        if (event.code === "Space" || event.code === "Enter") {
+          event.preventDefault();
+          advance();
+        }
+      });
+
+      typeBeat();
+    </script>
+  </body>
+</html>

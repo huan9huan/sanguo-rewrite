@@ -1,0 +1,5 @@
+late Han dynasty, Romance of the Three Kingdoms tone, unified visual style, warm earthy gold and brown palette, clean illustrated realism, consistent character design, clear silhouette, readable facial features, cinematic but controlled lighting, no modern elements
+
+Zhang Fei, full body character sprite, speaking pose, mouth open in bold speech, one hand slightly lifted in a direct speaking gesture, strong heavy build, bold and direct temperament, late Han dynasty clothing, clean silhouette, centered composition, plain solid light background, no cast shadow, no floor shadow, no props blocking the body, readable hands, readable face
+
+Avoid: text, watermark, logo, complex background, gradient background, cast shadow, floor shadow, smoke, fog, extra arms, extra fingers, cropped feet, cropped head

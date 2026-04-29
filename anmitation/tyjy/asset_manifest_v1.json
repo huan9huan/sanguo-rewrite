@@ -1,0 +1,79 @@
+{
+  "project": "tyjy",
+  "version": "v1",
+  "style_prefix": "late Han dynasty, Romance of the Three Kingdoms tone, animation-style flat vector illustration, low-detail cartoon characters, geometric character design, lightweight 2D animation look, unified visual style, warm earthy palette, consistent character design, clear silhouette, readable facial features, no modern elements",
+  "assets": [
+    {
+      "id": "bg_taoyuan",
+      "type": "background",
+      "filename": "bg_taoyuan.png",
+      "size": "1920x1080",
+      "transparent_background": false,
+      "prompt": "late Han dynasty peach garden at dusk, altar table prepared for an oath ceremony, peach trees, warm ambient glow, open central space for three standing characters, no people, no text, no heavy foreground obstruction, wide environmental background, flat simplified scenery",
+      "negative_prompt": "people, characters, crowd, text, watermark, logo, blurry details, modern props, fantasy armor, heavy fog, extreme depth of field"
+    },
+    {
+      "id": "liubei_idle",
+      "type": "character",
+      "filename": "liubei_idle.png",
+      "size": "1024x1536",
+      "transparent_background": true,
+      "prompt": "Liu Bei, full body character sprite, standing pose, calm neutral expression, benevolent and restrained temperament, late Han dynasty commoner clothing, simple cloth garments, grass-roots hero, not aristocratic, not official, not armored, clean silhouette, centered composition, plain solid light background, no cast shadow, no floor shadow, no props blocking the body, readable hands, readable face",
+      "negative_prompt": "text, watermark, logo, complex background, gradient background, cast shadow, floor shadow, smoke, fog, extra arms, extra fingers, cropped feet, cropped head"
+    },
+    {
+      "id": "liubei_talk",
+      "type": "character",
+      "filename": "liubei_talk.png",
+      "size": "1024x1536",
+      "transparent_background": true,
+      "prompt": "Liu Bei, full body character sprite, speaking pose, mouth slightly open, one hand slightly raised in a measured speaking gesture, benevolent and restrained temperament, late Han dynasty commoner clothing, simple cloth garments, grass-roots hero, not aristocratic, not official, not armored, clean silhouette, centered composition, plain solid light background, no cast shadow, no floor shadow, no props blocking the body, readable hands, readable face",
+      "negative_prompt": "text, watermark, logo, complex background, gradient background, cast shadow, floor shadow, smoke, fog, extra arms, extra fingers, cropped feet, cropped head"
+    },
+    {
+      "id": "guanyu_idle",
+      "type": "character",
+      "filename": "guanyu_idle.png",
+      "size": "1024x1536",
+      "transparent_background": true,
+      "prompt": "Guan Yu, full body character sprite, standing pose, calm neutral expression, long beard, steady and restrained temperament, late Han dynasty commoner clothing, plain cloth garments, grass-roots hero, not noble, not armored, clean silhouette, centered composition, plain solid light background, no cast shadow, no floor shadow, no props blocking the body, readable hands, readable face",
+      "negative_prompt": "text, watermark, logo, complex background, gradient background, cast shadow, floor shadow, smoke, fog, extra arms, extra fingers, cropped feet, cropped head"
+    },
+    {
+      "id": "guanyu_talk",
+      "type": "character",
+      "filename": "guanyu_talk.png",
+      "size": "1024x1536",
+      "transparent_background": true,
+      "prompt": "Guan Yu, full body character sprite, speaking pose, mouth slightly open, one hand slightly raised in a restrained speaking gesture, long beard, steady and restrained temperament, late Han dynasty commoner clothing, plain cloth garments, grass-roots hero, not noble, not armored, clean silhouette, centered composition, plain solid light background, no cast shadow, no floor shadow, no props blocking the body, readable hands, readable face",
+      "negative_prompt": "text, watermark, logo, complex background, gradient background, cast shadow, floor shadow, smoke, fog, extra arms, extra fingers, cropped feet, cropped head"
+    },
+    {
+      "id": "zhangfei_idle",
+      "type": "character",
+      "filename": "zhangfei_idle.png",
+      "size": "1024x1536",
+      "transparent_background": true,
+      "prompt": "Zhang Fei, full body character sprite, standing pose, forceful neutral expression, strong heavy build, bold and direct temperament, late Han dynasty commoner clothing, rough plain cloth garments, grass-roots strongman, not high-ranking general, not armored, clean silhouette, centered composition, plain solid light background, no cast shadow, no floor shadow, no props blocking the body, readable hands, readable face",
+      "negative_prompt": "text, watermark, logo, complex background, gradient background, cast shadow, floor shadow, smoke, fog, extra arms, extra fingers, cropped feet, cropped head"
+    },
+    {
+      "id": "zhangfei_talk",
+      "type": "character",
+      "filename": "zhangfei_talk.png",
+      "size": "1024x1536",
+      "transparent_background": true,
+      "prompt": "Zhang Fei, full body character sprite, speaking pose, mouth open in bold speech, one hand slightly lifted in a direct speaking gesture, strong heavy build, bold and direct temperament, late Han dynasty commoner clothing, rough plain cloth garments, grass-roots strongman, not high-ranking general, not armored, clean silhouette, centered composition, plain solid light background, no cast shadow, no floor shadow, no props blocking the body, readable hands, readable face",
+      "negative_prompt": "text, watermark, logo, complex background, gradient background, cast shadow, floor shadow, smoke, fog, extra arms, extra fingers, cropped feet, cropped head"
+    },
+    {
+      "id": "oath_group",
+      "type": "scene",
+      "filename": "oath_group.png",
+      "size": "1920x1080",
+      "transparent_background": false,
+      "prompt": "Liu Bei, Guan Yu, and Zhang Fei swearing brotherhood together in a peach garden, oath ceremony altar, incense and wine, solemn emotional atmosphere, three characters clearly visible in one frame, strong sense of brotherhood, all three as grass-roots commoner heroes, plain cloth garments, no aristocratic styling, no heavy warrior armor, detailed but readable composition",
+      "negative_prompt": "text, watermark, logo, extra characters, chaotic crowd, modern items, fantasy effects, exaggerated action blur, cropped faces, missing limbs"
+    }
+  ]
+}
