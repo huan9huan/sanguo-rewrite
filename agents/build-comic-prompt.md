@@ -185,6 +185,13 @@ Do not place text inside image coordinates.
 
 Use the prompt generator to create the final page-level prompt text from the comic spec.
 
+Default page style:
+
+- use `stable_color_lianhuanhua` unless the user or current run explicitly asks for another style
+- style prompt: `彩色手绘连环画风格，保留清楚有力的线稿，用低饱和但明确的传统手工上色。人物用稳定、易辨认的色块区分，色彩服务叙事和角色识别，不做高饱和海报。人物动作清楚，故事推进优先于环境装饰。人物要比景物重要，背景从简但要有时代感。保留纸张纹理、手绘线条和旧书插图质感。不要 photorealistic，不要 glossy poster，不要游戏 splash art，不要摆拍英雄照，不要信息图拼贴。`
+- negative prompt should forbid `photorealistic rendering`, `glossy poster`, `neon colors`, `over-saturated color`, `smooth digital airbrush`, `infographic collage`, `game splash art`, `speech bubbles`, and `readable text in image`
+- do not include `full color` or `不要彩绘` in negative prompts when using this style
+
 The page prompt must:
 
 - describe the page as a sequence of frames
