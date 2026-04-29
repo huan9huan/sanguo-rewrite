@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>cp001-p03-b01 DSL Web Demo</title>
+    <style>
+      :root {
+        --ink: #221b16;
+        --muted: #6c6258;
+        --paper: #f3ead8;
+        --paper-2: #fffaf0;
+        --line: #4a3529;
+        --green: #275143;
+        --gold: #d79a43;
+        --red: #8d2f24;
+        --sky: #d8e4dd;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background:
+          linear-gradient(120deg, rgba(39, 81, 67, 0.15), transparent 38%),
+          linear-gradient(180deg, #e2d9c7 0%, #cfc2ae 100%);
+        color: var(--ink);
+        font-family: "Iowan Old Style", "Songti SC", "Noto Serif CJK SC", Georgia, serif;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      .app {
+        min-height: 100vh;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        gap: 24px;
+        align-items: center;
+        padding: 18px 28px;
+        border-bottom: 1px solid rgba(49, 36, 27, 0.22);
+        background: rgba(255, 250, 240, 0.82);
+        backdrop-filter: blur(12px);
+      }
+
+      .title-block h1 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.1;
+      }
+
+      .title-block p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: auto minmax(220px, 360px) auto;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .icon-button {
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(34, 27, 22, 0.28);
+        border-radius: 8px;
+        background: var(--green);
+        color: #fff8e8;
+        cursor: pointer;
+        font-size: 17px;
+      }
+
+      .icon-button:hover {
+        background: #183c31;
+      }
+
+      .scrub {
+        width: 100%;
+        accent-color: var(--gold);
+      }
+
+      .timecode {
+        min-width: 72px;
+        color: var(--muted);
+        font-size: 15px;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 22px;
+        padding: 22px 28px 28px;
+      }
+
+      .stage-shell {
+        min-width: 0;
+        display: grid;
+        gap: 18px;
+      }
+
+      .stage {
+        position: relative;
+        min-height: 520px;
+        overflow: hidden;
+        border: 2px solid rgba(63, 43, 31, 0.55);
+        border-radius: 8px;
+        background: #312821;
+        box-shadow: 0 24px 60px rgba(36, 24, 17, 0.22);
+      }
+
+      .stage-bg,
+      .stage-wash {
+        position: absolute;
+        inset: 0;
+      }
+
+      .stage-bg {
+        opacity: 0.86;
+        filter: saturate(0.92) contrast(1.02);
+      }
+
+      .stage-wash {
+        background:
+          linear-gradient(90deg, rgba(20, 16, 13, 0.56), transparent 38%, rgba(20, 16, 13, 0.38)),
+          linear-gradient(180deg, rgba(20, 16, 13, 0.05), rgba(20, 16, 13, 0.44));
+      }
+
+      .scene-title {
+        position: absolute;
+        top: 28px;
+        left: 34px;
+        z-index: 4;
+        color: #fff5df;
+        text-shadow: 0 2px 16px rgba(0, 0, 0, 0.45);
+      }
+
+      .scene-title h2 {
+        margin: 0;
+        font-size: 38px;
+        line-height: 1.05;
+      }
+
+      .scene-title p {
+        margin: 8px 0 0;
+        max-width: 620px;
+        font-size: 18px;
+        color: rgba(255, 245, 223, 0.9);
+      }
+
+      .asset {
+        background-image: url("../assets/cp001_p03_b01_asset_sheet.png");
+        background-size: 400% 400%;
+        background-repeat: no-repeat;
+      }
+
+      .set-piece {
+        position: absolute;
+        z-index: 2;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 18px 38px rgba(20, 12, 8, 0.2);
+      }
+
+      .door-shadow {
+        right: 104px;
+        bottom: 112px;
+        width: 230px;
+        height: 310px;
+        opacity: 0;
+        transform: translateX(38px) scale(0.96);
+        transition: opacity 420ms ease, transform 620ms ease;
+      }
+
+      .door-shadow.is-active {
+        opacity: 0.92;
+        transform: translateX(0) scale(1);
+      }
+
+      .guan-yu {
+        right: 82px;
+        bottom: 84px;
+        width: 260px;
+        height: 352px;
+        opacity: 0;
+        transform: translateX(48px) scale(0.94);
+        transition: opacity 500ms ease, transform 700ms ease;
+      }
+
+      .guan-yu.is-active {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+
+      .reaction-grid {
+        position: absolute;
+        left: 34px;
+        bottom: 112px;
+        z-index: 3;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(170px, 210px));
+        gap: 18px;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 400ms ease, transform 500ms ease;
+      }
+
+      .reaction-grid.is-active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .person-card,
+      .relation-card {
+        border: 1px solid rgba(60, 42, 31, 0.34);
+        border-radius: 8px;
+        background: rgba(255, 250, 240, 0.9);
+        padding: 12px;
+        min-height: 212px;
+        box-shadow: 0 12px 24px rgba(28, 20, 15, 0.18);
+      }
+
+      .person-image {
+        width: 100%;
+        height: 106px;
+        border: 1px solid rgba(60, 42, 31, 0.2);
+        background-color: #efe5d1;
+        border-radius: 6px;
+      }
+
+      .person-card h3,
+      .relation-card h3 {
+        margin: 10px 0 4px;
+        font-size: 22px;
+      }
+
+      .person-card p,
+      .relation-card p {
+        margin: 0;
+        color: #4f4238;
+        font-size: 15px;
+        line-height: 1.48;
+      }
+
+      .relationship {
+        position: absolute;
+        right: 364px;
+        bottom: 128px;
+        z-index: 3;
+        width: 230px;
+        opacity: 0;
+        transform: translateY(16px);
+        transition: opacity 420ms ease, transform 520ms ease;
+      }
+
+      .relationship.is-active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .relation-token {
+        width: 100%;
+        height: 120px;
+        border-radius: 6px;
+        border: 1px solid rgba(60, 42, 31, 0.2);
+        background-color: #efe5d1;
+      }
+
+      .caption-strip {
+        position: absolute;
+        left: 34px;
+        right: 34px;
+        bottom: 28px;
+        z-index: 6;
+        min-height: 66px;
+        display: flex;
+        align-items: center;
+        padding: 16px 22px;
+        border: 1px solid rgba(215, 154, 67, 0.8);
+        border-radius: 8px;
+        background: rgba(19, 25, 22, 0.88);
+        color: #fff5df;
+        font-size: 28px;
+        line-height: 1.22;
+      }
+
+      .beat-track {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+      }
+
+      .beat-node {
+        border: 1px solid rgba(63, 43, 31, 0.25);
+        border-radius: 8px;
+        background: rgba(255, 250, 240, 0.68);
+        padding: 12px;
+        cursor: pointer;
+        min-height: 96px;
+      }
+
+      .beat-node.is-current {
+        border-color: rgba(141, 47, 36, 0.85);
+        background: var(--paper-2);
+        box-shadow: inset 0 0 0 2px rgba(141, 47, 36, 0.08);
+      }
+
+      .beat-node strong {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 16px;
+      }
+
+      .beat-node span {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .side {
+        display: grid;
+        gap: 16px;
+        align-content: start;
+      }
+
+      .panel {
+        border: 1px solid rgba(63, 43, 31, 0.25);
+        border-radius: 8px;
+        background: rgba(255, 250, 240, 0.74);
+        padding: 16px;
+      }
+
+      .panel h2 {
+        margin: 0 0 12px;
+        font-size: 22px;
+      }
+
+      .state-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .state-row {
+        border-left: 3px solid rgba(39, 81, 67, 0.7);
+        padding-left: 10px;
+      }
+
+      .state-row strong {
+        display: block;
+        font-size: 17px;
+      }
+
+      .state-row span {
+        color: var(--muted);
+        display: block;
+        font-size: 14px;
+        line-height: 1.42;
+        margin-top: 3px;
+      }
+
+      .asset-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 8px;
+      }
+
+      .asset-cell {
+        aspect-ratio: 1 / 1.4;
+        border: 1px solid rgba(63, 43, 31, 0.28);
+        border-radius: 6px;
+        background-color: #efe5d1;
+        overflow: hidden;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .asset-cell.is-used {
+        outline: 3px solid rgba(215, 154, 67, 0.75);
+      }
+
+      .asset-cell::after {
+        content: attr(data-cell);
+        position: absolute;
+        top: 5px;
+        left: 6px;
+        padding: 2px 5px;
+        border-radius: 4px;
+        background: rgba(20, 18, 16, 0.72);
+        color: #fff8e8;
+        font-size: 11px;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      .raw-dsl {
+        overflow: auto;
+        max-height: 260px;
+        margin: 0;
+        padding: 12px;
+        border-radius: 6px;
+        background: #1d211e;
+        color: #efe8d7;
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 12px;
+        line-height: 1.46;
+      }
+
+      @media (max-width: 980px) {
+        .topbar {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .controls {
+          grid-template-columns: auto 1fr auto;
+        }
+
+        .workspace {
+          grid-template-columns: 1fr;
+          padding: 16px;
+        }
+
+        .stage {
+          min-height: 640px;
+        }
+
+        .reaction-grid {
+          grid-template-columns: 1fr;
+          max-width: 220px;
+        }
+
+        .relationship {
+          left: 274px;
+          right: auto;
+        }
+
+        .caption-strip {
+          font-size: 22px;
+        }
+
+        .beat-track {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="app">
+      <header class="topbar">
+        <div class="title-block">
+          <h1>关羽进店到同饮：DSL Web Demo</h1>
+          <p>同一份 beat 数据驱动画面、时间线、状态面板和资产调用。</p>
+        </div>
+        <div class="controls">
+          <button class="icon-button" id="playButton" type="button" aria-label="播放或暂停">▶</button>
+          <input class="scrub" id="scrub" type="range" min="0" max="8" step="0.01" value="0" aria-label="时间轴" />
+          <span class="timecode" id="timecode">0.00s</span>
+        </div>
+      </header>
+
+      <section class="workspace">
+        <div class="stage-shell">
+          <section class="stage" id="stage" aria-label="DSL driven stage">
+            <div class="stage-bg asset" id="stageBg"></div>
+            <div class="stage-wash"></div>
+            <div class="scene-title">
+              <h2 id="sceneTitle">关羽进店与同饮</h2>
+              <p id="sceneAction">关羽推车进店，刘备邀他同坐，三人发现都要投军讨贼。</p>
+            </div>
+
+            <div class="set-piece door-shadow asset" id="doorShadow"></div>
+            <div class="set-piece guan-yu asset" id="guanYu"></div>
+
+            <div class="reaction-grid" id="reactionGrid">
+              <article class="person-card">
+                <div class="person-image asset" id="liuBeiImage"></div>
+                <h3>刘备</h3>
+                <p id="liuBeiCaption"></p>
+              </article>
+              <article class="person-card">
+                <div class="person-image asset" id="zhangFeiImage"></div>
+                <h3>张飞</h3>
+                <p id="zhangFeiCaption"></p>
+              </article>
+            </div>
+
+            <article class="relationship relation-card" id="relationshipCard">
+              <div class="relation-token asset" id="relationToken"></div>
+              <h3>关系变化</h3>
+              <p id="relationCaption"></p>
+            </article>
+
+            <div class="caption-strip" id="captionStrip"></div>
+          </section>
+
+          <nav class="beat-track" id="beatTrack" aria-label="beat timeline"></nav>
+        </div>
+
+        <aside class="side">
+          <section class="panel">
+            <h2>当前状态</h2>
+            <div class="state-list" id="stateList"></div>
+          </section>
+
+          <section class="panel">
+            <h2>资产格子</h2>
+            <div class="asset-grid" id="assetGrid"></div>
+          </section>
+
+          <section class="panel">
+            <h2>DSL 摘要</h2>
+            <pre class="raw-dsl" id="rawDsl"></pre>
+          </section>
+        </aside>
+      </section>
+    </main>
+
+    <script>
+      const dsl = {
+        id: "cp001-p03-b01",
+        title: "关羽进店与同饮",
+        location: { id: "zhuo_tavern", label: "涿县酒肆", type: "tavern" },
+        beat: {
+          type: "arrival_to_recognition",
+          action: "关羽推车进店，刘备邀他同坐，三人发现都要投军讨贼。",
+          change: "第三条主线进入画面，并与刘备、张飞接成同一条路。",
+          reader_takeaway: "关羽不只是登场，他被刘备看见，也被这张酒桌接住。",
+        },
+        focus: { primary: "guan_yu", reactors: ["liu_bei", "zhang_fei"] },
+        characters: {
+          guan_yu: {
+            label: "关羽",
+            role: "incoming_force",
+            state_from: "offstage",
+            state_to: "onstage",
+            caption: "推车进店，直奔投军。",
+            asset_cell: 7,
+            silhouette_cell: 8,
+          },
+          liu_bei: {
+            label: "刘备",
+            role: "moral_anchor",
+            state_from: "drinking_with_zhang_fei",
+            state_to: "noticing_guan_yu",
+            caption: "举杯停住，一眼看出此人不凡。",
+            asset_cell: 9,
+            reaction_cell: 10,
+          },
+          zhang_fei: {
+            label: "张飞",
+            role: "bond_maker",
+            state_from: "talking_with_liu_bei",
+            state_to: "sizing_up_guan_yu",
+            caption: "转身看去，兴奋起来。",
+            asset_cell: 11,
+            reaction_cell: 12,
+          },
+        },
+        relations: [
+          {
+            type: "first_visual_contact",
+            members: ["liu_bei", "guan_yu", "zhang_fei"],
+            strength: 1,
+            label: "三人第一次进入同一画面",
+          },
+          {
+            type: "first_invitation",
+            members: ["liu_bei", "guan_yu"],
+            strength: 2,
+            label: "刘备主动邀关羽同坐",
+          },
+          {
+            type: "shared_cause",
+            members: ["liu_bei", "guan_yu", "zhang_fei"],
+            strength: 3,
+            label: "三人确认都要投军讨贼",
+          },
+        ],
+        timeline: [
+          {
+            at: 0,
+            node: "酒肆",
+            caption: "涿县酒肆里，刘备与张飞正在对饮。",
+            usedCells: [1, 4],
+          },
+          {
+            at: 2,
+            node: "门影",
+            caption: "门口忽然一暗，一个高大的影子停住。",
+            usedCells: [2, 8],
+          },
+          {
+            at: 4,
+            node: "登场",
+            caption: "关羽推车进店，开口便说要投军。",
+            usedCells: [7, 8],
+          },
+          {
+            at: 6,
+            node: "相接",
+            caption: "刘备停杯，张飞转身，三条主线第一次相接。",
+            usedCells: [7, 10, 12, 16],
+          },
+          {
+            at: 8,
+            node: "相邀",
+            caption: "刘备放下杯子，起身相邀：这位壮士，不介意的话，一起喝一杯？",
+            usedCells: [7, 10, 12, 16],
+          },
+          {
+            at: 10,
+            node: "落座",
+            caption: "关羽看了两人一眼，没有客气，拉开凳子坐下。",
+            usedCells: [7, 10, 12, 16],
+          },
+          {
+            at: 12,
+            node: "自报",
+            caption: "他只说几句：姓关名羽，杀过欺人的豪强，逃亡五六年，如今来投军。",
+            usedCells: [7, 10, 12],
+          },
+          {
+            at: 14,
+            node: "同路",
+            caption: "刘备说出讨贼安民的志向。关羽点头，只回两个字：正好。",
+            usedCells: [7, 10, 12, 16],
+          },
+        ],
+        render: { duration_seconds: 16 },
+      };
+
+      const elements = {
+        playButton: document.querySelector("#playButton"),
+        scrub: document.querySelector("#scrub"),
+        timecode: document.querySelector("#timecode"),
+        stageBg: document.querySelector("#stageBg"),
+        doorShadow: document.querySelector("#doorShadow"),
+        guanYu: document.querySelector("#guanYu"),
+        reactionGrid: document.querySelector("#reactionGrid"),
+        relationshipCard: document.querySelector("#relationshipCard"),
+        captionStrip: document.querySelector("#captionStrip"),
+        liuBeiImage: document.querySelector("#liuBeiImage"),
+        zhangFeiImage: document.querySelector("#zhangFeiImage"),
+        relationToken: document.querySelector("#relationToken"),
+        liuBeiCaption: document.querySelector("#liuBeiCaption"),
+        zhangFeiCaption: document.querySelector("#zhangFeiCaption"),
+        relationCaption: document.querySelector("#relationCaption"),
+        stateList: document.querySelector("#stateList"),
+        assetGrid: document.querySelector("#assetGrid"),
+        beatTrack: document.querySelector("#beatTrack"),
+        rawDsl: document.querySelector("#rawDsl"),
+      };
+
+      let currentTime = 0;
+      let isPlaying = false;
+      let lastFrameAt = 0;
+      const duration = dsl.render.duration_seconds;
+
+      function cellPosition(cell) {
+        const index = cell - 1;
+        const col = index % 4;
+        const row = Math.floor(index / 4);
+        return `${col * 33.333333}% ${row * 33.333333}%`;
+      }
+
+      function applyCell(element, cell) {
+        element.style.backgroundPosition = cellPosition(cell);
+      }
+
+      function activeBeat(time) {
+        return dsl.timeline.reduce((active, beat) => (time >= beat.at ? beat : active), dsl.timeline[0]);
+      }
+
+      function phaseFor(time) {
+        if (time >= 6) return 3;
+        if (time >= 4) return 2;
+        if (time >= 2) return 1;
+        return 0;
+      }
+
+      function renderStatePanel() {
+        const rows = [
+          ["location", dsl.location.label],
+          ["beat_type", dsl.beat.type],
+          ["primary_focus", dsl.focus.primary],
+          ["change", dsl.beat.change],
+        ];
+        elements.stateList.innerHTML = rows
+          .map(([label, value]) => `<div class="state-row"><strong>${label}</strong><span>${value}</span></div>`)
+          .join("");
+      }
+
+      function renderAssetGrid(usedCells = []) {
+        elements.assetGrid.innerHTML = "";
+        for (let cell = 1; cell <= 16; cell += 1) {
+          const tile = document.createElement("button");
+          tile.type = "button";
+          tile.className = `asset-cell asset${usedCells.includes(cell) ? " is-used" : ""}`;
+          tile.dataset.cell = String(cell).padStart(2, "0");
+          tile.style.backgroundPosition = cellPosition(cell);
+          tile.addEventListener("click", () => {
+            const nextBeat = dsl.timeline.find((beat) => beat.usedCells.includes(cell));
+            if (nextBeat) setTime(nextBeat.at);
+          });
+          elements.assetGrid.appendChild(tile);
+        }
+      }
+
+      function renderTrack() {
+        elements.beatTrack.innerHTML = "";
+        dsl.timeline.forEach((beat, index) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "beat-node";
+          button.dataset.index = String(index);
+          button.innerHTML = `<strong>${beat.node} · ${beat.at.toFixed(0)}s</strong><span>${beat.caption}</span>`;
+          button.addEventListener("click", () => setTime(beat.at));
+          elements.beatTrack.appendChild(button);
+        });
+      }
+
+      function update(time) {
+        const phase = phaseFor(time);
+        const beat = activeBeat(time);
+        elements.scrub.value = String(time);
+        elements.timecode.textContent = `${time.toFixed(2)}s`;
+        elements.captionStrip.textContent = beat.caption;
+
+        applyCell(elements.stageBg, phase >= 1 ? 2 : 1);
+        applyCell(elements.doorShadow, 8);
+        applyCell(elements.guanYu, 7);
+        applyCell(elements.liuBeiImage, 10);
+        applyCell(elements.zhangFeiImage, 12);
+        applyCell(elements.relationToken, 16);
+
+        elements.doorShadow.classList.toggle("is-active", phase >= 1);
+        elements.guanYu.classList.toggle("is-active", phase >= 2);
+        elements.reactionGrid.classList.toggle("is-active", phase >= 2);
+        elements.relationshipCard.classList.toggle("is-active", phase >= 3);
+
+        elements.liuBeiCaption.textContent = dsl.characters.liu_bei.caption;
+        elements.zhangFeiCaption.textContent = dsl.characters.zhang_fei.caption;
+        elements.relationCaption.textContent = dsl.relations[0].label;
+
+        renderAssetGrid(beat.usedCells);
+        document.querySelectorAll(".beat-node").forEach((node, index) => {
+          node.classList.toggle("is-current", dsl.timeline[index] === beat);
+        });
+      }
+
+      function setTime(nextTime) {
+        currentTime = Math.max(0, Math.min(duration, nextTime));
+        update(currentTime);
+      }
+
+      function animate(now) {
+        if (!isPlaying) return;
+        if (!lastFrameAt) lastFrameAt = now;
+        const delta = (now - lastFrameAt) / 1000;
+        lastFrameAt = now;
+        currentTime += delta;
+        if (currentTime >= duration) {
+          currentTime = duration;
+          isPlaying = false;
+          elements.playButton.textContent = "▶";
+        }
+        update(currentTime);
+        if (isPlaying) requestAnimationFrame(animate);
+      }
+
+      elements.playButton.addEventListener("click", () => {
+        isPlaying = !isPlaying;
+        if (currentTime >= duration) currentTime = 0;
+        elements.playButton.textContent = isPlaying ? "Ⅱ" : "▶";
+        lastFrameAt = 0;
+        if (isPlaying) requestAnimationFrame(animate);
+      });
+
+      elements.scrub.addEventListener("input", (event) => {
+        isPlaying = false;
+        elements.playButton.textContent = "▶";
+        setTime(Number(event.target.value));
+      });
+
+      renderStatePanel();
+      renderTrack();
+      elements.rawDsl.textContent = JSON.stringify(
+        {
+          id: dsl.id,
+          location: dsl.location,
+          beat: dsl.beat,
+          focus: dsl.focus,
+          relations: dsl.relations,
+          timeline: dsl.timeline,
+        },
+        null,
+        2,
+      );
+      setTime(0);
+    </script>
+  </body>
+</html>

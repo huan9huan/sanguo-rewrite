@@ -1,0 +1,522 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>cp001-p03-b01 Shot Layer Director Demo</title>
+    <style>
+      :root {
+        --ink: #211914;
+        --muted: #75685d;
+        --paper: #f7eedc;
+        --green: #234d40;
+        --gold: #d79a42;
+        --red: #8d3026;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        color: var(--ink);
+        background:
+          linear-gradient(130deg, rgba(35, 77, 64, 0.18), transparent 46%),
+          linear-gradient(180deg, #e8decd, #cdbda9);
+        font-family: "Iowan Old Style", "Songti SC", "Noto Serif CJK SC", Georgia, serif;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 18px 28px;
+        background: rgba(255, 250, 239, 0.84);
+        border-bottom: 1px solid rgba(52, 38, 28, 0.24);
+        backdrop-filter: blur(10px);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.1;
+      }
+
+      .subtitle {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: auto minmax(240px, 420px) auto;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .play {
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(33, 25, 20, 0.28);
+        border-radius: 8px;
+        color: #fff8e9;
+        background: var(--green);
+        cursor: pointer;
+      }
+
+      .scrub {
+        width: 100%;
+        accent-color: var(--gold);
+      }
+
+      .timecode {
+        min-width: 76px;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 360px;
+        gap: 22px;
+        padding: 22px 28px 28px;
+      }
+
+      .stage {
+        position: relative;
+        min-height: 650px;
+        overflow: hidden;
+        border: 2px solid rgba(64, 45, 34, 0.56);
+        border-radius: 8px;
+        background: #211914;
+        box-shadow: 0 24px 60px rgba(36, 24, 16, 0.24);
+      }
+
+      .stage-bg {
+        position: absolute;
+        inset: -28px;
+        background-image: var(--shot);
+        background-size: cover;
+        background-position: center;
+        filter: blur(18px) saturate(0.9) brightness(0.72);
+        transform: scale(1.08);
+        opacity: 0.84;
+      }
+
+      .shot-frame {
+        position: absolute;
+        inset: 34px 34px 126px;
+        display: grid;
+        place-items: center;
+        border: 1px solid rgba(255, 245, 224, 0.28);
+        border-radius: 8px;
+        background: rgba(18, 14, 12, 0.42);
+      }
+
+      .shot {
+        max-width: 100%;
+        max-height: 100%;
+        width: auto;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 6px;
+        box-shadow: 0 24px 40px rgba(0, 0, 0, 0.32);
+      }
+
+      .scene-label {
+        position: absolute;
+        z-index: 5;
+        left: 58px;
+        top: 54px;
+        padding: 10px 13px;
+        border: 1px solid rgba(255, 245, 224, 0.24);
+        border-radius: 8px;
+        background: rgba(19, 24, 21, 0.72);
+        color: #fff5df;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      .scene-label strong {
+        display: block;
+        font-size: 24px;
+        line-height: 1.1;
+      }
+
+      .scene-label span {
+        display: block;
+        margin-top: 5px;
+        color: rgba(255, 245, 223, 0.86);
+        font-size: 15px;
+      }
+
+      .dialogue {
+        position: absolute;
+        z-index: 6;
+        left: 34px;
+        right: 34px;
+        bottom: 30px;
+        min-height: 76px;
+        display: grid;
+        grid-template-columns: 130px 1fr;
+        align-items: center;
+        gap: 18px;
+        padding: 15px 20px;
+        border: 1px solid rgba(215, 154, 66, 0.85);
+        border-radius: 8px;
+        background: rgba(18, 24, 21, 0.9);
+        color: #fff5df;
+      }
+
+      .speaker {
+        color: #f0c078;
+        font-size: 20px;
+      }
+
+      .line {
+        font-size: 28px;
+        line-height: 1.22;
+      }
+
+      .track {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .node {
+        min-height: 98px;
+        padding: 12px;
+        border: 1px solid rgba(63, 43, 31, 0.25);
+        border-radius: 8px;
+        background: rgba(255, 250, 239, 0.68);
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .node.is-current {
+        border-color: rgba(141, 48, 38, 0.86);
+        background: rgba(255, 250, 239, 0.95);
+        box-shadow: inset 0 0 0 2px rgba(141, 48, 38, 0.08);
+      }
+
+      .node strong {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 16px;
+      }
+
+      .node span {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .side {
+        display: grid;
+        gap: 16px;
+        align-content: start;
+      }
+
+      .panel {
+        padding: 16px;
+        border: 1px solid rgba(63, 43, 31, 0.24);
+        border-radius: 8px;
+        background: rgba(255, 250, 239, 0.76);
+      }
+
+      .panel h2 {
+        margin: 0 0 12px;
+        font-size: 22px;
+      }
+
+      .shot-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .shot-button {
+        display: grid;
+        grid-template-columns: 72px 1fr;
+        gap: 10px;
+        align-items: center;
+        width: 100%;
+        padding: 8px;
+        border: 1px solid rgba(63, 43, 31, 0.22);
+        border-radius: 8px;
+        background: rgba(247, 238, 220, 0.74);
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .shot-button.is-current {
+        outline: 3px solid rgba(215, 154, 66, 0.7);
+      }
+
+      .shot-button img {
+        width: 72px;
+        height: 72px;
+        object-fit: cover;
+        border-radius: 6px;
+      }
+
+      .shot-button strong {
+        display: block;
+        font-size: 15px;
+      }
+
+      .shot-button span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .state-row {
+        padding-left: 10px;
+        border-left: 3px solid rgba(35, 77, 64, 0.72);
+        margin-bottom: 12px;
+      }
+
+      .state-row strong {
+        display: block;
+        font-size: 16px;
+      }
+
+      .state-row span {
+        display: block;
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.42;
+      }
+
+      pre {
+        max-height: 260px;
+        overflow: auto;
+        margin: 0;
+        padding: 12px;
+        border-radius: 6px;
+        background: #1c211e;
+        color: #eee2cd;
+        font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      @media (max-width: 980px) {
+        .topbar {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .workspace {
+          grid-template-columns: 1fr;
+          padding: 16px;
+        }
+
+        .track {
+          grid-template-columns: 1fr;
+        }
+
+        .dialogue {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>关羽进店到同饮：Shot Layer Demo</h1>
+        <p class="subtitle">一个场景大图序列，DSL 只调度镜头、对白、状态，不再抠透明人物。</p>
+      </div>
+      <div class="controls">
+        <button class="play" id="play" type="button" aria-label="播放或暂停">▶</button>
+        <input class="scrub" id="scrub" type="range" min="0" max="16" step="0.01" value="0" aria-label="时间轴" />
+        <span class="timecode" id="timecode">0.00s</span>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section>
+        <div class="stage" id="stage">
+          <div class="stage-bg"></div>
+          <div class="shot-frame">
+            <img class="shot" id="shot" src="assets/shot_01_empty_tavern.jpg" alt="" />
+          </div>
+          <div class="scene-label">
+            <strong id="shotTitle">空酒肆</strong>
+            <span id="shotFunction">背景底图</span>
+          </div>
+          <div class="dialogue">
+            <div class="speaker" id="speaker">旁白</div>
+            <div class="line" id="line">涿县酒肆里，故事还没开始移动。</div>
+          </div>
+        </div>
+        <nav class="track" id="track"></nav>
+      </section>
+
+      <aside class="side">
+        <section class="panel">
+          <h2>Shot Layers</h2>
+          <div class="shot-list" id="shotList"></div>
+        </section>
+        <section class="panel">
+          <h2>当前 DSL 状态</h2>
+          <div id="state"></div>
+        </section>
+        <section class="panel">
+          <h2>数据摘要</h2>
+          <pre id="rawDsl"></pre>
+        </section>
+      </aside>
+    </main>
+
+    <script>
+      const dsl = {
+        id: "cp001-p03-scene01",
+        title: "关羽进店与同饮",
+        location: "涿县酒肆",
+        change: "第三条主线进入画面，并与刘备、张飞接成同一条路。",
+        shots: [
+          { id: "empty", file: "shot_01_empty_tavern.jpg", label: "空酒肆", function: "背景底图" },
+          { id: "drink", file: "shot_02_liu_zhang_drinking.jpg", label: "刘张对饮", function: "起始关系" },
+          { id: "enter", file: "shot_03_guan_enters.jpg", label: "关羽进门", function: "第三人入场" },
+          { id: "invite", file: "shot_04_liu_invites.jpg", label: "刘备相邀", function: "主动接纳" },
+          { id: "table", file: "shot_05_three_at_table.jpg", label: "三人同桌", function: "同路确认" },
+        ],
+        timeline: [
+          { at: 0, shot: "drink", node: "对饮", speaker: "旁白", line: "涿县酒肆里，刘备与张飞正在对饮。" },
+          { at: 3, shot: "enter", node: "进门", speaker: "关羽", line: "快上酒，我喝完还得赶进城投军去。" },
+          { at: 6, shot: "enter", node: "注意", speaker: "旁白", line: "刘备举杯的手停了。他看出这个人不是普通路人。" },
+          { at: 8, shot: "invite", node: "相邀", speaker: "刘备", line: "这位壮士，不介意的话，坐下来一起喝一杯？" },
+          { at: 10, shot: "table", node: "落座", speaker: "旁白", line: "关羽看了两人一眼，没有客气，拉开凳子坐下。" },
+          { at: 12, shot: "table", node: "自报", speaker: "关羽", line: "我姓关，叫关羽，字云长。河东解良人。" },
+          { at: 14, shot: "table", node: "同路", speaker: "旁白", line: "刘备说出讨贼安民的志向。关羽点头，只回两个字：正好。" },
+        ],
+        duration: 16,
+      };
+
+      const stage = document.querySelector("#stage");
+      const shot = document.querySelector("#shot");
+      const shotTitle = document.querySelector("#shotTitle");
+      const shotFunction = document.querySelector("#shotFunction");
+      const speaker = document.querySelector("#speaker");
+      const line = document.querySelector("#line");
+      const play = document.querySelector("#play");
+      const scrub = document.querySelector("#scrub");
+      const timecode = document.querySelector("#timecode");
+      const track = document.querySelector("#track");
+      const shotList = document.querySelector("#shotList");
+      const state = document.querySelector("#state");
+      const rawDsl = document.querySelector("#rawDsl");
+      let time = 0;
+      let playing = false;
+      let last = 0;
+
+      function activeBeat(t) {
+        return dsl.timeline.reduce((current, beat) => (t >= beat.at ? beat : current), dsl.timeline[0]);
+      }
+
+      function shotById(id) {
+        return dsl.shots.find((item) => item.id === id) || dsl.shots[0];
+      }
+
+      function setTime(next) {
+        time = Math.max(0, Math.min(dsl.duration, next));
+        const beat = activeBeat(time);
+        const activeShot = shotById(beat.shot);
+        const src = `assets/${activeShot.file}`;
+        if (!shot.src.endsWith(src)) shot.src = src;
+        stage.style.setProperty("--shot", `url("${src}")`);
+        shotTitle.textContent = activeShot.label;
+        shotFunction.textContent = activeShot.function;
+        speaker.textContent = beat.speaker;
+        line.textContent = beat.line;
+        scrub.value = String(time);
+        timecode.textContent = `${time.toFixed(2)}s`;
+        document.querySelectorAll(".node").forEach((node, index) => {
+          node.classList.toggle("is-current", dsl.timeline[index] === beat);
+        });
+        document.querySelectorAll(".shot-button").forEach((node) => {
+          node.classList.toggle("is-current", node.dataset.shot === activeShot.id);
+        });
+        state.innerHTML = [
+          ["location", dsl.location],
+          ["active_shot", activeShot.id],
+          ["speaker", beat.speaker],
+          ["change", dsl.change],
+        ]
+          .map(([key, value]) => `<div class="state-row"><strong>${key}</strong><span>${value}</span></div>`)
+          .join("");
+      }
+
+      function renderTrack() {
+        track.innerHTML = "";
+        dsl.timeline.forEach((beat) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "node";
+          button.innerHTML = `<strong>${beat.node} · ${beat.at}s</strong><span>${beat.speaker}：${beat.line}</span>`;
+          button.addEventListener("click", () => setTime(beat.at));
+          track.appendChild(button);
+        });
+      }
+
+      function renderShotList() {
+        shotList.innerHTML = "";
+        dsl.shots.forEach((item) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = "shot-button";
+          button.dataset.shot = item.id;
+          button.innerHTML = `<img src="assets/${item.file}" alt="" /><span><strong>${item.label}</strong><span>${item.function}</span></span>`;
+          const beat = dsl.timeline.find((node) => node.shot === item.id);
+          if (beat) button.addEventListener("click", () => setTime(beat.at));
+          shotList.appendChild(button);
+        });
+      }
+
+      function tick(now) {
+        if (!playing) return;
+        if (!last) last = now;
+        time += (now - last) / 1000;
+        last = now;
+        if (time >= dsl.duration) {
+          time = dsl.duration;
+          playing = false;
+          play.textContent = "▶";
+        }
+        setTime(time);
+        if (playing) requestAnimationFrame(tick);
+      }
+
+      play.addEventListener("click", () => {
+        playing = !playing;
+        if (time >= dsl.duration) time = 0;
+        play.textContent = playing ? "Ⅱ" : "▶";
+        last = 0;
+        if (playing) requestAnimationFrame(tick);
+      });
+
+      scrub.addEventListener("input", (event) => {
+        playing = false;
+        play.textContent = "▶";
+        setTime(Number(event.target.value));
+      });
+
+      renderTrack();
+      renderShotList();
+      rawDsl.textContent = JSON.stringify(dsl, null, 2);
+      setTime(0);
+    </script>
+  </body>
+</html>

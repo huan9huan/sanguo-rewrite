@@ -1,0 +1,191 @@
+schema: story_position_demo/v1
+id: cp001-p03-b01
+book_id: sanguo
+chapter_id: cp001
+passage_id: p03
+scene_id: cp001_p03_s1
+title: 关羽进店与同饮
+
+location:
+  id: zhuo_tavern
+  label: 涿县酒肆
+  type: tavern
+
+beat:
+  type: arrival_to_recognition
+  action: 关羽推车进店，刘备邀他同坐，三人发现都要投军讨贼。
+  change: 第三条主线进入画面，并与刘备、张飞接成同一条路。
+  reader_takeaway: 关羽不只是登场，他被刘备看见，也被这张酒桌接住。
+
+focus:
+  primary: guan_yu
+  reactors:
+    - liu_bei
+    - zhang_fei
+
+characters:
+  guan_yu:
+    label: 关羽
+    role: incoming_force
+    state_from: offstage
+    state_to: onstage
+    caption: 推车进店，直奔投军。
+    asset_cell: 7
+    silhouette_cell: 8
+  liu_bei:
+    label: 刘备
+    role: moral_anchor
+    state_from: drinking_with_zhang_fei
+    state_to: noticing_guan_yu
+    caption: 举杯停住，一眼看出此人不凡。
+    asset_cell: 9
+    reaction_cell: 10
+  zhang_fei:
+    label: 张飞
+    role: bond_maker
+    state_from: talking_with_liu_bei
+    state_to: sizing_up_guan_yu
+    caption: 转身看去，兴奋起来。
+    asset_cell: 11
+    reaction_cell: 12
+
+relations:
+  - type: first_visual_contact
+    members:
+      - liu_bei
+      - guan_yu
+      - zhang_fei
+    strength: 1
+    label: 三人第一次进入同一画面
+  - type: first_invitation
+    members:
+      - liu_bei
+      - guan_yu
+    strength: 2
+    label: 刘备主动邀关羽同坐
+  - type: shared_cause
+    members:
+      - liu_bei
+      - guan_yu
+      - zhang_fei
+    strength: 3
+    label: 三人确认都要投军讨贼
+
+assets:
+  sheet: assets/cp001_p03_b01_asset_sheet.png
+  shot_layers:
+    - id: shot_empty_tavern
+      file: web-v3/assets/shot_01_empty_tavern.jpg
+      label: 空酒肆背景
+    - id: shot_liu_zhang_drinking
+      file: web-v3/assets/shot_02_liu_zhang_drinking.jpg
+      label: 刘备张飞对饮
+    - id: shot_guan_enters
+      file: web-v3/assets/shot_03_guan_enters.jpg
+      label: 关羽进门
+    - id: shot_liu_invites
+      file: web-v3/assets/shot_04_liu_invites.jpg
+      label: 刘备相邀
+    - id: shot_three_at_table
+      file: web-v3/assets/shot_05_three_at_table.jpg
+      label: 三人同桌
+  grid:
+    columns: 4
+    rows: 4
+  cells:
+    1:
+      id: bg_zhuo_tavern_interior_day
+      kind: background
+      label: 酒肆底图
+    2:
+      id: bg_zhuo_tavern_door_shadow
+      kind: background_variant
+      label: 门口影子
+    4:
+      id: prop_wine_table
+      kind: prop
+      label: 酒桌
+    5:
+      id: prop_wheelbarrow
+      kind: prop
+      label: 独轮车
+    7:
+      id: char_guan_yu_first_appearance
+      kind: character
+      label: 关羽登场
+    8:
+      id: char_guan_yu_silhouette
+      kind: character_variant
+      label: 关羽剪影
+    10:
+      id: char_liu_bei_reaction
+      kind: character_reaction
+      label: 刘备反应
+    12:
+      id: char_zhang_fei_reaction
+      kind: character_reaction
+      label: 张飞反应
+    13:
+      id: shot_ref_arrival_triangle
+      kind: composition_reference
+      label: 三人构图
+    16:
+      id: token_open_triangle
+      kind: relation_token
+      label: 关系三角
+
+timeline:
+  - at: 0.0
+    caption: 涿县酒肆里，刘备与张飞正在对饮。
+    highlight:
+      - bg_zhuo_tavern_interior_day
+      - prop_wine_table
+  - at: 2.0
+    caption: 门口忽然一暗，一个高大的影子停住。
+    highlight:
+      - bg_zhuo_tavern_door_shadow
+      - char_guan_yu_silhouette
+  - at: 4.0
+    caption: 关羽推车进店，开口便说要投军。
+    highlight:
+      - char_guan_yu_first_appearance
+      - prop_wheelbarrow
+  - at: 6.0
+    caption: 刘备停杯，张飞转身，三条主线第一次相接。
+    highlight:
+      - char_liu_bei_reaction
+      - char_zhang_fei_reaction
+      - token_open_triangle
+  - at: 8.0
+    caption: 刘备放下杯子，起身相邀：这位壮士，不介意的话，一起喝一杯？
+    highlight:
+      - char_liu_bei_reaction
+      - char_guan_yu_first_appearance
+      - prop_wine_table
+  - at: 10.0
+    caption: 关羽看了两人一眼，没有客气，拉开凳子坐下。
+    highlight:
+      - char_guan_yu_first_appearance
+      - prop_wine_table
+      - token_open_triangle
+  - at: 12.0
+    caption: 他只说几句：姓关名羽，杀过欺人的豪强，逃亡五六年，如今来投军。
+    highlight:
+      - char_guan_yu_first_appearance
+      - token_open_triangle
+  - at: 14.0
+    caption: 刘备说出讨贼安民的志向。关羽点头，只回两个字：正好。
+    highlight:
+      - char_liu_bei_reaction
+      - char_guan_yu_first_appearance
+      - char_zhang_fei_reaction
+      - token_open_triangle
+
+render:
+  fps: 24
+  duration_seconds: 16
+  size:
+    width: 1280
+    height: 720
+  output_video: output/cp001_p03_b01_demo.mp4
+  output_preview: output/cp001_p03_b01_preview.png

@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>cp001-p03-b01 Transparent Cutout Demo</title>
+    <style>
+      :root {
+        --ink: #201915;
+        --paper: #f5ecd9;
+        --gold: #d89a3d;
+        --green: #244f42;
+        --red: #8b3026;
+        --muted: #75695d;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          linear-gradient(135deg, rgba(36, 79, 66, 0.16), transparent 42%),
+          linear-gradient(180deg, #e7decf, #cabbab);
+        color: var(--ink);
+        font-family: "Iowan Old Style", "Songti SC", "Noto Serif CJK SC", Georgia, serif;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      .topbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 24px;
+        padding: 18px 28px;
+        background: rgba(255, 250, 239, 0.82);
+        border-bottom: 1px solid rgba(48, 36, 28, 0.22);
+        backdrop-filter: blur(10px);
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 28px;
+        line-height: 1.1;
+      }
+
+      .subtitle {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .controls {
+        display: grid;
+        grid-template-columns: auto minmax(220px, 380px) auto;
+        align-items: center;
+        gap: 14px;
+      }
+
+      .play {
+        width: 42px;
+        height: 42px;
+        border: 1px solid rgba(32, 25, 21, 0.28);
+        border-radius: 8px;
+        background: var(--green);
+        color: #fff7e6;
+        cursor: pointer;
+      }
+
+      .scrub {
+        width: 100%;
+        accent-color: var(--gold);
+      }
+
+      .timecode {
+        width: 74px;
+        color: var(--muted);
+        font-variant-numeric: tabular-nums;
+      }
+
+      .workspace {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 340px;
+        gap: 22px;
+        padding: 22px 28px 28px;
+      }
+
+      .stage {
+        position: relative;
+        min-height: 650px;
+        overflow: hidden;
+        border: 2px solid rgba(64, 45, 34, 0.58);
+        border-radius: 8px;
+        background: #2d241d;
+        box-shadow: 0 24px 60px rgba(35, 24, 18, 0.24);
+      }
+
+      .stage::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: var(--stage-bg);
+        background-size: cover;
+        background-position: center;
+        opacity: 0.93;
+        filter: saturate(0.94) contrast(1.05);
+      }
+
+      .stage::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(circle at 78% 38%, rgba(246, 218, 160, 0.18), transparent 26%),
+          linear-gradient(90deg, rgba(18, 14, 12, 0.58), transparent 42%, rgba(18, 14, 12, 0.35)),
+          linear-gradient(180deg, rgba(18, 14, 12, 0.03), rgba(18, 14, 12, 0.45));
+      }
+
+      .scene-copy {
+        position: absolute;
+        z-index: 10;
+        top: 30px;
+        left: 34px;
+        right: 380px;
+        color: #fff4dc;
+        text-shadow: 0 2px 18px rgba(0, 0, 0, 0.48);
+      }
+
+      .scene-copy h2 {
+        margin: 0;
+        font-size: 42px;
+        line-height: 1.05;
+      }
+
+      .scene-copy p {
+        max-width: 720px;
+        margin: 8px 0 0;
+        font-size: 19px;
+        color: rgba(255, 244, 220, 0.92);
+      }
+
+      .cutout {
+        position: absolute;
+        z-index: 5;
+        object-fit: contain;
+        filter: drop-shadow(0 22px 24px rgba(0, 0, 0, 0.28));
+        user-select: none;
+        pointer-events: none;
+      }
+
+      .guan-shadow {
+        right: 116px;
+        bottom: 160px;
+        width: 260px;
+        height: 350px;
+        opacity: 0;
+        transform: translateX(52px) scale(0.94);
+        transition: opacity 360ms ease, transform 560ms ease;
+        filter: drop-shadow(0 24px 28px rgba(0, 0, 0, 0.38));
+      }
+
+      .guan {
+        right: 92px;
+        bottom: 108px;
+        width: 300px;
+        height: 410px;
+        opacity: 0;
+        transform: translateX(66px) scale(0.94);
+        transition: opacity 420ms ease, transform 620ms ease;
+      }
+
+      .liu {
+        left: 84px;
+        bottom: 154px;
+        width: 230px;
+        height: 280px;
+        opacity: 0;
+        transform: translateX(-26px);
+        transition: opacity 360ms ease, transform 520ms ease;
+      }
+
+      .zhang {
+        left: 292px;
+        bottom: 148px;
+        width: 246px;
+        height: 292px;
+        opacity: 0;
+        transform: translateX(-18px);
+        transition: opacity 360ms ease 80ms, transform 520ms ease 80ms;
+      }
+
+      .table-scene {
+        position: absolute;
+        z-index: 4;
+        left: 84px;
+        right: 98px;
+        bottom: 116px;
+        height: 360px;
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 420ms ease, transform 520ms ease;
+        pointer-events: none;
+      }
+
+      .table-scene::before {
+        content: "";
+        position: absolute;
+        left: 224px;
+        right: 250px;
+        bottom: 46px;
+        height: 116px;
+        border: 1px solid rgba(64, 45, 34, 0.38);
+        border-radius: 8px;
+        background: linear-gradient(180deg, rgba(107, 72, 45, 0.92), rgba(61, 38, 27, 0.94));
+        box-shadow: 0 22px 30px rgba(0, 0, 0, 0.24);
+      }
+
+      .table-scene::after {
+        content: "";
+        position: absolute;
+        left: 324px;
+        right: 350px;
+        bottom: 156px;
+        height: 24px;
+        border-radius: 999px;
+        background:
+          radial-gradient(circle at 16% 50%, #f4ead8 0 10px, transparent 11px),
+          radial-gradient(circle at 50% 50%, #f4ead8 0 10px, transparent 11px),
+          radial-gradient(circle at 84% 50%, #f4ead8 0 10px, transparent 11px);
+      }
+
+      .table-scene img {
+        position: absolute;
+        object-fit: contain;
+        filter: drop-shadow(0 18px 20px rgba(0, 0, 0, 0.23));
+      }
+
+      .table-liu {
+        left: 90px;
+        bottom: 84px;
+        width: 210px;
+        height: 250px;
+      }
+
+      .table-guan {
+        left: 372px;
+        bottom: 94px;
+        width: 236px;
+        height: 300px;
+      }
+
+      .table-zhang {
+        right: 80px;
+        bottom: 80px;
+        width: 226px;
+        height: 270px;
+      }
+
+      .relation-token {
+        right: 380px;
+        bottom: 218px;
+        width: 170px;
+        height: 210px;
+        opacity: 0;
+        transform: translateY(18px);
+        transition: opacity 420ms ease, transform 520ms ease;
+        filter: drop-shadow(0 14px 18px rgba(0, 0, 0, 0.18));
+      }
+
+      .is-shadow .guan-shadow,
+      .is-arrival .guan-shadow,
+      .is-arrival .guan,
+      .is-contact .guan {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+      }
+
+      .is-arrival .liu,
+      .is-arrival .zhang,
+      .is-contact .liu,
+      .is-contact .zhang {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .is-contact .relation-token {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .is-invite .guan,
+      .is-seated .guan,
+      .is-identity .guan,
+      .is-aligned .guan,
+      .is-invite .liu,
+      .is-seated .liu,
+      .is-identity .liu,
+      .is-aligned .liu,
+      .is-invite .zhang,
+      .is-seated .zhang,
+      .is-identity .zhang,
+      .is-aligned .zhang,
+      .is-invite .guan-shadow,
+      .is-seated .guan-shadow,
+      .is-identity .guan-shadow,
+      .is-aligned .guan-shadow {
+        opacity: 0;
+      }
+
+      .is-invite .table-scene,
+      .is-seated .table-scene,
+      .is-identity .table-scene,
+      .is-aligned .table-scene {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .is-invite .relation-token,
+      .is-seated .relation-token,
+      .is-identity .relation-token,
+      .is-aligned .relation-token {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .label {
+        position: absolute;
+        z-index: 12;
+        padding: 8px 11px;
+        border: 1px solid rgba(245, 236, 217, 0.38);
+        border-radius: 8px;
+        background: rgba(27, 31, 27, 0.74);
+        color: #fff6e6;
+        font-size: 15px;
+        line-height: 1.32;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 360ms ease, transform 460ms ease;
+      }
+
+      .label strong {
+        display: block;
+        font-size: 18px;
+      }
+
+      .label-guan {
+        right: 118px;
+        bottom: 498px;
+        max-width: 230px;
+      }
+
+      .label-liu {
+        left: 82px;
+        bottom: 434px;
+        max-width: 220px;
+      }
+
+      .label-zhang {
+        left: 312px;
+        bottom: 430px;
+        max-width: 220px;
+      }
+
+      .is-arrival .label,
+      .is-contact .label,
+      .is-invite .label,
+      .is-seated .label,
+      .is-identity .label,
+      .is-aligned .label {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .caption {
+        position: absolute;
+        z-index: 20;
+        left: 34px;
+        right: 34px;
+        bottom: 30px;
+        min-height: 74px;
+        display: flex;
+        align-items: center;
+        padding: 16px 22px;
+        border: 1px solid rgba(216, 154, 61, 0.84);
+        border-radius: 8px;
+        background: rgba(18, 24, 21, 0.9);
+        color: #fff5df;
+        font-size: 29px;
+        line-height: 1.22;
+      }
+
+      .track {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 16px;
+      }
+
+      .node {
+        min-height: 94px;
+        padding: 12px;
+        border: 1px solid rgba(63, 43, 31, 0.25);
+        border-radius: 8px;
+        background: rgba(255, 250, 239, 0.66);
+        color: var(--ink);
+        text-align: left;
+        cursor: pointer;
+      }
+
+      .node.is-current {
+        border-color: rgba(139, 48, 38, 0.86);
+        background: rgba(255, 250, 239, 0.94);
+        box-shadow: inset 0 0 0 2px rgba(139, 48, 38, 0.09);
+      }
+
+      .node strong {
+        display: block;
+        margin-bottom: 7px;
+        font-size: 16px;
+      }
+
+      .node span {
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.35;
+      }
+
+      .side {
+        display: grid;
+        gap: 16px;
+        align-content: start;
+      }
+
+      .panel {
+        padding: 16px;
+        border: 1px solid rgba(63, 43, 31, 0.24);
+        border-radius: 8px;
+        background: rgba(255, 250, 239, 0.74);
+      }
+
+      .panel h2 {
+        margin: 0 0 12px;
+        font-size: 22px;
+      }
+
+      .state-list {
+        display: grid;
+        gap: 12px;
+      }
+
+      .state-row {
+        padding-left: 10px;
+        border-left: 3px solid rgba(36, 79, 66, 0.72);
+      }
+
+      .state-row strong {
+        display: block;
+        font-size: 17px;
+      }
+
+      .state-row span {
+        display: block;
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .asset-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+      }
+
+      .asset-chip {
+        aspect-ratio: 1 / 1.18;
+        border: 1px solid rgba(63, 43, 31, 0.25);
+        border-radius: 8px;
+        background: #f1e6d2;
+        padding: 7px;
+        display: grid;
+        place-items: center;
+        cursor: pointer;
+        position: relative;
+      }
+
+      .asset-chip img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+      }
+
+      .asset-chip.is-used {
+        outline: 3px solid rgba(216, 154, 61, 0.78);
+      }
+
+      .asset-chip::after {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        bottom: 5px;
+        right: 6px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        padding: 2px 5px;
+        border-radius: 4px;
+        background: rgba(25, 22, 19, 0.74);
+        color: #fff7e7;
+        font-size: 11px;
+      }
+
+      pre {
+        max-height: 260px;
+        overflow: auto;
+        margin: 0;
+        padding: 12px;
+        border-radius: 6px;
+        background: #1c211e;
+        color: #eee2cd;
+        font: 12px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace;
+      }
+
+      @media (max-width: 980px) {
+        .topbar {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .workspace {
+          grid-template-columns: 1fr;
+          padding: 16px;
+        }
+
+        .scene-copy {
+          right: 34px;
+        }
+
+        .stage {
+          min-height: 720px;
+        }
+
+        .track {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>关羽进店到同饮：透明 Cutout Demo</h1>
+        <p class="subtitle">从登场、邀请、落座到同路，用同一组透明资产完成小场调度。</p>
+      </div>
+      <div class="controls">
+        <button class="play" id="play" type="button" aria-label="播放或暂停">▶</button>
+        <input class="scrub" id="scrub" type="range" min="0" max="8" step="0.01" value="0" aria-label="时间轴" />
+        <span class="timecode" id="timecode">0.00s</span>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <section>
+        <div class="stage" id="stage">
+          <div class="scene-copy">
+            <h2>关羽进店与同饮</h2>
+            <p>关羽推车进店，刘备邀他同坐，三人发现都要投军讨贼。</p>
+          </div>
+
+          <img class="cutout guan-shadow" src="assets/cell_08_cutout.png" alt="" />
+          <img class="cutout guan" src="assets/cell_07_cutout.png" alt="" />
+          <img class="cutout liu" src="assets/cell_10_cutout.png" alt="" />
+          <img class="cutout zhang" src="assets/cell_12_cutout.png" alt="" />
+          <img class="cutout relation-token" src="assets/cell_16_cutout.png" alt="" />
+          <div class="table-scene" aria-hidden="true">
+            <img class="table-liu" src="assets/cell_10_cutout.png" alt="" />
+            <img class="table-guan" src="assets/cell_07_cutout.png" alt="" />
+            <img class="table-zhang" src="assets/cell_12_cutout.png" alt="" />
+          </div>
+
+          <div class="label label-guan"><strong>关羽</strong>推车进店，直奔投军。</div>
+          <div class="label label-liu"><strong>刘备</strong>举杯停住，一眼看出此人不凡。</div>
+          <div class="label label-zhang"><strong>张飞</strong>转身看去，兴奋起来。</div>
+          <div class="caption" id="caption"></div>
+        </div>
+
+        <nav class="track" id="track"></nav>
+      </section>
+
+      <aside class="side">
+        <section class="panel">
+          <h2>当前 DSL 状态</h2>
+          <div class="state-list" id="stateList"></div>
+        </section>
+        <section class="panel">
+          <h2>透明资产</h2>
+          <div class="asset-grid" id="assetGrid"></div>
+        </section>
+        <section class="panel">
+          <h2>数据摘要</h2>
+          <pre id="rawDsl"></pre>
+        </section>
+      </aside>
+    </main>
+
+    <script>
+      const dsl = {
+        id: "cp001-p03-b01",
+        title: "关羽进店与同饮",
+        location: { id: "zhuo_tavern", label: "涿县酒肆" },
+        beat: {
+          type: "arrival_to_recognition",
+          action: "关羽推车进店，刘备邀他同坐，三人发现都要投军讨贼。",
+          change: "第三条主线进入画面，并与刘备、张飞接成同一条路。",
+        },
+        focus: { primary: "guan_yu", reactors: ["liu_bei", "zhang_fei"] },
+        characters: {
+          guan_yu: { label: "关羽", from: "offstage", to: "onstage", asset: "cell_07_cutout.png" },
+          liu_bei: { label: "刘备", from: "drinking_with_zhang_fei", to: "noticing_guan_yu", asset: "cell_10_cutout.png" },
+          zhang_fei: { label: "张飞", from: "talking_with_liu_bei", to: "sizing_up_guan_yu", asset: "cell_12_cutout.png" },
+        },
+        relation: { type: "shared_cause", label: "三人确认都要投军讨贼", asset: "cell_16_cutout.png" },
+        timeline: [
+          { at: 0, node: "酒肆", caption: "涿县酒肆里，刘备与张飞正在对饮。", bg: "cell_01.jpg", used: ["cell_01.jpg"] },
+          { at: 2, node: "门影", caption: "门口忽然一暗，一个高大的影子停住。", bg: "cell_02.jpg", used: ["cell_02.jpg", "cell_08_cutout.png"] },
+          { at: 4, node: "登场", caption: "关羽推车进店，开口便说要投军。", bg: "cell_02.jpg", used: ["cell_07_cutout.png", "cell_08_cutout.png"] },
+          { at: 6, node: "相接", caption: "刘备停杯，张飞转身，三条主线第一次相接。", bg: "cell_02.jpg", used: ["cell_07_cutout.png", "cell_10_cutout.png", "cell_12_cutout.png", "cell_16_cutout.png"] },
+          { at: 8, node: "相邀", caption: "刘备放下杯子，起身相邀：这位壮士，不介意的话，一起喝一杯？", bg: "cell_02.jpg", used: ["cell_07_cutout.png", "cell_10_cutout.png", "cell_12_cutout.png", "cell_16_cutout.png"] },
+          { at: 10, node: "落座", caption: "关羽看了两人一眼，没有客气，拉开凳子坐下。", bg: "cell_01.jpg", used: ["cell_07_cutout.png", "cell_10_cutout.png", "cell_12_cutout.png", "cell_16_cutout.png"] },
+          { at: 12, node: "自报", caption: "他只说几句：姓关名羽，杀过欺人的豪强，逃亡五六年，如今来投军。", bg: "cell_01.jpg", used: ["cell_07_cutout.png", "cell_10_cutout.png", "cell_12_cutout.png"] },
+          { at: 14, node: "同路", caption: "刘备说出讨贼安民的志向。关羽点头，只回两个字：正好。", bg: "cell_01.jpg", used: ["cell_07_cutout.png", "cell_10_cutout.png", "cell_12_cutout.png", "cell_16_cutout.png"] },
+        ],
+        duration: 16,
+      };
+
+      const stage = document.querySelector("#stage");
+      const caption = document.querySelector("#caption");
+      const play = document.querySelector("#play");
+      const scrub = document.querySelector("#scrub");
+      const timecode = document.querySelector("#timecode");
+      const track = document.querySelector("#track");
+      const stateList = document.querySelector("#stateList");
+      const assetGrid = document.querySelector("#assetGrid");
+      const rawDsl = document.querySelector("#rawDsl");
+      let time = 0;
+      let playing = false;
+      let last = 0;
+
+      const assets = [
+        ["cell_01.jpg", "背景"],
+        ["cell_02.jpg", "门影"],
+        ["cell_08_cutout.png", "关羽影"],
+        ["cell_07_cutout.png", "关羽"],
+        ["cell_10_cutout.png", "刘备"],
+        ["cell_12_cutout.png", "张飞"],
+        ["cell_16_cutout.png", "关系"],
+      ];
+
+      function currentBeat(t) {
+        return dsl.timeline.reduce((current, beat) => (t >= beat.at ? beat : current), dsl.timeline[0]);
+      }
+
+      function phase(t) {
+        if (t >= 14) return "aligned";
+        if (t >= 12) return "identity";
+        if (t >= 10) return "seated";
+        if (t >= 8) return "invite";
+        if (t >= 6) return "contact";
+        if (t >= 4) return "arrival";
+        if (t >= 2) return "shadow";
+        return "start";
+      }
+
+      function setTime(next) {
+        time = Math.max(0, Math.min(dsl.duration, next));
+        const beat = currentBeat(time);
+        const p = phase(time);
+        stage.className = `stage is-${p}`;
+        stage.style.setProperty("--stage-bg", `url("assets/${beat.bg}")`);
+        caption.textContent = beat.caption;
+        scrub.value = String(time);
+        timecode.textContent = `${time.toFixed(2)}s`;
+        document.querySelectorAll(".node").forEach((node, index) => {
+          node.classList.toggle("is-current", dsl.timeline[index] === beat);
+        });
+        renderAssets(beat.used);
+      }
+
+      function renderTrack() {
+        track.innerHTML = "";
+        dsl.timeline.forEach((beat) => {
+          const button = document.createElement("button");
+          button.className = "node";
+          button.type = "button";
+          button.innerHTML = `<strong>${beat.node} · ${beat.at}s</strong><span>${beat.caption}</span>`;
+          button.addEventListener("click", () => setTime(beat.at));
+          track.appendChild(button);
+        });
+      }
+
+      function renderState() {
+        const rows = [
+          ["location", dsl.location.label],
+          ["beat_type", dsl.beat.type],
+          ["primary", dsl.focus.primary],
+          ["change", dsl.beat.change],
+          ["relation", dsl.relation.label],
+        ];
+        stateList.innerHTML = rows.map(([k, v]) => `<div class="state-row"><strong>${k}</strong><span>${v}</span></div>`).join("");
+      }
+
+      function renderAssets(used = []) {
+        assetGrid.innerHTML = "";
+        assets.forEach(([file, label]) => {
+          const button = document.createElement("button");
+          button.type = "button";
+          button.className = `asset-chip${used.includes(file) ? " is-used" : ""}`;
+          button.dataset.label = label;
+          button.innerHTML = `<img src="assets/${file}" alt="" />`;
+          const beat = dsl.timeline.find((item) => item.used.includes(file));
+          if (beat) button.addEventListener("click", () => setTime(beat.at));
+          assetGrid.appendChild(button);
+        });
+      }
+
+      function tick(now) {
+        if (!playing) return;
+        if (!last) last = now;
+        time += (now - last) / 1000;
+        last = now;
+        if (time >= dsl.duration) {
+          time = dsl.duration;
+          playing = false;
+          play.textContent = "▶";
+        }
+        setTime(time);
+        if (playing) requestAnimationFrame(tick);
+      }
+
+      play.addEventListener("click", () => {
+        playing = !playing;
+        if (time >= dsl.duration) time = 0;
+        play.textContent = playing ? "Ⅱ" : "▶";
+        last = 0;
+        if (playing) requestAnimationFrame(tick);
+      });
+
+      scrub.addEventListener("input", (event) => {
+        playing = false;
+        play.textContent = "▶";
+        setTime(Number(event.target.value));
+      });
+
+      renderTrack();
+      renderState();
+      rawDsl.textContent = JSON.stringify(dsl, null, 2);
+      setTime(0);
+    </script>
+  </body>
+</html>
